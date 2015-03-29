@@ -133,12 +133,12 @@ lemmaSubst2 {N} {P} M x = TermIndPerm (Ps N P x) lemmav lemma· lemmaƛ M
 lemmaSubst : {M N P Q : Λ}(a : Atom) 
   → M ∼α N → P ∼α Q 
   → M [ a := P ] ∼α N [ a := Q ]
-lemmaSubst {M} {N} {P} {Q} a M∼αN P∼αQ 
+lemmaSubst {M} {N} {P} {Q} a M∼N P∼Q 
   =  begin
        M [ a := P ]
-     ≈⟨ lemmaSubst1 P a M∼αN ⟩
+     ≈⟨ lemmaSubst1 P a M∼N ⟩
        N [ a := P ]
-     ∼⟨ lemmaSubst2 N a P∼αQ  ⟩
+     ∼⟨ lemmaSubst2 N a P∼Q  ⟩
        N [ a := Q ]
      ∎
 \end{code}
