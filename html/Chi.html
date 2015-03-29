@@ -1,0 +1,6885 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >Chi</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1"
+      >\begin{code}
+</a
+      ><a name="14" class="Keyword"
+      >module</a
+      ><a name="20"
+      > </a
+      ><a name="21" href="Chi.html#1" class="Module"
+      >Chi</a
+      ><a name="24"
+      > </a
+      ><a name="25" class="Keyword"
+      >where</a
+      ><a name="30"
+      >
+
+</a
+      ><a name="32" class="Keyword"
+      >open</a
+      ><a name="36"
+      > </a
+      ><a name="37" class="Keyword"
+      >import</a
+      ><a name="43"
+      > </a
+      ><a name="44" href="Data.Nat.html#1" class="Module"
+      >Data.Nat</a
+      ><a name="52"
+      > </a
+      ><a name="53" class="Symbol"
+      >as</a
+      ><a name="55"
+      > </a
+      ><a name="56" class="Module"
+      >Nat</a
+      ><a name="59"
+      >
+</a
+      ><a name="60" class="Keyword"
+      >open</a
+      ><a name="64"
+      > </a
+      ><a name="65" class="Keyword"
+      >import</a
+      ><a name="71"
+      > </a
+      ><a name="72" href="Data.Nat.Properties.html#1" class="Module"
+      >Data.Nat.Properties</a
+      ><a name="91"
+      >
+</a
+      ><a name="92" class="Keyword"
+      >open</a
+      ><a name="96"
+      > </a
+      ><a name="97" class="Keyword"
+      >import</a
+      ><a name="103"
+      > </a
+      ><a name="104" href="Data.Bool.html#1" class="Module"
+      >Data.Bool</a
+      ><a name="113"
+      > </a
+      ><a name="114" class="Keyword"
+      >hiding</a
+      ><a name="120"
+      > </a
+      ><a name="121" class="Symbol"
+      >(</a
+      ><a name="122"
+      >_&#8799;_</a
+      ><a name="125" class="Symbol"
+      >;</a
+      ><a name="126"
+      >_&#8744;_</a
+      ><a name="129" class="Symbol"
+      >)</a
+      ><a name="130"
+      >
+</a
+      ><a name="131" class="Keyword"
+      >open</a
+      ><a name="135"
+      > </a
+      ><a name="136" class="Keyword"
+      >import</a
+      ><a name="142"
+      > </a
+      ><a name="143" href="Data.Empty.html#1" class="Module"
+      >Data.Empty</a
+      ><a name="153"
+      >
+</a
+      ><a name="154" class="Keyword"
+      >open</a
+      ><a name="158"
+      > </a
+      ><a name="159" class="Keyword"
+      >import</a
+      ><a name="165"
+      > </a
+      ><a name="166" href="Function.html#1" class="Module"
+      >Function</a
+      ><a name="174"
+      >
+</a
+      ><a name="175" class="Keyword"
+      >open</a
+      ><a name="179"
+      > </a
+      ><a name="180" class="Keyword"
+      >import</a
+      ><a name="186"
+      > </a
+      ><a name="187" href="Data.Sum.html#1" class="Module"
+      >Data.Sum</a
+      ><a name="195"
+      > </a
+      ><a name="196" class="Keyword"
+      >hiding</a
+      ><a name="202"
+      > </a
+      ><a name="203" class="Symbol"
+      >(</a
+      ><a name="204"
+      >map</a
+      ><a name="207" class="Symbol"
+      >)</a
+      ><a name="208"
+      > </a
+      ><a name="209" class="Keyword"
+      >renaming</a
+      ><a name="217"
+      > </a
+      ><a name="218" class="Symbol"
+      >(</a
+      ><a name="219"
+      >_&#8846;_ </a
+      ><a name="223" class="Symbol"
+      >to</a
+      ><a name="225"
+      > _&#8744;_</a
+      ><a name="229" class="Symbol"
+      >)</a
+      ><a name="230"
+      >
+</a
+      ><a name="231" class="Keyword"
+      >open</a
+      ><a name="235"
+      > </a
+      ><a name="236" class="Keyword"
+      >import</a
+      ><a name="242"
+      > </a
+      ><a name="243" href="Data.Product.html#1" class="Module"
+      >Data.Product</a
+      ><a name="255"
+      > </a
+      ><a name="256" class="Keyword"
+      >renaming</a
+      ><a name="264"
+      > </a
+      ><a name="265" class="Symbol"
+      >(</a
+      ><a name="266"
+      >&#931; </a
+      ><a name="268" class="Symbol"
+      >to</a
+      ><a name="270"
+      > &#931;&#8339;</a
+      ><a name="273" class="Symbol"
+      >;</a
+      ><a name="274"
+      >map </a
+      ><a name="278" class="Symbol"
+      >to</a
+      ><a name="280"
+      > map&#8339;</a
+      ><a name="285" class="Symbol"
+      >)</a
+      ><a name="286"
+      > 
+</a
+      ><a name="288" class="Keyword"
+      >open</a
+      ><a name="292"
+      > </a
+      ><a name="293" class="Keyword"
+      >import</a
+      ><a name="299"
+      > </a
+      ><a name="300" href="Relation.Nullary.html#1" class="Module"
+      >Relation.Nullary</a
+      ><a name="316"
+      >
+</a
+      ><a name="317" class="Keyword"
+      >open</a
+      ><a name="321"
+      > </a
+      ><a name="322" class="Keyword"
+      >import</a
+      ><a name="328"
+      > </a
+      ><a name="329" href="Relation.Nullary.Decidable.html#1" class="Module"
+      >Relation.Nullary.Decidable</a
+      ><a name="355"
+      > </a
+      ><a name="356" class="Keyword"
+      >hiding</a
+      ><a name="362"
+      > </a
+      ><a name="363" class="Symbol"
+      >(</a
+      ><a name="364"
+      >map</a
+      ><a name="367" class="Symbol"
+      >)</a
+      ><a name="368"
+      >
+</a
+      ><a name="369" class="Keyword"
+      >open</a
+      ><a name="373"
+      > </a
+      ><a name="374" class="Keyword"
+      >import</a
+      ><a name="380"
+      > </a
+      ><a name="381" href="Relation.Binary.html#1" class="Module"
+      >Relation.Binary</a
+      ><a name="396"
+      >
+</a
+      ><a name="397" class="Keyword"
+      >open</a
+      ><a name="401"
+      > </a
+      ><a name="402" class="Keyword"
+      >import</a
+      ><a name="408"
+      > </a
+      ><a name="409" href="Relation.Binary.PropositionalEquality.html#1" class="Module"
+      >Relation.Binary.PropositionalEquality</a
+      ><a name="446"
+      > </a
+      ><a name="447" class="Symbol"
+      >as</a
+      ><a name="449"
+      > </a
+      ><a name="450" class="Module"
+      >PropEq</a
+      ><a name="456"
+      > </a
+      ><a name="457" class="Keyword"
+      >renaming</a
+      ><a name="465"
+      > </a
+      ><a name="466" class="Symbol"
+      >(</a
+      ><a name="467"
+      >[_] </a
+      ><a name="471" class="Symbol"
+      >to</a
+      ><a name="473"
+      > [_]&#7522;</a
+      ><a name="478" class="Symbol"
+      >)</a
+      ><a name="479"
+      > 
+</a
+      ><a name="481" class="Keyword"
+      >open</a
+      ><a name="485"
+      > </a
+      ><a name="486" class="Keyword"
+      >import</a
+      ><a name="492"
+      > </a
+      ><a name="493" href="Data.List.html#1" class="Module"
+      >Data.List</a
+      ><a name="502"
+      > </a
+      ><a name="503" class="Keyword"
+      >hiding</a
+      ><a name="509"
+      > </a
+      ><a name="510" class="Symbol"
+      >(</a
+      ><a name="511"
+      >any</a
+      ><a name="514" class="Symbol"
+      >)</a
+      ><a name="515"
+      > </a
+      ><a name="516" class="Keyword"
+      >renaming</a
+      ><a name="524"
+      > </a
+      ><a name="525" class="Symbol"
+      >(</a
+      ><a name="526"
+      >length </a
+      ><a name="533" class="Symbol"
+      >to</a
+      ><a name="535"
+      > length'</a
+      ><a name="543" class="Symbol"
+      >)</a
+      ><a name="544"
+      > 
+</a
+      ><a name="546" class="Keyword"
+      >open</a
+      ><a name="550"
+      > </a
+      ><a name="551" class="Keyword"
+      >import</a
+      ><a name="557"
+      > </a
+      ><a name="558" href="Data.List.Properties.html#1" class="Module"
+      >Data.List.Properties</a
+      ><a name="578"
+      >
+</a
+      ><a name="579" class="Keyword"
+      >open</a
+      ><a name="583"
+      > </a
+      ><a name="584" class="Keyword"
+      >import</a
+      ><a name="590"
+      > </a
+      ><a name="591" href="Data.List.Any.html#1" class="Module"
+      >Data.List.Any</a
+      ><a name="604"
+      > </a
+      ><a name="605" class="Symbol"
+      >as</a
+      ><a name="607"
+      > </a
+      ><a name="608" class="Module"
+      >Any</a
+      ><a name="611"
+      > </a
+      ><a name="612" class="Keyword"
+      >hiding</a
+      ><a name="618"
+      > </a
+      ><a name="619" class="Symbol"
+      >(</a
+      ><a name="620"
+      >map</a
+      ><a name="623" class="Symbol"
+      >)</a
+      ><a name="624"
+      >
+</a
+      ><a name="625" class="Keyword"
+      >open</a
+      ><a name="629"
+      > </a
+      ><a name="630" class="Keyword"
+      >import</a
+      ><a name="636"
+      > </a
+      ><a name="637" href="Data.List.Any.Membership.html#1" class="Module"
+      >Data.List.Any.Membership</a
+      ><a name="661"
+      >
+</a
+      ><a name="662" class="Keyword"
+      >open</a
+      ><a name="666"
+      > </a
+      ><a name="667" class="Keyword"
+      >import</a
+      ><a name="673"
+      > </a
+      ><a name="674" href="Data.List.Any.Properties.html#1" class="Module"
+      >Data.List.Any.Properties</a
+      ><a name="698"
+      >
+</a
+      ><a name="699" class="Keyword"
+      >open</a
+      ><a name="703"
+      > </a
+      ><a name="704" href="Data.List.Any.html#260" class="Module"
+      >Any.</a
+      ><a name="708" href="Data.List.Any.html#4577" class="Module"
+      >Membership-&#8801;</a
+      ><a name="720"
+      > </a
+      ><a name="721" class="Keyword"
+      >renaming</a
+      ><a name="729"
+      > </a
+      ><a name="730" class="Symbol"
+      >(</a
+      ><a name="731"
+      >_&#8712;_ </a
+      ><a name="735" class="Symbol"
+      >to</a
+      ><a name="737"
+      > _&#8712;[]_</a
+      ><a name="743" class="Symbol"
+      >;</a
+      ><a name="744"
+      >_&#8713;_ </a
+      ><a name="748" class="Symbol"
+      >to</a
+      ><a name="750"
+      > _&#8713;[]_</a
+      ><a name="756" class="Symbol"
+      >)</a
+      ><a name="757"
+      > 
+</a
+      ><a name="759" class="Keyword"
+      >open</a
+      ><a name="763"
+      > </a
+      ><a name="764" class="Keyword"
+      >import</a
+      ><a name="770"
+      > </a
+      ><a name="771" href="Algebra.Structures.html#1" class="Module"
+      >Algebra.Structures</a
+      ><a name="789"
+      >
+</a
+      ><a name="790" class="Keyword"
+      >open</a
+      ><a name="794"
+      > </a
+      ><a name="795" class="Keyword"
+      >import</a
+      ><a name="801"
+      > </a
+      ><a name="802" href="Relation.Binary.html#1" class="Module"
+      >Relation.Binary</a
+      ><a name="817"
+      >
+</a
+      ><a name="818" class="Comment"
+      >--</a
+      ><a name="820"
+      >
+</a
+      ><a name="821" href="Chi.html#821" class="Function"
+      >n+0&#8801;n</a
+      ><a name="826"
+      >   </a
+      ><a name="829" class="Symbol"
+      >=</a
+      ><a name="830"
+      > </a
+      ><a name="831" href="Algebra.Structures.html#1377" class="Field"
+      >IsCommutativeMonoid.identity&#737;</a
+      ><a name="860"
+      > </a
+      ><a name="861" class="Symbol"
+      >(</a
+      ><a name="862" href="Algebra.Structures.html#6903" class="Field"
+      >IsCommutativeSemiring.*-isCommutativeMonoid</a
+      ><a name="905"
+      > </a
+      ><a name="906" href="Data.Nat.Properties.html#1086" class="Function"
+      >isCommutativeSemiring</a
+      ><a name="927" class="Symbol"
+      >)</a
+      ><a name="928"
+      >
+</a
+      ><a name="929" href="Chi.html#929" class="Function"
+      >+-comm</a
+      ><a name="935"
+      >  </a
+      ><a name="937" class="Symbol"
+      >=</a
+      ><a name="938"
+      > </a
+      ><a name="939" href="Algebra.Structures.html#1414" class="Field"
+      >IsCommutativeMonoid.comm</a
+      ><a name="963"
+      > </a
+      ><a name="964" class="Symbol"
+      >(</a
+      ><a name="965" href="Algebra.Structures.html#6846" class="Field"
+      >IsCommutativeSemiring.+-isCommutativeMonoid</a
+      ><a name="1008"
+      > </a
+      ><a name="1009" href="Data.Nat.Properties.html#1086" class="Function"
+      >isCommutativeSemiring</a
+      ><a name="1030" class="Symbol"
+      >)</a
+      ><a name="1031"
+      >
+</a
+      ><a name="1032" href="Chi.html#1032" class="Function"
+      >total</a
+      ><a name="1037"
+      >   </a
+      ><a name="1040" class="Symbol"
+      >=</a
+      ><a name="1041"
+      > </a
+      ><a name="1042" href="Relation.Binary.html#8011" class="Field"
+      >IsTotalOrder.total</a
+      ><a name="1060"
+      > </a
+      ><a name="1061" class="Symbol"
+      >(</a
+      ><a name="1062" href="Relation.Binary.html#8747" class="Field"
+      >IsDecTotalOrder.isTotalOrder</a
+      ><a name="1090"
+      > </a
+      ><a name="1091" class="Symbol"
+      >(</a
+      ><a name="1092" href="Relation.Binary.html#9354" class="Field"
+      >DecTotalOrder.isDecTotalOrder</a
+      ><a name="1121"
+      > </a
+      ><a name="1122" href="Data.Nat.html#4487" class="Function"
+      >decTotalOrder</a
+      ><a name="1135" class="Symbol"
+      >))</a
+      ><a name="1137"
+      >
+</a
+      ><a name="1138" class="Comment"
+      >--</a
+      ><a name="1140"
+      >
+</a
+      ><a name="1141" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="1142"
+      > </a
+      ><a name="1143" class="Symbol"
+      >=</a
+      ><a name="1144"
+      > </a
+      ><a name="1145" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="1146"
+      >
+</a
+      ><a name="1147" class="Comment"
+      >--</a
+      ><a name="1149"
+      >
+</a
+      ><a name="1150" href="Chi.html#1150" class="Function"
+      >f&lt;s</a
+      ><a name="1153"
+      > </a
+      ><a name="1154" class="Symbol"
+      >:</a
+      ><a name="1155"
+      > </a
+      ><a name="1156" class="Symbol"
+      >(</a
+      ><a name="1157" href="Chi.html#1157" class="Bound"
+      >x</a
+      ><a name="1158"
+      > </a
+      ><a name="1159" class="Symbol"
+      >:</a
+      ><a name="1160"
+      > </a
+      ><a name="1161" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="1162" class="Symbol"
+      >)(</a
+      ><a name="1164" href="Chi.html#1164" class="Bound"
+      >xs</a
+      ><a name="1166"
+      > </a
+      ><a name="1167" class="Symbol"
+      >:</a
+      ><a name="1168"
+      > </a
+      ><a name="1169" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="1173"
+      > </a
+      ><a name="1174" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="1175" class="Symbol"
+      >)</a
+      ><a name="1176"
+      > </a
+      ><a name="1177" class="Symbol"
+      >&#8594;</a
+      ><a name="1178"
+      > </a
+      ><a name="1179" href="Chi.html#1157" class="Bound"
+      >x</a
+      ><a name="1180"
+      > </a
+      ><a name="1181" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="1184"
+      > </a
+      ><a name="1185" href="Chi.html#1164" class="Bound"
+      >xs</a
+      ><a name="1187"
+      > </a
+      ><a name="1188" class="Symbol"
+      >&#8594;</a
+      ><a name="1189"
+      > </a
+      ><a name="1190" class="Symbol"
+      >((</a
+      ><a name="1192" href="Chi.html#1192" class="Bound"
+      >y</a
+      ><a name="1193"
+      > </a
+      ><a name="1194" class="Symbol"
+      >:</a
+      ><a name="1195"
+      > </a
+      ><a name="1196" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="1197" class="Symbol"
+      >)</a
+      ><a name="1198"
+      > </a
+      ><a name="1199" class="Symbol"
+      >&#8594;</a
+      ><a name="1200"
+      > </a
+      ><a name="1201" href="Chi.html#1192" class="Bound"
+      >y</a
+      ><a name="1202"
+      > </a
+      ><a name="1203" href="Data.Nat.html#901" class="Function Operator"
+      >&lt;</a
+      ><a name="1204"
+      > </a
+      ><a name="1205" href="Chi.html#1157" class="Bound"
+      >x</a
+      ><a name="1206"
+      > </a
+      ><a name="1207" class="Symbol"
+      >&#8594;</a
+      ><a name="1208"
+      > </a
+      ><a name="1209" href="Chi.html#1192" class="Bound"
+      >y</a
+      ><a name="1210"
+      > </a
+      ><a name="1211" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="1214"
+      > </a
+      ><a name="1215" href="Chi.html#1164" class="Bound"
+      >xs</a
+      ><a name="1217" class="Symbol"
+      >)</a
+      ><a name="1218"
+      > </a
+      ><a name="1219" class="Symbol"
+      >&#8594;</a
+      ><a name="1220"
+      > </a
+      ><a name="1221" class="Symbol"
+      >(</a
+      ><a name="1222" href="Chi.html#1222" class="Bound"
+      >y</a
+      ><a name="1223"
+      > </a
+      ><a name="1224" class="Symbol"
+      >:</a
+      ><a name="1225"
+      > </a
+      ><a name="1226" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="1227" class="Symbol"
+      >)</a
+      ><a name="1228"
+      > </a
+      ><a name="1229" class="Symbol"
+      >&#8594;</a
+      ><a name="1230"
+      > </a
+      ><a name="1231" href="Chi.html#1222" class="Bound"
+      >y</a
+      ><a name="1232"
+      > </a
+      ><a name="1233" href="Data.Nat.html#901" class="Function Operator"
+      >&lt;</a
+      ><a name="1234"
+      > </a
+      ><a name="1235" class="Symbol"
+      >(</a
+      ><a name="1236" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="1239"
+      > </a
+      ><a name="1240" href="Chi.html#1157" class="Bound"
+      >x</a
+      ><a name="1241" class="Symbol"
+      >)</a
+      ><a name="1242"
+      > </a
+      ><a name="1243" class="Symbol"
+      >&#8594;</a
+      ><a name="1244"
+      > </a
+      ><a name="1245" href="Chi.html#1222" class="Bound"
+      >y</a
+      ><a name="1246"
+      > </a
+      ><a name="1247" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="1250"
+      > </a
+      ><a name="1251" href="Chi.html#1164" class="Bound"
+      >xs</a
+      ><a name="1253"
+      >
+</a
+      ><a name="1254" href="Chi.html#1150" class="Function"
+      >f&lt;s</a
+      ><a name="1257"
+      > </a
+      ><a name="1258" href="Chi.html#1258" class="Bound"
+      >x</a
+      ><a name="1259"
+      > </a
+      ><a name="1260" href="Chi.html#1260" class="Bound"
+      >xs</a
+      ><a name="1262"
+      > </a
+      ><a name="1263" href="Chi.html#1263" class="Bound"
+      >x&#8712;xs</a
+      ><a name="1267"
+      > </a
+      ><a name="1268" href="Chi.html#1268" class="Bound"
+      >f&lt;</a
+      ><a name="1270"
+      > </a
+      ><a name="1271" href="Chi.html#1271" class="Bound"
+      >y</a
+      ><a name="1272"
+      > </a
+      ><a name="1273" href="Chi.html#1273" class="Bound"
+      >sucy&#8804;sucx</a
+      ><a name="1282"
+      > </a
+      ><a name="1283" class="Keyword"
+      >with</a
+      ><a name="1287"
+      > </a
+      ><a name="1288" href="Data.Nat.Properties.html#7182" class="Function"
+      >&#8804;&#8658;&#8804;&#8242;</a
+      ><a name="1292"
+      > </a
+      ><a name="1293" href="Chi.html#1273" class="Bound"
+      >sucy&#8804;sucx</a
+      ><a name="1302"
+      >
+</a
+      ><a name="1303" href="Chi.html#1150" class="Function"
+      >f&lt;s</a
+      ><a name="1306"
+      > </a
+      ><a name="1307" href="Chi.html#1307" class="Bound"
+      >x</a
+      ><a name="1308"
+      > </a
+      ><a name="1309" href="Chi.html#1309" class="Bound"
+      >xs</a
+      ><a name="1311"
+      > </a
+      ><a name="1312" href="Chi.html#1312" class="Bound"
+      >x&#8712;xs</a
+      ><a name="1316"
+      > </a
+      ><a name="1317" href="Chi.html#1317" class="Bound"
+      >f&lt;</a
+      ><a name="1319"
+      > </a
+      ><a name="1320" class="DottedPattern Symbol"
+      >.</a
+      ><a name="1321" href="Chi.html#1307" class="DottedPattern Bound"
+      >x</a
+      ><a name="1322"
+      > </a
+      ><a name="1323" class="Symbol"
+      >_</a
+      ><a name="1324"
+      > </a
+      ><a name="1325" class="Symbol"
+      >|</a
+      ><a name="1326"
+      > </a
+      ><a name="1327" href="Data.Nat.html#1361" class="InductiveConstructor"
+      >&#8804;&#8242;-refl</a
+      ><a name="1334"
+      >            </a
+      ><a name="1346" class="Symbol"
+      >=</a
+      ><a name="1347"
+      > </a
+      ><a name="1348" href="Chi.html#1312" class="Bound"
+      >x&#8712;xs</a
+      ><a name="1352"
+      >
+</a
+      ><a name="1353" href="Chi.html#1150" class="Function"
+      >f&lt;s</a
+      ><a name="1356"
+      > </a
+      ><a name="1357" href="Chi.html#1357" class="Bound"
+      >x</a
+      ><a name="1358"
+      > </a
+      ><a name="1359" href="Chi.html#1359" class="Bound"
+      >xs</a
+      ><a name="1361"
+      > </a
+      ><a name="1362" href="Chi.html#1362" class="Bound"
+      >x&#8712;xs</a
+      ><a name="1366"
+      > </a
+      ><a name="1367" href="Chi.html#1367" class="Bound"
+      >f&lt;</a
+      ><a name="1369"
+      > </a
+      ><a name="1370" href="Chi.html#1370" class="Bound"
+      >y</a
+      ><a name="1371"
+      >  </a
+      ><a name="1373" class="Symbol"
+      >_</a
+      ><a name="1374"
+      > </a
+      ><a name="1375" class="Symbol"
+      >|</a
+      ><a name="1376"
+      > </a
+      ><a name="1377" href="Data.Nat.html#1404" class="InductiveConstructor"
+      >&#8804;&#8242;-step</a
+      ><a name="1384"
+      > </a
+      ><a name="1385" href="Chi.html#1385" class="Bound"
+      >sucy&lt;'sucx</a
+      ><a name="1395"
+      > </a
+      ><a name="1396" class="Symbol"
+      >=</a
+      ><a name="1397"
+      > </a
+      ><a name="1398" href="Chi.html#1367" class="Bound"
+      >f&lt;</a
+      ><a name="1400"
+      > </a
+      ><a name="1401" href="Chi.html#1370" class="Bound"
+      >y</a
+      ><a name="1402"
+      > </a
+      ><a name="1403" class="Symbol"
+      >(</a
+      ><a name="1404" href="Data.Nat.Properties.html#6902" class="Function"
+      >&#8804;&#8242;&#8658;&#8804;</a
+      ><a name="1408"
+      > </a
+      ><a name="1409" href="Chi.html#1385" class="Bound"
+      >sucy&lt;'sucx</a
+      ><a name="1419" class="Symbol"
+      >)</a
+      ><a name="1420"
+      >
+</a
+      ><a name="1421" class="Comment"
+      >--</a
+      ><a name="1423"
+      >
+</a
+      ><a name="1424" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="1428"
+      > </a
+      ><a name="1429" class="Symbol"
+      >:</a
+      ><a name="1430"
+      > </a
+      ><a name="1431" class="Symbol"
+      >(</a
+      ><a name="1432" href="Chi.html#1432" class="Bound"
+      >n</a
+      ><a name="1433"
+      > </a
+      ><a name="1434" href="Chi.html#1434" class="Bound"
+      >m</a
+      ><a name="1435"
+      > </a
+      ><a name="1436" href="Chi.html#1436" class="Bound"
+      >k</a
+      ><a name="1437"
+      > </a
+      ><a name="1438" class="Symbol"
+      >:</a
+      ><a name="1439"
+      > </a
+      ><a name="1440" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="1441" class="Symbol"
+      >)</a
+      ><a name="1442"
+      > </a
+      ><a name="1443" class="Symbol"
+      >&#8594;</a
+      ><a name="1444"
+      > </a
+      ><a name="1445" href="Chi.html#1432" class="Bound"
+      >n</a
+      ><a name="1446"
+      > </a
+      ><a name="1447" href="Data.Nat.html#2168" class="Primitive Operator"
+      >+</a
+      ><a name="1448"
+      > </a
+      ><a name="1449" href="Chi.html#1434" class="Bound"
+      >m</a
+      ><a name="1450"
+      > </a
+      ><a name="1451" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1452"
+      > </a
+      ><a name="1453" href="Chi.html#1436" class="Bound"
+      >k</a
+      ><a name="1454"
+      > </a
+      ><a name="1455" class="Symbol"
+      >&#8594;</a
+      ><a name="1456"
+      > </a
+      ><a name="1457" class="Symbol"
+      >(</a
+      ><a name="1458" href="Chi.html#1458" class="Bound"
+      >xs</a
+      ><a name="1460"
+      > </a
+      ><a name="1461" class="Symbol"
+      >:</a
+      ><a name="1462"
+      > </a
+      ><a name="1463" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="1467"
+      > </a
+      ><a name="1468" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="1469" class="Symbol"
+      >)</a
+      ><a name="1470"
+      > </a
+      ><a name="1471" class="Symbol"
+      >&#8594;</a
+      ><a name="1472"
+      > </a
+      ><a name="1473" class="Symbol"
+      >((</a
+      ><a name="1475" href="Chi.html#1475" class="Bound"
+      >y</a
+      ><a name="1476"
+      > </a
+      ><a name="1477" class="Symbol"
+      >:</a
+      ><a name="1478"
+      > </a
+      ><a name="1479" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="1480" class="Symbol"
+      >)</a
+      ><a name="1481"
+      > </a
+      ><a name="1482" class="Symbol"
+      >&#8594;</a
+      ><a name="1483"
+      > </a
+      ><a name="1484" href="Chi.html#1475" class="Bound"
+      >y</a
+      ><a name="1485"
+      > </a
+      ><a name="1486" href="Data.Nat.html#901" class="Function Operator"
+      >&lt;</a
+      ><a name="1487"
+      > </a
+      ><a name="1488" href="Chi.html#1432" class="Bound"
+      >n</a
+      ><a name="1489"
+      > </a
+      ><a name="1490" class="Symbol"
+      >&#8594;</a
+      ><a name="1491"
+      > </a
+      ><a name="1492" href="Chi.html#1475" class="Bound"
+      >y</a
+      ><a name="1493"
+      > </a
+      ><a name="1494" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="1497"
+      > </a
+      ><a name="1498" href="Chi.html#1458" class="Bound"
+      >xs</a
+      ><a name="1500" class="Symbol"
+      >)</a
+      ><a name="1501"
+      > </a
+      ><a name="1502" class="Symbol"
+      >&#8594;</a
+      ><a name="1503"
+      > 
+       </a
+      ><a name="1512" href="Data.Product.html#805" class="Function"
+      >&#8707;</a
+      ><a name="1513"
+      > </a
+      ><a name="1514" class="Symbol"
+      >(&#955;</a
+      ><a name="1516"
+      > </a
+      ><a name="1517" href="Chi.html#1517" class="Bound"
+      >v</a
+      ><a name="1518"
+      > </a
+      ><a name="1519" class="Symbol"
+      >&#8594;</a
+      ><a name="1520"
+      > </a
+      ><a name="1521" class="Symbol"
+      >(</a
+      ><a name="1522" href="Chi.html#1517" class="Bound"
+      >v</a
+      ><a name="1523"
+      > </a
+      ><a name="1524" href="Data.List.Any.html#2969" class="Function Operator"
+      >&#8713;[]</a
+      ><a name="1527"
+      > </a
+      ><a name="1528" href="Chi.html#1458" class="Bound"
+      >xs</a
+      ><a name="1530"
+      > </a
+      ><a name="1531" href="Data.Sum.html#404" class="Datatype Operator"
+      >&#8744;</a
+      ><a name="1532"
+      > </a
+      ><a name="1533" href="Chi.html#1517" class="Bound"
+      >v</a
+      ><a name="1534"
+      > </a
+      ><a name="1535" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="1536"
+      > </a
+      ><a name="1537" href="Chi.html#1436" class="Bound"
+      >k</a
+      ><a name="1538" class="Symbol"
+      >)</a
+      ><a name="1539"
+      > </a
+      ><a name="1540" href="Data.Product.html#1055" class="Function Operator"
+      >&#215;</a
+      ><a name="1541"
+      > </a
+      ><a name="1542" class="Symbol"
+      >((</a
+      ><a name="1544" href="Chi.html#1544" class="Bound"
+      >y</a
+      ><a name="1545"
+      > </a
+      ><a name="1546" class="Symbol"
+      >:</a
+      ><a name="1547"
+      > </a
+      ><a name="1548" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="1549" class="Symbol"
+      >)</a
+      ><a name="1550"
+      > </a
+      ><a name="1551" class="Symbol"
+      >&#8594;</a
+      ><a name="1552"
+      > </a
+      ><a name="1553" href="Chi.html#1544" class="Bound"
+      >y</a
+      ><a name="1554"
+      > </a
+      ><a name="1555" href="Data.Nat.html#901" class="Function Operator"
+      >&lt;</a
+      ><a name="1556"
+      > </a
+      ><a name="1557" href="Chi.html#1517" class="Bound"
+      >v</a
+      ><a name="1558"
+      > </a
+      ><a name="1559" class="Symbol"
+      >&#8594;</a
+      ><a name="1560"
+      > </a
+      ><a name="1561" href="Chi.html#1544" class="Bound"
+      >y</a
+      ><a name="1562"
+      > </a
+      ><a name="1563" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="1566"
+      > </a
+      ><a name="1567" href="Chi.html#1458" class="Bound"
+      >xs</a
+      ><a name="1569" class="Symbol"
+      >))</a
+      ><a name="1571"
+      >
+</a
+      ><a name="1572" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="1576"
+      > </a
+      ><a name="1577" href="Chi.html#1577" class="Bound"
+      >x</a
+      ><a name="1578"
+      > </a
+      ><a name="1579" class="Number"
+      >0</a
+      ><a name="1580"
+      >        </a
+      ><a name="1588" href="Chi.html#1588" class="Bound"
+      >k</a
+      ><a name="1589"
+      >   </a
+      ><a name="1592" href="Chi.html#1592" class="Bound"
+      >x+0&#8801;k</a
+      ><a name="1597"
+      >   </a
+      ><a name="1600" class="Symbol"
+      >_</a
+      ><a name="1601"
+      >  </a
+      ><a name="1603" href="Chi.html#1603" class="Bound"
+      >f&lt;</a
+      ><a name="1605"
+      >  </a
+      ><a name="1607" class="Keyword"
+      >with</a
+      ><a name="1611"
+      > </a
+      ><a name="1612" href="Relation.Binary.PropositionalEquality.Core.html#632" class="Function"
+      >trans</a
+      ><a name="1617"
+      > </a
+      ><a name="1618" class="Symbol"
+      >(</a
+      ><a name="1619" href="Relation.Binary.PropositionalEquality.Core.html#565" class="Function"
+      >sym</a
+      ><a name="1622"
+      > </a
+      ><a name="1623" class="Symbol"
+      >(</a
+      ><a name="1624" href="Chi.html#821" class="Function"
+      >n+0&#8801;n</a
+      ><a name="1629"
+      > </a
+      ><a name="1630" href="Chi.html#1577" class="Bound"
+      >x</a
+      ><a name="1631" class="Symbol"
+      >))</a
+      ><a name="1633"
+      > </a
+      ><a name="1634" href="Chi.html#1592" class="Bound"
+      >x+0&#8801;k</a
+      ><a name="1639"
+      >
+</a
+      ><a name="1640" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="1644"
+      > </a
+      ><a name="1645" href="Chi.html#1645" class="Bound"
+      >x</a
+      ><a name="1646"
+      > </a
+      ><a name="1647" class="Number"
+      >0</a
+      ><a name="1648"
+      >        </a
+      ><a name="1656" class="DottedPattern Symbol"
+      >.</a
+      ><a name="1657" href="Chi.html#1645" class="DottedPattern Bound"
+      >x</a
+      ><a name="1658"
+      >  </a
+      ><a name="1660" href="Chi.html#1660" class="Bound"
+      >x+0&#8801;k</a
+      ><a name="1665"
+      >   </a
+      ><a name="1668" class="Symbol"
+      >_</a
+      ><a name="1669"
+      >  </a
+      ><a name="1671" href="Chi.html#1671" class="Bound"
+      >f&lt;</a
+      ><a name="1673"
+      >  </a
+      ><a name="1675" class="Symbol"
+      >|</a
+      ><a name="1676"
+      > </a
+      ><a name="1677" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="1681"
+      >
+  </a
+      ><a name="1684" class="Symbol"
+      >=</a
+      ><a name="1685"
+      > </a
+      ><a name="1686" href="Chi.html#1645" class="Bound"
+      >x</a
+      ><a name="1687"
+      > </a
+      ><a name="1688" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="1689"
+      > </a
+      ><a name="1690" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="1694"
+      > </a
+      ><a name="1695" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="1699"
+      > </a
+      ><a name="1700" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="1701"
+      > </a
+      ><a name="1702" href="Chi.html#1671" class="Bound"
+      >f&lt;</a
+      ><a name="1704"
+      >
+</a
+      ><a name="1705" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="1709"
+      > </a
+      ><a name="1710" href="Chi.html#1710" class="Bound"
+      >x</a
+      ><a name="1711"
+      > </a
+      ><a name="1712" class="Symbol"
+      >(</a
+      ><a name="1713" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="1716"
+      > </a
+      ><a name="1717" href="Chi.html#1717" class="Bound"
+      >n</a
+      ><a name="1718" class="Symbol"
+      >)</a
+      ><a name="1719"
+      >  </a
+      ><a name="1721" href="Chi.html#1721" class="Bound"
+      >k</a
+      ><a name="1722"
+      >   </a
+      ><a name="1725" href="Chi.html#1725" class="Bound"
+      >x+Sn&#8801;k</a
+      ><a name="1731"
+      >  </a
+      ><a name="1733" href="Chi.html#1733" class="Bound"
+      >xs</a
+      ><a name="1735"
+      > </a
+      ><a name="1736" href="Chi.html#1736" class="Bound"
+      >f&lt;</a
+      ><a name="1738"
+      >
+  </a
+      ><a name="1741" class="Keyword"
+      >with</a
+      ><a name="1745"
+      > </a
+      ><a name="1746" href="Data.List.Any.html#1706" class="Function"
+      >any</a
+      ><a name="1749"
+      > </a
+      ><a name="1750" class="Symbol"
+      >(</a
+      ><a name="1751" href="Data.Nat.html#3049" class="Function Operator"
+      >_&#8799;_</a
+      ><a name="1754"
+      > </a
+      ><a name="1755" href="Chi.html#1710" class="Bound"
+      >x</a
+      ><a name="1756" class="Symbol"
+      >)</a
+      ><a name="1757"
+      > </a
+      ><a name="1758" href="Chi.html#1733" class="Bound"
+      >xs</a
+      ><a name="1760"
+      >
+</a
+      ><a name="1761" class="Symbol"
+      >...</a
+      ><a name="1764"
+      > </a
+      ><a name="1765" class="Symbol"
+      >|</a
+      ><a name="1766"
+      > </a
+      ><a name="1767" href="Relation.Nullary.Core.html#531" class="InductiveConstructor"
+      >no</a
+      ><a name="1769"
+      >  </a
+      ><a name="1771" href="Chi.html#1771" class="Bound"
+      >x&#8713;xs</a
+      ><a name="1775"
+      > </a
+      ><a name="1776" class="Symbol"
+      >=</a
+      ><a name="1777"
+      > </a
+      ><a name="1778" href="Chi.html#1710" class="Bound"
+      >x</a
+      ><a name="1779"
+      > </a
+      ><a name="1780" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="1781"
+      > </a
+      ><a name="1782" href="Data.Sum.html#460" class="InductiveConstructor"
+      >inj&#8321;</a
+      ><a name="1786"
+      > </a
+      ><a name="1787" href="Chi.html#1771" class="Bound"
+      >x&#8713;xs</a
+      ><a name="1791"
+      > </a
+      ><a name="1792" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="1793"
+      > </a
+      ><a name="1794" href="Chi.html#1736" class="Bound"
+      >f&lt;</a
+      ><a name="1796"
+      >
+</a
+      ><a name="1797" class="Symbol"
+      >...</a
+      ><a name="1800"
+      > </a
+      ><a name="1801" class="Symbol"
+      >|</a
+      ><a name="1802"
+      > </a
+      ><a name="1803" href="Relation.Nullary.Core.html#504" class="InductiveConstructor"
+      >yes</a
+      ><a name="1806"
+      > </a
+      ><a name="1807" href="Chi.html#1807" class="Bound"
+      >x&#8712;xs</a
+      ><a name="1811"
+      > </a
+      ><a name="1812" class="Symbol"
+      >=</a
+      ><a name="1813"
+      > </a
+      ><a name="1814" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="1818"
+      > </a
+      ><a name="1819" class="Symbol"
+      >(</a
+      ><a name="1820" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="1823"
+      > </a
+      ><a name="1824" href="Chi.html#1710" class="Bound"
+      >x</a
+      ><a name="1825" class="Symbol"
+      >)</a
+      ><a name="1826"
+      > </a
+      ><a name="1827" href="Chi.html#1717" class="Bound"
+      >n</a
+      ><a name="1828"
+      > </a
+      ><a name="1829" href="Chi.html#1721" class="Bound"
+      >k</a
+      ><a name="1830"
+      > </a
+      ><a name="1831" class="Symbol"
+      >(</a
+      ><a name="1832" href="Relation.Binary.PropositionalEquality.Core.html#632" class="Function"
+      >trans</a
+      ><a name="1837"
+      > </a
+      ><a name="1838" class="Symbol"
+      >(</a
+      ><a name="1839" href="Relation.Binary.PropositionalEquality.html#1034" class="Function"
+      >cong</a
+      ><a name="1843"
+      > </a
+      ><a name="1844" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="1847"
+      > </a
+      ><a name="1848" class="Symbol"
+      >(</a
+      ><a name="1849" href="Chi.html#929" class="Function"
+      >+-comm</a
+      ><a name="1855"
+      > </a
+      ><a name="1856" href="Chi.html#1710" class="Bound"
+      >x</a
+      ><a name="1857"
+      > </a
+      ><a name="1858" href="Chi.html#1717" class="Bound"
+      >n</a
+      ><a name="1859" class="Symbol"
+      >))</a
+      ><a name="1861"
+      > </a
+      ><a name="1862" class="Symbol"
+      >(</a
+      ><a name="1863" href="Relation.Binary.PropositionalEquality.Core.html#632" class="Function"
+      >trans</a
+      ><a name="1868"
+      > </a
+      ><a name="1869" class="Symbol"
+      >(</a
+      ><a name="1870" href="Chi.html#929" class="Function"
+      >+-comm</a
+      ><a name="1876"
+      > </a
+      ><a name="1877" class="Symbol"
+      >(</a
+      ><a name="1878" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="1881"
+      > </a
+      ><a name="1882" href="Chi.html#1717" class="Bound"
+      >n</a
+      ><a name="1883" class="Symbol"
+      >)</a
+      ><a name="1884"
+      > </a
+      ><a name="1885" href="Chi.html#1710" class="Bound"
+      >x</a
+      ><a name="1886" class="Symbol"
+      >)</a
+      ><a name="1887"
+      > </a
+      ><a name="1888" href="Chi.html#1725" class="Bound"
+      >x+Sn&#8801;k</a
+      ><a name="1894" class="Symbol"
+      >))</a
+      ><a name="1896"
+      > </a
+      ><a name="1897" href="Chi.html#1733" class="Bound"
+      >xs</a
+      ><a name="1899"
+      > </a
+      ><a name="1900" class="Symbol"
+      >(</a
+      ><a name="1901" href="Chi.html#1150" class="Function"
+      >f&lt;s</a
+      ><a name="1904"
+      > </a
+      ><a name="1905" href="Chi.html#1710" class="Bound"
+      >x</a
+      ><a name="1906"
+      > </a
+      ><a name="1907" href="Chi.html#1733" class="Bound"
+      >xs</a
+      ><a name="1909"
+      > </a
+      ><a name="1910" href="Chi.html#1807" class="Bound"
+      >x&#8712;xs</a
+      ><a name="1914"
+      > </a
+      ><a name="1915" href="Chi.html#1736" class="Bound"
+      >f&lt;</a
+      ><a name="1917" class="Symbol"
+      >)</a
+      ><a name="1918"
+      > 
+</a
+      ><a name="1920" class="Comment"
+      >--</a
+      ><a name="1922"
+      >
+</a
+      ><a name="1923" href="Chi.html#1923" class="Function"
+      >y&lt;0&#8658;y&#8712;xs</a
+      ><a name="1931"
+      > </a
+      ><a name="1932" class="Symbol"
+      >:</a
+      ><a name="1933"
+      > </a
+      ><a name="1934" class="Symbol"
+      >(</a
+      ><a name="1935" href="Chi.html#1935" class="Bound"
+      >xs</a
+      ><a name="1937"
+      > </a
+      ><a name="1938" class="Symbol"
+      >:</a
+      ><a name="1939"
+      > </a
+      ><a name="1940" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="1944"
+      > </a
+      ><a name="1945" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="1946" class="Symbol"
+      >)(</a
+      ><a name="1948" href="Chi.html#1948" class="Bound"
+      >y</a
+      ><a name="1949"
+      > </a
+      ><a name="1950" class="Symbol"
+      >:</a
+      ><a name="1951"
+      > </a
+      ><a name="1952" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="1953" class="Symbol"
+      >)</a
+      ><a name="1954"
+      > </a
+      ><a name="1955" class="Symbol"
+      >&#8594;</a
+      ><a name="1956"
+      > </a
+      ><a name="1957" href="Chi.html#1948" class="Bound"
+      >y</a
+      ><a name="1958"
+      > </a
+      ><a name="1959" href="Data.Nat.html#901" class="Function Operator"
+      >&lt;</a
+      ><a name="1960"
+      > </a
+      ><a name="1961" class="Number"
+      >0</a
+      ><a name="1962"
+      > </a
+      ><a name="1963" class="Symbol"
+      >&#8594;</a
+      ><a name="1964"
+      > </a
+      ><a name="1965" href="Chi.html#1948" class="Bound"
+      >y</a
+      ><a name="1966"
+      > </a
+      ><a name="1967" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="1970"
+      > </a
+      ><a name="1971" href="Chi.html#1935" class="Bound"
+      >xs</a
+      ><a name="1973"
+      >
+</a
+      ><a name="1974" href="Chi.html#1923" class="Function"
+      >y&lt;0&#8658;y&#8712;xs</a
+      ><a name="1982"
+      > </a
+      ><a name="1983" href="Chi.html#1983" class="Bound"
+      >xs</a
+      ><a name="1985"
+      > </a
+      ><a name="1986" href="Chi.html#1986" class="Bound"
+      >y</a
+      ><a name="1987"
+      > </a
+      ><a name="1988" class="Symbol"
+      >()</a
+      ><a name="1990"
+      > 
+</a
+      ><a name="1992" class="Comment"
+      >--</a
+      ><a name="1994"
+      >
+</a
+      ><a name="1995" href="Chi.html#1995" class="Function"
+      >&#967;'</a
+      ><a name="1997"
+      > </a
+      ><a name="1998" class="Symbol"
+      >:</a
+      ><a name="1999"
+      > </a
+      ><a name="2000" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="2004"
+      > </a
+      ><a name="2005" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="2006"
+      > </a
+      ><a name="2007" class="Symbol"
+      >&#8594;</a
+      ><a name="2008"
+      > </a
+      ><a name="2009" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="2010"
+      >
+</a
+      ><a name="2011" href="Chi.html#1995" class="Function"
+      >&#967;'</a
+      ><a name="2013"
+      > </a
+      ><a name="2014" href="Chi.html#2014" class="Bound"
+      >xs</a
+      ><a name="2016"
+      > </a
+      ><a name="2017" class="Symbol"
+      >=</a
+      ><a name="2018"
+      > </a
+      ><a name="2019" href="Data.Product.html#525" class="Field"
+      >proj&#8321;</a
+      ><a name="2024"
+      > </a
+      ><a name="2025" class="Symbol"
+      >(</a
+      ><a name="2026" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="2030"
+      > </a
+      ><a name="2031" class="Number"
+      >0</a
+      ><a name="2032"
+      > </a
+      ><a name="2033" class="Symbol"
+      >(</a
+      ><a name="2034" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="2041"
+      > </a
+      ><a name="2042" href="Chi.html#2014" class="Bound"
+      >xs</a
+      ><a name="2044" class="Symbol"
+      >)</a
+      ><a name="2045"
+      > </a
+      ><a name="2046" class="Symbol"
+      >(</a
+      ><a name="2047" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="2054"
+      > </a
+      ><a name="2055" href="Chi.html#2014" class="Bound"
+      >xs</a
+      ><a name="2057" class="Symbol"
+      >)</a
+      ><a name="2058"
+      > </a
+      ><a name="2059" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="2063"
+      > </a
+      ><a name="2064" href="Chi.html#2014" class="Bound"
+      >xs</a
+      ><a name="2066"
+      > </a
+      ><a name="2067" class="Symbol"
+      >(</a
+      ><a name="2068" href="Chi.html#1923" class="Function"
+      >y&lt;0&#8658;y&#8712;xs</a
+      ><a name="2076"
+      > </a
+      ><a name="2077" href="Chi.html#2014" class="Bound"
+      >xs</a
+      ><a name="2079" class="Symbol"
+      >))</a
+      ><a name="2081"
+      >
+</a
+      ><a name="2082" class="Comment"
+      >--</a
+      ><a name="2084"
+      >
+</a
+      ><a name="2085" href="Chi.html#2085" class="Function"
+      >sucn&#8801;sucm&#8594;n&#8801;m</a
+      ><a name="2098"
+      > </a
+      ><a name="2099" class="Symbol"
+      >:</a
+      ><a name="2100"
+      > </a
+      ><a name="2101" class="Symbol"
+      >{</a
+      ><a name="2102" href="Chi.html#2102" class="Bound"
+      >n</a
+      ><a name="2103"
+      > </a
+      ><a name="2104" href="Chi.html#2104" class="Bound"
+      >m</a
+      ><a name="2105"
+      > </a
+      ><a name="2106" class="Symbol"
+      >:</a
+      ><a name="2107"
+      > </a
+      ><a name="2108" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="2109" class="Symbol"
+      >}</a
+      ><a name="2110"
+      > </a
+      ><a name="2111" class="Symbol"
+      >&#8594;</a
+      ><a name="2112"
+      > </a
+      ><a name="2113" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="2116"
+      > </a
+      ><a name="2117" href="Chi.html#2102" class="Bound"
+      >n</a
+      ><a name="2118"
+      > </a
+      ><a name="2119" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2120"
+      > </a
+      ><a name="2121" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="2124"
+      > </a
+      ><a name="2125" href="Chi.html#2104" class="Bound"
+      >m</a
+      ><a name="2126"
+      > </a
+      ><a name="2127" class="Symbol"
+      >&#8594;</a
+      ><a name="2128"
+      > </a
+      ><a name="2129" href="Chi.html#2102" class="Bound"
+      >n</a
+      ><a name="2130"
+      > </a
+      ><a name="2131" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2132"
+      > </a
+      ><a name="2133" href="Chi.html#2104" class="Bound"
+      >m</a
+      ><a name="2134"
+      >
+</a
+      ><a name="2135" href="Chi.html#2085" class="Function"
+      >sucn&#8801;sucm&#8594;n&#8801;m</a
+      ><a name="2148"
+      > </a
+      ><a name="2149" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="2153"
+      > </a
+      ><a name="2154" class="Symbol"
+      >=</a
+      ><a name="2155"
+      > </a
+      ><a name="2156" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="2160"
+      >
+</a
+      ><a name="2161" class="Comment"
+      >--</a
+      ><a name="2163"
+      >
+</a
+      ><a name="2164" href="Chi.html#2164" class="Function"
+      >predn&#8801;m&#8594;n&#8801;sucm</a
+      ><a name="2178"
+      > </a
+      ><a name="2179" class="Symbol"
+      >:</a
+      ><a name="2180"
+      > </a
+      ><a name="2181" class="Symbol"
+      >{</a
+      ><a name="2182" href="Chi.html#2182" class="Bound"
+      >n</a
+      ><a name="2183"
+      > </a
+      ><a name="2184" href="Chi.html#2184" class="Bound"
+      >m</a
+      ><a name="2185"
+      > </a
+      ><a name="2186" class="Symbol"
+      >:</a
+      ><a name="2187"
+      > </a
+      ><a name="2188" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="2189" class="Symbol"
+      >}</a
+      ><a name="2190"
+      > </a
+      ><a name="2191" class="Symbol"
+      >&#8594;</a
+      ><a name="2192"
+      > </a
+      ><a name="2193" href="Chi.html#2182" class="Bound"
+      >n</a
+      ><a name="2194"
+      > </a
+      ><a name="2195" href="Data.Nat.html#981" class="Function Operator"
+      >&gt;</a
+      ><a name="2196"
+      > </a
+      ><a name="2197" class="Number"
+      >0</a
+      ><a name="2198"
+      > </a
+      ><a name="2199" class="Symbol"
+      >&#8594;</a
+      ><a name="2200"
+      > </a
+      ><a name="2201" href="Data.Nat.html#2073" class="Function"
+      >pred</a
+      ><a name="2205"
+      > </a
+      ><a name="2206" href="Chi.html#2182" class="Bound"
+      >n</a
+      ><a name="2207"
+      > </a
+      ><a name="2208" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2209"
+      > </a
+      ><a name="2210" href="Chi.html#2184" class="Bound"
+      >m</a
+      ><a name="2211"
+      > </a
+      ><a name="2212" class="Symbol"
+      >&#8594;</a
+      ><a name="2213"
+      > </a
+      ><a name="2214" href="Chi.html#2182" class="Bound"
+      >n</a
+      ><a name="2215"
+      > </a
+      ><a name="2216" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2217"
+      > </a
+      ><a name="2218" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="2221"
+      > </a
+      ><a name="2222" href="Chi.html#2184" class="Bound"
+      >m</a
+      ><a name="2223"
+      >
+</a
+      ><a name="2224" href="Chi.html#2164" class="Function"
+      >predn&#8801;m&#8594;n&#8801;sucm</a
+      ><a name="2238"
+      > </a
+      ><a name="2239" class="Symbol"
+      >{</a
+      ><a name="2240" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="2243"
+      > </a
+      ><a name="2244" href="Chi.html#2244" class="Bound"
+      >n</a
+      ><a name="2245" class="Symbol"
+      >}</a
+      ><a name="2246"
+      > </a
+      ><a name="2247" class="Symbol"
+      >{</a
+      ><a name="2248" href="Chi.html#2248" class="Bound"
+      >m</a
+      ><a name="2249" class="Symbol"
+      >}</a
+      ><a name="2250"
+      > </a
+      ><a name="2251" class="Symbol"
+      >(</a
+      ><a name="2252" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="2255"
+      > </a
+      ><a name="2256" class="Symbol"
+      >_)</a
+      ><a name="2258"
+      > </a
+      ><a name="2259" href="Chi.html#2259" class="Bound"
+      >n&#8801;m</a
+      ><a name="2262"
+      > </a
+      ><a name="2263" class="Symbol"
+      >=</a
+      ><a name="2264"
+      > </a
+      ><a name="2265" href="Relation.Binary.PropositionalEquality.html#1034" class="Function"
+      >cong</a
+      ><a name="2269"
+      > </a
+      ><a name="2270" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="2273"
+      > </a
+      ><a name="2274" href="Chi.html#2259" class="Bound"
+      >n&#8801;m</a
+      ><a name="2277"
+      >
+</a
+      ><a name="2278" class="Comment"
+      >--</a
+      ><a name="2280"
+      >
+</a
+      ><a name="2281" href="Chi.html#2281" class="Function"
+      >x&#8712;xs&#8594;|xs|&gt;0</a
+      ><a name="2292"
+      > </a
+      ><a name="2293" class="Symbol"
+      >:</a
+      ><a name="2294"
+      > </a
+      ><a name="2295" class="Symbol"
+      >{</a
+      ><a name="2296" href="Chi.html#2296" class="Bound"
+      >n</a
+      ><a name="2297"
+      > </a
+      ><a name="2298" class="Symbol"
+      >:</a
+      ><a name="2299"
+      > </a
+      ><a name="2300" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="2301" class="Symbol"
+      >}{</a
+      ><a name="2303" href="Chi.html#2303" class="Bound"
+      >x</a
+      ><a name="2304"
+      > </a
+      ><a name="2305" class="Symbol"
+      >:</a
+      ><a name="2306"
+      > </a
+      ><a name="2307" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="2308" class="Symbol"
+      >}{</a
+      ><a name="2310" href="Chi.html#2310" class="Bound"
+      >xs</a
+      ><a name="2312"
+      > </a
+      ><a name="2313" class="Symbol"
+      >:</a
+      ><a name="2314"
+      > </a
+      ><a name="2315" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="2319"
+      > </a
+      ><a name="2320" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="2321" class="Symbol"
+      >}</a
+      ><a name="2322"
+      > </a
+      ><a name="2323" class="Symbol"
+      >&#8594;</a
+      ><a name="2324"
+      > </a
+      ><a name="2325" href="Chi.html#2303" class="Bound"
+      >x</a
+      ><a name="2326"
+      > </a
+      ><a name="2327" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="2330"
+      > </a
+      ><a name="2331" href="Chi.html#2310" class="Bound"
+      >xs</a
+      ><a name="2333"
+      > </a
+      ><a name="2334" class="Symbol"
+      >&#8594;</a
+      ><a name="2335"
+      > </a
+      ><a name="2336" href="Chi.html#2296" class="Bound"
+      >n</a
+      ><a name="2337"
+      > </a
+      ><a name="2338" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2339"
+      > </a
+      ><a name="2340" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="2347"
+      > </a
+      ><a name="2348" href="Chi.html#2310" class="Bound"
+      >xs</a
+      ><a name="2350"
+      > </a
+      ><a name="2351" class="Symbol"
+      >&#8594;</a
+      ><a name="2352"
+      > </a
+      ><a name="2353" href="Chi.html#2296" class="Bound"
+      >n</a
+      ><a name="2354"
+      > </a
+      ><a name="2355" href="Data.Nat.html#981" class="Function Operator"
+      >&gt;</a
+      ><a name="2356"
+      > </a
+      ><a name="2357" class="Number"
+      >0</a
+      ><a name="2358"
+      >
+</a
+      ><a name="2359" href="Chi.html#2281" class="Function"
+      >x&#8712;xs&#8594;|xs|&gt;0</a
+      ><a name="2370"
+      > </a
+      ><a name="2371" class="DottedPattern Symbol"
+      >.{</a
+      ><a name="2373" href="Data.Nat.html#690" class="DottedPattern InductiveConstructor"
+      >suc</a
+      ><a name="2376"
+      > </a
+      ><a name="2377" class="DottedPattern Symbol"
+      >(</a
+      ><a name="2378" href="Data.List.html#2923" class="DottedPattern Function"
+      >length'</a
+      ><a name="2385"
+      > </a
+      ><a name="2386" href="Chi.html#2400" class="DottedPattern Bound"
+      >xs</a
+      ><a name="2388" class="DottedPattern Symbol"
+      >)}</a
+      ><a name="2390"
+      > </a
+      ><a name="2391" class="Symbol"
+      >{</a
+      ><a name="2392" href="Chi.html#2392" class="Bound"
+      >x</a
+      ><a name="2393" class="Symbol"
+      >}</a
+      ><a name="2394"
+      > </a
+      ><a name="2395" class="Symbol"
+      >{</a
+      ><a name="2396" href="Chi.html#2396" class="Bound"
+      >y</a
+      ><a name="2397"
+      > </a
+      ><a name="2398" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="2399"
+      > </a
+      ><a name="2400" href="Chi.html#2400" class="Bound"
+      >xs</a
+      ><a name="2402" class="Symbol"
+      >}</a
+      ><a name="2403"
+      > </a
+      ><a name="2404" class="Symbol"
+      >(</a
+      ><a name="2405" href="Data.List.Any.html#1169" class="InductiveConstructor"
+      >here</a
+      ><a name="2409"
+      > </a
+      ><a name="2410" href="Chi.html#2410" class="Bound"
+      >px</a
+      ><a name="2412" class="Symbol"
+      >)</a
+      ><a name="2413"
+      >     </a
+      ><a name="2418" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="2422"
+      > </a
+      ><a name="2423" class="Symbol"
+      >=</a
+      ><a name="2424"
+      > </a
+      ><a name="2425" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="2428"
+      > </a
+      ><a name="2429" href="Data.Nat.html#814" class="InductiveConstructor"
+      >z&#8804;n</a
+      ><a name="2432"
+      >
+</a
+      ><a name="2433" href="Chi.html#2281" class="Function"
+      >x&#8712;xs&#8594;|xs|&gt;0</a
+      ><a name="2444"
+      > </a
+      ><a name="2445" class="DottedPattern Symbol"
+      >.{</a
+      ><a name="2447" href="Data.Nat.html#690" class="DottedPattern InductiveConstructor"
+      >suc</a
+      ><a name="2450"
+      > </a
+      ><a name="2451" class="DottedPattern Symbol"
+      >(</a
+      ><a name="2452" href="Data.List.html#2923" class="DottedPattern Function"
+      >length'</a
+      ><a name="2459"
+      > </a
+      ><a name="2460" href="Chi.html#2474" class="DottedPattern Bound"
+      >xs</a
+      ><a name="2462" class="DottedPattern Symbol"
+      >)}</a
+      ><a name="2464"
+      > </a
+      ><a name="2465" class="Symbol"
+      >{</a
+      ><a name="2466" href="Chi.html#2466" class="Bound"
+      >x</a
+      ><a name="2467" class="Symbol"
+      >}</a
+      ><a name="2468"
+      > </a
+      ><a name="2469" class="Symbol"
+      >{</a
+      ><a name="2470" href="Chi.html#2470" class="Bound"
+      >y</a
+      ><a name="2471"
+      > </a
+      ><a name="2472" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="2473"
+      > </a
+      ><a name="2474" href="Chi.html#2474" class="Bound"
+      >xs</a
+      ><a name="2476" class="Symbol"
+      >}</a
+      ><a name="2477"
+      > </a
+      ><a name="2478" class="Symbol"
+      >(</a
+      ><a name="2479" href="Data.List.Any.html#1222" class="InductiveConstructor"
+      >there</a
+      ><a name="2484"
+      > </a
+      ><a name="2485" href="Chi.html#2485" class="Bound"
+      >x&#8712;xs</a
+      ><a name="2489" class="Symbol"
+      >)</a
+      ><a name="2490"
+      >  </a
+      ><a name="2492" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="2496"
+      > </a
+      ><a name="2497" class="Symbol"
+      >=</a
+      ><a name="2498"
+      > </a
+      ><a name="2499" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="2502"
+      > </a
+      ><a name="2503" href="Data.Nat.html#814" class="InductiveConstructor"
+      >z&#8804;n</a
+      ><a name="2506"
+      >
+</a
+      ><a name="2507" class="Comment"
+      >--</a
+      ><a name="2509"
+      >
+</a
+      ><a name="2510" href="Chi.html#2510" class="Function"
+      >del</a
+      ><a name="2513"
+      > </a
+      ><a name="2514" class="Symbol"
+      >:</a
+      ><a name="2515"
+      > </a
+      ><a name="2516" class="Symbol"
+      >(</a
+      ><a name="2517" href="Chi.html#2517" class="Bound"
+      >n</a
+      ><a name="2518"
+      > </a
+      ><a name="2519" class="Symbol"
+      >:</a
+      ><a name="2520"
+      > </a
+      ><a name="2521" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="2522" class="Symbol"
+      >)(</a
+      ><a name="2524" href="Chi.html#2524" class="Bound"
+      >x</a
+      ><a name="2525"
+      > </a
+      ><a name="2526" class="Symbol"
+      >:</a
+      ><a name="2527"
+      > </a
+      ><a name="2528" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="2529" class="Symbol"
+      >)(</a
+      ><a name="2531" href="Chi.html#2531" class="Bound"
+      >xs</a
+      ><a name="2533"
+      > </a
+      ><a name="2534" class="Symbol"
+      >:</a
+      ><a name="2535"
+      > </a
+      ><a name="2536" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="2540"
+      > </a
+      ><a name="2541" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="2542" class="Symbol"
+      >)</a
+      ><a name="2543"
+      > </a
+      ><a name="2544" class="Symbol"
+      >&#8594;</a
+      ><a name="2545"
+      > </a
+      ><a name="2546" href="Chi.html#2517" class="Bound"
+      >n</a
+      ><a name="2547"
+      > </a
+      ><a name="2548" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2549"
+      > </a
+      ><a name="2550" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="2557"
+      > </a
+      ><a name="2558" href="Chi.html#2531" class="Bound"
+      >xs</a
+      ><a name="2560"
+      > </a
+      ><a name="2561" class="Symbol"
+      >&#8594;</a
+      ><a name="2562"
+      > </a
+      ><a name="2563" href="Chi.html#2524" class="Bound"
+      >x</a
+      ><a name="2564"
+      > </a
+      ><a name="2565" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="2568"
+      > </a
+      ><a name="2569" href="Chi.html#2531" class="Bound"
+      >xs</a
+      ><a name="2571"
+      > </a
+      ><a name="2572" class="Symbol"
+      >&#8594;</a
+      ><a name="2573"
+      > </a
+      ><a name="2574" href="Data.Product.html#439" class="Record"
+      >&#931;&#8339;</a
+      ><a name="2576"
+      > </a
+      ><a name="2577" class="Symbol"
+      >(</a
+      ><a name="2578" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="2582"
+      > </a
+      ><a name="2583" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="2584" class="Symbol"
+      >)</a
+      ><a name="2585"
+      > </a
+      ><a name="2586" class="Symbol"
+      >(&#955;</a
+      ><a name="2588"
+      > </a
+      ><a name="2589" href="Chi.html#2589" class="Bound"
+      >ys</a
+      ><a name="2591"
+      > </a
+      ><a name="2592" class="Symbol"
+      >&#8594;</a
+      ><a name="2593"
+      > </a
+      ><a name="2594" href="Data.Nat.html#2073" class="Function"
+      >pred</a
+      ><a name="2598"
+      > </a
+      ><a name="2599" href="Chi.html#2517" class="Bound"
+      >n</a
+      ><a name="2600"
+      > </a
+      ><a name="2601" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="2602"
+      > </a
+      ><a name="2603" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="2610"
+      > </a
+      ><a name="2611" href="Chi.html#2589" class="Bound"
+      >ys</a
+      ><a name="2613" class="Symbol"
+      >)</a
+      ><a name="2614"
+      >
+</a
+      ><a name="2615" href="Chi.html#2510" class="Function"
+      >del</a
+      ><a name="2618"
+      > </a
+      ><a name="2619" class="DottedPattern Symbol"
+      >.</a
+      ><a name="2620" class="DottedPattern Number"
+      >0</a
+      ><a name="2621"
+      >       </a
+      ><a name="2628" href="Chi.html#2628" class="Bound"
+      >x</a
+      ><a name="2629"
+      >   </a
+      ><a name="2632" href="Data.List.html#696" class="InductiveConstructor"
+      >[]</a
+      ><a name="2634"
+      >        </a
+      ><a name="2642" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="2646"
+      >       </a
+      ><a name="2653" class="Symbol"
+      >()</a
+      ><a name="2655"
+      >
+</a
+      ><a name="2656" href="Chi.html#2510" class="Function"
+      >del</a
+      ><a name="2659"
+      > </a
+      ><a name="2660" class="Number"
+      >0</a
+      ><a name="2661"
+      >        </a
+      ><a name="2669" class="Symbol"
+      >_</a
+      ><a name="2670"
+      >   </a
+      ><a name="2673" class="Symbol"
+      >(</a
+      ><a name="2674" href="Chi.html#2674" class="Bound"
+      >x</a
+      ><a name="2675"
+      > </a
+      ><a name="2676" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="2677"
+      > </a
+      ><a name="2678" href="Chi.html#2678" class="Bound"
+      >xs</a
+      ><a name="2680" class="Symbol"
+      >)</a
+      ><a name="2681"
+      >  </a
+      ><a name="2683" class="Symbol"
+      >()</a
+      ><a name="2685"
+      >         </a
+      ><a name="2694" class="Symbol"
+      >_</a
+      ><a name="2695"
+      >
+</a
+      ><a name="2696" href="Chi.html#2510" class="Function"
+      >del</a
+      ><a name="2699"
+      > </a
+      ><a name="2700" class="Symbol"
+      >(</a
+      ><a name="2701" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="2704"
+      > </a
+      ><a name="2705" href="Chi.html#2705" class="Bound"
+      >n</a
+      ><a name="2706" class="Symbol"
+      >)</a
+      ><a name="2707"
+      >  </a
+      ><a name="2709" class="DottedPattern Symbol"
+      >.</a
+      ><a name="2710" href="Chi.html#2714" class="DottedPattern Bound"
+      >x</a
+      ><a name="2711"
+      >  </a
+      ><a name="2713" class="Symbol"
+      >(</a
+      ><a name="2714" href="Chi.html#2714" class="Bound"
+      >x</a
+      ><a name="2715"
+      > </a
+      ><a name="2716" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="2717"
+      > </a
+      ><a name="2718" href="Chi.html#2718" class="Bound"
+      >xs</a
+      ><a name="2720" class="Symbol"
+      >)</a
+      ><a name="2721"
+      >  </a
+      ><a name="2723" href="Chi.html#2723" class="Bound"
+      >n+1&#8801;|xxs|</a
+      ><a name="2732"
+      >  </a
+      ><a name="2734" class="Symbol"
+      >(</a
+      ><a name="2735" href="Data.List.Any.html#1169" class="InductiveConstructor"
+      >here</a
+      ><a name="2739"
+      > </a
+      ><a name="2740" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="2744" class="Symbol"
+      >)</a
+      ><a name="2745"
+      >
+  </a
+      ><a name="2748" class="Symbol"
+      >=</a
+      ><a name="2749"
+      >  </a
+      ><a name="2751" href="Chi.html#2718" class="Bound"
+      >xs</a
+      ><a name="2753"
+      > </a
+      ><a name="2754" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="2755"
+      > </a
+      ><a name="2756" href="Chi.html#2085" class="Function"
+      >sucn&#8801;sucm&#8594;n&#8801;m</a
+      ><a name="2769"
+      > </a
+      ><a name="2770" href="Chi.html#2723" class="Bound"
+      >n+1&#8801;|xxs|</a
+      ><a name="2779"
+      >
+</a
+      ><a name="2780" href="Chi.html#2510" class="Function"
+      >del</a
+      ><a name="2783"
+      > </a
+      ><a name="2784" class="Symbol"
+      >(</a
+      ><a name="2785" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="2788"
+      > </a
+      ><a name="2789" href="Chi.html#2789" class="Bound"
+      >n</a
+      ><a name="2790" class="Symbol"
+      >)</a
+      ><a name="2791"
+      >  </a
+      ><a name="2793" href="Chi.html#2793" class="Bound"
+      >x</a
+      ><a name="2794"
+      >   </a
+      ><a name="2797" class="Symbol"
+      >(</a
+      ><a name="2798" href="Chi.html#2798" class="Bound"
+      >y</a
+      ><a name="2799"
+      > </a
+      ><a name="2800" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="2801"
+      > </a
+      ><a name="2802" href="Chi.html#2802" class="Bound"
+      >xs</a
+      ><a name="2804" class="Symbol"
+      >)</a
+      ><a name="2805"
+      >  </a
+      ><a name="2807" href="Chi.html#2807" class="Bound"
+      >n+1&#8801;|yxs|</a
+      ><a name="2816"
+      >  </a
+      ><a name="2818" class="Symbol"
+      >(</a
+      ><a name="2819" href="Data.List.Any.html#1222" class="InductiveConstructor"
+      >there</a
+      ><a name="2824"
+      > </a
+      ><a name="2825" href="Chi.html#2825" class="Bound"
+      >x&#8712;xs</a
+      ><a name="2829" class="Symbol"
+      >)</a
+      ><a name="2830"
+      >  
+  </a
+      ><a name="2835" class="Symbol"
+      >=</a
+      ><a name="2836"
+      >  </a
+      ><a name="2838" href="Chi.html#2798" class="Bound"
+      >y</a
+      ><a name="2839"
+      > </a
+      ><a name="2840" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="2841"
+      > </a
+      ><a name="2842" href="Data.Product.html#525" class="Field"
+      >proj&#8321;</a
+      ><a name="2847"
+      > </a
+      ><a name="2848" class="Symbol"
+      >(</a
+      ><a name="2849" href="Chi.html#2510" class="Function"
+      >del</a
+      ><a name="2852"
+      > </a
+      ><a name="2853" href="Chi.html#2789" class="Bound"
+      >n</a
+      ><a name="2854"
+      > </a
+      ><a name="2855" href="Chi.html#2793" class="Bound"
+      >x</a
+      ><a name="2856"
+      > </a
+      ><a name="2857" href="Chi.html#2802" class="Bound"
+      >xs</a
+      ><a name="2859"
+      > </a
+      ><a name="2860" href="Chi.html#2966" class="Function"
+      >n&#8801;|xs|</a
+      ><a name="2866"
+      > </a
+      ><a name="2867" href="Chi.html#2825" class="Bound"
+      >x&#8712;xs</a
+      ><a name="2871" class="Symbol"
+      >)</a
+      ><a name="2872"
+      > </a
+      ><a name="2873" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="2874"
+      >  
+     </a
+      ><a name="2882" href="Chi.html#2164" class="Function"
+      >predn&#8801;m&#8594;n&#8801;sucm</a
+      ><a name="2896"
+      > </a
+      ><a name="2897" class="Symbol"
+      >(</a
+      ><a name="2898" href="Chi.html#2281" class="Function"
+      >x&#8712;xs&#8594;|xs|&gt;0</a
+      ><a name="2909"
+      > </a
+      ><a name="2910" href="Chi.html#2825" class="Bound"
+      >x&#8712;xs</a
+      ><a name="2914"
+      > </a
+      ><a name="2915" href="Chi.html#2966" class="Function"
+      >n&#8801;|xs|</a
+      ><a name="2921" class="Symbol"
+      >)</a
+      ><a name="2922"
+      > </a
+      ><a name="2923" class="Symbol"
+      >(</a
+      ><a name="2924" href="Data.Product.html#539" class="Field"
+      >proj&#8322;</a
+      ><a name="2929"
+      > </a
+      ><a name="2930" class="Symbol"
+      >(</a
+      ><a name="2931" href="Chi.html#2510" class="Function"
+      >del</a
+      ><a name="2934"
+      > </a
+      ><a name="2935" href="Chi.html#2789" class="Bound"
+      >n</a
+      ><a name="2936"
+      > </a
+      ><a name="2937" href="Chi.html#2793" class="Bound"
+      >x</a
+      ><a name="2938"
+      > </a
+      ><a name="2939" href="Chi.html#2802" class="Bound"
+      >xs</a
+      ><a name="2941"
+      > </a
+      ><a name="2942" href="Chi.html#2966" class="Function"
+      >n&#8801;|xs|</a
+      ><a name="2948"
+      > </a
+      ><a name="2949" href="Chi.html#2825" class="Bound"
+      >x&#8712;xs</a
+      ><a name="2953" class="Symbol"
+      >))</a
+      ><a name="2955"
+      >
+    </a
+      ><a name="2960" class="Keyword"
+      >where</a
+      ><a name="2965"
+      > </a
+      ><a name="2966" href="Chi.html#2966" class="Function"
+      >n&#8801;|xs|</a
+      ><a name="2972"
+      > </a
+      ><a name="2973" class="Symbol"
+      >=</a
+      ><a name="2974"
+      > </a
+      ><a name="2975" href="Chi.html#2085" class="Function"
+      >sucn&#8801;sucm&#8594;n&#8801;m</a
+      ><a name="2988"
+      > </a
+      ><a name="2989" href="Chi.html#2807" class="Bound"
+      >n+1&#8801;|yxs|</a
+      ><a name="2998"
+      >
+</a
+      ><a name="2999" class="Comment"
+      >--</a
+      ><a name="3001"
+      >
+</a
+      ><a name="3002" href="Chi.html#3002" class="Function"
+      >&lt;&#8594;&#8802;</a
+      ><a name="3005"
+      > </a
+      ><a name="3006" class="Symbol"
+      >:</a
+      ><a name="3007"
+      > </a
+      ><a name="3008" class="Symbol"
+      >{</a
+      ><a name="3009" href="Chi.html#3009" class="Bound"
+      >n</a
+      ><a name="3010"
+      > </a
+      ><a name="3011" href="Chi.html#3011" class="Bound"
+      >m</a
+      ><a name="3012"
+      > </a
+      ><a name="3013" class="Symbol"
+      >:</a
+      ><a name="3014"
+      > </a
+      ><a name="3015" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="3016" class="Symbol"
+      >}</a
+      ><a name="3017"
+      > </a
+      ><a name="3018" class="Symbol"
+      >&#8594;</a
+      ><a name="3019"
+      > </a
+      ><a name="3020" href="Chi.html#3009" class="Bound"
+      >n</a
+      ><a name="3021"
+      > </a
+      ><a name="3022" href="Data.Nat.html#901" class="Function Operator"
+      >&lt;</a
+      ><a name="3023"
+      > </a
+      ><a name="3024" href="Chi.html#3011" class="Bound"
+      >m</a
+      ><a name="3025"
+      > </a
+      ><a name="3026" class="Symbol"
+      >&#8594;</a
+      ><a name="3027"
+      > </a
+      ><a name="3028" href="Chi.html#3009" class="Bound"
+      >n</a
+      ><a name="3029"
+      > </a
+      ><a name="3030" href="Relation.Binary.Core.html#4748" class="Function Operator"
+      >&#8802;</a
+      ><a name="3031"
+      > </a
+      ><a name="3032" href="Chi.html#3011" class="Bound"
+      >m</a
+      ><a name="3033"
+      >
+</a
+      ><a name="3034" href="Chi.html#3002" class="Function"
+      >&lt;&#8594;&#8802;</a
+      ><a name="3037"
+      > </a
+      ><a name="3038" class="Symbol"
+      >(</a
+      ><a name="3039" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="3042"
+      > </a
+      ><a name="3043" href="Chi.html#3043" class="Bound"
+      >n&lt;m</a
+      ><a name="3046" class="Symbol"
+      >)</a
+      ><a name="3047"
+      > </a
+      ><a name="3048" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="3052"
+      > </a
+      ><a name="3053" class="Symbol"
+      >=</a
+      ><a name="3054"
+      > </a
+      ><a name="3055" href="Data.Empty.html#326" class="Function"
+      >&#8869;-elim</a
+      ><a name="3061"
+      > </a
+      ><a name="3062" class="Symbol"
+      >(</a
+      ><a name="3063" href="Chi.html#3082" class="Function"
+      >aux</a
+      ><a name="3066"
+      > </a
+      ><a name="3067" href="Chi.html#3043" class="Bound"
+      >n&lt;m</a
+      ><a name="3070" class="Symbol"
+      >)</a
+      ><a name="3071"
+      >
+  </a
+      ><a name="3074" class="Keyword"
+      >where</a
+      ><a name="3079"
+      >
+  </a
+      ><a name="3082" href="Chi.html#3082" class="Function"
+      >aux</a
+      ><a name="3085"
+      > </a
+      ><a name="3086" class="Symbol"
+      >:</a
+      ><a name="3087"
+      > </a
+      ><a name="3088" class="Symbol"
+      >{</a
+      ><a name="3089" href="Chi.html#3089" class="Bound"
+      >n</a
+      ><a name="3090"
+      > </a
+      ><a name="3091" class="Symbol"
+      >:</a
+      ><a name="3092"
+      > </a
+      ><a name="3093" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="3094" class="Symbol"
+      >}</a
+      ><a name="3095"
+      > </a
+      ><a name="3096" class="Symbol"
+      >&#8594;</a
+      ><a name="3097"
+      > </a
+      ><a name="3098" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="3101"
+      > </a
+      ><a name="3102" href="Chi.html#3089" class="Bound"
+      >n</a
+      ><a name="3103"
+      > </a
+      ><a name="3104" href="Data.Nat.html#783" class="Datatype Operator"
+      >&#8804;</a
+      ><a name="3105"
+      > </a
+      ><a name="3106" href="Chi.html#3089" class="Bound"
+      >n</a
+      ><a name="3107"
+      > </a
+      ><a name="3108" class="Symbol"
+      >&#8594;</a
+      ><a name="3109"
+      > </a
+      ><a name="3110" href="Data.Empty.html#243" class="Datatype"
+      >&#8869;</a
+      ><a name="3111"
+      >
+  </a
+      ><a name="3114" href="Chi.html#3082" class="Function"
+      >aux</a
+      ><a name="3117"
+      > </a
+      ><a name="3118" class="Symbol"
+      >(</a
+      ><a name="3119" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="3122"
+      > </a
+      ><a name="3123" href="Chi.html#3123" class="Bound"
+      >sucn&#8804;n</a
+      ><a name="3129" class="Symbol"
+      >)</a
+      ><a name="3130"
+      > </a
+      ><a name="3131" class="Symbol"
+      >=</a
+      ><a name="3132"
+      > </a
+      ><a name="3133" href="Chi.html#3082" class="Function"
+      >aux</a
+      ><a name="3136"
+      > </a
+      ><a name="3137" href="Chi.html#3123" class="Bound"
+      >sucn&#8804;n</a
+      ><a name="3143"
+      >
+</a
+      ><a name="3144" class="Comment"
+      >--</a
+      ><a name="3146"
+      >
+</a
+      ><a name="3147" href="Chi.html#3147" class="Function"
+      >del&#8712;</a
+      ><a name="3151"
+      > </a
+      ><a name="3152" class="Symbol"
+      >:</a
+      ><a name="3153"
+      > </a
+      ><a name="3154" class="Symbol"
+      >(</a
+      ><a name="3155" href="Chi.html#3155" class="Bound"
+      >x</a
+      ><a name="3156"
+      > </a
+      ><a name="3157" class="Symbol"
+      >:</a
+      ><a name="3158"
+      > </a
+      ><a name="3159" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="3160" class="Symbol"
+      >)(</a
+      ><a name="3162" href="Chi.html#3162" class="Bound"
+      >xs</a
+      ><a name="3164"
+      > </a
+      ><a name="3165" class="Symbol"
+      >:</a
+      ><a name="3166"
+      > </a
+      ><a name="3167" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="3171"
+      > </a
+      ><a name="3172" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="3173" class="Symbol"
+      >)</a
+      ><a name="3174"
+      > </a
+      ><a name="3175" class="Symbol"
+      >&#8594;</a
+      ><a name="3176"
+      > </a
+      ><a name="3177" class="Symbol"
+      >(</a
+      ><a name="3178" href="Chi.html#3178" class="Bound"
+      >x&#8712;xs</a
+      ><a name="3182"
+      > </a
+      ><a name="3183" class="Symbol"
+      >:</a
+      ><a name="3184"
+      > </a
+      ><a name="3185" href="Chi.html#3155" class="Bound"
+      >x</a
+      ><a name="3186"
+      > </a
+      ><a name="3187" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="3190"
+      > </a
+      ><a name="3191" href="Chi.html#3162" class="Bound"
+      >xs</a
+      ><a name="3193" class="Symbol"
+      >)</a
+      ><a name="3194"
+      > </a
+      ><a name="3195" class="Symbol"
+      >&#8594;</a
+      ><a name="3196"
+      > </a
+      ><a name="3197" class="Symbol"
+      >(</a
+      ><a name="3198" href="Chi.html#3198" class="Bound"
+      >y</a
+      ><a name="3199"
+      > </a
+      ><a name="3200" class="Symbol"
+      >:</a
+      ><a name="3201"
+      > </a
+      ><a name="3202" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="3203" class="Symbol"
+      >)</a
+      ><a name="3204"
+      > </a
+      ><a name="3205" class="Symbol"
+      >&#8594;</a
+      ><a name="3206"
+      > </a
+      ><a name="3207" href="Chi.html#3198" class="Bound"
+      >y</a
+      ><a name="3208"
+      > </a
+      ><a name="3209" href="Data.Nat.html#901" class="Function Operator"
+      >&lt;</a
+      ><a name="3210"
+      > </a
+      ><a name="3211" href="Chi.html#3155" class="Bound"
+      >x</a
+      ><a name="3212"
+      > </a
+      ><a name="3213" class="Symbol"
+      >&#8594;</a
+      ><a name="3214"
+      > </a
+      ><a name="3215" href="Chi.html#3198" class="Bound"
+      >y</a
+      ><a name="3216"
+      > </a
+      ><a name="3217" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="3220"
+      > </a
+      ><a name="3221" href="Chi.html#3162" class="Bound"
+      >xs</a
+      ><a name="3223"
+      > </a
+      ><a name="3224" class="Symbol"
+      >&#8594;</a
+      ><a name="3225"
+      > </a
+      ><a name="3226" href="Chi.html#3198" class="Bound"
+      >y</a
+      ><a name="3227"
+      > </a
+      ><a name="3228" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="3231"
+      > </a
+      ><a name="3232" class="Symbol"
+      >(</a
+      ><a name="3233" href="Data.Product.html#525" class="Field"
+      >proj&#8321;</a
+      ><a name="3238"
+      > </a
+      ><a name="3239" class="Symbol"
+      >(</a
+      ><a name="3240" href="Chi.html#2510" class="Function"
+      >del</a
+      ><a name="3243"
+      > </a
+      ><a name="3244" class="Symbol"
+      >(</a
+      ><a name="3245" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="3252"
+      > </a
+      ><a name="3253" href="Chi.html#3162" class="Bound"
+      >xs</a
+      ><a name="3255" class="Symbol"
+      >)</a
+      ><a name="3256"
+      > </a
+      ><a name="3257" href="Chi.html#3155" class="Bound"
+      >x</a
+      ><a name="3258"
+      > </a
+      ><a name="3259" href="Chi.html#3162" class="Bound"
+      >xs</a
+      ><a name="3261"
+      > </a
+      ><a name="3262" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="3266"
+      > </a
+      ><a name="3267" href="Chi.html#3178" class="Bound"
+      >x&#8712;xs</a
+      ><a name="3271" class="Symbol"
+      >))</a
+      ><a name="3273"
+      >
+</a
+      ><a name="3274" href="Chi.html#3147" class="Function"
+      >del&#8712;</a
+      ><a name="3278"
+      > </a
+      ><a name="3279" href="Chi.html#3279" class="Bound"
+      >x</a
+      ><a name="3280"
+      > </a
+      ><a name="3281" href="Data.List.html#696" class="InductiveConstructor"
+      >[]</a
+      ><a name="3283"
+      >         </a
+      ><a name="3292" class="Symbol"
+      >()</a
+      ><a name="3294"
+      >            </a
+      ><a name="3306" href="Chi.html#3306" class="Bound"
+      >y</a
+      ><a name="3307"
+      >   </a
+      ><a name="3310" href="Chi.html#3310" class="Bound"
+      >y&lt;x</a
+      ><a name="3313"
+      > </a
+      ><a name="3314" href="Chi.html#3314" class="Bound"
+      >y&#8712;xs</a
+      ><a name="3318"
+      > 
+</a
+      ><a name="3320" href="Chi.html#3147" class="Function"
+      >del&#8712;</a
+      ><a name="3324"
+      > </a
+      ><a name="3325" href="Chi.html#3325" class="Bound"
+      >x</a
+      ><a name="3326"
+      > </a
+      ><a name="3327" class="Symbol"
+      >(</a
+      ><a name="3328" class="DottedPattern Symbol"
+      >.</a
+      ><a name="3329" href="Chi.html#3325" class="DottedPattern Bound"
+      >x</a
+      ><a name="3330"
+      > </a
+      ><a name="3331" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="3332"
+      > </a
+      ><a name="3333" href="Chi.html#3333" class="Bound"
+      >xs</a
+      ><a name="3335" class="Symbol"
+      >)</a
+      ><a name="3336"
+      >  </a
+      ><a name="3338" class="Symbol"
+      >(</a
+      ><a name="3339" href="Data.List.Any.html#1169" class="InductiveConstructor"
+      >here</a
+      ><a name="3343"
+      > </a
+      ><a name="3344" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="3348" class="Symbol"
+      >)</a
+      ><a name="3349"
+      >   </a
+      ><a name="3352" class="DottedPattern Symbol"
+      >.</a
+      ><a name="3353" href="Chi.html#3325" class="DottedPattern Bound"
+      >x</a
+      ><a name="3354"
+      >  </a
+      ><a name="3356" href="Chi.html#3356" class="Bound"
+      >x&lt;x</a
+      ><a name="3359"
+      > </a
+      ><a name="3360" class="Symbol"
+      >(</a
+      ><a name="3361" href="Data.List.Any.html#1169" class="InductiveConstructor"
+      >here</a
+      ><a name="3365"
+      > </a
+      ><a name="3366" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="3370" class="Symbol"
+      >)</a
+      ><a name="3371"
+      >    </a
+      ><a name="3375" class="Symbol"
+      >=</a
+      ><a name="3376"
+      > </a
+      ><a name="3377" href="Data.Empty.html#326" class="Function"
+      >&#8869;-elim</a
+      ><a name="3383"
+      > </a
+      ><a name="3384" class="Symbol"
+      >((</a
+      ><a name="3386" href="Chi.html#3002" class="Function"
+      >&lt;&#8594;&#8802;</a
+      ><a name="3389"
+      > </a
+      ><a name="3390" href="Chi.html#3356" class="Bound"
+      >x&lt;x</a
+      ><a name="3393" class="Symbol"
+      >)</a
+      ><a name="3394"
+      > </a
+      ><a name="3395" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="3399" class="Symbol"
+      >)</a
+      ><a name="3400"
+      >
+</a
+      ><a name="3401" href="Chi.html#3147" class="Function"
+      >del&#8712;</a
+      ><a name="3405"
+      > </a
+      ><a name="3406" href="Chi.html#3406" class="Bound"
+      >x</a
+      ><a name="3407"
+      > </a
+      ><a name="3408" class="Symbol"
+      >(</a
+      ><a name="3409" class="DottedPattern Symbol"
+      >.</a
+      ><a name="3410" href="Chi.html#3406" class="DottedPattern Bound"
+      >x</a
+      ><a name="3411"
+      > </a
+      ><a name="3412" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="3413"
+      > </a
+      ><a name="3414" href="Chi.html#3414" class="Bound"
+      >xs</a
+      ><a name="3416" class="Symbol"
+      >)</a
+      ><a name="3417"
+      >  </a
+      ><a name="3419" class="Symbol"
+      >(</a
+      ><a name="3420" href="Data.List.Any.html#1169" class="InductiveConstructor"
+      >here</a
+      ><a name="3424"
+      > </a
+      ><a name="3425" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="3429" class="Symbol"
+      >)</a
+      ><a name="3430"
+      >   </a
+      ><a name="3433" href="Chi.html#3433" class="Bound"
+      >y</a
+      ><a name="3434"
+      >   </a
+      ><a name="3437" href="Chi.html#3437" class="Bound"
+      >y&lt;x</a
+      ><a name="3440"
+      > </a
+      ><a name="3441" class="Symbol"
+      >(</a
+      ><a name="3442" href="Data.List.Any.html#1222" class="InductiveConstructor"
+      >there</a
+      ><a name="3447"
+      > </a
+      ><a name="3448" href="Chi.html#3448" class="Bound"
+      >y&#8712;xs</a
+      ><a name="3452" class="Symbol"
+      >)</a
+      ><a name="3453"
+      >   </a
+      ><a name="3456" class="Symbol"
+      >=</a
+      ><a name="3457"
+      > </a
+      ><a name="3458" href="Chi.html#3448" class="Bound"
+      >y&#8712;xs</a
+      ><a name="3462"
+      >
+</a
+      ><a name="3463" href="Chi.html#3147" class="Function"
+      >del&#8712;</a
+      ><a name="3467"
+      > </a
+      ><a name="3468" href="Chi.html#3468" class="Bound"
+      >x</a
+      ><a name="3469"
+      > </a
+      ><a name="3470" class="Symbol"
+      >(</a
+      ><a name="3471" class="DottedPattern Symbol"
+      >.</a
+      ><a name="3472" href="Chi.html#3495" class="DottedPattern Bound"
+      >y</a
+      ><a name="3473"
+      > </a
+      ><a name="3474" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="3475"
+      > </a
+      ><a name="3476" href="Chi.html#3476" class="Bound"
+      >xs</a
+      ><a name="3478" class="Symbol"
+      >)</a
+      ><a name="3479"
+      >  </a
+      ><a name="3481" class="Symbol"
+      >(</a
+      ><a name="3482" href="Data.List.Any.html#1222" class="InductiveConstructor"
+      >there</a
+      ><a name="3487"
+      > </a
+      ><a name="3488" href="Chi.html#3488" class="Bound"
+      >x&#8712;xs</a
+      ><a name="3492" class="Symbol"
+      >)</a
+      ><a name="3493"
+      >  </a
+      ><a name="3495" href="Chi.html#3495" class="Bound"
+      >y</a
+      ><a name="3496"
+      >   </a
+      ><a name="3499" href="Chi.html#3499" class="Bound"
+      >y&lt;x</a
+      ><a name="3502"
+      > </a
+      ><a name="3503" class="Symbol"
+      >(</a
+      ><a name="3504" href="Data.List.Any.html#1169" class="InductiveConstructor"
+      >here</a
+      ><a name="3508"
+      > </a
+      ><a name="3509" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="3513" class="Symbol"
+      >)</a
+      ><a name="3514"
+      >    </a
+      ><a name="3518" class="Symbol"
+      >=</a
+      ><a name="3519"
+      > </a
+      ><a name="3520" href="Data.List.Any.html#1169" class="InductiveConstructor"
+      >here</a
+      ><a name="3524"
+      > </a
+      ><a name="3525" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="3529"
+      >
+</a
+      ><a name="3530" href="Chi.html#3147" class="Function"
+      >del&#8712;</a
+      ><a name="3534"
+      > </a
+      ><a name="3535" href="Chi.html#3535" class="Bound"
+      >x</a
+      ><a name="3536"
+      > </a
+      ><a name="3537" class="Symbol"
+      >(</a
+      ><a name="3538" href="Chi.html#3538" class="Bound"
+      >z</a
+      ><a name="3539"
+      > </a
+      ><a name="3540" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="3541"
+      > </a
+      ><a name="3542" href="Chi.html#3542" class="Bound"
+      >xs</a
+      ><a name="3544" class="Symbol"
+      >)</a
+      ><a name="3545"
+      >   </a
+      ><a name="3548" class="Symbol"
+      >(</a
+      ><a name="3549" href="Data.List.Any.html#1222" class="InductiveConstructor"
+      >there</a
+      ><a name="3554"
+      > </a
+      ><a name="3555" href="Chi.html#3555" class="Bound"
+      >x&#8712;xs</a
+      ><a name="3559" class="Symbol"
+      >)</a
+      ><a name="3560"
+      >  </a
+      ><a name="3562" href="Chi.html#3562" class="Bound"
+      >y</a
+      ><a name="3563"
+      >   </a
+      ><a name="3566" href="Chi.html#3566" class="Bound"
+      >y&lt;x</a
+      ><a name="3569"
+      > </a
+      ><a name="3570" class="Symbol"
+      >(</a
+      ><a name="3571" href="Data.List.Any.html#1222" class="InductiveConstructor"
+      >there</a
+      ><a name="3576"
+      > </a
+      ><a name="3577" href="Chi.html#3577" class="Bound"
+      >y&#8712;xs</a
+      ><a name="3581" class="Symbol"
+      >)</a
+      ><a name="3582"
+      >   </a
+      ><a name="3585" class="Symbol"
+      >=</a
+      ><a name="3586"
+      > </a
+      ><a name="3587" href="Data.List.Any.html#1222" class="InductiveConstructor"
+      >there</a
+      ><a name="3592"
+      > </a
+      ><a name="3593" class="Symbol"
+      >(</a
+      ><a name="3594" href="Chi.html#3147" class="Function"
+      >del&#8712;</a
+      ><a name="3598"
+      > </a
+      ><a name="3599" href="Chi.html#3535" class="Bound"
+      >x</a
+      ><a name="3600"
+      > </a
+      ><a name="3601" href="Chi.html#3542" class="Bound"
+      >xs</a
+      ><a name="3603"
+      > </a
+      ><a name="3604" href="Chi.html#3555" class="Bound"
+      >x&#8712;xs</a
+      ><a name="3608"
+      > </a
+      ><a name="3609" href="Chi.html#3562" class="Bound"
+      >y</a
+      ><a name="3610"
+      > </a
+      ><a name="3611" href="Chi.html#3566" class="Bound"
+      >y&lt;x</a
+      ><a name="3614"
+      > </a
+      ><a name="3615" href="Chi.html#3577" class="Bound"
+      >y&#8712;xs</a
+      ><a name="3619" class="Symbol"
+      >)</a
+      ><a name="3620"
+      >
+</a
+      ><a name="3621" class="Comment"
+      >--</a
+      ><a name="3623"
+      >
+</a
+      ><a name="3624" href="Chi.html#3624" class="Function"
+      >palomar-aux</a
+      ><a name="3635"
+      > </a
+      ><a name="3636" class="Symbol"
+      >:</a
+      ><a name="3637"
+      > </a
+      ><a name="3638" class="Symbol"
+      >(</a
+      ><a name="3639" href="Chi.html#3639" class="Bound"
+      >n</a
+      ><a name="3640"
+      > </a
+      ><a name="3641" class="Symbol"
+      >:</a
+      ><a name="3642"
+      > </a
+      ><a name="3643" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="3644" class="Symbol"
+      >)(</a
+      ><a name="3646" href="Chi.html#3646" class="Bound"
+      >xs</a
+      ><a name="3648"
+      > </a
+      ><a name="3649" class="Symbol"
+      >:</a
+      ><a name="3650"
+      > </a
+      ><a name="3651" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="3655"
+      > </a
+      ><a name="3656" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="3657" class="Symbol"
+      >)</a
+      ><a name="3658"
+      > </a
+      ><a name="3659" class="Symbol"
+      >&#8594;</a
+      ><a name="3660"
+      > </a
+      ><a name="3661" class="Symbol"
+      >((</a
+      ><a name="3663" href="Chi.html#3663" class="Bound"
+      >y</a
+      ><a name="3664"
+      > </a
+      ><a name="3665" class="Symbol"
+      >:</a
+      ><a name="3666"
+      > </a
+      ><a name="3667" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="3668" class="Symbol"
+      >)</a
+      ><a name="3669"
+      > </a
+      ><a name="3670" class="Symbol"
+      >&#8594;</a
+      ><a name="3671"
+      > </a
+      ><a name="3672" href="Chi.html#3663" class="Bound"
+      >y</a
+      ><a name="3673"
+      > </a
+      ><a name="3674" href="Data.Nat.html#783" class="Datatype Operator"
+      >&#8804;</a
+      ><a name="3675"
+      > </a
+      ><a name="3676" href="Chi.html#3639" class="Bound"
+      >n</a
+      ><a name="3677"
+      > </a
+      ><a name="3678" class="Symbol"
+      >&#8594;</a
+      ><a name="3679"
+      > </a
+      ><a name="3680" href="Chi.html#3663" class="Bound"
+      >y</a
+      ><a name="3681"
+      > </a
+      ><a name="3682" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="3685"
+      > </a
+      ><a name="3686" href="Chi.html#3646" class="Bound"
+      >xs</a
+      ><a name="3688" class="Symbol"
+      >)</a
+      ><a name="3689"
+      > </a
+      ><a name="3690" class="Symbol"
+      >&#8594;</a
+      ><a name="3691"
+      > </a
+      ><a name="3692" href="Chi.html#3639" class="Bound"
+      >n</a
+      ><a name="3693"
+      > </a
+      ><a name="3694" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="3695"
+      > </a
+      ><a name="3696" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="3703"
+      > </a
+      ><a name="3704" href="Chi.html#3646" class="Bound"
+      >xs</a
+      ><a name="3706"
+      > </a
+      ><a name="3707" class="Symbol"
+      >&#8594;</a
+      ><a name="3708"
+      > </a
+      ><a name="3709" href="Data.Empty.html#243" class="Datatype"
+      >&#8869;</a
+      ><a name="3710"
+      >
+</a
+      ><a name="3711" href="Chi.html#3624" class="Function"
+      >palomar-aux</a
+      ><a name="3722"
+      > </a
+      ><a name="3723" class="DottedPattern Symbol"
+      >.</a
+      ><a name="3724" class="DottedPattern Number"
+      >0</a
+      ><a name="3725"
+      > </a
+      ><a name="3726" href="Data.List.html#696" class="InductiveConstructor"
+      >[]</a
+      ><a name="3728"
+      >        </a
+      ><a name="3736" href="Chi.html#3736" class="Bound"
+      >f</a
+      ><a name="3737"
+      > </a
+      ><a name="3738" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="3742"
+      > </a
+      ><a name="3743" class="Keyword"
+      >with</a
+      ><a name="3747"
+      > </a
+      ><a name="3748" href="Chi.html#3736" class="Bound"
+      >f</a
+      ><a name="3749"
+      > </a
+      ><a name="3750" class="Number"
+      >0</a
+      ><a name="3751"
+      > </a
+      ><a name="3752" href="Data.Nat.html#814" class="InductiveConstructor"
+      >z&#8804;n</a
+      ><a name="3755"
+      >
+</a
+      ><a name="3756" class="Symbol"
+      >...</a
+      ><a name="3759"
+      > </a
+      ><a name="3760" class="Symbol"
+      >|</a
+      ><a name="3761"
+      > </a
+      ><a name="3762" class="Symbol"
+      >()</a
+      ><a name="3764"
+      >
+</a
+      ><a name="3765" href="Chi.html#3624" class="Function"
+      >palomar-aux</a
+      ><a name="3776"
+      > </a
+      ><a name="3777" class="Number"
+      >0</a
+      ><a name="3778"
+      > </a
+      ><a name="3779" class="Symbol"
+      >(</a
+      ><a name="3780" href="Chi.html#3780" class="Bound"
+      >x</a
+      ><a name="3781"
+      > </a
+      ><a name="3782" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="3783"
+      > </a
+      ><a name="3784" href="Chi.html#3784" class="Bound"
+      >xs</a
+      ><a name="3786" class="Symbol"
+      >)</a
+      ><a name="3787"
+      > </a
+      ><a name="3788" href="Chi.html#3788" class="Bound"
+      >f</a
+      ><a name="3789"
+      > </a
+      ><a name="3790" class="Symbol"
+      >()</a
+      ><a name="3792"
+      >
+</a
+      ><a name="3793" href="Chi.html#3624" class="Function"
+      >palomar-aux</a
+      ><a name="3804"
+      > </a
+      ><a name="3805" class="Symbol"
+      >(</a
+      ><a name="3806" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="3809"
+      > </a
+      ><a name="3810" href="Chi.html#3810" class="Bound"
+      >n</a
+      ><a name="3811" class="Symbol"
+      >)</a
+      ><a name="3812"
+      > </a
+      ><a name="3813" class="Symbol"
+      >(</a
+      ><a name="3814" href="Chi.html#3814" class="Bound"
+      >x</a
+      ><a name="3815"
+      > </a
+      ><a name="3816" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="3817"
+      > </a
+      ><a name="3818" href="Chi.html#3818" class="Bound"
+      >xs</a
+      ><a name="3820" class="Symbol"
+      >)</a
+      ><a name="3821"
+      > </a
+      ><a name="3822" href="Chi.html#3822" class="Bound"
+      >f</a
+      ><a name="3823"
+      > </a
+      ><a name="3824" href="Chi.html#3824" class="Bound"
+      >sucn&#8801;suc|xs|</a
+      ><a name="3836"
+      > </a
+      ><a name="3837" class="Keyword"
+      >with</a
+      ><a name="3841"
+      > </a
+      ><a name="3842" href="Data.List.Any.html#1706" class="Function"
+      >any</a
+      ><a name="3845"
+      > </a
+      ><a name="3846" class="Symbol"
+      >(</a
+      ><a name="3847" href="Data.Nat.html#3049" class="Function Operator"
+      >_&#8799;_</a
+      ><a name="3850"
+      > </a
+      ><a name="3851" class="Symbol"
+      >(</a
+      ><a name="3852" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="3859"
+      > </a
+      ><a name="3860" class="Symbol"
+      >(</a
+      ><a name="3861" href="Chi.html#3814" class="Bound"
+      >x</a
+      ><a name="3862"
+      > </a
+      ><a name="3863" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="3864"
+      > </a
+      ><a name="3865" href="Chi.html#3818" class="Bound"
+      >xs</a
+      ><a name="3867" class="Symbol"
+      >)))</a
+      ><a name="3870"
+      > </a
+      ><a name="3871" class="Symbol"
+      >(</a
+      ><a name="3872" href="Chi.html#3814" class="Bound"
+      >x</a
+      ><a name="3873"
+      > </a
+      ><a name="3874" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="3875"
+      > </a
+      ><a name="3876" href="Chi.html#3818" class="Bound"
+      >xs</a
+      ><a name="3878" class="Symbol"
+      >)</a
+      ><a name="3879"
+      >
+</a
+      ><a name="3880" href="Chi.html#3624" class="Function"
+      >palomar-aux</a
+      ><a name="3891"
+      > </a
+      ><a name="3892" class="Symbol"
+      >(</a
+      ><a name="3893" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="3896"
+      > </a
+      ><a name="3897" href="Chi.html#3897" class="Bound"
+      >n</a
+      ><a name="3898" class="Symbol"
+      >)</a
+      ><a name="3899"
+      > </a
+      ><a name="3900" class="Symbol"
+      >(</a
+      ><a name="3901" href="Chi.html#3901" class="Bound"
+      >x</a
+      ><a name="3902"
+      > </a
+      ><a name="3903" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="3904"
+      > </a
+      ><a name="3905" href="Chi.html#3905" class="Bound"
+      >xs</a
+      ><a name="3907" class="Symbol"
+      >)</a
+      ><a name="3908"
+      > </a
+      ><a name="3909" href="Chi.html#3909" class="Bound"
+      >f</a
+      ><a name="3910"
+      > </a
+      ><a name="3911" href="Chi.html#3911" class="Bound"
+      >sucn&#8801;suc|xs|</a
+      ><a name="3923"
+      > 
+    </a
+      ><a name="3929" class="Symbol"
+      >|</a
+      ><a name="3930"
+      > </a
+      ><a name="3931" href="Relation.Nullary.Core.html#531" class="InductiveConstructor"
+      >no</a
+      ><a name="3933"
+      > </a
+      ><a name="3934" href="Chi.html#3934" class="Bound"
+      >|x&#8759;xs|&#8713;x&#8759;xs</a
+      ><a name="3945"
+      > </a
+      ><a name="3946" class="Symbol"
+      >=</a
+      ><a name="3947"
+      > </a
+      ><a name="3948" href="Data.Empty.html#326" class="Function"
+      >&#8869;-elim</a
+      ><a name="3954"
+      > </a
+      ><a name="3955" class="Symbol"
+      >(</a
+      ><a name="3956" href="Chi.html#3934" class="Bound"
+      >|x&#8759;xs|&#8713;x&#8759;xs</a
+      ><a name="3967"
+      >  </a
+      ><a name="3969" class="Symbol"
+      >(</a
+      ><a name="3970" href="Chi.html#3909" class="Bound"
+      >f</a
+      ><a name="3971"
+      > </a
+      ><a name="3972" class="Symbol"
+      >(</a
+      ><a name="3973" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="3976"
+      > </a
+      ><a name="3977" class="Symbol"
+      >(</a
+      ><a name="3978" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="3985"
+      > </a
+      ><a name="3986" href="Chi.html#3905" class="Bound"
+      >xs</a
+      ><a name="3988" class="Symbol"
+      >))</a
+      ><a name="3990"
+      > </a
+      ><a name="3991" class="Symbol"
+      >(</a
+      ><a name="3992" href="Relation.Binary.PropositionalEquality.html#882" class="Function"
+      >subst&#8322;</a
+      ><a name="3998"
+      > </a
+      ><a name="3999" href="Data.Nat.html#783" class="Datatype Operator"
+      >_&#8804;_</a
+      ><a name="4002"
+      > </a
+      ><a name="4003" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="4007"
+      > </a
+      ><a name="4008" class="Symbol"
+      >(</a
+      ><a name="4009" href="Relation.Binary.PropositionalEquality.Core.html#565" class="Function"
+      >sym</a
+      ><a name="4012"
+      > </a
+      ><a name="4013" href="Chi.html#3911" class="Bound"
+      >sucn&#8801;suc|xs|</a
+      ><a name="4025" class="Symbol"
+      >)</a
+      ><a name="4026"
+      > </a
+      ><a name="4027" class="Symbol"
+      >(</a
+      ><a name="4028" href="Data.Nat.Properties.html#7716" class="Function"
+      >n&#8804;m+n</a
+      ><a name="4033"
+      > </a
+      ><a name="4034" class="Number"
+      >0</a
+      ><a name="4035"
+      > </a
+      ><a name="4036" class="Symbol"
+      >(</a
+      ><a name="4037" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="4040"
+      > </a
+      ><a name="4041" class="Symbol"
+      >(</a
+      ><a name="4042" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="4049"
+      > </a
+      ><a name="4050" href="Chi.html#3905" class="Bound"
+      >xs</a
+      ><a name="4052" class="Symbol"
+      >))))))</a
+      ><a name="4058"
+      >
+</a
+      ><a name="4059" href="Chi.html#3624" class="Function"
+      >palomar-aux</a
+      ><a name="4070"
+      > </a
+      ><a name="4071" class="Symbol"
+      >(</a
+      ><a name="4072" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="4075"
+      > </a
+      ><a name="4076" href="Chi.html#4076" class="Bound"
+      >n</a
+      ><a name="4077" class="Symbol"
+      >)</a
+      ><a name="4078"
+      > </a
+      ><a name="4079" class="Symbol"
+      >(</a
+      ><a name="4080" href="Chi.html#4080" class="Bound"
+      >x</a
+      ><a name="4081"
+      > </a
+      ><a name="4082" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="4083"
+      > </a
+      ><a name="4084" href="Chi.html#4084" class="Bound"
+      >xs</a
+      ><a name="4086" class="Symbol"
+      >)</a
+      ><a name="4087"
+      > </a
+      ><a name="4088" href="Chi.html#4088" class="Bound"
+      >f</a
+      ><a name="4089"
+      > </a
+      ><a name="4090" href="Chi.html#4090" class="Bound"
+      >sucn&#8801;suc|xs|</a
+      ><a name="4102"
+      > 
+    </a
+      ><a name="4108" class="Symbol"
+      >|</a
+      ><a name="4109"
+      > </a
+      ><a name="4110" href="Relation.Nullary.Core.html#504" class="InductiveConstructor"
+      >yes</a
+      ><a name="4113"
+      > </a
+      ><a name="4114" href="Chi.html#4114" class="Bound"
+      >|x&#8759;xs|&#8712;x&#8759;xs</a
+      ><a name="4125"
+      > 
+  </a
+      ><a name="4129" class="Keyword"
+      >with</a
+      ><a name="4133"
+      > </a
+      ><a name="4134" href="Data.Product.html#525" class="Field"
+      >proj&#8321;</a
+      ><a name="4139"
+      > </a
+      ><a name="4140" class="Symbol"
+      >(</a
+      ><a name="4141" href="Chi.html#2510" class="Function"
+      >del</a
+      ><a name="4144"
+      > </a
+      ><a name="4145" class="Symbol"
+      >(</a
+      ><a name="4146" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="4153"
+      > </a
+      ><a name="4154" class="Symbol"
+      >(</a
+      ><a name="4155" href="Chi.html#4080" class="Bound"
+      >x</a
+      ><a name="4156"
+      > </a
+      ><a name="4157" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="4158"
+      > </a
+      ><a name="4159" href="Chi.html#4084" class="Bound"
+      >xs</a
+      ><a name="4161" class="Symbol"
+      >))</a
+      ><a name="4163"
+      > </a
+      ><a name="4164" class="Symbol"
+      >(</a
+      ><a name="4165" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="4172"
+      > </a
+      ><a name="4173" class="Symbol"
+      >(</a
+      ><a name="4174" href="Chi.html#4080" class="Bound"
+      >x</a
+      ><a name="4175"
+      > </a
+      ><a name="4176" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="4177"
+      > </a
+      ><a name="4178" href="Chi.html#4084" class="Bound"
+      >xs</a
+      ><a name="4180" class="Symbol"
+      >))</a
+      ><a name="4182"
+      > </a
+      ><a name="4183" class="Symbol"
+      >(</a
+      ><a name="4184" href="Chi.html#4080" class="Bound"
+      >x</a
+      ><a name="4185"
+      > </a
+      ><a name="4186" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="4187"
+      > </a
+      ><a name="4188" href="Chi.html#4084" class="Bound"
+      >xs</a
+      ><a name="4190" class="Symbol"
+      >)</a
+      ><a name="4191"
+      > </a
+      ><a name="4192" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="4196"
+      > </a
+      ><a name="4197" href="Chi.html#4114" class="Bound"
+      >|x&#8759;xs|&#8712;x&#8759;xs</a
+      ><a name="4208" class="Symbol"
+      >)</a
+      ><a name="4209"
+      > </a
+      ><a name="4210" class="Symbol"
+      >|</a
+      ><a name="4211"
+      > 
+       </a
+      ><a name="4220" href="Data.Product.html#539" class="Field"
+      >proj&#8322;</a
+      ><a name="4225"
+      > </a
+      ><a name="4226" class="Symbol"
+      >(</a
+      ><a name="4227" href="Chi.html#2510" class="Function"
+      >del</a
+      ><a name="4230"
+      > </a
+      ><a name="4231" class="Symbol"
+      >(</a
+      ><a name="4232" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="4239"
+      > </a
+      ><a name="4240" class="Symbol"
+      >(</a
+      ><a name="4241" href="Chi.html#4080" class="Bound"
+      >x</a
+      ><a name="4242"
+      > </a
+      ><a name="4243" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="4244"
+      > </a
+      ><a name="4245" href="Chi.html#4084" class="Bound"
+      >xs</a
+      ><a name="4247" class="Symbol"
+      >))</a
+      ><a name="4249"
+      > </a
+      ><a name="4250" class="Symbol"
+      >(</a
+      ><a name="4251" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="4258"
+      > </a
+      ><a name="4259" class="Symbol"
+      >(</a
+      ><a name="4260" href="Chi.html#4080" class="Bound"
+      >x</a
+      ><a name="4261"
+      > </a
+      ><a name="4262" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="4263"
+      > </a
+      ><a name="4264" href="Chi.html#4084" class="Bound"
+      >xs</a
+      ><a name="4266" class="Symbol"
+      >))</a
+      ><a name="4268"
+      > </a
+      ><a name="4269" class="Symbol"
+      >(</a
+      ><a name="4270" href="Chi.html#4080" class="Bound"
+      >x</a
+      ><a name="4271"
+      > </a
+      ><a name="4272" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="4273"
+      > </a
+      ><a name="4274" href="Chi.html#4084" class="Bound"
+      >xs</a
+      ><a name="4276" class="Symbol"
+      >)</a
+      ><a name="4277"
+      > </a
+      ><a name="4278" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="4282"
+      > </a
+      ><a name="4283" href="Chi.html#4114" class="Bound"
+      >|x&#8759;xs|&#8712;x&#8759;xs</a
+      ><a name="4294" class="Symbol"
+      >)</a
+      ><a name="4295"
+      > </a
+      ><a name="4296" class="Symbol"
+      >|</a
+      ><a name="4297"
+      >
+       </a
+      ><a name="4305" href="Chi.html#3147" class="Function"
+      >del&#8712;</a
+      ><a name="4309"
+      > </a
+      ><a name="4310" class="Symbol"
+      >(</a
+      ><a name="4311" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="4318"
+      > </a
+      ><a name="4319" class="Symbol"
+      >(</a
+      ><a name="4320" href="Chi.html#4080" class="Bound"
+      >x</a
+      ><a name="4321"
+      > </a
+      ><a name="4322" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="4323"
+      > </a
+      ><a name="4324" href="Chi.html#4084" class="Bound"
+      >xs</a
+      ><a name="4326" class="Symbol"
+      >))</a
+      ><a name="4328"
+      > </a
+      ><a name="4329" class="Symbol"
+      >(</a
+      ><a name="4330" href="Chi.html#4080" class="Bound"
+      >x</a
+      ><a name="4331"
+      > </a
+      ><a name="4332" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="4333"
+      > </a
+      ><a name="4334" href="Chi.html#4084" class="Bound"
+      >xs</a
+      ><a name="4336" class="Symbol"
+      >)</a
+      ><a name="4337"
+      > </a
+      ><a name="4338" href="Chi.html#4114" class="Bound"
+      >|x&#8759;xs|&#8712;x&#8759;xs</a
+      ><a name="4349"
+      > 
+</a
+      ><a name="4351" href="Chi.html#3624" class="Function"
+      >palomar-aux</a
+      ><a name="4362"
+      > </a
+      ><a name="4363" class="Symbol"
+      >(</a
+      ><a name="4364" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="4367"
+      > </a
+      ><a name="4368" href="Chi.html#4368" class="Bound"
+      >n</a
+      ><a name="4369" class="Symbol"
+      >)</a
+      ><a name="4370"
+      > </a
+      ><a name="4371" class="Symbol"
+      >(</a
+      ><a name="4372" href="Chi.html#4372" class="Bound"
+      >x</a
+      ><a name="4373"
+      > </a
+      ><a name="4374" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="4375"
+      > </a
+      ><a name="4376" href="Chi.html#4376" class="Bound"
+      >xs</a
+      ><a name="4378" class="Symbol"
+      >)</a
+      ><a name="4379"
+      >  </a
+      ><a name="4381" href="Chi.html#4381" class="Bound"
+      >f</a
+      ><a name="4382"
+      > </a
+      ><a name="4383" href="Chi.html#4383" class="Bound"
+      >sucn&#8801;suc|xs|</a
+      ><a name="4395"
+      >
+    </a
+      ><a name="4400" class="Symbol"
+      >|</a
+      ><a name="4401"
+      > </a
+      ><a name="4402" href="Relation.Nullary.Core.html#504" class="InductiveConstructor"
+      >yes</a
+      ><a name="4405"
+      > </a
+      ><a name="4406" href="Chi.html#4406" class="Bound"
+      >|x&#8759;xs|&#8712;x&#8759;xs</a
+      ><a name="4417"
+      > </a
+      ><a name="4418" class="Symbol"
+      >|</a
+      ><a name="4419"
+      > </a
+      ><a name="4420" href="Chi.html#4420" class="Bound"
+      >ys</a
+      ><a name="4422"
+      > </a
+      ><a name="4423" class="Symbol"
+      >|</a
+      ><a name="4424"
+      > </a
+      ><a name="4425" href="Chi.html#4425" class="Bound"
+      >|xs|&#8801;|ys|</a
+      ><a name="4434"
+      > </a
+      ><a name="4435" class="Symbol"
+      >|</a
+      ><a name="4436"
+      > </a
+      ><a name="4437" href="Chi.html#4437" class="Bound"
+      >f2</a
+      ><a name="4439"
+      >
+ </a
+      ><a name="4441" class="Symbol"
+      >=</a
+      ><a name="4442"
+      > </a
+      ><a name="4443" href="Chi.html#3624" class="Function"
+      >palomar-aux</a
+      ><a name="4454"
+      > </a
+      ><a name="4455" href="Chi.html#4368" class="Bound"
+      >n</a
+      ><a name="4456"
+      > </a
+      ><a name="4457" href="Chi.html#4420" class="Bound"
+      >ys</a
+      ><a name="4459"
+      > </a
+      ><a name="4460" href="Chi.html#4522" class="Function"
+      >fys</a
+      ><a name="4463"
+      > </a
+      ><a name="4464" class="Symbol"
+      >(</a
+      ><a name="4465" href="Relation.Binary.PropositionalEquality.Core.html#632" class="Function"
+      >trans</a
+      ><a name="4470"
+      > </a
+      ><a name="4471" class="Symbol"
+      >(</a
+      ><a name="4472" href="Chi.html#2085" class="Function"
+      >sucn&#8801;sucm&#8594;n&#8801;m</a
+      ><a name="4485"
+      > </a
+      ><a name="4486" href="Chi.html#4383" class="Bound"
+      >sucn&#8801;suc|xs|</a
+      ><a name="4498" class="Symbol"
+      >)</a
+      ><a name="4499"
+      > </a
+      ><a name="4500" href="Chi.html#4425" class="Bound"
+      >|xs|&#8801;|ys|</a
+      ><a name="4509" class="Symbol"
+      >)</a
+      ><a name="4510"
+      >
+  </a
+      ><a name="4513" class="Keyword"
+      >where</a
+      ><a name="4518"
+      > 
+  </a
+      ><a name="4522" href="Chi.html#4522" class="Function"
+      >fys</a
+      ><a name="4525"
+      > </a
+      ><a name="4526" class="Symbol"
+      >:</a
+      ><a name="4527"
+      > </a
+      ><a name="4528" class="Symbol"
+      >(</a
+      ><a name="4529" href="Chi.html#4529" class="Bound"
+      >y</a
+      ><a name="4530"
+      > </a
+      ><a name="4531" class="Symbol"
+      >:</a
+      ><a name="4532"
+      > </a
+      ><a name="4533" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="4534" class="Symbol"
+      >)</a
+      ><a name="4535"
+      > </a
+      ><a name="4536" class="Symbol"
+      >&#8594;</a
+      ><a name="4537"
+      > </a
+      ><a name="4538" href="Chi.html#4529" class="Bound"
+      >y</a
+      ><a name="4539"
+      > </a
+      ><a name="4540" href="Data.Nat.html#783" class="Datatype Operator"
+      >&#8804;</a
+      ><a name="4541"
+      > </a
+      ><a name="4542" href="Chi.html#4368" class="Bound"
+      >n</a
+      ><a name="4543"
+      > </a
+      ><a name="4544" class="Symbol"
+      >&#8594;</a
+      ><a name="4545"
+      > </a
+      ><a name="4546" href="Chi.html#4529" class="Bound"
+      >y</a
+      ><a name="4547"
+      > </a
+      ><a name="4548" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="4551"
+      > </a
+      ><a name="4552" href="Chi.html#4420" class="Bound"
+      >ys</a
+      ><a name="4554"
+      >
+  </a
+      ><a name="4557" href="Chi.html#4522" class="Function"
+      >fys</a
+      ><a name="4560"
+      > </a
+      ><a name="4561" href="Chi.html#4561" class="Bound"
+      >y</a
+      ><a name="4562"
+      > </a
+      ><a name="4563" href="Chi.html#4563" class="Bound"
+      >y&#8804;n</a
+      ><a name="4566"
+      > </a
+      ><a name="4567" class="Symbol"
+      >=</a
+      ><a name="4568"
+      > </a
+      ><a name="4569" href="Chi.html#4437" class="Bound"
+      >f2</a
+      ><a name="4571"
+      > </a
+      ><a name="4572" href="Chi.html#4561" class="Bound"
+      >y</a
+      ><a name="4573"
+      > </a
+      ><a name="4574" class="Symbol"
+      >(</a
+      ><a name="4575" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="4578"
+      > </a
+      ><a name="4579" class="Symbol"
+      >(</a
+      ><a name="4580" href="Relation.Binary.PropositionalEquality.html#882" class="Function"
+      >subst&#8322;</a
+      ><a name="4586"
+      > </a
+      ><a name="4587" href="Data.Nat.html#783" class="Datatype Operator"
+      >_&#8804;_</a
+      ><a name="4590"
+      > </a
+      ><a name="4591" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="4595"
+      > </a
+      ><a name="4596" class="Symbol"
+      >(</a
+      ><a name="4597" href="Chi.html#2085" class="Function"
+      >sucn&#8801;sucm&#8594;n&#8801;m</a
+      ><a name="4610"
+      > </a
+      ><a name="4611" href="Chi.html#4383" class="Bound"
+      >sucn&#8801;suc|xs|</a
+      ><a name="4623" class="Symbol"
+      >)</a
+      ><a name="4624"
+      > </a
+      ><a name="4625" href="Chi.html#4563" class="Bound"
+      >y&#8804;n</a
+      ><a name="4628" class="Symbol"
+      >))</a
+      ><a name="4630"
+      > </a
+      ><a name="4631" class="Symbol"
+      >(</a
+      ><a name="4632" href="Chi.html#4381" class="Bound"
+      >f</a
+      ><a name="4633"
+      > </a
+      ><a name="4634" href="Chi.html#4561" class="Bound"
+      >y</a
+      ><a name="4635"
+      > </a
+      ><a name="4636" class="Symbol"
+      >(</a
+      ><a name="4637" href="Data.Nat.Properties.html#6805" class="Function"
+      >&#8804;-step</a
+      ><a name="4643"
+      > </a
+      ><a name="4644" href="Chi.html#4563" class="Bound"
+      >y&#8804;n</a
+      ><a name="4647" class="Symbol"
+      >))</a
+      ><a name="4649"
+      >
+</a
+      ><a name="4650" class="Comment"
+      >--</a
+      ><a name="4652"
+      >
+</a
+      ><a name="4653" href="Chi.html#4653" class="Function"
+      >palomar</a
+      ><a name="4660"
+      > </a
+      ><a name="4661" class="Symbol"
+      >:</a
+      ><a name="4662"
+      > </a
+      ><a name="4663" class="Symbol"
+      >(</a
+      ><a name="4664" href="Chi.html#4664" class="Bound"
+      >n</a
+      ><a name="4665"
+      > </a
+      ><a name="4666" class="Symbol"
+      >:</a
+      ><a name="4667"
+      > </a
+      ><a name="4668" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="4669" class="Symbol"
+      >)(</a
+      ><a name="4671" href="Chi.html#4671" class="Bound"
+      >xs</a
+      ><a name="4673"
+      > </a
+      ><a name="4674" class="Symbol"
+      >:</a
+      ><a name="4675"
+      > </a
+      ><a name="4676" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="4680"
+      > </a
+      ><a name="4681" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="4682" class="Symbol"
+      >)</a
+      ><a name="4683"
+      > </a
+      ><a name="4684" class="Symbol"
+      >&#8594;</a
+      ><a name="4685"
+      > </a
+      ><a name="4686" class="Symbol"
+      >((</a
+      ><a name="4688" href="Chi.html#4688" class="Bound"
+      >y</a
+      ><a name="4689"
+      > </a
+      ><a name="4690" class="Symbol"
+      >:</a
+      ><a name="4691"
+      > </a
+      ><a name="4692" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="4693" class="Symbol"
+      >)</a
+      ><a name="4694"
+      > </a
+      ><a name="4695" class="Symbol"
+      >&#8594;</a
+      ><a name="4696"
+      > </a
+      ><a name="4697" href="Chi.html#4688" class="Bound"
+      >y</a
+      ><a name="4698"
+      > </a
+      ><a name="4699" href="Data.Nat.html#901" class="Function Operator"
+      >&lt;</a
+      ><a name="4700"
+      > </a
+      ><a name="4701" href="Chi.html#4664" class="Bound"
+      >n</a
+      ><a name="4702"
+      > </a
+      ><a name="4703" class="Symbol"
+      >&#8594;</a
+      ><a name="4704"
+      > </a
+      ><a name="4705" href="Chi.html#4688" class="Bound"
+      >y</a
+      ><a name="4706"
+      > </a
+      ><a name="4707" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="4710"
+      > </a
+      ><a name="4711" href="Chi.html#4671" class="Bound"
+      >xs</a
+      ><a name="4713" class="Symbol"
+      >)</a
+      ><a name="4714"
+      > </a
+      ><a name="4715" class="Symbol"
+      >&#8594;</a
+      ><a name="4716"
+      > </a
+      ><a name="4717" href="Chi.html#4664" class="Bound"
+      >n</a
+      ><a name="4718"
+      > </a
+      ><a name="4719" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="4720"
+      > </a
+      ><a name="4721" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="4728"
+      > </a
+      ><a name="4729" href="Chi.html#4671" class="Bound"
+      >xs</a
+      ><a name="4731"
+      > </a
+      ><a name="4732" class="Symbol"
+      >&#8594;</a
+      ><a name="4733"
+      > </a
+      ><a name="4734" href="Chi.html#4664" class="Bound"
+      >n</a
+      ><a name="4735"
+      > </a
+      ><a name="4736" href="Data.List.Any.html#2969" class="Function Operator"
+      >&#8713;[]</a
+      ><a name="4739"
+      > </a
+      ><a name="4740" href="Chi.html#4671" class="Bound"
+      >xs</a
+      ><a name="4742"
+      >
+</a
+      ><a name="4743" href="Chi.html#4653" class="Function"
+      >palomar</a
+      ><a name="4750"
+      > </a
+      ><a name="4751" class="DottedPattern Symbol"
+      >.(</a
+      ><a name="4753" href="Data.List.html#2923" class="DottedPattern Function"
+      >length'</a
+      ><a name="4760"
+      > </a
+      ><a name="4761" href="Chi.html#4765" class="DottedPattern Bound"
+      >xs</a
+      ><a name="4763" class="DottedPattern Symbol"
+      >)</a
+      ><a name="4764"
+      > </a
+      ><a name="4765" href="Chi.html#4765" class="Bound"
+      >xs</a
+      ><a name="4767"
+      > </a
+      ><a name="4768" href="Chi.html#4768" class="Bound"
+      >f</a
+      ><a name="4769"
+      > </a
+      ><a name="4770" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="4774"
+      > </a
+      ><a name="4775" href="Chi.html#4775" class="Bound"
+      >|xs|&#8712;xs</a
+      ><a name="4782"
+      > </a
+      ><a name="4783" class="Symbol"
+      >=</a
+      ><a name="4784"
+      > </a
+      ><a name="4785" href="Chi.html#3624" class="Function"
+      >palomar-aux</a
+      ><a name="4796"
+      > </a
+      ><a name="4797" class="Symbol"
+      >(</a
+      ><a name="4798" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="4805"
+      > </a
+      ><a name="4806" href="Chi.html#4765" class="Bound"
+      >xs</a
+      ><a name="4808" class="Symbol"
+      >)</a
+      ><a name="4809"
+      > </a
+      ><a name="4810" href="Chi.html#4765" class="Bound"
+      >xs</a
+      ><a name="4812"
+      > </a
+      ><a name="4813" class="Symbol"
+      >(</a
+      ><a name="4814" href="Chi.html#4866" class="Function"
+      >faux</a
+      ><a name="4818"
+      > </a
+      ><a name="4819" class="Symbol"
+      >(</a
+      ><a name="4820" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="4827"
+      > </a
+      ><a name="4828" href="Chi.html#4765" class="Bound"
+      >xs</a
+      ><a name="4830" class="Symbol"
+      >)</a
+      ><a name="4831"
+      > </a
+      ><a name="4832" href="Chi.html#4765" class="Bound"
+      >xs</a
+      ><a name="4834"
+      > </a
+      ><a name="4835" href="Chi.html#4775" class="Bound"
+      >|xs|&#8712;xs</a
+      ><a name="4842"
+      > </a
+      ><a name="4843" href="Chi.html#4768" class="Bound"
+      >f</a
+      ><a name="4844"
+      > </a
+      ><a name="4845" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="4849" class="Symbol"
+      >)</a
+      ><a name="4850"
+      > </a
+      ><a name="4851" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="4855"
+      >
+  </a
+      ><a name="4858" class="Keyword"
+      >where</a
+      ><a name="4863"
+      >
+  </a
+      ><a name="4866" href="Chi.html#4866" class="Function"
+      >faux</a
+      ><a name="4870"
+      > </a
+      ><a name="4871" class="Symbol"
+      >:</a
+      ><a name="4872"
+      > </a
+      ><a name="4873" class="Symbol"
+      >(</a
+      ><a name="4874" href="Chi.html#4874" class="Bound"
+      >n</a
+      ><a name="4875"
+      > </a
+      ><a name="4876" class="Symbol"
+      >:</a
+      ><a name="4877"
+      > </a
+      ><a name="4878" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="4879" class="Symbol"
+      >)(</a
+      ><a name="4881" href="Chi.html#4881" class="Bound"
+      >xs</a
+      ><a name="4883"
+      > </a
+      ><a name="4884" class="Symbol"
+      >:</a
+      ><a name="4885"
+      > </a
+      ><a name="4886" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="4890"
+      > </a
+      ><a name="4891" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="4892" class="Symbol"
+      >)</a
+      ><a name="4893"
+      > </a
+      ><a name="4894" class="Symbol"
+      >&#8594;</a
+      ><a name="4895"
+      > </a
+      ><a name="4896" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="4903"
+      > </a
+      ><a name="4904" href="Chi.html#4881" class="Bound"
+      >xs</a
+      ><a name="4906"
+      > </a
+      ><a name="4907" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="4910"
+      > </a
+      ><a name="4911" href="Chi.html#4881" class="Bound"
+      >xs</a
+      ><a name="4913"
+      > </a
+      ><a name="4914" class="Symbol"
+      >&#8594;</a
+      ><a name="4915"
+      > </a
+      ><a name="4916" class="Symbol"
+      >((</a
+      ><a name="4918" href="Chi.html#4918" class="Bound"
+      >y</a
+      ><a name="4919"
+      > </a
+      ><a name="4920" class="Symbol"
+      >:</a
+      ><a name="4921"
+      > </a
+      ><a name="4922" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="4923" class="Symbol"
+      >)</a
+      ><a name="4924"
+      > </a
+      ><a name="4925" class="Symbol"
+      >&#8594;</a
+      ><a name="4926"
+      > </a
+      ><a name="4927" href="Chi.html#4918" class="Bound"
+      >y</a
+      ><a name="4928"
+      > </a
+      ><a name="4929" href="Data.Nat.html#901" class="Function Operator"
+      >&lt;</a
+      ><a name="4930"
+      > </a
+      ><a name="4931" href="Chi.html#4874" class="Bound"
+      >n</a
+      ><a name="4932"
+      > </a
+      ><a name="4933" class="Symbol"
+      >&#8594;</a
+      ><a name="4934"
+      > </a
+      ><a name="4935" href="Chi.html#4918" class="Bound"
+      >y</a
+      ><a name="4936"
+      > </a
+      ><a name="4937" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="4940"
+      > </a
+      ><a name="4941" href="Chi.html#4881" class="Bound"
+      >xs</a
+      ><a name="4943" class="Symbol"
+      >)</a
+      ><a name="4944"
+      > </a
+      ><a name="4945" class="Symbol"
+      >&#8594;</a
+      ><a name="4946"
+      > </a
+      ><a name="4947" href="Chi.html#4874" class="Bound"
+      >n</a
+      ><a name="4948"
+      > </a
+      ><a name="4949" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="4950"
+      > </a
+      ><a name="4951" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="4958"
+      > </a
+      ><a name="4959" href="Chi.html#4881" class="Bound"
+      >xs</a
+      ><a name="4961"
+      > </a
+      ><a name="4962" class="Symbol"
+      >&#8594;</a
+      ><a name="4963"
+      > </a
+      ><a name="4964" class="Symbol"
+      >(</a
+      ><a name="4965" href="Chi.html#4965" class="Bound"
+      >y</a
+      ><a name="4966"
+      > </a
+      ><a name="4967" class="Symbol"
+      >:</a
+      ><a name="4968"
+      > </a
+      ><a name="4969" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="4970" class="Symbol"
+      >)</a
+      ><a name="4971"
+      >  </a
+      ><a name="4973" class="Symbol"
+      >&#8594;</a
+      ><a name="4974"
+      > </a
+      ><a name="4975" href="Chi.html#4965" class="Bound"
+      >y</a
+      ><a name="4976"
+      > </a
+      ><a name="4977" href="Data.Nat.html#783" class="Datatype Operator"
+      >&#8804;</a
+      ><a name="4978"
+      > </a
+      ><a name="4979" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="4986"
+      > </a
+      ><a name="4987" href="Chi.html#4881" class="Bound"
+      >xs</a
+      ><a name="4989"
+      > </a
+      ><a name="4990" class="Symbol"
+      >&#8594;</a
+      ><a name="4991"
+      > </a
+      ><a name="4992" href="Chi.html#4965" class="Bound"
+      >y</a
+      ><a name="4993"
+      > </a
+      ><a name="4994" href="Data.List.Any.html#2915" class="Function Operator"
+      >&#8712;[]</a
+      ><a name="4997"
+      > </a
+      ><a name="4998" href="Chi.html#4881" class="Bound"
+      >xs</a
+      ><a name="5000"
+      >
+  </a
+      ><a name="5003" href="Chi.html#4866" class="Function"
+      >faux</a
+      ><a name="5007"
+      > </a
+      ><a name="5008" class="DottedPattern Symbol"
+      >.(</a
+      ><a name="5010" href="Data.List.html#2923" class="DottedPattern Function"
+      >length'</a
+      ><a name="5017"
+      > </a
+      ><a name="5018" href="Chi.html#5022" class="DottedPattern Bound"
+      >xs</a
+      ><a name="5020" class="DottedPattern Symbol"
+      >)</a
+      ><a name="5021"
+      > </a
+      ><a name="5022" href="Chi.html#5022" class="Bound"
+      >xs</a
+      ><a name="5024"
+      > </a
+      ><a name="5025" href="Chi.html#5025" class="Bound"
+      >|xs|&#8712;xs</a
+      ><a name="5032"
+      >  </a
+      ><a name="5034" href="Chi.html#5034" class="Bound"
+      >f</a
+      ><a name="5035"
+      > </a
+      ><a name="5036" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="5040"
+      >  </a
+      ><a name="5042" href="Chi.html#5042" class="Bound"
+      >y</a
+      ><a name="5043"
+      > </a
+      ><a name="5044" href="Chi.html#5044" class="Bound"
+      >y&#8804;|xs|</a
+      ><a name="5050"
+      > </a
+      ><a name="5051" class="Keyword"
+      >with</a
+      ><a name="5055"
+      > </a
+      ><a name="5056" href="Data.Nat.Properties.html#7182" class="Function"
+      >&#8804;&#8658;&#8804;&#8242;</a
+      ><a name="5060"
+      > </a
+      ><a name="5061" href="Chi.html#5044" class="Bound"
+      >y&#8804;|xs|</a
+      ><a name="5067"
+      > 
+  </a
+      ><a name="5071" href="Chi.html#4866" class="Function"
+      >faux</a
+      ><a name="5075"
+      > </a
+      ><a name="5076" class="DottedPattern Symbol"
+      >.</a
+      ><a name="5077" class="DottedPattern Number"
+      >0</a
+      ><a name="5078"
+      > </a
+      ><a name="5079" href="Data.List.html#696" class="InductiveConstructor"
+      >[]</a
+      ><a name="5081"
+      > </a
+      ><a name="5082" href="Chi.html#5082" class="Bound"
+      >|xs|&#8712;xs</a
+      ><a name="5089"
+      >  </a
+      ><a name="5091" href="Chi.html#5091" class="Bound"
+      >f</a
+      ><a name="5092"
+      > </a
+      ><a name="5093" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="5097"
+      > </a
+      ><a name="5098" class="DottedPattern Symbol"
+      >.</a
+      ><a name="5099" class="DottedPattern Number"
+      >0</a
+      ><a name="5100"
+      >  </a
+      ><a name="5102" href="Chi.html#5102" class="Bound"
+      >y&#8804;|xs|</a
+      ><a name="5108"
+      > 
+    </a
+      ><a name="5114" class="Symbol"
+      >|</a
+      ><a name="5115"
+      > </a
+      ><a name="5116" href="Data.Nat.html#1361" class="InductiveConstructor"
+      >&#8804;&#8242;-refl</a
+      ><a name="5123"
+      > </a
+      ><a name="5124" class="Symbol"
+      >=</a
+      ><a name="5125"
+      > </a
+      ><a name="5126" href="Chi.html#5082" class="Bound"
+      >|xs|&#8712;xs</a
+      ><a name="5133"
+      >
+  </a
+      ><a name="5136" href="Chi.html#4866" class="Function"
+      >faux</a
+      ><a name="5140"
+      > </a
+      ><a name="5141" class="DottedPattern Symbol"
+      >.(</a
+      ><a name="5143" href="Data.Nat.html#690" class="DottedPattern InductiveConstructor"
+      >suc</a
+      ><a name="5146"
+      > </a
+      ><a name="5147" class="DottedPattern Symbol"
+      >(</a
+      ><a name="5148" href="Data.List.html#2923" class="DottedPattern Function"
+      >length'</a
+      ><a name="5155"
+      > </a
+      ><a name="5156" href="Chi.html#5166" class="DottedPattern Bound"
+      >xs</a
+      ><a name="5158" class="DottedPattern Symbol"
+      >))</a
+      ><a name="5160"
+      > </a
+      ><a name="5161" class="Symbol"
+      >(</a
+      ><a name="5162" href="Chi.html#5162" class="Bound"
+      >x</a
+      ><a name="5163"
+      > </a
+      ><a name="5164" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="5165"
+      > </a
+      ><a name="5166" href="Chi.html#5166" class="Bound"
+      >xs</a
+      ><a name="5168" class="Symbol"
+      >)</a
+      ><a name="5169"
+      > </a
+      ><a name="5170" href="Chi.html#5170" class="Bound"
+      >|xs|&#8712;xs</a
+      ><a name="5177"
+      > </a
+      ><a name="5178" href="Chi.html#5178" class="Bound"
+      >f</a
+      ><a name="5179"
+      > </a
+      ><a name="5180" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="5184"
+      > </a
+      ><a name="5185" class="DottedPattern Symbol"
+      >.(</a
+      ><a name="5187" href="Data.Nat.html#690" class="DottedPattern InductiveConstructor"
+      >suc</a
+      ><a name="5190"
+      > </a
+      ><a name="5191" class="DottedPattern Symbol"
+      >(</a
+      ><a name="5192" href="Data.List.html#2923" class="DottedPattern Function"
+      >length'</a
+      ><a name="5199"
+      > </a
+      ><a name="5200" href="Chi.html#5166" class="DottedPattern Bound"
+      >xs</a
+      ><a name="5202" class="DottedPattern Symbol"
+      >))</a
+      ><a name="5204"
+      >  </a
+      ><a name="5206" href="Chi.html#5206" class="Bound"
+      >y&#8804;|xs|+1</a
+      ><a name="5214"
+      > 
+    </a
+      ><a name="5220" class="Symbol"
+      >|</a
+      ><a name="5221"
+      > </a
+      ><a name="5222" href="Data.Nat.html#1361" class="InductiveConstructor"
+      >&#8804;&#8242;-refl</a
+      ><a name="5229"
+      > </a
+      ><a name="5230" class="Symbol"
+      >=</a
+      ><a name="5231"
+      > </a
+      ><a name="5232" href="Chi.html#5170" class="Bound"
+      >|xs|&#8712;xs</a
+      ><a name="5239"
+      >
+  </a
+      ><a name="5242" href="Chi.html#4866" class="Function"
+      >faux</a
+      ><a name="5246"
+      > </a
+      ><a name="5247" class="DottedPattern Symbol"
+      >.(</a
+      ><a name="5249" href="Data.Nat.html#690" class="DottedPattern InductiveConstructor"
+      >suc</a
+      ><a name="5252"
+      > </a
+      ><a name="5253" class="DottedPattern Symbol"
+      >(</a
+      ><a name="5254" href="Data.List.html#2923" class="DottedPattern Function"
+      >length'</a
+      ><a name="5261"
+      > </a
+      ><a name="5262" href="Chi.html#5272" class="DottedPattern Bound"
+      >xs</a
+      ><a name="5264" class="DottedPattern Symbol"
+      >))</a
+      ><a name="5266"
+      > </a
+      ><a name="5267" class="Symbol"
+      >(</a
+      ><a name="5268" href="Chi.html#5268" class="Bound"
+      >x</a
+      ><a name="5269"
+      > </a
+      ><a name="5270" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="5271"
+      > </a
+      ><a name="5272" href="Chi.html#5272" class="Bound"
+      >xs</a
+      ><a name="5274" class="Symbol"
+      >)</a
+      ><a name="5275"
+      > </a
+      ><a name="5276" href="Chi.html#5276" class="Bound"
+      >|xs|&#8712;xs</a
+      ><a name="5283"
+      > </a
+      ><a name="5284" href="Chi.html#5284" class="Bound"
+      >f</a
+      ><a name="5285"
+      > </a
+      ><a name="5286" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="5290"
+      > </a
+      ><a name="5291" class="DottedPattern Symbol"
+      >.</a
+      ><a name="5292" class="DottedPattern Number"
+      >0</a
+      ><a name="5293"
+      >      </a
+      ><a name="5299" href="Data.Nat.html#814" class="InductiveConstructor"
+      >z&#8804;n</a
+      ><a name="5302"
+      >
+    </a
+      ><a name="5307" class="Symbol"
+      >|</a
+      ><a name="5308"
+      > </a
+      ><a name="5309" href="Data.Nat.html#1404" class="InductiveConstructor"
+      >&#8804;&#8242;-step</a
+      ><a name="5316"
+      > </a
+      ><a name="5317" class="Symbol"
+      >_</a
+      ><a name="5318"
+      > </a
+      ><a name="5319" class="Symbol"
+      >=</a
+      ><a name="5320"
+      >  </a
+      ><a name="5322" href="Chi.html#5284" class="Bound"
+      >f</a
+      ><a name="5323"
+      > </a
+      ><a name="5324" class="Number"
+      >0</a
+      ><a name="5325"
+      > </a
+      ><a name="5326" class="Symbol"
+      >(</a
+      ><a name="5327" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="5330"
+      > </a
+      ><a name="5331" href="Data.Nat.html#814" class="InductiveConstructor"
+      >z&#8804;n</a
+      ><a name="5334" class="Symbol"
+      >)</a
+      ><a name="5335"
+      >
+  </a
+      ><a name="5338" href="Chi.html#4866" class="Function"
+      >faux</a
+      ><a name="5342"
+      > </a
+      ><a name="5343" class="DottedPattern Symbol"
+      >.(</a
+      ><a name="5345" href="Data.Nat.html#690" class="DottedPattern InductiveConstructor"
+      >suc</a
+      ><a name="5348"
+      > </a
+      ><a name="5349" class="DottedPattern Symbol"
+      >(</a
+      ><a name="5350" href="Data.List.html#2923" class="DottedPattern Function"
+      >length'</a
+      ><a name="5357"
+      > </a
+      ><a name="5358" href="Chi.html#5368" class="DottedPattern Bound"
+      >xs</a
+      ><a name="5360" class="DottedPattern Symbol"
+      >))</a
+      ><a name="5362"
+      > </a
+      ><a name="5363" class="Symbol"
+      >(</a
+      ><a name="5364" href="Chi.html#5364" class="Bound"
+      >x</a
+      ><a name="5365"
+      > </a
+      ><a name="5366" href="Data.List.html#711" class="InductiveConstructor Operator"
+      >&#8759;</a
+      ><a name="5367"
+      > </a
+      ><a name="5368" href="Chi.html#5368" class="Bound"
+      >xs</a
+      ><a name="5370" class="Symbol"
+      >)</a
+      ><a name="5371"
+      > </a
+      ><a name="5372" href="Chi.html#5372" class="Bound"
+      >|xs|&#8712;xs</a
+      ><a name="5379"
+      > </a
+      ><a name="5380" href="Chi.html#5380" class="Bound"
+      >f</a
+      ><a name="5381"
+      > </a
+      ><a name="5382" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="5386"
+      > </a
+      ><a name="5387" class="Symbol"
+      >(</a
+      ><a name="5388" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="5391"
+      > </a
+      ><a name="5392" href="Chi.html#5392" class="Bound"
+      >y</a
+      ><a name="5393" class="Symbol"
+      >)</a
+      ><a name="5394"
+      > </a
+      ><a name="5395" class="Symbol"
+      >(</a
+      ><a name="5396" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="5399"
+      > </a
+      ><a name="5400" href="Chi.html#5400" class="Bound"
+      >a</a
+      ><a name="5401" class="Symbol"
+      >)</a
+      ><a name="5402"
+      >
+    </a
+      ><a name="5407" class="Symbol"
+      >|</a
+      ><a name="5408"
+      > </a
+      ><a name="5409" href="Data.Nat.html#1404" class="InductiveConstructor"
+      >&#8804;&#8242;-step</a
+      ><a name="5416"
+      > </a
+      ><a name="5417" href="Chi.html#5417" class="Bound"
+      >b</a
+      ><a name="5418"
+      > </a
+      ><a name="5419" class="Symbol"
+      >=</a
+      ><a name="5420"
+      >  </a
+      ><a name="5422" href="Chi.html#5380" class="Bound"
+      >f</a
+      ><a name="5423"
+      > </a
+      ><a name="5424" class="Symbol"
+      >(</a
+      ><a name="5425" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="5428"
+      > </a
+      ><a name="5429" href="Chi.html#5392" class="Bound"
+      >y</a
+      ><a name="5430" class="Symbol"
+      >)</a
+      ><a name="5431"
+      > </a
+      ><a name="5432" class="Symbol"
+      >(</a
+      ><a name="5433" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="5436"
+      > </a
+      ><a name="5437" class="Symbol"
+      >(</a
+      ><a name="5438" href="Data.Nat.Properties.html#6902" class="Function"
+      >&#8804;&#8242;&#8658;&#8804;</a
+      ><a name="5442"
+      > </a
+      ><a name="5443" href="Chi.html#5417" class="Bound"
+      >b</a
+      ><a name="5444" class="Symbol"
+      >))</a
+      ><a name="5446"
+      >
+</a
+      ><a name="5447" class="Comment"
+      >--</a
+      ><a name="5449"
+      >
+</a
+      ><a name="5450" href="Chi.html#5450" class="Function"
+      >lemma&#967;aux&#8713;</a
+      ><a name="5460"
+      > </a
+      ><a name="5461" class="Symbol"
+      >:</a
+      ><a name="5462"
+      > </a
+      ><a name="5463" class="Symbol"
+      >(</a
+      ><a name="5464" href="Chi.html#5464" class="Bound"
+      >xs</a
+      ><a name="5466"
+      > </a
+      ><a name="5467" class="Symbol"
+      >:</a
+      ><a name="5468"
+      > </a
+      ><a name="5469" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="5473"
+      > </a
+      ><a name="5474" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="5475" class="Symbol"
+      >)</a
+      ><a name="5476"
+      > </a
+      ><a name="5477" class="Symbol"
+      >&#8594;</a
+      ><a name="5478"
+      > </a
+      ><a name="5479" href="Data.Product.html#525" class="Field"
+      >proj&#8321;</a
+      ><a name="5484"
+      > </a
+      ><a name="5485" class="Symbol"
+      >(</a
+      ><a name="5486" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="5490"
+      > </a
+      ><a name="5491" class="Number"
+      >0</a
+      ><a name="5492"
+      > </a
+      ><a name="5493" class="Symbol"
+      >(</a
+      ><a name="5494" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="5501"
+      > </a
+      ><a name="5502" href="Chi.html#5464" class="Bound"
+      >xs</a
+      ><a name="5504" class="Symbol"
+      >)</a
+      ><a name="5505"
+      > </a
+      ><a name="5506" class="Symbol"
+      >(</a
+      ><a name="5507" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="5514"
+      > </a
+      ><a name="5515" href="Chi.html#5464" class="Bound"
+      >xs</a
+      ><a name="5517" class="Symbol"
+      >)</a
+      ><a name="5518"
+      > </a
+      ><a name="5519" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="5523"
+      > </a
+      ><a name="5524" href="Chi.html#5464" class="Bound"
+      >xs</a
+      ><a name="5526"
+      > </a
+      ><a name="5527" class="Symbol"
+      >(</a
+      ><a name="5528" href="Chi.html#1923" class="Function"
+      >y&lt;0&#8658;y&#8712;xs</a
+      ><a name="5536"
+      > </a
+      ><a name="5537" href="Chi.html#5464" class="Bound"
+      >xs</a
+      ><a name="5539" class="Symbol"
+      >))</a
+      ><a name="5541"
+      > </a
+      ><a name="5542" href="Data.List.Any.html#2969" class="Function Operator"
+      >&#8713;[]</a
+      ><a name="5545"
+      > </a
+      ><a name="5546" href="Chi.html#5464" class="Bound"
+      >xs</a
+      ><a name="5548"
+      > 
+</a
+      ><a name="5550" href="Chi.html#5450" class="Function"
+      >lemma&#967;aux&#8713;</a
+      ><a name="5560"
+      > </a
+      ><a name="5561" href="Chi.html#5561" class="Bound"
+      >xs</a
+      ><a name="5563"
+      > </a
+      ><a name="5564" class="Keyword"
+      >with</a
+      ><a name="5568"
+      > </a
+      ><a name="5569" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="5573"
+      > </a
+      ><a name="5574" class="Number"
+      >0</a
+      ><a name="5575"
+      > </a
+      ><a name="5576" class="Symbol"
+      >(</a
+      ><a name="5577" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="5584"
+      > </a
+      ><a name="5585" href="Chi.html#5561" class="Bound"
+      >xs</a
+      ><a name="5587" class="Symbol"
+      >)</a
+      ><a name="5588"
+      > </a
+      ><a name="5589" class="Symbol"
+      >(</a
+      ><a name="5590" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="5597"
+      > </a
+      ><a name="5598" href="Chi.html#5561" class="Bound"
+      >xs</a
+      ><a name="5600" class="Symbol"
+      >)</a
+      ><a name="5601"
+      > </a
+      ><a name="5602" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="5606"
+      > </a
+      ><a name="5607" href="Chi.html#5561" class="Bound"
+      >xs</a
+      ><a name="5609"
+      > </a
+      ><a name="5610" class="Symbol"
+      >(</a
+      ><a name="5611" href="Chi.html#1923" class="Function"
+      >y&lt;0&#8658;y&#8712;xs</a
+      ><a name="5619"
+      > </a
+      ><a name="5620" href="Chi.html#5561" class="Bound"
+      >xs</a
+      ><a name="5622" class="Symbol"
+      >)</a
+      ><a name="5623"
+      >
+</a
+      ><a name="5624" class="Symbol"
+      >...</a
+      ><a name="5627"
+      > </a
+      ><a name="5628" class="Symbol"
+      >|</a
+      ><a name="5629"
+      > </a
+      ><a name="5630" href="Chi.html#5630" class="Bound"
+      >v</a
+      ><a name="5631"
+      >                </a
+      ><a name="5647" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="5648"
+      > </a
+      ><a name="5649" href="Data.Sum.html#460" class="InductiveConstructor"
+      >inj&#8321;</a
+      ><a name="5653"
+      > </a
+      ><a name="5654" href="Chi.html#5654" class="Bound"
+      >v&#8713;xs</a
+      ><a name="5658"
+      > </a
+      ><a name="5659" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="5660"
+      > </a
+      ><a name="5661" class="Symbol"
+      >_</a
+      ><a name="5662"
+      >  </a
+      ><a name="5664" class="Symbol"
+      >=</a
+      ><a name="5665"
+      > </a
+      ><a name="5666" href="Chi.html#5654" class="Bound"
+      >v&#8713;xs</a
+      ><a name="5670"
+      >
+</a
+      ><a name="5671" class="Symbol"
+      >...</a
+      ><a name="5674"
+      > </a
+      ><a name="5675" class="Symbol"
+      >|</a
+      ><a name="5676"
+      > </a
+      ><a name="5677" class="DottedPattern Symbol"
+      >.((</a
+      ><a name="5680" href="Data.List.html#2923" class="DottedPattern Function"
+      >length'</a
+      ><a name="5687"
+      > </a
+      ><a name="5688" href="Chi.html#5561" class="DottedPattern Bound"
+      >xs</a
+      ><a name="5690" class="DottedPattern Symbol"
+      >))</a
+      ><a name="5692"
+      > </a
+      ><a name="5693" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="5694"
+      > </a
+      ><a name="5695" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="5699"
+      > </a
+      ><a name="5700" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="5704"
+      > </a
+      ><a name="5705" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="5706"
+      > </a
+      ><a name="5707" href="Chi.html#5707" class="Bound"
+      >f</a
+      ><a name="5708"
+      >  </a
+      ><a name="5710" class="Symbol"
+      >=</a
+      ><a name="5711"
+      > </a
+      ><a name="5712" href="Chi.html#4653" class="Function"
+      >palomar</a
+      ><a name="5719"
+      > </a
+      ><a name="5720" class="Symbol"
+      >(</a
+      ><a name="5721" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="5728"
+      > </a
+      ><a name="5729" href="Chi.html#5561" class="Bound"
+      >xs</a
+      ><a name="5731" class="Symbol"
+      >)</a
+      ><a name="5732"
+      > </a
+      ><a name="5733" href="Chi.html#5561" class="Bound"
+      >xs</a
+      ><a name="5735"
+      > </a
+      ><a name="5736" href="Chi.html#5707" class="Bound"
+      >f</a
+      ><a name="5737"
+      > </a
+      ><a name="5738" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="5742"
+      >  
+</a
+      ><a name="5745" class="Comment"
+      >--</a
+      ><a name="5747"
+      >
+</a
+      ><a name="5748" href="Chi.html#5748" class="Function"
+      >&#8804;&#8594;&lt;&#8744;&#8801;</a
+      ><a name="5753"
+      > </a
+      ><a name="5754" class="Symbol"
+      >:</a
+      ><a name="5755"
+      > </a
+      ><a name="5756" class="Symbol"
+      >(</a
+      ><a name="5757" href="Chi.html#5757" class="Bound"
+      >n</a
+      ><a name="5758"
+      > </a
+      ><a name="5759" href="Chi.html#5759" class="Bound"
+      >m</a
+      ><a name="5760"
+      > </a
+      ><a name="5761" class="Symbol"
+      >:</a
+      ><a name="5762"
+      > </a
+      ><a name="5763" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="5764" class="Symbol"
+      >)</a
+      ><a name="5765"
+      > </a
+      ><a name="5766" class="Symbol"
+      >&#8594;</a
+      ><a name="5767"
+      > </a
+      ><a name="5768" href="Chi.html#5757" class="Bound"
+      >n</a
+      ><a name="5769"
+      > </a
+      ><a name="5770" href="Data.Nat.html#783" class="Datatype Operator"
+      >&#8804;</a
+      ><a name="5771"
+      > </a
+      ><a name="5772" href="Chi.html#5759" class="Bound"
+      >m</a
+      ><a name="5773"
+      > </a
+      ><a name="5774" class="Symbol"
+      >&#8594;</a
+      ><a name="5775"
+      > </a
+      ><a name="5776" href="Chi.html#5757" class="Bound"
+      >n</a
+      ><a name="5777"
+      > </a
+      ><a name="5778" href="Data.Nat.html#901" class="Function Operator"
+      >&lt;</a
+      ><a name="5779"
+      > </a
+      ><a name="5780" href="Chi.html#5759" class="Bound"
+      >m</a
+      ><a name="5781"
+      > </a
+      ><a name="5782" href="Data.Sum.html#404" class="Datatype Operator"
+      >&#8744;</a
+      ><a name="5783"
+      > </a
+      ><a name="5784" href="Chi.html#5759" class="Bound"
+      >m</a
+      ><a name="5785"
+      > </a
+      ><a name="5786" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="5787"
+      > </a
+      ><a name="5788" href="Chi.html#5757" class="Bound"
+      >n</a
+      ><a name="5789"
+      >
+</a
+      ><a name="5790" href="Chi.html#5748" class="Function"
+      >&#8804;&#8594;&lt;&#8744;&#8801;</a
+      ><a name="5795"
+      > </a
+      ><a name="5796" class="DottedPattern Symbol"
+      >.</a
+      ><a name="5797" class="DottedPattern Number"
+      >0</a
+      ><a name="5798"
+      > </a
+      ><a name="5799" class="Number"
+      >0</a
+      ><a name="5800"
+      > </a
+      ><a name="5801" href="Data.Nat.html#814" class="InductiveConstructor"
+      >z&#8804;n</a
+      ><a name="5804"
+      >        </a
+      ><a name="5812" class="Symbol"
+      >=</a
+      ><a name="5813"
+      >  </a
+      ><a name="5815" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="5819"
+      > </a
+      ><a name="5820" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="5824"
+      >
+</a
+      ><a name="5825" href="Chi.html#5748" class="Function"
+      >&#8804;&#8594;&lt;&#8744;&#8801;</a
+      ><a name="5830"
+      > </a
+      ><a name="5831" class="DottedPattern Symbol"
+      >.</a
+      ><a name="5832" class="DottedPattern Number"
+      >0</a
+      ><a name="5833"
+      > </a
+      ><a name="5834" class="Symbol"
+      >(</a
+      ><a name="5835" href="Data.Nat.html#690" class="InductiveConstructor"
+      >suc</a
+      ><a name="5838"
+      > </a
+      ><a name="5839" href="Chi.html#5839" class="Bound"
+      >n</a
+      ><a name="5840" class="Symbol"
+      >)</a
+      ><a name="5841"
+      > </a
+      ><a name="5842" href="Data.Nat.html#814" class="InductiveConstructor"
+      >z&#8804;n</a
+      ><a name="5845"
+      >  </a
+      ><a name="5847" class="Symbol"
+      >=</a
+      ><a name="5848"
+      > </a
+      ><a name="5849" href="Data.Sum.html#460" class="InductiveConstructor"
+      >inj&#8321;</a
+      ><a name="5853"
+      > </a
+      ><a name="5854" class="Symbol"
+      >(</a
+      ><a name="5855" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="5858"
+      > </a
+      ><a name="5859" href="Data.Nat.html#814" class="InductiveConstructor"
+      >z&#8804;n</a
+      ><a name="5862" class="Symbol"
+      >)</a
+      ><a name="5863"
+      >
+</a
+      ><a name="5864" href="Chi.html#5748" class="Function"
+      >&#8804;&#8594;&lt;&#8744;&#8801;</a
+      ><a name="5869"
+      > </a
+      ><a name="5870" class="DottedPattern Symbol"
+      >.(</a
+      ><a name="5872" href="Data.Nat.html#690" class="DottedPattern InductiveConstructor"
+      >suc</a
+      ><a name="5875"
+      > </a
+      ><a name="5876" href="Chi.html#5894" class="DottedPattern Bound"
+      >n</a
+      ><a name="5877" class="DottedPattern Symbol"
+      >)</a
+      ><a name="5878"
+      > </a
+      ><a name="5879" class="DottedPattern Symbol"
+      >.(</a
+      ><a name="5881" href="Data.Nat.html#690" class="DottedPattern InductiveConstructor"
+      >suc</a
+      ><a name="5884"
+      > </a
+      ><a name="5885" href="Chi.html#5898" class="DottedPattern Bound"
+      >m</a
+      ><a name="5886" class="DottedPattern Symbol"
+      >)</a
+      ><a name="5887"
+      > </a
+      ><a name="5888" class="Symbol"
+      >(</a
+      ><a name="5889" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="5892"
+      > </a
+      ><a name="5893" class="Symbol"
+      >{</a
+      ><a name="5894" href="Chi.html#5894" class="Bound"
+      >n</a
+      ><a name="5895" class="Symbol"
+      >}</a
+      ><a name="5896"
+      > </a
+      ><a name="5897" class="Symbol"
+      >{</a
+      ><a name="5898" href="Chi.html#5898" class="Bound"
+      >m</a
+      ><a name="5899" class="Symbol"
+      >}</a
+      ><a name="5900"
+      > </a
+      ><a name="5901" href="Chi.html#5901" class="Bound"
+      >n&#8804;m</a
+      ><a name="5904" class="Symbol"
+      >)</a
+      ><a name="5905"
+      > </a
+      ><a name="5906" class="Keyword"
+      >with</a
+      ><a name="5910"
+      > </a
+      ><a name="5911" href="Chi.html#5748" class="Function"
+      >&#8804;&#8594;&lt;&#8744;&#8801;</a
+      ><a name="5916"
+      > </a
+      ><a name="5917" href="Chi.html#5894" class="Bound"
+      >n</a
+      ><a name="5918"
+      > </a
+      ><a name="5919" href="Chi.html#5898" class="Bound"
+      >m</a
+      ><a name="5920"
+      > </a
+      ><a name="5921" href="Chi.html#5901" class="Bound"
+      >n&#8804;m</a
+      ><a name="5924"
+      >
+</a
+      ><a name="5925" class="Symbol"
+      >...</a
+      ><a name="5928"
+      > </a
+      ><a name="5929" class="Symbol"
+      >|</a
+      ><a name="5930"
+      > </a
+      ><a name="5931" href="Data.Sum.html#460" class="InductiveConstructor"
+      >inj&#8321;</a
+      ><a name="5935"
+      > </a
+      ><a name="5936" href="Chi.html#5936" class="Bound"
+      >n&lt;m</a
+      ><a name="5939"
+      >        </a
+      ><a name="5947" class="Symbol"
+      >=</a
+      ><a name="5948"
+      > </a
+      ><a name="5949" href="Data.Sum.html#460" class="InductiveConstructor"
+      >inj&#8321;</a
+      ><a name="5953"
+      > </a
+      ><a name="5954" class="Symbol"
+      >(</a
+      ><a name="5955" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="5958"
+      > </a
+      ><a name="5959" href="Chi.html#5936" class="Bound"
+      >n&lt;m</a
+      ><a name="5962" class="Symbol"
+      >)</a
+      ><a name="5963"
+      >
+</a
+      ><a name="5964" href="Chi.html#5748" class="Function"
+      >&#8804;&#8594;&lt;&#8744;&#8801;</a
+      ><a name="5969"
+      > </a
+      ><a name="5970" class="DottedPattern Symbol"
+      >.(</a
+      ><a name="5972" href="Data.Nat.html#690" class="DottedPattern InductiveConstructor"
+      >suc</a
+      ><a name="5975"
+      > </a
+      ><a name="5976" href="Chi.html#5994" class="DottedPattern Bound"
+      >n</a
+      ><a name="5977" class="DottedPattern Symbol"
+      >)</a
+      ><a name="5978"
+      > </a
+      ><a name="5979" class="DottedPattern Symbol"
+      >.(</a
+      ><a name="5981" href="Data.Nat.html#690" class="DottedPattern InductiveConstructor"
+      >suc</a
+      ><a name="5984"
+      > </a
+      ><a name="5985" href="Chi.html#5994" class="DottedPattern Bound"
+      >n</a
+      ><a name="5986" class="DottedPattern Symbol"
+      >)</a
+      ><a name="5987"
+      > </a
+      ><a name="5988" class="Symbol"
+      >(</a
+      ><a name="5989" href="Data.Nat.html#856" class="InductiveConstructor"
+      >s&#8804;s</a
+      ><a name="5992"
+      > </a
+      ><a name="5993" class="Symbol"
+      >{</a
+      ><a name="5994" href="Chi.html#5994" class="Bound"
+      >n</a
+      ><a name="5995" class="Symbol"
+      >}</a
+      ><a name="5996"
+      > </a
+      ><a name="5997" class="Symbol"
+      >{</a
+      ><a name="5998" class="DottedPattern Symbol"
+      >.</a
+      ><a name="5999" href="Chi.html#5994" class="DottedPattern Bound"
+      >n</a
+      ><a name="6000" class="Symbol"
+      >}</a
+      ><a name="6001"
+      > </a
+      ><a name="6002" href="Chi.html#6002" class="Bound"
+      >n&#8804;n</a
+      ><a name="6005" class="Symbol"
+      >)</a
+      ><a name="6006"
+      > 
+    </a
+      ><a name="6012" class="Symbol"
+      >|</a
+      ><a name="6013"
+      > </a
+      ><a name="6014" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="6018"
+      > </a
+      ><a name="6019" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="6023"
+      >       </a
+      ><a name="6030" class="Symbol"
+      >=</a
+      ><a name="6031"
+      > </a
+      ><a name="6032" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="6036"
+      > </a
+      ><a name="6037" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="6041"
+      >  
+</a
+      ><a name="6044" class="Comment"
+      >--</a
+      ><a name="6046"
+      >
+</a
+      ><a name="6047" href="Chi.html#6047" class="Function"
+      >&lt;&#8801;</a
+      ><a name="6049"
+      > </a
+      ><a name="6050" class="Symbol"
+      >:</a
+      ><a name="6051"
+      > </a
+      ><a name="6052" class="Symbol"
+      >(</a
+      ><a name="6053" href="Chi.html#6053" class="Bound"
+      >n</a
+      ><a name="6054"
+      > </a
+      ><a name="6055" href="Chi.html#6055" class="Bound"
+      >m</a
+      ><a name="6056"
+      > </a
+      ><a name="6057" class="Symbol"
+      >:</a
+      ><a name="6058"
+      > </a
+      ><a name="6059" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="6060" class="Symbol"
+      >)</a
+      ><a name="6061"
+      > </a
+      ><a name="6062" class="Symbol"
+      >&#8594;</a
+      ><a name="6063"
+      > </a
+      ><a name="6064" href="Chi.html#6053" class="Bound"
+      >n</a
+      ><a name="6065"
+      > </a
+      ><a name="6066" href="Data.Nat.html#901" class="Function Operator"
+      >&lt;</a
+      ><a name="6067"
+      > </a
+      ><a name="6068" href="Chi.html#6055" class="Bound"
+      >m</a
+      ><a name="6069"
+      > </a
+      ><a name="6070" href="Data.Sum.html#404" class="Datatype Operator"
+      >&#8744;</a
+      ><a name="6071"
+      > </a
+      ><a name="6072" href="Chi.html#6055" class="Bound"
+      >m</a
+      ><a name="6073"
+      > </a
+      ><a name="6074" href="Data.Nat.html#901" class="Function Operator"
+      >&lt;</a
+      ><a name="6075"
+      > </a
+      ><a name="6076" href="Chi.html#6053" class="Bound"
+      >n</a
+      ><a name="6077"
+      > </a
+      ><a name="6078" href="Data.Sum.html#404" class="Datatype Operator"
+      >&#8744;</a
+      ><a name="6079"
+      > </a
+      ><a name="6080" href="Chi.html#6053" class="Bound"
+      >n</a
+      ><a name="6081"
+      > </a
+      ><a name="6082" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="6083"
+      > </a
+      ><a name="6084" href="Chi.html#6055" class="Bound"
+      >m</a
+      ><a name="6085"
+      >
+</a
+      ><a name="6086" href="Chi.html#6047" class="Function"
+      >&lt;&#8801;</a
+      ><a name="6088"
+      > </a
+      ><a name="6089" href="Chi.html#6089" class="Bound"
+      >n</a
+      ><a name="6090"
+      > </a
+      ><a name="6091" href="Chi.html#6091" class="Bound"
+      >m</a
+      ><a name="6092"
+      > </a
+      ><a name="6093" class="Keyword"
+      >with</a
+      ><a name="6097"
+      > </a
+      ><a name="6098" href="Chi.html#1032" class="Function"
+      >total</a
+      ><a name="6103"
+      > </a
+      ><a name="6104" href="Chi.html#6089" class="Bound"
+      >n</a
+      ><a name="6105"
+      > </a
+      ><a name="6106" href="Chi.html#6091" class="Bound"
+      >m</a
+      ><a name="6107"
+      >
+</a
+      ><a name="6108" class="Symbol"
+      >...</a
+      ><a name="6111"
+      > </a
+      ><a name="6112" class="Symbol"
+      >|</a
+      ><a name="6113"
+      > </a
+      ><a name="6114" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="6118"
+      > </a
+      ><a name="6119" href="Chi.html#6119" class="Bound"
+      >m&#8804;n</a
+      ><a name="6122"
+      > </a
+      ><a name="6123" class="Symbol"
+      >=</a
+      ><a name="6124"
+      > </a
+      ><a name="6125" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="6129"
+      > </a
+      ><a name="6130" class="Symbol"
+      >(</a
+      ><a name="6131" href="Chi.html#5748" class="Function"
+      >&#8804;&#8594;&lt;&#8744;&#8801;</a
+      ><a name="6136"
+      > </a
+      ><a name="6137" href="Chi.html#6091" class="Bound"
+      >m</a
+      ><a name="6138"
+      > </a
+      ><a name="6139" href="Chi.html#6089" class="Bound"
+      >n</a
+      ><a name="6140"
+      > </a
+      ><a name="6141" href="Chi.html#6119" class="Bound"
+      >m&#8804;n</a
+      ><a name="6144" class="Symbol"
+      >)</a
+      ><a name="6145"
+      >
+</a
+      ><a name="6146" class="Symbol"
+      >...</a
+      ><a name="6149"
+      > </a
+      ><a name="6150" class="Symbol"
+      >|</a
+      ><a name="6151"
+      > </a
+      ><a name="6152" href="Data.Sum.html#460" class="InductiveConstructor"
+      >inj&#8321;</a
+      ><a name="6156"
+      > </a
+      ><a name="6157" href="Chi.html#6157" class="Bound"
+      >n&#8804;m</a
+      ><a name="6160"
+      > </a
+      ><a name="6161" class="Keyword"
+      >with</a
+      ><a name="6165"
+      > </a
+      ><a name="6166" href="Chi.html#5748" class="Function"
+      >&#8804;&#8594;&lt;&#8744;&#8801;</a
+      ><a name="6171"
+      > </a
+      ><a name="6172" href="Chi.html#6089" class="Bound"
+      >n</a
+      ><a name="6173"
+      > </a
+      ><a name="6174" href="Chi.html#6091" class="Bound"
+      >m</a
+      ><a name="6175"
+      > </a
+      ><a name="6176" href="Chi.html#6157" class="Bound"
+      >n&#8804;m</a
+      ><a name="6179"
+      >
+</a
+      ><a name="6180" class="Symbol"
+      >...</a
+      ><a name="6183"
+      >    </a
+      ><a name="6187" class="Symbol"
+      >|</a
+      ><a name="6188"
+      > </a
+      ><a name="6189" href="Data.Sum.html#460" class="InductiveConstructor"
+      >inj&#8321;</a
+      ><a name="6193"
+      > </a
+      ><a name="6194" href="Chi.html#6194" class="Bound"
+      >n&lt;m</a
+      ><a name="6197"
+      > </a
+      ><a name="6198" class="Symbol"
+      >=</a
+      ><a name="6199"
+      > </a
+      ><a name="6200" href="Data.Sum.html#460" class="InductiveConstructor"
+      >inj&#8321;</a
+      ><a name="6204"
+      > </a
+      ><a name="6205" href="Chi.html#6194" class="Bound"
+      >n&lt;m</a
+      ><a name="6208"
+      >
+</a
+      ><a name="6209" class="Symbol"
+      >...</a
+      ><a name="6212"
+      >    </a
+      ><a name="6216" class="Symbol"
+      >|</a
+      ><a name="6217"
+      > </a
+      ><a name="6218" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="6222"
+      > </a
+      ><a name="6223" href="Chi.html#6223" class="Bound"
+      >n&#8801;m</a
+      ><a name="6226"
+      > </a
+      ><a name="6227" class="Symbol"
+      >=</a
+      ><a name="6228"
+      > </a
+      ><a name="6229" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="6233"
+      > </a
+      ><a name="6234" class="Symbol"
+      >(</a
+      ><a name="6235" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="6239"
+      > </a
+      ><a name="6240" class="Symbol"
+      >(</a
+      ><a name="6241" href="Relation.Binary.PropositionalEquality.Core.html#565" class="Function"
+      >sym</a
+      ><a name="6244"
+      > </a
+      ><a name="6245" href="Chi.html#6223" class="Bound"
+      >n&#8801;m</a
+      ><a name="6248" class="Symbol"
+      >))</a
+      ><a name="6250"
+      >
+</a
+      ><a name="6251" class="Comment"
+      >--</a
+      ><a name="6253"
+      >
+</a
+      ><a name="6254" href="Chi.html#6254" class="Function"
+      >lemma&#967;aux&#8838;</a
+      ><a name="6264"
+      > </a
+      ><a name="6265" class="Symbol"
+      >:</a
+      ><a name="6266"
+      > </a
+      ><a name="6267" class="Symbol"
+      >(</a
+      ><a name="6268" href="Chi.html#6268" class="Bound"
+      >xs</a
+      ><a name="6270"
+      > </a
+      ><a name="6271" href="Chi.html#6271" class="Bound"
+      >ys</a
+      ><a name="6273"
+      > </a
+      ><a name="6274" class="Symbol"
+      >:</a
+      ><a name="6275"
+      > </a
+      ><a name="6276" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="6280"
+      > </a
+      ><a name="6281" href="Chi.html#1141" class="Function"
+      >V</a
+      ><a name="6282" class="Symbol"
+      >)</a
+      ><a name="6283"
+      > </a
+      ><a name="6284" class="Symbol"
+      >&#8594;</a
+      ><a name="6285"
+      > </a
+      ><a name="6286" href="Chi.html#6268" class="Bound"
+      >xs</a
+      ><a name="6288"
+      > </a
+      ><a name="6289" href="Data.List.Any.html#3051" class="Function Operator"
+      >&#8838;</a
+      ><a name="6290"
+      > </a
+      ><a name="6291" href="Chi.html#6271" class="Bound"
+      >ys</a
+      ><a name="6293"
+      > </a
+      ><a name="6294" class="Symbol"
+      >&#8594;</a
+      ><a name="6295"
+      > </a
+      ><a name="6296" href="Chi.html#6271" class="Bound"
+      >ys</a
+      ><a name="6298"
+      > </a
+      ><a name="6299" href="Data.List.Any.html#3051" class="Function Operator"
+      >&#8838;</a
+      ><a name="6300"
+      > </a
+      ><a name="6301" href="Chi.html#6268" class="Bound"
+      >xs</a
+      ><a name="6303"
+      >  </a
+      ><a name="6305" class="Symbol"
+      >&#8594;</a
+      ><a name="6306"
+      > 
+    </a
+      ><a name="6312" href="Data.Product.html#525" class="Field"
+      >proj&#8321;</a
+      ><a name="6317"
+      > </a
+      ><a name="6318" class="Symbol"
+      >(</a
+      ><a name="6319" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="6323"
+      > </a
+      ><a name="6324" class="Number"
+      >0</a
+      ><a name="6325"
+      > </a
+      ><a name="6326" class="Symbol"
+      >(</a
+      ><a name="6327" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="6334"
+      > </a
+      ><a name="6335" href="Chi.html#6268" class="Bound"
+      >xs</a
+      ><a name="6337" class="Symbol"
+      >)</a
+      ><a name="6338"
+      > </a
+      ><a name="6339" class="Symbol"
+      >(</a
+      ><a name="6340" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="6347"
+      > </a
+      ><a name="6348" href="Chi.html#6268" class="Bound"
+      >xs</a
+      ><a name="6350" class="Symbol"
+      >)</a
+      ><a name="6351"
+      > </a
+      ><a name="6352" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="6356"
+      > </a
+      ><a name="6357" href="Chi.html#6268" class="Bound"
+      >xs</a
+      ><a name="6359"
+      > </a
+      ><a name="6360" class="Symbol"
+      >(</a
+      ><a name="6361" href="Chi.html#1923" class="Function"
+      >y&lt;0&#8658;y&#8712;xs</a
+      ><a name="6369"
+      > </a
+      ><a name="6370" href="Chi.html#6268" class="Bound"
+      >xs</a
+      ><a name="6372" class="Symbol"
+      >))</a
+      ><a name="6374"
+      > </a
+      ><a name="6375" href="Relation.Binary.Core.html#4603" class="Datatype Operator"
+      >&#8801;</a
+      ><a name="6376"
+      > </a
+      ><a name="6377" href="Data.Product.html#525" class="Field"
+      >proj&#8321;</a
+      ><a name="6382"
+      > </a
+      ><a name="6383" class="Symbol"
+      >(</a
+      ><a name="6384" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="6388"
+      > </a
+      ><a name="6389" class="Number"
+      >0</a
+      ><a name="6390"
+      > </a
+      ><a name="6391" class="Symbol"
+      >(</a
+      ><a name="6392" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="6399"
+      > </a
+      ><a name="6400" href="Chi.html#6271" class="Bound"
+      >ys</a
+      ><a name="6402" class="Symbol"
+      >)</a
+      ><a name="6403"
+      > </a
+      ><a name="6404" class="Symbol"
+      >(</a
+      ><a name="6405" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="6412"
+      > </a
+      ><a name="6413" href="Chi.html#6271" class="Bound"
+      >ys</a
+      ><a name="6415" class="Symbol"
+      >)</a
+      ><a name="6416"
+      > </a
+      ><a name="6417" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="6421"
+      > </a
+      ><a name="6422" href="Chi.html#6271" class="Bound"
+      >ys</a
+      ><a name="6424"
+      > </a
+      ><a name="6425" class="Symbol"
+      >(</a
+      ><a name="6426" href="Chi.html#1923" class="Function"
+      >y&lt;0&#8658;y&#8712;xs</a
+      ><a name="6434"
+      > </a
+      ><a name="6435" href="Chi.html#6271" class="Bound"
+      >ys</a
+      ><a name="6437" class="Symbol"
+      >))</a
+      ><a name="6439"
+      >
+</a
+      ><a name="6440" href="Chi.html#6254" class="Function"
+      >lemma&#967;aux&#8838;</a
+      ><a name="6450"
+      > </a
+      ><a name="6451" href="Chi.html#6451" class="Bound"
+      >xs</a
+      ><a name="6453"
+      > </a
+      ><a name="6454" href="Chi.html#6454" class="Bound"
+      >ys</a
+      ><a name="6456"
+      > </a
+      ><a name="6457" href="Chi.html#6457" class="Bound"
+      >xs&#8838;ys</a
+      ><a name="6462"
+      > </a
+      ><a name="6463" href="Chi.html#6463" class="Bound"
+      >ys&#8838;xs</a
+      ><a name="6468"
+      > 
+  </a
+      ><a name="6472" class="Keyword"
+      >with</a
+      ><a name="6476"
+      >
+  </a
+      ><a name="6479" href="Data.Product.html#525" class="Field"
+      >proj&#8321;</a
+      ><a name="6484"
+      > </a
+      ><a name="6485" class="Symbol"
+      >(</a
+      ><a name="6486" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="6490"
+      > </a
+      ><a name="6491" class="Number"
+      >0</a
+      ><a name="6492"
+      > </a
+      ><a name="6493" class="Symbol"
+      >(</a
+      ><a name="6494" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="6501"
+      > </a
+      ><a name="6502" href="Chi.html#6451" class="Bound"
+      >xs</a
+      ><a name="6504" class="Symbol"
+      >)</a
+      ><a name="6505"
+      > </a
+      ><a name="6506" class="Symbol"
+      >(</a
+      ><a name="6507" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="6514"
+      > </a
+      ><a name="6515" href="Chi.html#6451" class="Bound"
+      >xs</a
+      ><a name="6517" class="Symbol"
+      >)</a
+      ><a name="6518"
+      > </a
+      ><a name="6519" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="6523"
+      > </a
+      ><a name="6524" href="Chi.html#6451" class="Bound"
+      >xs</a
+      ><a name="6526"
+      > </a
+      ><a name="6527" class="Symbol"
+      >(</a
+      ><a name="6528" href="Chi.html#1923" class="Function"
+      >y&lt;0&#8658;y&#8712;xs</a
+      ><a name="6536"
+      > </a
+      ><a name="6537" href="Chi.html#6451" class="Bound"
+      >xs</a
+      ><a name="6539" class="Symbol"
+      >))</a
+      ><a name="6541"
+      >  </a
+      ><a name="6543" class="Symbol"
+      >|</a
+      ><a name="6544"
+      >
+  </a
+      ><a name="6547" href="Data.Product.html#539" class="Field"
+      >proj&#8322;</a
+      ><a name="6552"
+      > </a
+      ><a name="6553" class="Symbol"
+      >(</a
+      ><a name="6554" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="6558"
+      > </a
+      ><a name="6559" class="Number"
+      >0</a
+      ><a name="6560"
+      > </a
+      ><a name="6561" class="Symbol"
+      >(</a
+      ><a name="6562" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="6569"
+      > </a
+      ><a name="6570" href="Chi.html#6451" class="Bound"
+      >xs</a
+      ><a name="6572" class="Symbol"
+      >)</a
+      ><a name="6573"
+      > </a
+      ><a name="6574" class="Symbol"
+      >(</a
+      ><a name="6575" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="6582"
+      > </a
+      ><a name="6583" href="Chi.html#6451" class="Bound"
+      >xs</a
+      ><a name="6585" class="Symbol"
+      >)</a
+      ><a name="6586"
+      > </a
+      ><a name="6587" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="6591"
+      > </a
+      ><a name="6592" href="Chi.html#6451" class="Bound"
+      >xs</a
+      ><a name="6594"
+      > </a
+      ><a name="6595" class="Symbol"
+      >(</a
+      ><a name="6596" href="Chi.html#1923" class="Function"
+      >y&lt;0&#8658;y&#8712;xs</a
+      ><a name="6604"
+      > </a
+      ><a name="6605" href="Chi.html#6451" class="Bound"
+      >xs</a
+      ><a name="6607" class="Symbol"
+      >))</a
+      ><a name="6609"
+      >  </a
+      ><a name="6611" class="Symbol"
+      >|</a
+      ><a name="6612"
+      >
+  </a
+      ><a name="6615" href="Chi.html#5450" class="Function"
+      >lemma&#967;aux&#8713;</a
+      ><a name="6625"
+      > </a
+      ><a name="6626" href="Chi.html#6451" class="Bound"
+      >xs</a
+      ><a name="6628"
+      >                                                   </a
+      ><a name="6679" class="Symbol"
+      >|</a
+      ><a name="6680"
+      >
+  </a
+      ><a name="6683" href="Data.Product.html#525" class="Field"
+      >proj&#8321;</a
+      ><a name="6688"
+      > </a
+      ><a name="6689" class="Symbol"
+      >(</a
+      ><a name="6690" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="6694"
+      > </a
+      ><a name="6695" class="Number"
+      >0</a
+      ><a name="6696"
+      > </a
+      ><a name="6697" class="Symbol"
+      >(</a
+      ><a name="6698" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="6705"
+      > </a
+      ><a name="6706" href="Chi.html#6454" class="Bound"
+      >ys</a
+      ><a name="6708" class="Symbol"
+      >)</a
+      ><a name="6709"
+      > </a
+      ><a name="6710" class="Symbol"
+      >(</a
+      ><a name="6711" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="6718"
+      > </a
+      ><a name="6719" href="Chi.html#6454" class="Bound"
+      >ys</a
+      ><a name="6721" class="Symbol"
+      >)</a
+      ><a name="6722"
+      > </a
+      ><a name="6723" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="6727"
+      > </a
+      ><a name="6728" href="Chi.html#6454" class="Bound"
+      >ys</a
+      ><a name="6730"
+      > </a
+      ><a name="6731" class="Symbol"
+      >(</a
+      ><a name="6732" href="Chi.html#1923" class="Function"
+      >y&lt;0&#8658;y&#8712;xs</a
+      ><a name="6740"
+      > </a
+      ><a name="6741" href="Chi.html#6454" class="Bound"
+      >ys</a
+      ><a name="6743" class="Symbol"
+      >))</a
+      ><a name="6745"
+      >  </a
+      ><a name="6747" class="Symbol"
+      >|</a
+      ><a name="6748"
+      >
+  </a
+      ><a name="6751" href="Data.Product.html#539" class="Field"
+      >proj&#8322;</a
+      ><a name="6756"
+      > </a
+      ><a name="6757" class="Symbol"
+      >(</a
+      ><a name="6758" href="Chi.html#1424" class="Function"
+      >&#967;aux</a
+      ><a name="6762"
+      > </a
+      ><a name="6763" class="Number"
+      >0</a
+      ><a name="6764"
+      > </a
+      ><a name="6765" class="Symbol"
+      >(</a
+      ><a name="6766" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="6773"
+      > </a
+      ><a name="6774" href="Chi.html#6454" class="Bound"
+      >ys</a
+      ><a name="6776" class="Symbol"
+      >)</a
+      ><a name="6777"
+      > </a
+      ><a name="6778" class="Symbol"
+      >(</a
+      ><a name="6779" href="Data.List.html#2923" class="Function"
+      >length'</a
+      ><a name="6786"
+      > </a
+      ><a name="6787" href="Chi.html#6454" class="Bound"
+      >ys</a
+      ><a name="6789" class="Symbol"
+      >)</a
+      ><a name="6790"
+      > </a
+      ><a name="6791" href="Relation.Binary.Core.html#4653" class="InductiveConstructor"
+      >refl</a
+      ><a name="6795"
+      > </a
+      ><a name="6796" href="Chi.html#6454" class="Bound"
+      >ys</a
+      ><a name="6798"
+      > </a
+      ><a name="6799" class="Symbol"
+      >(</a
+      ><a name="6800" href="Chi.html#1923" class="Function"
+      >y&lt;0&#8658;y&#8712;xs</a
+      ><a name="6808"
+      > </a
+      ><a name="6809" href="Chi.html#6454" class="Bound"
+      >ys</a
+      ><a name="6811" class="Symbol"
+      >))</a
+      ><a name="6813"
+      >  </a
+      ><a name="6815" class="Symbol"
+      >|</a
+      ><a name="6816"
+      >
+   </a
+      ><a name="6820" href="Chi.html#5450" class="Function"
+      >lemma&#967;aux&#8713;</a
+      ><a name="6830"
+      > </a
+      ><a name="6831" href="Chi.html#6454" class="Bound"
+      >ys</a
+      ><a name="6833"
+      >
+</a
+      ><a name="6834" class="Symbol"
+      >...</a
+      ><a name="6837"
+      > </a
+      ><a name="6838" class="Symbol"
+      >|</a
+      ><a name="6839"
+      > </a
+      ><a name="6840" href="Chi.html#6840" class="Bound"
+      >x</a
+      ><a name="6841"
+      > </a
+      ><a name="6842" class="Symbol"
+      >|</a
+      ><a name="6843"
+      > </a
+      ><a name="6844" class="Symbol"
+      >_</a
+      ><a name="6845"
+      > </a
+      ><a name="6846" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="6847"
+      > </a
+      ><a name="6848" href="Chi.html#6848" class="Bound"
+      >fx</a
+      ><a name="6850"
+      > </a
+      ><a name="6851" class="Symbol"
+      >|</a
+      ><a name="6852"
+      > </a
+      ><a name="6853" href="Chi.html#6853" class="Bound"
+      >x&#8713;xs</a
+      ><a name="6857"
+      > </a
+      ><a name="6858" class="Symbol"
+      >|</a
+      ><a name="6859"
+      > </a
+      ><a name="6860" href="Chi.html#6860" class="Bound"
+      >y</a
+      ><a name="6861"
+      > </a
+      ><a name="6862" class="Symbol"
+      >|</a
+      ><a name="6863"
+      > </a
+      ><a name="6864" class="Symbol"
+      >_</a
+      ><a name="6865"
+      > </a
+      ><a name="6866" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="6867"
+      > </a
+      ><a name="6868" href="Chi.html#6868" class="Bound"
+      >fy</a
+      ><a name="6870"
+      > </a
+      ><a name="6871" class="Symbol"
+      >|</a
+      ><a name="6872"
+      > </a
+      ><a name="6873" href="Chi.html#6873" class="Bound"
+      >y&#8713;ys</a
+      ><a name="6877"
+      > 
+  </a
+      ><a name="6881" class="Keyword"
+      >with</a
+      ><a name="6885"
+      > </a
+      ><a name="6886" href="Chi.html#6047" class="Function"
+      >&lt;&#8801;</a
+      ><a name="6888"
+      > </a
+      ><a name="6889" href="Chi.html#6840" class="Bound"
+      >x</a
+      ><a name="6890"
+      > </a
+      ><a name="6891" href="Chi.html#6860" class="Bound"
+      >y</a
+      ><a name="6892"
+      > 
+</a
+      ><a name="6894" class="Symbol"
+      >...</a
+      ><a name="6897"
+      > </a
+      ><a name="6898" class="Symbol"
+      >|</a
+      ><a name="6899"
+      > </a
+      ><a name="6900" href="Data.Sum.html#460" class="InductiveConstructor"
+      >inj&#8321;</a
+      ><a name="6904"
+      > </a
+      ><a name="6905" href="Chi.html#6905" class="Bound"
+      >x&lt;y</a
+      ><a name="6908"
+      >         </a
+      ><a name="6917" class="Symbol"
+      >=</a
+      ><a name="6918"
+      > </a
+      ><a name="6919" href="Data.Empty.html#326" class="Function"
+      >&#8869;-elim</a
+      ><a name="6925"
+      > </a
+      ><a name="6926" class="Symbol"
+      >(</a
+      ><a name="6927" href="Chi.html#6853" class="Bound"
+      >x&#8713;xs</a
+      ><a name="6931"
+      > </a
+      ><a name="6932" class="Symbol"
+      >(</a
+      ><a name="6933" href="Chi.html#6463" class="Bound"
+      >ys&#8838;xs</a
+      ><a name="6938"
+      > </a
+      ><a name="6939" class="Symbol"
+      >(</a
+      ><a name="6940" href="Chi.html#6868" class="Bound"
+      >fy</a
+      ><a name="6942"
+      > </a
+      ><a name="6943" href="Chi.html#6840" class="Bound"
+      >x</a
+      ><a name="6944"
+      > </a
+      ><a name="6945" href="Chi.html#6905" class="Bound"
+      >x&lt;y</a
+      ><a name="6948" class="Symbol"
+      >)))</a
+      ><a name="6951"
+      >
+</a
+      ><a name="6952" class="Symbol"
+      >...</a
+      ><a name="6955"
+      > </a
+      ><a name="6956" class="Symbol"
+      >|</a
+      ><a name="6957"
+      > </a
+      ><a name="6958" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="6962"
+      > </a
+      ><a name="6963" class="Symbol"
+      >(</a
+      ><a name="6964" href="Data.Sum.html#460" class="InductiveConstructor"
+      >inj&#8321;</a
+      ><a name="6968"
+      > </a
+      ><a name="6969" href="Chi.html#6969" class="Bound"
+      >y&lt;x</a
+      ><a name="6972" class="Symbol"
+      >)</a
+      ><a name="6973"
+      >  </a
+      ><a name="6975" class="Symbol"
+      >=</a
+      ><a name="6976"
+      > </a
+      ><a name="6977" href="Data.Empty.html#326" class="Function"
+      >&#8869;-elim</a
+      ><a name="6983"
+      > </a
+      ><a name="6984" class="Symbol"
+      >(</a
+      ><a name="6985" href="Chi.html#6873" class="Bound"
+      >y&#8713;ys</a
+      ><a name="6989"
+      > </a
+      ><a name="6990" class="Symbol"
+      >(</a
+      ><a name="6991" href="Chi.html#6457" class="Bound"
+      >xs&#8838;ys</a
+      ><a name="6996"
+      > </a
+      ><a name="6997" class="Symbol"
+      >(</a
+      ><a name="6998" href="Chi.html#6848" class="Bound"
+      >fx</a
+      ><a name="7000"
+      > </a
+      ><a name="7001" href="Chi.html#6860" class="Bound"
+      >y</a
+      ><a name="7002"
+      > </a
+      ><a name="7003" href="Chi.html#6969" class="Bound"
+      >y&lt;x</a
+      ><a name="7006" class="Symbol"
+      >)))</a
+      ><a name="7009"
+      >
+</a
+      ><a name="7010" class="Symbol"
+      >...</a
+      ><a name="7013"
+      > </a
+      ><a name="7014" class="Symbol"
+      >|</a
+      ><a name="7015"
+      > </a
+      ><a name="7016" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="7020"
+      > </a
+      ><a name="7021" class="Symbol"
+      >(</a
+      ><a name="7022" href="Data.Sum.html#485" class="InductiveConstructor"
+      >inj&#8322;</a
+      ><a name="7026"
+      > </a
+      ><a name="7027" href="Chi.html#7027" class="Bound"
+      >x&#8801;y</a
+      ><a name="7030" class="Symbol"
+      >)</a
+      ><a name="7031"
+      >  </a
+      ><a name="7033" class="Symbol"
+      >=</a
+      ><a name="7034"
+      > </a
+      ><a name="7035" href="Chi.html#7027" class="Bound"
+      >x&#8801;y</a
+      ><a name="7038"
+      >
+\end{code}
+
+
+
+
+</a
+      ></pre
+    ></body
+  ></html
+>

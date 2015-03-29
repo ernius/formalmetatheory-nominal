@@ -15,18 +15,141 @@
 %\usepackage[conor,references]{latex/agda}
 \usepackage[hidelinks]{hyperref}
 \usepackage[references,links]{agda}
+\usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{textgreek}
 \usepackage{catchfilebetweentags}
-
 \usepackage{tipa}
 
 \DeclareUnicodeCharacter{411}{\textipa{\textcrlambda}}
+\DeclareUnicodeCharacter{65288}{(}
+\DeclareUnicodeCharacter{65289}{)}
+\DeclareUnicodeCharacter{8336}{\ensuremath{_a}}
+\DeclareUnicodeCharacter{8799}{\ensuremath{\overset{?}{=}}}
+\DeclareUnicodeCharacter{8759}{\ensuremath{\dblcolon}}
+\DeclareUnicodeCharacter{8718}{\ensuremath{\square}}
 
 \begin{document}
 
-\AgdaTarget{Λ}
+\section{Infrastructure}
+\label{sec:infra}
 
-\ExecuteMetaData[Term.tex]{term}
+\AgdaTarget{Λ}
+\begin{figure}[!ht]
+  \ExecuteMetaData[Term.tex]{term} \hspace{5px}
+  \caption{Terms}
+\label{fig:term}
+\end{figure}
+
+
+\ExecuteMetaData[Term.tex]{fresh} \hspace{5px}
+
+
+\ExecuteMetaData[Atom.tex]{swap} \hspace{5px}
+
+\ExecuteMetaData[Term.tex]{swap} \hspace{5px}
+
+\ExecuteMetaData[Permutation.tex]{atomPermutation} \hspace{5px}
+
+\ExecuteMetaData[Permutation.tex]{permutation} \hspace{5px}
+
+\AgdaTarget{∼α}
+\ExecuteMetaData[Alpha.tex]{alpha}
+
+\newpage
+\section{Induction Principles}
+\label{sec:induction}
+
+Primitive induction over terms presented in figure~\ref{fig:term}:
+
+\begin{figure}[!ht]
+  \ExecuteMetaData[TermInduction.tex]{termPrimInduction} 
+  \caption{Primitive Induction}
+\label{fig:primInd}
+\end{figure}
+
+Next, we introduce another induction principle over terms with a stronger inductive hypothesis for the abstraction case, which says the property holds for all permutation of names of the body of the abstraction. This principle is proved using previous primitive induction principle.
+
+\begin{figure}[!ht]
+  \ExecuteMetaData[TermInduction.tex]{termIndPermutation} 
+  \caption{Permutation Induction Principle}
+\label{fig:permInd}
+\end{figure}
+
+$\alpha$-compatible predicates:
+
+\ExecuteMetaData[Alpha.tex]{alphaCompatible} \hspace{5px}
+
+If the predicate is $\alpha$-compatible then we can prove the following induction principle using previous  induction principle. This new principle enables us to choose the variable of the abstraction case different from a finite list of variables, in this way this principle allow us to emulate Barendregt Variable Convention (BVC).
+
+\ExecuteMetaData[TermInduction.tex]{alphaPrimInduction} \hspace{5px}
+
+Again assuming an $\alpha$-compatible predicate, we can prove the following principle using again the induction principle of figure~\ref{fig:permInd}:
+
+\begin{figure}[!ht]
+  \ExecuteMetaData[TermInduction.tex]{alphaIndPermutation}
+  \caption{Permutation $\alpha$ Induction}
+\label{fig:permAlphaInd}
+\end{figure}
+
+\section{Iteration and Recursion Principles}
+\label{sec:recursion}
+
+We want to define strong $\alpha$-compatible functions, that is, functions over the $\alpha$-equivalence class of terms. This functions can not depend on the abstraction variables of a term. We can resume this concept in the following definition:
+
+\ExecuteMetaData[Alpha.tex]{strongAlphaCompatible} \hspace{5px}
+
+We define an iteration principle over raw terms which always produces $\alpha$-compatible functions. This is granted because abstraction variables are given by the induction principle, hidding the specific abstraction variables of the given term, in this way the result of a function defined with this iterator has no way to extract any information from abstracted variables. This principle also allow us to give a list of variables from where the abstractions variables will not to be choosen, this will be usefull to define the no capture substitution operation latter. This iteration principle is derived from the last presented induction principle in figure~\ref{fig:permAlphaInd}. 
+
+\ExecuteMetaData[TermRecursion.tex]{termIteration} \hspace{5px}
+
+The following result estabish the strong compatibility of previous iteration principle. This result is proved using the induction principle in figure~\ref{fig:permAlphaInd}. 
+
+\begin{figure}[!ht]
+  \ExecuteMetaData[TermRecursion.tex]{iterationStrongCompatible}
+  \caption{Strong $\alpha$\ Compatibility of the Iteration Principle}
+\label{fig:strongAlphaComp}
+\end{figure}
+
+
+\section{Iterator Application}
+\label{sec:itapp}
+
+Next we show several iteration principle applications.
+
+\subsection{Free Variables}
+\label{sec:freevar}
+
+We implement the function that returns the free variables of a term.
+
+\ExecuteMetaData[FreeVariables.tex]{freeVariables} \hspace{5px}
+
+As a direct consequence of strong $\alpha$\ compatibility of the iteration principle we obtain that $\alpha$\ compatible terms have equal free variables. 
+
+\subsection{Substitution}
+\label{subst}
+
+We implement the no capture substitution operation. We give the substituted variable and free variables of the replaced term as variables to not to choose as abtractions to avoid any variable capture.
+
+
+\ExecuteMetaData[Substitution.tex]{substitution} \hspace{5px}
+
+Again because of the strong $\alpha$\ compability of the iteration principle we obtain the following result for free:
+
+\AgdaTarget{lemmaSubst1}
+\ExecuteMetaData[Substitution.tex]{lemmaSubst1} \hspace{5px}
+
+Using the induction principle in figure~\ref{fig:permInd} we prove:
+
+\AgdaTarget{lemmaSubst2}
+\ExecuteMetaData[Substitution.tex]{lemmaSubst2} \hspace{5px}
+
+Finally, from the two previous result we directly obtain next substitution lemma.
+
+\AgdaTarget{lemmaSubst}
+\ExecuteMetaData[Substitution.tex]{lemmaSubst} \hspace{5px}
+
+Remarkably all this result are directly derived from the first primitive induction principle, and no need of induction on the length of terms or accesible predicates were needed in all of this formalization.
 
 % Addition (\AgdaFunction{\_+\_})''''''````''/][;.,,
 \end{document}

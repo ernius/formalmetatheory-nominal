@@ -1,0 +1,156 @@
+\begin{code}%
+\>\AgdaKeyword{module} \AgdaModule{FreeVariables} \AgdaKeyword{where}\<%
+\\
+%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Atom}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Alpha}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{ListProperties}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Term} \AgdaKeyword{hiding} \AgdaSymbol{(}fv\AgdaSymbol{)}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{TermRecursion}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{TermInduction}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{TermAcc}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{NaturalProperties}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Equivariant}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Permutation}\<%
+\\
+%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Data.Bool} \AgdaKeyword{hiding} \AgdaSymbol{(}\_∨\_\AgdaSymbol{)}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Data.Nat} \AgdaKeyword{hiding} \AgdaSymbol{(}\_*\_\AgdaSymbol{)}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Data.Nat.Properties}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Data.Empty}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Data.Sum} \AgdaKeyword{renaming} \AgdaSymbol{(}\_⊎\_ \AgdaSymbol{to} \_∨\_\AgdaSymbol{)}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Data.List}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Data.List.Any} \AgdaSymbol{as} \AgdaModule{Any} \AgdaKeyword{hiding} \AgdaSymbol{(}map\AgdaSymbol{)}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Data.List.Any.Membership}\<%
+\\
+\>\AgdaKeyword{open} \AgdaModule{Any.}\AgdaModule{Membership-≡} \AgdaKeyword{renaming} \AgdaSymbol{(}\_∈\_ \AgdaSymbol{to} \_∈'\_\AgdaSymbol{;}\_∉\_ \AgdaSymbol{to} \_∉'\_\AgdaSymbol{)} \<[57]%
+\>[57]\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Data.Product}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Relation.Binary.PropositionalEquality} \AgdaSymbol{as} \AgdaModule{PropEq} \AgdaKeyword{hiding} \AgdaSymbol{(}[\_]\AgdaSymbol{)}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Relation.Nullary}\<%
+\\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Relation.Nullary.Decidable}\<%
+\\
+\>\<%
+\end{code}
+
+%<*freeVariables>
+\begin{code}%
+\>\AgdaFunction{fv} \AgdaSymbol{:} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaDatatype{List} \AgdaFunction{Atom}\<%
+\\
+\>\AgdaFunction{fv} \AgdaSymbol{=} \AgdaFunction{ΛIt} \AgdaSymbol{(}\AgdaDatatype{List} \AgdaFunction{Atom}\AgdaSymbol{)} \AgdaFunction{[\_]} \AgdaFunction{\_++\_} \AgdaSymbol{(}\AgdaInductiveConstructor{[]} \AgdaInductiveConstructor{,} \AgdaSymbol{λ} \AgdaBound{v} \AgdaBound{r} \AgdaSymbol{→} \AgdaBound{r} \AgdaFunction{-} \AgdaBound{v}\AgdaSymbol{)}\<%
+\end{code}
+%</freeVariables>
+
+\begin{code}%
+\>\AgdaComment{--}\<%
+\\
+\>\AgdaComment{lemmafv· : ∀ M N → fv (M · N) ≡  fv M ++ fv N}\<%
+\\
+\>\AgdaComment{lemmafv· M N = refl}\<%
+\\
+\>\AgdaComment{--}\<%
+\\
+\>\AgdaComment{lemmafvƛ : ∀ b M → fv (ƛ b M) ≡ fv (（ b ∙ χ [] (ƛ b M) ） M) - χ [] (ƛ b M)}\<%
+\\
+\>\AgdaComment{lemmafvƛ b M = ΛItƛ (List Atom) [\_] \_++\_ []  (λ v r → r - v) b M}\<%
+\\
+\>\AgdaComment{--}\<%
+\\
+\>\AgdaComment{lemma∼αfv : \{M N : Λ\} → M ∼α N → fv M ≡ fv N}\<%
+\\
+\>\AgdaComment{lemma∼αfv \{M\} \{N\} = lemmaItαStrongCompatible (List Atom) [\_] \_++\_ [] (λ v r → r - v) M N }\<%
+\\
+\>\AgdaComment{--}\<%
+\\
+\>\AgdaComment{Pfv* : Atom → Λ → Set}\<%
+\\
+\>\AgdaComment{Pfv* a M = a ∈' fv M → a * M}\<%
+\\
+\>\AgdaComment{--}\<%
+\\
+\>\AgdaComment{αCompatiblePfv* : ∀ a → αCompatiblePred (Pfv* a)}\<%
+\\
+\>\AgdaComment{αCompatiblePfv* a M∼αN a∈fvM→a*M a∈fvN }\<%
+\\
+\>\AgdaComment{  rewrite lemma∼αfv M∼αN = lemma∼α* M∼αN (a∈fvM→a*M a∈fvN)}\<%
+\\
+\>\AgdaComment{--}\<%
+\\
+\>\AgdaComment{lemmafv* : ∀ \{a\} \{M\} → Pfv* a M}\<%
+\\
+\>\AgdaComment{lemmafv* \{a\} \{M\} = TermαIndPerm (Pfv* a) (αCompatiblePfv* a) lemmav lemma· \{!!\} M}\<%
+\\
+\>\AgdaComment{  where}\<%
+\\
+\>\AgdaComment{  lemmav : (b : Atom) → Pfv* a (v b)}\<%
+\\
+\>\AgdaComment{  lemmav .a  (here refl) = *v}\<%
+\\
+\>\AgdaComment{  lemmav b   (there ()) }\<%
+\\
+\>\AgdaComment{  lemma· : (M N : Λ) → Pfv* a M → Pfv* a N → Pfv* a (M · N)}\<%
+\\
+\>\AgdaComment{  lemma· M N PM PN a∈fvM·N rewrite lemmafv· M N  }\<%
+\\
+\>\AgdaComment{    with c∈xs++ys→c∈xs∨c∈ys \{a\} \{fv M\} \{fv N\} a∈fvM·N }\<%
+\\
+\>\AgdaComment{  ... | inj₁ a∈fvM = *·l (PM a∈fvM)}\<%
+\\
+\>\AgdaComment{  ... | inj₂ a∈fvN = *·r (PN a∈fvN)}\<%
+\\
+\>\AgdaComment{  lemmaƛ : Σ (List ℕ) (λ xs → (M : Λ) (b : ℕ) → b ∉' xs → (∀ π → Pfv* a (π ∙ M)) → Pfv* a (ƛ b M))}\<%
+\\
+\>\AgdaComment{  lemmaƛ = \{!!\} --  [ a ] , lemmaƛaux}\<%
+\\
+\>\AgdaComment{    where }\<%
+\\
+\>\AgdaComment{    lemmaƛaux : (M : Λ) (b : ℕ) → b ∉' [ a ] → (∀ c → Pfv* a (（ b ∙ c ） M)) → Pfv* a (ƛ b M)}\<%
+\\
+\>\AgdaComment{    lemmaƛaux M b b∉[a] f a∈fvƛbM }\<%
+\\
+\>\AgdaComment{      rewrite lemmafvƛ b M}\<%
+\\
+\>\AgdaComment{      with χ [] (ƛ b M) | lemmafilter→ a (fv (（ b ∙ χ [] (ƛ b M) ） M)) (λ y → not (⌊ χ [] (ƛ b M) ≟ₐ y ⌋)) a∈fvƛbM  | χ\# [] (ƛ b M)}\<%
+\\
+\>\AgdaComment{    ... | c | ¬a≟c=true , a∈fv（bc）M | c\#ƛbM with a ≟ₐ c}\<%
+\\
+\>\AgdaComment{    lemmaƛaux M b b∉[a] f a∈fvƛbM | .a | ¬a≟a=true , a∈fv（ba）M | c\#ƛbM | yes refl with a ≟ₐ a}\<%
+\\
+\>\AgdaComment{    lemmaƛaux M b b∉[a] f a∈fvƛbM | .a | () , a∈fv（ba）M | c\#ƛbM | yes refl | yes \_}\<%
+\\
+\>\AgdaComment{    lemmaƛaux M b b∉[a] f a∈fvƛbM | .a | \_ , a∈fv（ba）M | c\#ƛbM | yes refl | no a≢a = ⊥-elim (a≢a refl)}\<%
+\\
+\>\AgdaComment{    lemmaƛaux M b b∉[a] f a∈fvƛbM | c  | \_ , a∈fv（bc）M | c\#ƛbM | no a≢c }\<%
+\\
+\>\AgdaComment{      = *ƛ (lemma*swap←≢ (sym≢ b≢a) a≢c (f c a∈fv（bc）M)) b≢a  }\<%
+\\
+\>\AgdaComment{      where}\<%
+\\
+\>\AgdaComment{      b≢a : b ≢ a}\<%
+\\
+\>\AgdaComment{      b≢a = λ b≡a → (⊥-elim (b∉[a] (here b≡a)))}\<%
+\\
+\>\<%
+\end{code}

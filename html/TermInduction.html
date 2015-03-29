@@ -1,0 +1,4618 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >TermInduction</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta http-equiv="Content-Style-Type" content="text/css"
+     /><link href="Agda.css" rel="stylesheet" type="text/css"
+     /></head
+  ><body
+  ><pre
+    ><a name="1"
+      >\begin{code}
+</a
+      ><a name="14" class="Keyword"
+      >module</a
+      ><a name="20"
+      > </a
+      ><a name="21" href="TermInduction.html#1" class="Module"
+      >TermInduction</a
+      ><a name="34"
+      > </a
+      ><a name="35" class="Keyword"
+      >where</a
+      ><a name="40"
+      >
+
+</a
+      ><a name="42" class="Keyword"
+      >open</a
+      ><a name="46"
+      > </a
+      ><a name="47" class="Keyword"
+      >import</a
+      ><a name="53"
+      > </a
+      ><a name="54" href="Atom.html#1" class="Module"
+      >Atom</a
+      ><a name="58"
+      >
+</a
+      ><a name="59" class="Keyword"
+      >open</a
+      ><a name="63"
+      > </a
+      ><a name="64" class="Keyword"
+      >import</a
+      ><a name="70"
+      > </a
+      ><a name="71" href="Alpha.html#1" class="Module"
+      >Alpha</a
+      ><a name="76"
+      >
+</a
+      ><a name="77" class="Keyword"
+      >open</a
+      ><a name="81"
+      > </a
+      ><a name="82" class="Keyword"
+      >import</a
+      ><a name="88"
+      > </a
+      ><a name="89" href="ListProperties.html#1" class="Module"
+      >ListProperties</a
+      ><a name="103"
+      >
+</a
+      ><a name="104" class="Keyword"
+      >open</a
+      ><a name="108"
+      > </a
+      ><a name="109" class="Keyword"
+      >import</a
+      ><a name="115"
+      > </a
+      ><a name="116" href="Term.html#1" class="Module"
+      >Term</a
+      ><a name="120"
+      >
+</a
+      ><a name="121" class="Keyword"
+      >open</a
+      ><a name="125"
+      > </a
+      ><a name="126" class="Keyword"
+      >import</a
+      ><a name="132"
+      > </a
+      ><a name="133" href="Chi.html#1" class="Module"
+      >Chi</a
+      ><a name="136"
+      >
+</a
+      ><a name="137" class="Keyword"
+      >open</a
+      ><a name="141"
+      > </a
+      ><a name="142" class="Keyword"
+      >import</a
+      ><a name="148"
+      > </a
+      ><a name="149" href="TermAcc.html#1" class="Module"
+      >TermAcc</a
+      ><a name="156"
+      >
+</a
+      ><a name="157" class="Keyword"
+      >open</a
+      ><a name="161"
+      > </a
+      ><a name="162" class="Keyword"
+      >import</a
+      ><a name="168"
+      > </a
+      ><a name="169" href="NaturalProperties.html#1" class="Module"
+      >NaturalProperties</a
+      ><a name="186"
+      >
+</a
+      ><a name="187" class="Keyword"
+      >open</a
+      ><a name="191"
+      > </a
+      ><a name="192" class="Keyword"
+      >import</a
+      ><a name="198"
+      > </a
+      ><a name="199" href="Permutation.html#1" class="Module"
+      >Permutation</a
+      ><a name="210"
+      >
+
+</a
+      ><a name="212" class="Keyword"
+      >open</a
+      ><a name="216"
+      > </a
+      ><a name="217" class="Keyword"
+      >import</a
+      ><a name="223"
+      > </a
+      ><a name="224" href="Level.html#1" class="Module"
+      >Level</a
+      ><a name="229"
+      >
+</a
+      ><a name="230" class="Keyword"
+      >open</a
+      ><a name="234"
+      > </a
+      ><a name="235" class="Keyword"
+      >import</a
+      ><a name="241"
+      > </a
+      ><a name="242" href="Data.Nat.html#1" class="Module"
+      >Data.Nat</a
+      ><a name="250"
+      >
+</a
+      ><a name="251" class="Keyword"
+      >open</a
+      ><a name="255"
+      > </a
+      ><a name="256" class="Keyword"
+      >import</a
+      ><a name="262"
+      > </a
+      ><a name="263" href="Data.Nat.Properties.html#1" class="Module"
+      >Data.Nat.Properties</a
+      ><a name="282"
+      >
+</a
+      ><a name="283" class="Keyword"
+      >open</a
+      ><a name="287"
+      > </a
+      ><a name="288" class="Keyword"
+      >import</a
+      ><a name="294"
+      > </a
+      ><a name="295" href="Data.Product.html#1" class="Module"
+      >Data.Product</a
+      ><a name="307"
+      >
+</a
+      ><a name="308" class="Keyword"
+      >open</a
+      ><a name="312"
+      > </a
+      ><a name="313" class="Keyword"
+      >import</a
+      ><a name="319"
+      > </a
+      ><a name="320" href="Data.List.html#1" class="Module"
+      >Data.List</a
+      ><a name="329"
+      >
+</a
+      ><a name="330" class="Keyword"
+      >open</a
+      ><a name="334"
+      > </a
+      ><a name="335" class="Keyword"
+      >import</a
+      ><a name="341"
+      > </a
+      ><a name="342" href="Data.List.Any.html#1" class="Module"
+      >Data.List.Any</a
+      ><a name="355"
+      > </a
+      ><a name="356" class="Symbol"
+      >as</a
+      ><a name="358"
+      > </a
+      ><a name="359" class="Module"
+      >Any</a
+      ><a name="362"
+      > </a
+      ><a name="363" class="Keyword"
+      >hiding</a
+      ><a name="369"
+      > </a
+      ><a name="370" class="Symbol"
+      >(</a
+      ><a name="371"
+      >map</a
+      ><a name="374" class="Symbol"
+      >)</a
+      ><a name="375"
+      >
+</a
+      ><a name="376" class="Keyword"
+      >open</a
+      ><a name="380"
+      > </a
+      ><a name="381" class="Keyword"
+      >import</a
+      ><a name="387"
+      > </a
+      ><a name="388" href="Data.List.Any.Membership.html#1" class="Module"
+      >Data.List.Any.Membership</a
+      ><a name="412"
+      >
+</a
+      ><a name="413" class="Keyword"
+      >open</a
+      ><a name="417"
+      > </a
+      ><a name="418" href="Data.List.Any.html#260" class="Module"
+      >Any.</a
+      ><a name="422" href="Data.List.Any.html#4577" class="Module"
+      >Membership-&#8801;</a
+      ><a name="434"
+      > </a
+      ><a name="435" class="Keyword"
+      >renaming</a
+      ><a name="443"
+      > </a
+      ><a name="444" class="Symbol"
+      >(</a
+      ><a name="445"
+      >_&#8712;_ </a
+      ><a name="449" class="Symbol"
+      >to</a
+      ><a name="451"
+      > _&#8712;'_</a
+      ><a name="456" class="Symbol"
+      >;</a
+      ><a name="457"
+      >_&#8713;_ </a
+      ><a name="461" class="Symbol"
+      >to</a
+      ><a name="463"
+      > _&#8713;'_</a
+      ><a name="468" class="Symbol"
+      >)</a
+      ><a name="469"
+      > 
+</a
+      ><a name="471" class="Keyword"
+      >open</a
+      ><a name="475"
+      > </a
+      ><a name="476" class="Keyword"
+      >import</a
+      ><a name="482"
+      > </a
+      ><a name="483" href="Relation.Binary.PropositionalEquality.html#1" class="Module"
+      >Relation.Binary.PropositionalEquality</a
+      ><a name="520"
+      > </a
+      ><a name="521" class="Keyword"
+      >hiding</a
+      ><a name="527"
+      > </a
+      ><a name="528" class="Symbol"
+      >(</a
+      ><a name="529"
+      >[_]</a
+      ><a name="532" class="Symbol"
+      >)</a
+      ><a name="533"
+      >
+
+\end{code}
+
+</a
+      ><a name="547" class="Comment"
+      >Primitive induction over raw terms:</a
+      ><a name="582"
+      >
+
+</a
+      ><a name="584" class="Comment"
+      >%&lt;*termPrimInduction&gt;</a
+      ><a name="605"
+      >
+\begin{code}
+</a
+      ><a name="619" href="TermInduction.html#619" class="Function"
+      >TermPrimInd</a
+      ><a name="630"
+      > </a
+      ><a name="631" class="Symbol"
+      >:</a
+      ><a name="632"
+      > </a
+      ><a name="633" class="Symbol"
+      >(</a
+      ><a name="634" href="TermInduction.html#634" class="Bound"
+      >P</a
+      ><a name="635"
+      > </a
+      ><a name="636" class="Symbol"
+      >:</a
+      ><a name="637"
+      > </a
+      ><a name="638" href="Term.html#1000" class="Datatype"
+      >&#923;</a
+      ><a name="639"
+      > </a
+      ><a name="640" class="Symbol"
+      >&#8594;</a
+      ><a name="641"
+      > </a
+      ><a name="642" class="PrimitiveType"
+      >Set</a
+      ><a name="645" class="Symbol"
+      >)</a
+      ><a name="646"
+      > 
+  </a
+      ><a name="650" class="Symbol"
+      >&#8594;</a
+      ><a name="651"
+      > </a
+      ><a name="652" class="Symbol"
+      >(&#8704;</a
+      ><a name="654"
+      > </a
+      ><a name="655" href="TermInduction.html#655" class="Bound"
+      >a</a
+      ><a name="656"
+      > </a
+      ><a name="657" class="Symbol"
+      >&#8594;</a
+      ><a name="658"
+      > </a
+      ><a name="659" href="TermInduction.html#634" class="Bound"
+      >P</a
+      ><a name="660"
+      > </a
+      ><a name="661" class="Symbol"
+      >(</a
+      ><a name="662" href="Term.html#1016" class="InductiveConstructor"
+      >v</a
+      ><a name="663"
+      > </a
+      ><a name="664" href="TermInduction.html#655" class="Bound"
+      >a</a
+      ><a name="665" class="Symbol"
+      >))</a
+      ><a name="667"
+      >
+  </a
+      ><a name="670" class="Symbol"
+      >&#8594;</a
+      ><a name="671"
+      > </a
+      ><a name="672" class="Symbol"
+      >(&#8704;</a
+      ><a name="674"
+      > </a
+      ><a name="675" href="TermInduction.html#675" class="Bound"
+      >M</a
+      ><a name="676"
+      > </a
+      ><a name="677" href="TermInduction.html#677" class="Bound"
+      >N</a
+      ><a name="678"
+      > </a
+      ><a name="679" class="Symbol"
+      >&#8594;</a
+      ><a name="680"
+      > </a
+      ><a name="681" href="TermInduction.html#634" class="Bound"
+      >P</a
+      ><a name="682"
+      > </a
+      ><a name="683" href="TermInduction.html#675" class="Bound"
+      >M</a
+      ><a name="684"
+      > </a
+      ><a name="685" class="Symbol"
+      >&#8594;</a
+      ><a name="686"
+      > </a
+      ><a name="687" href="TermInduction.html#634" class="Bound"
+      >P</a
+      ><a name="688"
+      > </a
+      ><a name="689" href="TermInduction.html#677" class="Bound"
+      >N</a
+      ><a name="690"
+      > </a
+      ><a name="691" class="Symbol"
+      >&#8594;</a
+      ><a name="692"
+      > </a
+      ><a name="693" href="TermInduction.html#634" class="Bound"
+      >P</a
+      ><a name="694"
+      > </a
+      ><a name="695" class="Symbol"
+      >(</a
+      ><a name="696" href="TermInduction.html#675" class="Bound"
+      >M</a
+      ><a name="697"
+      > </a
+      ><a name="698" href="Term.html#1035" class="InductiveConstructor Operator"
+      >&#183;</a
+      ><a name="699"
+      > </a
+      ><a name="700" href="TermInduction.html#677" class="Bound"
+      >N</a
+      ><a name="701" class="Symbol"
+      >))</a
+      ><a name="703"
+      >
+  </a
+      ><a name="706" class="Symbol"
+      >&#8594;</a
+      ><a name="707"
+      > </a
+      ><a name="708" class="Symbol"
+      >(&#8704;</a
+      ><a name="710"
+      > </a
+      ><a name="711" href="TermInduction.html#711" class="Bound"
+      >M</a
+      ><a name="712"
+      > </a
+      ><a name="713" href="TermInduction.html#713" class="Bound"
+      >b</a
+      ><a name="714"
+      > </a
+      ><a name="715" class="Symbol"
+      >&#8594;</a
+      ><a name="716"
+      > </a
+      ><a name="717" href="TermInduction.html#634" class="Bound"
+      >P</a
+      ><a name="718"
+      > </a
+      ><a name="719" href="TermInduction.html#711" class="Bound"
+      >M</a
+      ><a name="720"
+      > </a
+      ><a name="721" class="Symbol"
+      >&#8594;</a
+      ><a name="722"
+      > </a
+      ><a name="723" href="TermInduction.html#634" class="Bound"
+      >P</a
+      ><a name="724"
+      > </a
+      ><a name="725" class="Symbol"
+      >(</a
+      ><a name="726" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="727"
+      > </a
+      ><a name="728" href="TermInduction.html#713" class="Bound"
+      >b</a
+      ><a name="729"
+      > </a
+      ><a name="730" href="TermInduction.html#711" class="Bound"
+      >M</a
+      ><a name="731" class="Symbol"
+      >))</a
+      ><a name="733"
+      >
+  </a
+      ><a name="736" class="Symbol"
+      >&#8594;</a
+      ><a name="737"
+      > </a
+      ><a name="738" class="Symbol"
+      >&#8704;</a
+      ><a name="739"
+      > </a
+      ><a name="740" href="TermInduction.html#740" class="Bound"
+      >M</a
+      ><a name="741"
+      > </a
+      ><a name="742" class="Symbol"
+      >&#8594;</a
+      ><a name="743"
+      > </a
+      ><a name="744" href="TermInduction.html#634" class="Bound"
+      >P</a
+      ><a name="745"
+      > </a
+      ><a name="746" href="TermInduction.html#740" class="Bound"
+      >M</a
+      ><a name="747"
+      >
+\end{code}
+</a
+      ><a name="759" class="Comment"
+      >%&lt;/termPrimInduction&gt;</a
+      ><a name="780"
+      >
+
+\begin{code}
+</a
+      ><a name="795" href="TermInduction.html#619" class="Function"
+      >TermPrimInd</a
+      ><a name="806"
+      > </a
+      ><a name="807" href="TermInduction.html#807" class="Bound"
+      >P</a
+      ><a name="808"
+      > </a
+      ><a name="809" href="TermInduction.html#809" class="Bound"
+      >ha</a
+      ><a name="811"
+      > </a
+      ><a name="812" href="TermInduction.html#812" class="Bound"
+      >h&#183;</a
+      ><a name="814"
+      > </a
+      ><a name="815" href="TermInduction.html#815" class="Bound"
+      >h&#411;</a
+      ><a name="817"
+      > </a
+      ><a name="818" class="Symbol"
+      >(</a
+      ><a name="819" href="Term.html#1016" class="InductiveConstructor"
+      >v</a
+      ><a name="820"
+      > </a
+      ><a name="821" href="TermInduction.html#821" class="Bound"
+      >a</a
+      ><a name="822" class="Symbol"
+      >)</a
+      ><a name="823"
+      >    
+  </a
+      ><a name="830" class="Symbol"
+      >=</a
+      ><a name="831"
+      > </a
+      ><a name="832" href="TermInduction.html#809" class="Bound"
+      >ha</a
+      ><a name="834"
+      > </a
+      ><a name="835" href="TermInduction.html#821" class="Bound"
+      >a</a
+      ><a name="836"
+      >
+</a
+      ><a name="837" href="TermInduction.html#619" class="Function"
+      >TermPrimInd</a
+      ><a name="848"
+      > </a
+      ><a name="849" href="TermInduction.html#849" class="Bound"
+      >P</a
+      ><a name="850"
+      > </a
+      ><a name="851" href="TermInduction.html#851" class="Bound"
+      >ha</a
+      ><a name="853"
+      > </a
+      ><a name="854" href="TermInduction.html#854" class="Bound"
+      >h&#183;</a
+      ><a name="856"
+      > </a
+      ><a name="857" href="TermInduction.html#857" class="Bound"
+      >h&#411;</a
+      ><a name="859"
+      > </a
+      ><a name="860" class="Symbol"
+      >(</a
+      ><a name="861" href="TermInduction.html#861" class="Bound"
+      >M</a
+      ><a name="862"
+      > </a
+      ><a name="863" href="Term.html#1035" class="InductiveConstructor Operator"
+      >&#183;</a
+      ><a name="864"
+      > </a
+      ><a name="865" href="TermInduction.html#865" class="Bound"
+      >N</a
+      ><a name="866" class="Symbol"
+      >)</a
+      ><a name="867"
+      >  
+  </a
+      ><a name="872" class="Symbol"
+      >=</a
+      ><a name="873"
+      > </a
+      ><a name="874" href="TermInduction.html#854" class="Bound"
+      >h&#183;</a
+      ><a name="876"
+      > </a
+      ><a name="877" href="TermInduction.html#861" class="Bound"
+      >M</a
+      ><a name="878"
+      > </a
+      ><a name="879" href="TermInduction.html#865" class="Bound"
+      >N</a
+      ><a name="880"
+      > </a
+      ><a name="881" class="Symbol"
+      >(</a
+      ><a name="882" href="TermInduction.html#619" class="Function"
+      >TermPrimInd</a
+      ><a name="893"
+      > </a
+      ><a name="894" href="TermInduction.html#849" class="Bound"
+      >P</a
+      ><a name="895"
+      > </a
+      ><a name="896" href="TermInduction.html#851" class="Bound"
+      >ha</a
+      ><a name="898"
+      > </a
+      ><a name="899" href="TermInduction.html#854" class="Bound"
+      >h&#183;</a
+      ><a name="901"
+      > </a
+      ><a name="902" href="TermInduction.html#857" class="Bound"
+      >h&#411;</a
+      ><a name="904"
+      > </a
+      ><a name="905" href="TermInduction.html#861" class="Bound"
+      >M</a
+      ><a name="906" class="Symbol"
+      >)</a
+      ><a name="907"
+      > </a
+      ><a name="908" class="Symbol"
+      >(</a
+      ><a name="909" href="TermInduction.html#619" class="Function"
+      >TermPrimInd</a
+      ><a name="920"
+      > </a
+      ><a name="921" href="TermInduction.html#849" class="Bound"
+      >P</a
+      ><a name="922"
+      > </a
+      ><a name="923" href="TermInduction.html#851" class="Bound"
+      >ha</a
+      ><a name="925"
+      > </a
+      ><a name="926" href="TermInduction.html#854" class="Bound"
+      >h&#183;</a
+      ><a name="928"
+      > </a
+      ><a name="929" href="TermInduction.html#857" class="Bound"
+      >h&#411;</a
+      ><a name="931"
+      > </a
+      ><a name="932" href="TermInduction.html#865" class="Bound"
+      >N</a
+      ><a name="933" class="Symbol"
+      >)</a
+      ><a name="934"
+      >
+</a
+      ><a name="935" href="TermInduction.html#619" class="Function"
+      >TermPrimInd</a
+      ><a name="946"
+      > </a
+      ><a name="947" href="TermInduction.html#947" class="Bound"
+      >P</a
+      ><a name="948"
+      > </a
+      ><a name="949" href="TermInduction.html#949" class="Bound"
+      >ha</a
+      ><a name="951"
+      > </a
+      ><a name="952" href="TermInduction.html#952" class="Bound"
+      >h&#183;</a
+      ><a name="954"
+      > </a
+      ><a name="955" href="TermInduction.html#955" class="Bound"
+      >h&#411;</a
+      ><a name="957"
+      > </a
+      ><a name="958" class="Symbol"
+      >(</a
+      ><a name="959" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="960"
+      > </a
+      ><a name="961" href="TermInduction.html#961" class="Bound"
+      >a</a
+      ><a name="962"
+      > </a
+      ><a name="963" href="TermInduction.html#963" class="Bound"
+      >M</a
+      ><a name="964" class="Symbol"
+      >)</a
+      ><a name="965"
+      >  
+  </a
+      ><a name="970" class="Symbol"
+      >=</a
+      ><a name="971"
+      > </a
+      ><a name="972" href="TermInduction.html#955" class="Bound"
+      >h&#411;</a
+      ><a name="974"
+      > </a
+      ><a name="975" href="TermInduction.html#963" class="Bound"
+      >M</a
+      ><a name="976"
+      > </a
+      ><a name="977" href="TermInduction.html#961" class="Bound"
+      >a</a
+      ><a name="978"
+      > </a
+      ><a name="979" class="Symbol"
+      >(</a
+      ><a name="980" href="TermInduction.html#619" class="Function"
+      >TermPrimInd</a
+      ><a name="991"
+      > </a
+      ><a name="992" href="TermInduction.html#947" class="Bound"
+      >P</a
+      ><a name="993"
+      > </a
+      ><a name="994" href="TermInduction.html#949" class="Bound"
+      >ha</a
+      ><a name="996"
+      > </a
+      ><a name="997" href="TermInduction.html#952" class="Bound"
+      >h&#183;</a
+      ><a name="999"
+      > </a
+      ><a name="1000" href="TermInduction.html#955" class="Bound"
+      >h&#411;</a
+      ><a name="1002"
+      > </a
+      ><a name="1003" href="TermInduction.html#963" class="Bound"
+      >M</a
+      ><a name="1004" class="Symbol"
+      >)</a
+      ><a name="1005"
+      >
+\end{code}
+
+\begin{code}
+</a
+      ><a name="1031" href="TermInduction.html#1031" class="Function"
+      >lemmavIndSw</a
+      ><a name="1042"
+      > </a
+      ><a name="1043" class="Symbol"
+      >:</a
+      ><a name="1044"
+      > </a
+      ><a name="1045" class="Symbol"
+      >{</a
+      ><a name="1046" href="TermInduction.html#1046" class="Bound"
+      >P</a
+      ><a name="1047"
+      > </a
+      ><a name="1048" class="Symbol"
+      >:</a
+      ><a name="1049"
+      > </a
+      ><a name="1050" href="Term.html#1000" class="Datatype"
+      >&#923;</a
+      ><a name="1051"
+      > </a
+      ><a name="1052" class="Symbol"
+      >&#8594;</a
+      ><a name="1053"
+      > </a
+      ><a name="1054" class="PrimitiveType"
+      >Set</a
+      ><a name="1057" class="Symbol"
+      >}</a
+      ><a name="1058"
+      > </a
+      ><a name="1059" class="Symbol"
+      >&#8594;</a
+      ><a name="1060"
+      > </a
+      ><a name="1061" class="Symbol"
+      >(&#8704;</a
+      ><a name="1063"
+      > </a
+      ><a name="1064" href="TermInduction.html#1064" class="Bound"
+      >a</a
+      ><a name="1065"
+      > </a
+      ><a name="1066" class="Symbol"
+      >&#8594;</a
+      ><a name="1067"
+      > </a
+      ><a name="1068" href="TermInduction.html#1046" class="Bound"
+      >P</a
+      ><a name="1069"
+      > </a
+      ><a name="1070" class="Symbol"
+      >(</a
+      ><a name="1071" href="Term.html#1016" class="InductiveConstructor"
+      >v</a
+      ><a name="1072"
+      > </a
+      ><a name="1073" href="TermInduction.html#1064" class="Bound"
+      >a</a
+      ><a name="1074" class="Symbol"
+      >))</a
+      ><a name="1076"
+      > </a
+      ><a name="1077" class="Symbol"
+      >&#8594;</a
+      ><a name="1078"
+      > </a
+      ><a name="1079" class="Symbol"
+      >&#8704;</a
+      ><a name="1080"
+      > </a
+      ><a name="1081" href="TermInduction.html#1081" class="Bound"
+      >a</a
+      ><a name="1082"
+      > </a
+      ><a name="1083" href="TermInduction.html#1083" class="Bound"
+      >&#960;</a
+      ><a name="1084"
+      > </a
+      ><a name="1085" class="Symbol"
+      >&#8594;</a
+      ><a name="1086"
+      > </a
+      ><a name="1087" href="TermInduction.html#1046" class="Bound"
+      >P</a
+      ><a name="1088"
+      > </a
+      ><a name="1089" class="Symbol"
+      >(</a
+      ><a name="1090" href="TermInduction.html#1083" class="Bound"
+      >&#960;</a
+      ><a name="1091"
+      > </a
+      ><a name="1092" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="1093"
+      > </a
+      ><a name="1094" href="Term.html#1016" class="InductiveConstructor"
+      >v</a
+      ><a name="1095"
+      > </a
+      ><a name="1096" href="TermInduction.html#1081" class="Bound"
+      >a</a
+      ><a name="1097" class="Symbol"
+      >)</a
+      ><a name="1098"
+      >
+</a
+      ><a name="1099" href="TermInduction.html#1031" class="Function"
+      >lemmavIndSw</a
+      ><a name="1110"
+      > </a
+      ><a name="1111" href="TermInduction.html#1111" class="Bound"
+      >hv</a
+      ><a name="1113"
+      > </a
+      ><a name="1114" href="TermInduction.html#1114" class="Bound"
+      >a</a
+      ><a name="1115"
+      > </a
+      ><a name="1116" href="TermInduction.html#1116" class="Bound"
+      >&#960;</a
+      ><a name="1117"
+      > </a
+      ><a name="1118" class="Keyword"
+      >rewrite</a
+      ><a name="1125"
+      > </a
+      ><a name="1126" href="Permutation.html#2932" class="Function"
+      >lemma&#960;v</a
+      ><a name="1133"
+      > </a
+      ><a name="1134" class="Symbol"
+      >{</a
+      ><a name="1135" href="TermInduction.html#1114" class="Bound"
+      >a</a
+      ><a name="1136" class="Symbol"
+      >}</a
+      ><a name="1137"
+      > </a
+      ><a name="1138" class="Symbol"
+      >{</a
+      ><a name="1139" href="TermInduction.html#1116" class="Bound"
+      >&#960;</a
+      ><a name="1140" class="Symbol"
+      >}</a
+      ><a name="1141"
+      > </a
+      ><a name="1142" class="Symbol"
+      >=</a
+      ><a name="1143"
+      > </a
+      ><a name="1144" href="TermInduction.html#1111" class="Bound"
+      >hv</a
+      ><a name="1146"
+      > </a
+      ><a name="1147" class="Symbol"
+      >(</a
+      ><a name="1148"
+      > </a
+      ><a name="1149" href="TermInduction.html#1116" class="Bound"
+      >&#960;</a
+      ><a name="1150"
+      > </a
+      ><a name="1151" href="Permutation.html#763" class="Function Operator"
+      >&#8729;&#8336;</a
+      ><a name="1153"
+      > </a
+      ><a name="1154" href="TermInduction.html#1114" class="Bound"
+      >a</a
+      ><a name="1155" class="Symbol"
+      >)</a
+      ><a name="1156"
+      >
+</a
+      ><a name="1157" class="Comment"
+      >--</a
+      ><a name="1159"
+      >
+</a
+      ><a name="1160" href="TermInduction.html#1160" class="Function"
+      >lemma&#183;IndSw</a
+      ><a name="1171"
+      > </a
+      ><a name="1172" class="Symbol"
+      >:</a
+      ><a name="1173"
+      > </a
+      ><a name="1174" class="Symbol"
+      >{</a
+      ><a name="1175" href="TermInduction.html#1175" class="Bound"
+      >P</a
+      ><a name="1176"
+      > </a
+      ><a name="1177" class="Symbol"
+      >:</a
+      ><a name="1178"
+      > </a
+      ><a name="1179" href="Term.html#1000" class="Datatype"
+      >&#923;</a
+      ><a name="1180"
+      > </a
+      ><a name="1181" class="Symbol"
+      >&#8594;</a
+      ><a name="1182"
+      > </a
+      ><a name="1183" class="PrimitiveType"
+      >Set</a
+      ><a name="1186" class="Symbol"
+      >}</a
+      ><a name="1187"
+      > 
+  </a
+      ><a name="1191" class="Symbol"
+      >&#8594;</a
+      ><a name="1192"
+      > </a
+      ><a name="1193" class="Symbol"
+      >(&#8704;</a
+      ><a name="1195"
+      > </a
+      ><a name="1196" href="TermInduction.html#1196" class="Bound"
+      >M</a
+      ><a name="1197"
+      > </a
+      ><a name="1198" href="TermInduction.html#1198" class="Bound"
+      >N</a
+      ><a name="1199"
+      > </a
+      ><a name="1200" class="Symbol"
+      >&#8594;</a
+      ><a name="1201"
+      > </a
+      ><a name="1202" href="TermInduction.html#1175" class="Bound"
+      >P</a
+      ><a name="1203"
+      > </a
+      ><a name="1204" href="TermInduction.html#1196" class="Bound"
+      >M</a
+      ><a name="1205"
+      > </a
+      ><a name="1206" class="Symbol"
+      >&#8594;</a
+      ><a name="1207"
+      > </a
+      ><a name="1208" href="TermInduction.html#1175" class="Bound"
+      >P</a
+      ><a name="1209"
+      > </a
+      ><a name="1210" href="TermInduction.html#1198" class="Bound"
+      >N</a
+      ><a name="1211"
+      > </a
+      ><a name="1212" class="Symbol"
+      >&#8594;</a
+      ><a name="1213"
+      >  </a
+      ><a name="1215" href="TermInduction.html#1175" class="Bound"
+      >P</a
+      ><a name="1216"
+      > </a
+      ><a name="1217" class="Symbol"
+      >(</a
+      ><a name="1218" href="TermInduction.html#1196" class="Bound"
+      >M</a
+      ><a name="1219"
+      > </a
+      ><a name="1220" href="Term.html#1035" class="InductiveConstructor Operator"
+      >&#183;</a
+      ><a name="1221"
+      > </a
+      ><a name="1222" href="TermInduction.html#1198" class="Bound"
+      >N</a
+      ><a name="1223" class="Symbol"
+      >))</a
+      ><a name="1225"
+      >
+  </a
+      ><a name="1228" class="Symbol"
+      >&#8594;</a
+      ><a name="1229"
+      > </a
+      ><a name="1230" class="Symbol"
+      >(</a
+      ><a name="1231" href="TermInduction.html#1231" class="Bound"
+      >M</a
+      ><a name="1232"
+      > </a
+      ><a name="1233" href="TermInduction.html#1233" class="Bound"
+      >N</a
+      ><a name="1234"
+      > </a
+      ><a name="1235" class="Symbol"
+      >:</a
+      ><a name="1236"
+      > </a
+      ><a name="1237" href="Term.html#1000" class="Datatype"
+      >&#923;</a
+      ><a name="1238" class="Symbol"
+      >)</a
+      ><a name="1239"
+      >
+  </a
+      ><a name="1242" class="Symbol"
+      >&#8594;</a
+      ><a name="1243"
+      >  </a
+      ><a name="1245" class="Symbol"
+      >((</a
+      ><a name="1247" href="TermInduction.html#1247" class="Bound"
+      >&#960;</a
+      ><a name="1248"
+      > </a
+      ><a name="1249" class="Symbol"
+      >:</a
+      ><a name="1250"
+      > </a
+      ><a name="1251" href="Permutation.html#635" class="Function"
+      >&#928;</a
+      ><a name="1252" class="Symbol"
+      >)</a
+      ><a name="1253"
+      > </a
+      ><a name="1254" class="Symbol"
+      >&#8594;</a
+      ><a name="1255"
+      > </a
+      ><a name="1256" href="TermInduction.html#1175" class="Bound"
+      >P</a
+      ><a name="1257"
+      > </a
+      ><a name="1258" class="Symbol"
+      >(</a
+      ><a name="1259" href="TermInduction.html#1247" class="Bound"
+      >&#960;</a
+      ><a name="1260"
+      > </a
+      ><a name="1261" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="1262"
+      > </a
+      ><a name="1263" href="TermInduction.html#1231" class="Bound"
+      >M</a
+      ><a name="1264" class="Symbol"
+      >))</a
+      ><a name="1266"
+      >
+  </a
+      ><a name="1269" class="Symbol"
+      >&#8594;</a
+      ><a name="1270"
+      >  </a
+      ><a name="1272" class="Symbol"
+      >((</a
+      ><a name="1274" href="TermInduction.html#1274" class="Bound"
+      >&#960;</a
+      ><a name="1275"
+      > </a
+      ><a name="1276" class="Symbol"
+      >:</a
+      ><a name="1277"
+      > </a
+      ><a name="1278" href="Permutation.html#635" class="Function"
+      >&#928;</a
+      ><a name="1279" class="Symbol"
+      >)</a
+      ><a name="1280"
+      > </a
+      ><a name="1281" class="Symbol"
+      >&#8594;</a
+      ><a name="1282"
+      > </a
+      ><a name="1283" href="TermInduction.html#1175" class="Bound"
+      >P</a
+      ><a name="1284"
+      > </a
+      ><a name="1285" class="Symbol"
+      >(</a
+      ><a name="1286" href="TermInduction.html#1274" class="Bound"
+      >&#960;</a
+      ><a name="1287"
+      > </a
+      ><a name="1288" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="1289"
+      > </a
+      ><a name="1290" href="TermInduction.html#1233" class="Bound"
+      >N</a
+      ><a name="1291" class="Symbol"
+      >))</a
+      ><a name="1293"
+      > 
+  </a
+      ><a name="1297" class="Symbol"
+      >&#8594;</a
+      ><a name="1298"
+      >  </a
+      ><a name="1300" class="Symbol"
+      >(</a
+      ><a name="1301" href="TermInduction.html#1301" class="Bound"
+      >&#960;</a
+      ><a name="1302"
+      > </a
+      ><a name="1303" class="Symbol"
+      >:</a
+      ><a name="1304"
+      > </a
+      ><a name="1305" href="Permutation.html#635" class="Function"
+      >&#928;</a
+      ><a name="1306" class="Symbol"
+      >)</a
+      ><a name="1307"
+      > </a
+      ><a name="1308" class="Symbol"
+      >&#8594;</a
+      ><a name="1309"
+      > </a
+      ><a name="1310" href="TermInduction.html#1175" class="Bound"
+      >P</a
+      ><a name="1311"
+      > </a
+      ><a name="1312" class="Symbol"
+      >(</a
+      ><a name="1313" href="TermInduction.html#1301" class="Bound"
+      >&#960;</a
+      ><a name="1314"
+      > </a
+      ><a name="1315" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="1316"
+      > </a
+      ><a name="1317" href="TermInduction.html#1231" class="Bound"
+      >M</a
+      ><a name="1318"
+      > </a
+      ><a name="1319" href="Term.html#1035" class="InductiveConstructor Operator"
+      >&#183;</a
+      ><a name="1320"
+      > </a
+      ><a name="1321" href="TermInduction.html#1233" class="Bound"
+      >N</a
+      ><a name="1322" class="Symbol"
+      >)</a
+      ><a name="1323"
+      >
+</a
+      ><a name="1324" href="TermInduction.html#1160" class="Function"
+      >lemma&#183;IndSw</a
+      ><a name="1335"
+      > </a
+      ><a name="1336" href="TermInduction.html#1336" class="Bound"
+      >h&#183;</a
+      ><a name="1338"
+      > </a
+      ><a name="1339" href="TermInduction.html#1339" class="Bound"
+      >M</a
+      ><a name="1340"
+      > </a
+      ><a name="1341" href="TermInduction.html#1341" class="Bound"
+      >N</a
+      ><a name="1342"
+      > </a
+      ><a name="1343" href="TermInduction.html#1343" class="Bound"
+      >fM</a
+      ><a name="1345"
+      > </a
+      ><a name="1346" href="TermInduction.html#1346" class="Bound"
+      >fN</a
+      ><a name="1348"
+      > </a
+      ><a name="1349" href="TermInduction.html#1349" class="Bound"
+      >&#960;</a
+      ><a name="1350"
+      > </a
+      ><a name="1351" class="Keyword"
+      >rewrite</a
+      ><a name="1358"
+      > </a
+      ><a name="1359" href="Permutation.html#3263" class="Function"
+      >lemma&#960;&#183;</a
+      ><a name="1366"
+      > </a
+      ><a name="1367" class="Symbol"
+      >{</a
+      ><a name="1368" href="TermInduction.html#1339" class="Bound"
+      >M</a
+      ><a name="1369" class="Symbol"
+      >}</a
+      ><a name="1370"
+      > </a
+      ><a name="1371" class="Symbol"
+      >{</a
+      ><a name="1372" href="TermInduction.html#1341" class="Bound"
+      >N</a
+      ><a name="1373" class="Symbol"
+      >}</a
+      ><a name="1374"
+      > </a
+      ><a name="1375" class="Symbol"
+      >{</a
+      ><a name="1376" href="TermInduction.html#1349" class="Bound"
+      >&#960;</a
+      ><a name="1377" class="Symbol"
+      >}</a
+      ><a name="1378"
+      > 
+  </a
+      ><a name="1382" class="Symbol"
+      >=</a
+      ><a name="1383"
+      > </a
+      ><a name="1384" href="TermInduction.html#1336" class="Bound"
+      >h&#183;</a
+      ><a name="1386"
+      > </a
+      ><a name="1387" class="Symbol"
+      >(</a
+      ><a name="1388" href="TermInduction.html#1349" class="Bound"
+      >&#960;</a
+      ><a name="1389"
+      > </a
+      ><a name="1390" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="1391"
+      > </a
+      ><a name="1392" href="TermInduction.html#1339" class="Bound"
+      >M</a
+      ><a name="1393" class="Symbol"
+      >)</a
+      ><a name="1394"
+      > </a
+      ><a name="1395" class="Symbol"
+      >(</a
+      ><a name="1396" href="TermInduction.html#1349" class="Bound"
+      >&#960;</a
+      ><a name="1397"
+      > </a
+      ><a name="1398" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="1399"
+      > </a
+      ><a name="1400" href="TermInduction.html#1341" class="Bound"
+      >N</a
+      ><a name="1401" class="Symbol"
+      >)</a
+      ><a name="1402"
+      > </a
+      ><a name="1403" class="Symbol"
+      >(</a
+      ><a name="1404" href="TermInduction.html#1343" class="Bound"
+      >fM</a
+      ><a name="1406"
+      > </a
+      ><a name="1407" href="TermInduction.html#1349" class="Bound"
+      >&#960;</a
+      ><a name="1408" class="Symbol"
+      >)</a
+      ><a name="1409"
+      > </a
+      ><a name="1410" class="Symbol"
+      >(</a
+      ><a name="1411" href="TermInduction.html#1346" class="Bound"
+      >fN</a
+      ><a name="1413"
+      > </a
+      ><a name="1414" href="TermInduction.html#1349" class="Bound"
+      >&#960;</a
+      ><a name="1415" class="Symbol"
+      >)</a
+      ><a name="1416"
+      >
+</a
+      ><a name="1417" class="Comment"
+      >--</a
+      ><a name="1419"
+      >
+</a
+      ><a name="1420" href="TermInduction.html#1420" class="Function"
+      >lemma&#411;IndSw</a
+      ><a name="1431"
+      > </a
+      ><a name="1432" class="Symbol"
+      >:</a
+      ><a name="1433"
+      >  </a
+      ><a name="1435" class="Symbol"
+      >{</a
+      ><a name="1436" href="TermInduction.html#1436" class="Bound"
+      >P</a
+      ><a name="1437"
+      > </a
+      ><a name="1438" class="Symbol"
+      >:</a
+      ><a name="1439"
+      > </a
+      ><a name="1440" href="Term.html#1000" class="Datatype"
+      >&#923;</a
+      ><a name="1441"
+      > </a
+      ><a name="1442" class="Symbol"
+      >&#8594;</a
+      ><a name="1443"
+      > </a
+      ><a name="1444" class="PrimitiveType"
+      >Set</a
+      ><a name="1447" class="Symbol"
+      >}</a
+      ><a name="1448"
+      >
+  </a
+      ><a name="1451" class="Symbol"
+      >&#8594;</a
+      ><a name="1452"
+      > </a
+      ><a name="1453" class="Symbol"
+      >(&#8704;</a
+      ><a name="1455"
+      > </a
+      ><a name="1456" href="TermInduction.html#1456" class="Bound"
+      >M</a
+      ><a name="1457"
+      > </a
+      ><a name="1458" href="TermInduction.html#1458" class="Bound"
+      >b</a
+      ><a name="1459"
+      > </a
+      ><a name="1460" class="Symbol"
+      >&#8594;</a
+      ><a name="1461"
+      > </a
+      ><a name="1462" class="Symbol"
+      >(&#8704;</a
+      ><a name="1464"
+      > </a
+      ><a name="1465" href="TermInduction.html#1465" class="Bound"
+      >&#960;</a
+      ><a name="1466"
+      > </a
+      ><a name="1467" class="Symbol"
+      >&#8594;</a
+      ><a name="1468"
+      > </a
+      ><a name="1469" href="TermInduction.html#1436" class="Bound"
+      >P</a
+      ><a name="1470"
+      > </a
+      ><a name="1471" class="Symbol"
+      >(</a
+      ><a name="1472" href="TermInduction.html#1465" class="Bound"
+      >&#960;</a
+      ><a name="1473"
+      > </a
+      ><a name="1474" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="1475"
+      > </a
+      ><a name="1476" href="TermInduction.html#1456" class="Bound"
+      >M</a
+      ><a name="1477" class="Symbol"
+      >))</a
+      ><a name="1479"
+      > </a
+      ><a name="1480" class="Symbol"
+      >&#8594;</a
+      ><a name="1481"
+      > </a
+      ><a name="1482" href="TermInduction.html#1436" class="Bound"
+      >P</a
+      ><a name="1483"
+      > </a
+      ><a name="1484" class="Symbol"
+      >(</a
+      ><a name="1485" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="1486"
+      > </a
+      ><a name="1487" href="TermInduction.html#1458" class="Bound"
+      >b</a
+      ><a name="1488"
+      > </a
+      ><a name="1489" href="TermInduction.html#1456" class="Bound"
+      >M</a
+      ><a name="1490" class="Symbol"
+      >))</a
+      ><a name="1492"
+      >  
+  </a
+      ><a name="1497" class="Symbol"
+      >&#8594;</a
+      ><a name="1498"
+      > </a
+      ><a name="1499" class="Symbol"
+      >(</a
+      ><a name="1500" href="TermInduction.html#1500" class="Bound"
+      >M</a
+      ><a name="1501"
+      > </a
+      ><a name="1502" class="Symbol"
+      >:</a
+      ><a name="1503"
+      > </a
+      ><a name="1504" href="Term.html#1000" class="Datatype"
+      >&#923;</a
+      ><a name="1505" class="Symbol"
+      >)</a
+      ><a name="1506"
+      > </a
+      ><a name="1507" class="Symbol"
+      >(</a
+      ><a name="1508" href="TermInduction.html#1508" class="Bound"
+      >a</a
+      ><a name="1509"
+      > </a
+      ><a name="1510" class="Symbol"
+      >:</a
+      ><a name="1511"
+      > </a
+      ><a name="1512" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="1513" class="Symbol"
+      >)</a
+      ><a name="1514"
+      > 
+  </a
+      ><a name="1518" class="Symbol"
+      >&#8594;</a
+      ><a name="1519"
+      > </a
+      ><a name="1520" class="Symbol"
+      >((</a
+      ><a name="1522" href="TermInduction.html#1522" class="Bound"
+      >&#960;</a
+      ><a name="1523"
+      > </a
+      ><a name="1524" class="Symbol"
+      >:</a
+      ><a name="1525"
+      > </a
+      ><a name="1526" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="1530"
+      > </a
+      ><a name="1531" class="Symbol"
+      >(</a
+      ><a name="1532" href="Atom.html#340" class="Function"
+      >Atom</a
+      ><a name="1536"
+      > </a
+      ><a name="1537" href="Data.Product.html#1055" class="Function Operator"
+      >&#215;</a
+      ><a name="1538"
+      > </a
+      ><a name="1539" href="Atom.html#340" class="Function"
+      >Atom</a
+      ><a name="1543" class="Symbol"
+      >))</a
+      ><a name="1545"
+      > </a
+      ><a name="1546" class="Symbol"
+      >&#8594;</a
+      ><a name="1547"
+      > </a
+      ><a name="1548" href="TermInduction.html#1436" class="Bound"
+      >P</a
+      ><a name="1549"
+      > </a
+      ><a name="1550" class="Symbol"
+      >(</a
+      ><a name="1551" href="TermInduction.html#1522" class="Bound"
+      >&#960;</a
+      ><a name="1552"
+      > </a
+      ><a name="1553" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="1554"
+      > </a
+      ><a name="1555" href="TermInduction.html#1500" class="Bound"
+      >M</a
+      ><a name="1556" class="Symbol"
+      >))</a
+      ><a name="1558"
+      > 
+  </a
+      ><a name="1562" class="Symbol"
+      >&#8594;</a
+      ><a name="1563"
+      > </a
+      ><a name="1564" class="Symbol"
+      >(</a
+      ><a name="1565" href="TermInduction.html#1565" class="Bound"
+      >&#960;</a
+      ><a name="1566"
+      > </a
+      ><a name="1567" class="Symbol"
+      >:</a
+      ><a name="1568"
+      > </a
+      ><a name="1569" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="1573"
+      > </a
+      ><a name="1574" class="Symbol"
+      >(</a
+      ><a name="1575" href="Atom.html#340" class="Function"
+      >Atom</a
+      ><a name="1579"
+      > </a
+      ><a name="1580" href="Data.Product.html#1055" class="Function Operator"
+      >&#215;</a
+      ><a name="1581"
+      > </a
+      ><a name="1582" href="Atom.html#340" class="Function"
+      >Atom</a
+      ><a name="1586" class="Symbol"
+      >))</a
+      ><a name="1588"
+      > </a
+      ><a name="1589" class="Symbol"
+      >&#8594;</a
+      ><a name="1590"
+      > </a
+      ><a name="1591" href="TermInduction.html#1436" class="Bound"
+      >P</a
+      ><a name="1592"
+      > </a
+      ><a name="1593" class="Symbol"
+      >(</a
+      ><a name="1594" href="TermInduction.html#1565" class="Bound"
+      >&#960;</a
+      ><a name="1595"
+      > </a
+      ><a name="1596" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="1597"
+      > </a
+      ><a name="1598" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="1599"
+      > </a
+      ><a name="1600" href="TermInduction.html#1508" class="Bound"
+      >a</a
+      ><a name="1601"
+      > </a
+      ><a name="1602" href="TermInduction.html#1500" class="Bound"
+      >M</a
+      ><a name="1603" class="Symbol"
+      >)</a
+      ><a name="1604"
+      >
+</a
+      ><a name="1605" href="TermInduction.html#1420" class="Function"
+      >lemma&#411;IndSw</a
+      ><a name="1616"
+      > </a
+      ><a name="1617" class="Symbol"
+      >{</a
+      ><a name="1618" href="TermInduction.html#1618" class="Bound"
+      >P</a
+      ><a name="1619" class="Symbol"
+      >}</a
+      ><a name="1620"
+      > </a
+      ><a name="1621" href="TermInduction.html#1621" class="Bound"
+      >h&#411;</a
+      ><a name="1623"
+      > </a
+      ><a name="1624" href="TermInduction.html#1624" class="Bound"
+      >M</a
+      ><a name="1625"
+      > </a
+      ><a name="1626" href="TermInduction.html#1626" class="Bound"
+      >a</a
+      ><a name="1627"
+      > </a
+      ><a name="1628" href="TermInduction.html#1628" class="Bound"
+      >fM</a
+      ><a name="1630"
+      > </a
+      ><a name="1631" href="TermInduction.html#1631" class="Bound"
+      >&#960;</a
+      ><a name="1632"
+      > </a
+      ><a name="1633" class="Keyword"
+      >rewrite</a
+      ><a name="1640"
+      > </a
+      ><a name="1641" href="Permutation.html#3629" class="Function"
+      >lemma&#960;&#411;</a
+      ><a name="1648"
+      > </a
+      ><a name="1649" class="Symbol"
+      >{</a
+      ><a name="1650" href="TermInduction.html#1626" class="Bound"
+      >a</a
+      ><a name="1651" class="Symbol"
+      >}</a
+      ><a name="1652"
+      > </a
+      ><a name="1653" class="Symbol"
+      >{</a
+      ><a name="1654" href="TermInduction.html#1624" class="Bound"
+      >M</a
+      ><a name="1655" class="Symbol"
+      >}</a
+      ><a name="1656"
+      > </a
+      ><a name="1657" class="Symbol"
+      >{</a
+      ><a name="1658" href="TermInduction.html#1631" class="Bound"
+      >&#960;</a
+      ><a name="1659" class="Symbol"
+      >}</a
+      ><a name="1660"
+      > 
+  </a
+      ><a name="1664" class="Symbol"
+      >=</a
+      ><a name="1665"
+      > </a
+      ><a name="1666" href="TermInduction.html#1621" class="Bound"
+      >h&#411;</a
+      ><a name="1668"
+      > </a
+      ><a name="1669" class="Symbol"
+      >(</a
+      ><a name="1670" href="TermInduction.html#1631" class="Bound"
+      >&#960;</a
+      ><a name="1671"
+      > </a
+      ><a name="1672" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="1673"
+      > </a
+      ><a name="1674" href="TermInduction.html#1624" class="Bound"
+      >M</a
+      ><a name="1675" class="Symbol"
+      >)</a
+      ><a name="1676"
+      > </a
+      ><a name="1677" class="Symbol"
+      >(</a
+      ><a name="1678" href="TermInduction.html#1631" class="Bound"
+      >&#960;</a
+      ><a name="1679"
+      > </a
+      ><a name="1680" href="Permutation.html#763" class="Function Operator"
+      >&#8729;&#8336;</a
+      ><a name="1682"
+      > </a
+      ><a name="1683" href="TermInduction.html#1626" class="Bound"
+      >a</a
+      ><a name="1684" class="Symbol"
+      >)</a
+      ><a name="1685"
+      > </a
+      ><a name="1686" class="Symbol"
+      >(&#955;</a
+      ><a name="1688"
+      > </a
+      ><a name="1689" href="TermInduction.html#1689" class="Bound"
+      >&#960;&#8242;</a
+      ><a name="1691"
+      > </a
+      ><a name="1692" class="Symbol"
+      >&#8594;</a
+      ><a name="1693"
+      > </a
+      ><a name="1694" href="Permutation.html#1301" class="Function"
+      >corollaryP&#960;++&#960;&#8242;&#8729;M&#8594;P&#960;&#8729;&#960;&#8242;&#8729;M</a
+      ><a name="1719"
+      > </a
+      ><a name="1720" class="Symbol"
+      >{</a
+      ><a name="1721" href="TermInduction.html#1631" class="Bound"
+      >&#960;</a
+      ><a name="1722" class="Symbol"
+      >}</a
+      ><a name="1723"
+      > </a
+      ><a name="1724" class="Symbol"
+      >{</a
+      ><a name="1725" href="TermInduction.html#1624" class="Bound"
+      >M</a
+      ><a name="1726" class="Symbol"
+      >}</a
+      ><a name="1727"
+      > </a
+      ><a name="1728" class="Symbol"
+      >{</a
+      ><a name="1729" href="TermInduction.html#1618" class="Bound"
+      >P</a
+      ><a name="1730" class="Symbol"
+      >}</a
+      ><a name="1731"
+      > </a
+      ><a name="1732" href="TermInduction.html#1689" class="Bound"
+      >&#960;&#8242;</a
+      ><a name="1734"
+      > </a
+      ><a name="1735" class="Symbol"
+      >(</a
+      ><a name="1736" href="TermInduction.html#1628" class="Bound"
+      >fM</a
+      ><a name="1738"
+      > </a
+      ><a name="1739" class="Symbol"
+      >(</a
+      ><a name="1740" href="TermInduction.html#1689" class="Bound"
+      >&#960;&#8242;</a
+      ><a name="1742"
+      > </a
+      ><a name="1743" href="Data.List.html#1073" class="Function Operator"
+      >++</a
+      ><a name="1745"
+      > </a
+      ><a name="1746" href="TermInduction.html#1631" class="Bound"
+      >&#960;</a
+      ><a name="1747" class="Symbol"
+      >)))</a
+      ><a name="1750"
+      >
+\end{code}
+
+</a
+      ><a name="1763" class="Comment"
+      >Permutation induction principle proved using previous primitive recursion principle.</a
+      ><a name="1847"
+      >
+
+</a
+      ><a name="1849" class="Comment"
+      >%&lt;*termIndPermutation&gt;</a
+      ><a name="1871"
+      >
+\begin{code}
+</a
+      ><a name="1885" href="TermInduction.html#1885" class="Function"
+      >TermIndPerm</a
+      ><a name="1896"
+      > </a
+      ><a name="1897" class="Symbol"
+      >:</a
+      ><a name="1898"
+      > </a
+      ><a name="1899" class="Symbol"
+      >(</a
+      ><a name="1900" href="TermInduction.html#1900" class="Bound"
+      >P</a
+      ><a name="1901"
+      > </a
+      ><a name="1902" class="Symbol"
+      >:</a
+      ><a name="1903"
+      > </a
+      ><a name="1904" href="Term.html#1000" class="Datatype"
+      >&#923;</a
+      ><a name="1905"
+      > </a
+      ><a name="1906" class="Symbol"
+      >&#8594;</a
+      ><a name="1907"
+      > </a
+      ><a name="1908" class="PrimitiveType"
+      >Set</a
+      ><a name="1911" class="Symbol"
+      >)</a
+      ><a name="1912"
+      > 
+  </a
+      ><a name="1916" class="Symbol"
+      >&#8594;</a
+      ><a name="1917"
+      > </a
+      ><a name="1918" class="Symbol"
+      >(&#8704;</a
+      ><a name="1920"
+      > </a
+      ><a name="1921" href="TermInduction.html#1921" class="Bound"
+      >a</a
+      ><a name="1922"
+      > </a
+      ><a name="1923" class="Symbol"
+      >&#8594;</a
+      ><a name="1924"
+      > </a
+      ><a name="1925" href="TermInduction.html#1900" class="Bound"
+      >P</a
+      ><a name="1926"
+      > </a
+      ><a name="1927" class="Symbol"
+      >(</a
+      ><a name="1928" href="Term.html#1016" class="InductiveConstructor"
+      >v</a
+      ><a name="1929"
+      > </a
+      ><a name="1930" href="TermInduction.html#1921" class="Bound"
+      >a</a
+      ><a name="1931" class="Symbol"
+      >))</a
+      ><a name="1933"
+      >
+  </a
+      ><a name="1936" class="Symbol"
+      >&#8594;</a
+      ><a name="1937"
+      > </a
+      ><a name="1938" class="Symbol"
+      >(&#8704;</a
+      ><a name="1940"
+      > </a
+      ><a name="1941" href="TermInduction.html#1941" class="Bound"
+      >M</a
+      ><a name="1942"
+      > </a
+      ><a name="1943" href="TermInduction.html#1943" class="Bound"
+      >N</a
+      ><a name="1944"
+      > </a
+      ><a name="1945" class="Symbol"
+      >&#8594;</a
+      ><a name="1946"
+      > </a
+      ><a name="1947" href="TermInduction.html#1900" class="Bound"
+      >P</a
+      ><a name="1948"
+      > </a
+      ><a name="1949" href="TermInduction.html#1941" class="Bound"
+      >M</a
+      ><a name="1950"
+      > </a
+      ><a name="1951" class="Symbol"
+      >&#8594;</a
+      ><a name="1952"
+      > </a
+      ><a name="1953" href="TermInduction.html#1900" class="Bound"
+      >P</a
+      ><a name="1954"
+      > </a
+      ><a name="1955" href="TermInduction.html#1943" class="Bound"
+      >N</a
+      ><a name="1956"
+      > </a
+      ><a name="1957" class="Symbol"
+      >&#8594;</a
+      ><a name="1958"
+      >  </a
+      ><a name="1960" href="TermInduction.html#1900" class="Bound"
+      >P</a
+      ><a name="1961"
+      > </a
+      ><a name="1962" class="Symbol"
+      >(</a
+      ><a name="1963" href="TermInduction.html#1941" class="Bound"
+      >M</a
+      ><a name="1964"
+      > </a
+      ><a name="1965" href="Term.html#1035" class="InductiveConstructor Operator"
+      >&#183;</a
+      ><a name="1966"
+      > </a
+      ><a name="1967" href="TermInduction.html#1943" class="Bound"
+      >N</a
+      ><a name="1968" class="Symbol"
+      >))</a
+      ><a name="1970"
+      >
+  </a
+      ><a name="1973" class="Symbol"
+      >&#8594;</a
+      ><a name="1974"
+      > </a
+      ><a name="1975" class="Symbol"
+      >(&#8704;</a
+      ><a name="1977"
+      > </a
+      ><a name="1978" href="TermInduction.html#1978" class="Bound"
+      >M</a
+      ><a name="1979"
+      > </a
+      ><a name="1980" href="TermInduction.html#1980" class="Bound"
+      >b</a
+      ><a name="1981"
+      > </a
+      ><a name="1982" class="Symbol"
+      >&#8594;</a
+      ><a name="1983"
+      > </a
+      ><a name="1984" class="Symbol"
+      >(&#8704;</a
+      ><a name="1986"
+      > </a
+      ><a name="1987" href="TermInduction.html#1987" class="Bound"
+      >&#960;</a
+      ><a name="1988"
+      > </a
+      ><a name="1989" class="Symbol"
+      >&#8594;</a
+      ><a name="1990"
+      > </a
+      ><a name="1991" href="TermInduction.html#1900" class="Bound"
+      >P</a
+      ><a name="1992"
+      > </a
+      ><a name="1993" class="Symbol"
+      >(</a
+      ><a name="1994" href="TermInduction.html#1987" class="Bound"
+      >&#960;</a
+      ><a name="1995"
+      > </a
+      ><a name="1996" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="1997"
+      > </a
+      ><a name="1998" href="TermInduction.html#1978" class="Bound"
+      >M</a
+      ><a name="1999" class="Symbol"
+      >))</a
+      ><a name="2001"
+      > </a
+      ><a name="2002" class="Symbol"
+      >&#8594;</a
+      ><a name="2003"
+      > </a
+      ><a name="2004" href="TermInduction.html#1900" class="Bound"
+      >P</a
+      ><a name="2005"
+      > </a
+      ><a name="2006" class="Symbol"
+      >(</a
+      ><a name="2007" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="2008"
+      > </a
+      ><a name="2009" href="TermInduction.html#1980" class="Bound"
+      >b</a
+      ><a name="2010"
+      > </a
+      ><a name="2011" href="TermInduction.html#1978" class="Bound"
+      >M</a
+      ><a name="2012" class="Symbol"
+      >))</a
+      ><a name="2014"
+      >
+  </a
+      ><a name="2017" class="Symbol"
+      >&#8594;</a
+      ><a name="2018"
+      > </a
+      ><a name="2019" class="Symbol"
+      >&#8704;</a
+      ><a name="2020"
+      > </a
+      ><a name="2021" href="TermInduction.html#2021" class="Bound"
+      >M</a
+      ><a name="2022"
+      > </a
+      ><a name="2023" class="Symbol"
+      >&#8594;</a
+      ><a name="2024"
+      > </a
+      ><a name="2025" href="TermInduction.html#1900" class="Bound"
+      >P</a
+      ><a name="2026"
+      > </a
+      ><a name="2027" href="TermInduction.html#2021" class="Bound"
+      >M</a
+      ><a name="2028"
+      >
+\end{code}
+</a
+      ><a name="2040" class="Comment"
+      >%&lt;/termIndPermutation&gt;</a
+      ><a name="2062"
+      >
+
+\begin{code} 
+</a
+      ><a name="2078" href="TermInduction.html#1885" class="Function"
+      >TermIndPerm</a
+      ><a name="2089"
+      > </a
+      ><a name="2090" href="TermInduction.html#2090" class="Bound"
+      >P</a
+      ><a name="2091"
+      > </a
+      ><a name="2092" href="TermInduction.html#2092" class="Bound"
+      >hv</a
+      ><a name="2094"
+      > </a
+      ><a name="2095" href="TermInduction.html#2095" class="Bound"
+      >h&#183;</a
+      ><a name="2097"
+      > </a
+      ><a name="2098" href="TermInduction.html#2098" class="Bound"
+      >h&#411;</a
+      ><a name="2100"
+      > </a
+      ><a name="2101" href="TermInduction.html#2101" class="Bound"
+      >M</a
+      ><a name="2102"
+      > 
+ </a
+      ><a name="2105" class="Symbol"
+      >=</a
+      ><a name="2106"
+      > </a
+      ><a name="2107" href="TermInduction.html#619" class="Function"
+      >TermPrimInd</a
+      ><a name="2118"
+      >  </a
+      ><a name="2120" class="Symbol"
+      >(&#955;</a
+      ><a name="2122"
+      > </a
+      ><a name="2123" href="TermInduction.html#2123" class="Bound"
+      >M</a
+      ><a name="2124"
+      > </a
+      ><a name="2125" class="Symbol"
+      >&#8594;</a
+      ><a name="2126"
+      > </a
+      ><a name="2127" class="Symbol"
+      >&#8704;</a
+      ><a name="2128"
+      > </a
+      ><a name="2129" href="TermInduction.html#2129" class="Bound"
+      >&#960;</a
+      ><a name="2130"
+      > </a
+      ><a name="2131" class="Symbol"
+      >&#8594;</a
+      ><a name="2132"
+      > </a
+      ><a name="2133" class="Symbol"
+      >(</a
+      ><a name="2134" href="TermInduction.html#2090" class="Bound"
+      >P</a
+      ><a name="2135"
+      > </a
+      ><a name="2136" class="Symbol"
+      >(</a
+      ><a name="2137" href="TermInduction.html#2129" class="Bound"
+      >&#960;</a
+      ><a name="2138"
+      > </a
+      ><a name="2139" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="2140"
+      > </a
+      ><a name="2141" href="TermInduction.html#2123" class="Bound"
+      >M</a
+      ><a name="2142" class="Symbol"
+      >)))</a
+      ><a name="2145"
+      > 
+                </a
+      ><a name="2163" class="Symbol"
+      >(</a
+      ><a name="2164" href="TermInduction.html#1031" class="Function"
+      >lemmavIndSw</a
+      ><a name="2175"
+      > </a
+      ><a name="2176" class="Symbol"
+      >{</a
+      ><a name="2177" href="TermInduction.html#2090" class="Bound"
+      >P</a
+      ><a name="2178" class="Symbol"
+      >}</a
+      ><a name="2179"
+      > </a
+      ><a name="2180" href="TermInduction.html#2092" class="Bound"
+      >hv</a
+      ><a name="2182" class="Symbol"
+      >)</a
+      ><a name="2183"
+      > </a
+      ><a name="2184" class="Symbol"
+      >(</a
+      ><a name="2185" href="TermInduction.html#1160" class="Function"
+      >lemma&#183;IndSw</a
+      ><a name="2196"
+      > </a
+      ><a name="2197" href="TermInduction.html#2095" class="Bound"
+      >h&#183;</a
+      ><a name="2199" class="Symbol"
+      >)</a
+      ><a name="2200"
+      > </a
+      ><a name="2201" class="Symbol"
+      >(</a
+      ><a name="2202" href="TermInduction.html#1420" class="Function"
+      >lemma&#411;IndSw</a
+      ><a name="2213"
+      > </a
+      ><a name="2214" class="Symbol"
+      >{</a
+      ><a name="2215" href="TermInduction.html#2090" class="Bound"
+      >P</a
+      ><a name="2216" class="Symbol"
+      >}</a
+      ><a name="2217"
+      > </a
+      ><a name="2218" href="TermInduction.html#2098" class="Bound"
+      >h&#411;</a
+      ><a name="2220" class="Symbol"
+      >)</a
+      ><a name="2221"
+      > </a
+      ><a name="2222" href="TermInduction.html#2101" class="Bound"
+      >M</a
+      ><a name="2223"
+      > </a
+      ><a name="2224" href="Data.List.html#696" class="InductiveConstructor"
+      >[]</a
+      ><a name="2226"
+      >
+\end{code}
+
+</a
+      ><a name="2239" class="Comment"
+      >Prove &#945; Primitive Ind with Swap induction.</a
+      ><a name="2281"
+      >
+
+\begin{code}
+</a
+      ><a name="2296" href="TermInduction.html#2296" class="Function"
+      >lemma&#945;&#411;PrimInd</a
+      ><a name="2310"
+      > </a
+      ><a name="2311" class="Symbol"
+      >:</a
+      ><a name="2312"
+      >  </a
+      ><a name="2314" class="Symbol"
+      >(</a
+      ><a name="2315" href="TermInduction.html#2315" class="Bound"
+      >P</a
+      ><a name="2316"
+      > </a
+      ><a name="2317" class="Symbol"
+      >:</a
+      ><a name="2318"
+      > </a
+      ><a name="2319" href="Term.html#1000" class="Datatype"
+      >&#923;</a
+      ><a name="2320"
+      > </a
+      ><a name="2321" class="Symbol"
+      >&#8594;</a
+      ><a name="2322"
+      > </a
+      ><a name="2323" class="PrimitiveType"
+      >Set</a
+      ><a name="2326" class="Symbol"
+      >)</a
+      ><a name="2327"
+      > </a
+      ><a name="2328" class="Symbol"
+      >&#8594;</a
+      ><a name="2329"
+      > </a
+      ><a name="2330" href="Alpha.html#18345" class="Function"
+      >&#945;CompatiblePred</a
+      ><a name="2345"
+      > </a
+      ><a name="2346" href="TermInduction.html#2315" class="Bound"
+      >P</a
+      ><a name="2347"
+      >  
+  </a
+      ><a name="2352" class="Symbol"
+      >&#8594;</a
+      ><a name="2353"
+      >  </a
+      ><a name="2355" class="Symbol"
+      >(</a
+      ><a name="2356" href="TermInduction.html#2356" class="Bound"
+      >xs</a
+      ><a name="2358"
+      > </a
+      ><a name="2359" class="Symbol"
+      >:</a
+      ><a name="2360"
+      > </a
+      ><a name="2361" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="2365"
+      > </a
+      ><a name="2366" href="Atom.html#340" class="Function"
+      >Atom</a
+      ><a name="2370" class="Symbol"
+      >)</a
+      ><a name="2371"
+      > 
+  </a
+      ><a name="2375" class="Symbol"
+      >&#8594;</a
+      ><a name="2376"
+      >  </a
+      ><a name="2378" class="Symbol"
+      >(&#8704;</a
+      ><a name="2380"
+      > </a
+      ><a name="2381" href="TermInduction.html#2381" class="Bound"
+      >M</a
+      ><a name="2382"
+      > </a
+      ><a name="2383" href="TermInduction.html#2383" class="Bound"
+      >b</a
+      ><a name="2384"
+      > </a
+      ><a name="2385" class="Symbol"
+      >&#8594;</a
+      ><a name="2386"
+      > </a
+      ><a name="2387" href="TermInduction.html#2383" class="Bound"
+      >b</a
+      ><a name="2388"
+      > </a
+      ><a name="2389" href="Data.List.Any.html#2969" class="Function Operator"
+      >&#8713;'</a
+      ><a name="2391"
+      > </a
+      ><a name="2392" href="TermInduction.html#2356" class="Bound"
+      >xs</a
+      ><a name="2394"
+      > </a
+      ><a name="2395" class="Symbol"
+      >&#8594;</a
+      ><a name="2396"
+      > </a
+      ><a name="2397" href="TermInduction.html#2315" class="Bound"
+      >P</a
+      ><a name="2398"
+      > </a
+      ><a name="2399" href="TermInduction.html#2381" class="Bound"
+      >M</a
+      ><a name="2400"
+      > </a
+      ><a name="2401" class="Symbol"
+      >&#8594;</a
+      ><a name="2402"
+      > </a
+      ><a name="2403" href="TermInduction.html#2315" class="Bound"
+      >P</a
+      ><a name="2404"
+      > </a
+      ><a name="2405" class="Symbol"
+      >(</a
+      ><a name="2406" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="2407"
+      > </a
+      ><a name="2408" href="TermInduction.html#2383" class="Bound"
+      >b</a
+      ><a name="2409"
+      > </a
+      ><a name="2410" href="TermInduction.html#2381" class="Bound"
+      >M</a
+      ><a name="2411" class="Symbol"
+      >))</a
+      ><a name="2413"
+      > 
+  </a
+      ><a name="2417" class="Symbol"
+      >&#8594;</a
+      ><a name="2418"
+      >  </a
+      ><a name="2420" class="Symbol"
+      >(</a
+      ><a name="2421" href="TermInduction.html#2421" class="Bound"
+      >M</a
+      ><a name="2422"
+      > </a
+      ><a name="2423" class="Symbol"
+      >:</a
+      ><a name="2424"
+      > </a
+      ><a name="2425" href="Term.html#1000" class="Datatype"
+      >&#923;</a
+      ><a name="2426" class="Symbol"
+      >)</a
+      ><a name="2427"
+      > </a
+      ><a name="2428" class="Symbol"
+      >(</a
+      ><a name="2429" href="TermInduction.html#2429" class="Bound"
+      >a</a
+      ><a name="2430"
+      > </a
+      ><a name="2431" class="Symbol"
+      >:</a
+      ><a name="2432"
+      > </a
+      ><a name="2433" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="2434" class="Symbol"
+      >)</a
+      ><a name="2435"
+      > 
+  </a
+      ><a name="2439" class="Symbol"
+      >&#8594;</a
+      ><a name="2440"
+      >  </a
+      ><a name="2442" class="Symbol"
+      >(&#8704;</a
+      ><a name="2444"
+      > </a
+      ><a name="2445" href="TermInduction.html#2445" class="Bound"
+      >&#960;</a
+      ><a name="2446"
+      > </a
+      ><a name="2447" class="Symbol"
+      >&#8594;</a
+      ><a name="2448"
+      > </a
+      ><a name="2449" href="TermInduction.html#2315" class="Bound"
+      >P</a
+      ><a name="2450"
+      > </a
+      ><a name="2451" class="Symbol"
+      >(</a
+      ><a name="2452"
+      > </a
+      ><a name="2453" href="TermInduction.html#2445" class="Bound"
+      >&#960;</a
+      ><a name="2454"
+      > </a
+      ><a name="2455" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="2456"
+      > </a
+      ><a name="2457" href="TermInduction.html#2421" class="Bound"
+      >M</a
+      ><a name="2458" class="Symbol"
+      >))</a
+      ><a name="2460"
+      > 
+  </a
+      ><a name="2464" class="Symbol"
+      >&#8594;</a
+      ><a name="2465"
+      >  </a
+      ><a name="2467" href="TermInduction.html#2315" class="Bound"
+      >P</a
+      ><a name="2468"
+      > </a
+      ><a name="2469" class="Symbol"
+      >(</a
+      ><a name="2470" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="2471"
+      > </a
+      ><a name="2472" href="TermInduction.html#2429" class="Bound"
+      >a</a
+      ><a name="2473"
+      > </a
+      ><a name="2474" href="TermInduction.html#2421" class="Bound"
+      >M</a
+      ><a name="2475" class="Symbol"
+      >)</a
+      ><a name="2476"
+      >
+</a
+      ><a name="2477" href="TermInduction.html#2296" class="Function"
+      >lemma&#945;&#411;PrimInd</a
+      ><a name="2491"
+      > </a
+      ><a name="2492" href="TermInduction.html#2492" class="Bound"
+      >P</a
+      ><a name="2493"
+      > </a
+      ><a name="2494" href="TermInduction.html#2494" class="Bound"
+      >&#945;P</a
+      ><a name="2496"
+      > </a
+      ><a name="2497" href="TermInduction.html#2497" class="Bound"
+      >xs</a
+      ><a name="2499"
+      > </a
+      ><a name="2500" href="TermInduction.html#2500" class="Bound"
+      >h&#411;</a
+      ><a name="2502"
+      > </a
+      ><a name="2503" href="TermInduction.html#2503" class="Bound"
+      >M</a
+      ><a name="2504"
+      > </a
+      ><a name="2505" href="TermInduction.html#2505" class="Bound"
+      >a</a
+      ><a name="2506"
+      > </a
+      ><a name="2507" href="TermInduction.html#2507" class="Bound"
+      >PM</a
+      ><a name="2509"
+      > </a
+      ><a name="2510" class="Keyword"
+      >with</a
+      ><a name="2514"
+      > </a
+      ><a name="2515" href="Term.html#10942" class="Function"
+      >&#967;</a
+      ><a name="2516"
+      > </a
+      ><a name="2517" href="TermInduction.html#2497" class="Bound"
+      >xs</a
+      ><a name="2519"
+      > </a
+      ><a name="2520" class="Symbol"
+      >(</a
+      ><a name="2521" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="2522"
+      > </a
+      ><a name="2523" href="TermInduction.html#2505" class="Bound"
+      >a</a
+      ><a name="2524"
+      > </a
+      ><a name="2525" href="TermInduction.html#2503" class="Bound"
+      >M</a
+      ><a name="2526" class="Symbol"
+      >)</a
+      ><a name="2527"
+      > </a
+      ><a name="2528" class="Symbol"
+      >|</a
+      ><a name="2529"
+      > </a
+      ><a name="2530" href="Term.html#11053" class="Function"
+      >&#967;&#8713;</a
+      ><a name="2532"
+      > </a
+      ><a name="2533" href="TermInduction.html#2497" class="Bound"
+      >xs</a
+      ><a name="2535"
+      > </a
+      ><a name="2536" class="Symbol"
+      >(</a
+      ><a name="2537" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="2538"
+      > </a
+      ><a name="2539" href="TermInduction.html#2505" class="Bound"
+      >a</a
+      ><a name="2540"
+      > </a
+      ><a name="2541" href="TermInduction.html#2503" class="Bound"
+      >M</a
+      ><a name="2542" class="Symbol"
+      >)</a
+      ><a name="2543"
+      > </a
+      ><a name="2544" class="Symbol"
+      >|</a
+      ><a name="2545"
+      > </a
+      ><a name="2546" href="Term.html#11144" class="Function"
+      >&#967;#</a
+      ><a name="2548"
+      > </a
+      ><a name="2549" href="TermInduction.html#2497" class="Bound"
+      >xs</a
+      ><a name="2551"
+      > </a
+      ><a name="2552" class="Symbol"
+      >(</a
+      ><a name="2553" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="2554"
+      > </a
+      ><a name="2555" href="TermInduction.html#2505" class="Bound"
+      >a</a
+      ><a name="2556"
+      > </a
+      ><a name="2557" href="TermInduction.html#2503" class="Bound"
+      >M</a
+      ><a name="2558" class="Symbol"
+      >)</a
+      ><a name="2559"
+      >
+</a
+      ><a name="2560" class="Symbol"
+      >...</a
+      ><a name="2563"
+      > </a
+      ><a name="2564" class="Symbol"
+      >|</a
+      ><a name="2565"
+      > </a
+      ><a name="2566" href="TermInduction.html#2566" class="Bound"
+      >b</a
+      ><a name="2567"
+      > </a
+      ><a name="2568" class="Symbol"
+      >|</a
+      ><a name="2569"
+      > </a
+      ><a name="2570" href="TermInduction.html#2570" class="Bound"
+      >b&#8713;xs</a
+      ><a name="2574"
+      > </a
+      ><a name="2575" class="Symbol"
+      >|</a
+      ><a name="2576"
+      > </a
+      ><a name="2577" href="TermInduction.html#2577" class="Bound"
+      >b#&#411;aM</a
+      ><a name="2582"
+      > </a
+      ><a name="2583" class="Symbol"
+      >=</a
+      ><a name="2584"
+      > </a
+      ><a name="2585" href="TermInduction.html#2494" class="Bound"
+      >&#945;P</a
+      ><a name="2587"
+      > </a
+      ><a name="2588" class="Symbol"
+      >(</a
+      ><a name="2589" href="Alpha.html#2320" class="Function"
+      >&#963;</a
+      ><a name="2590"
+      > </a
+      ><a name="2591" class="Symbol"
+      >(</a
+      ><a name="2592" href="Alpha.html#16868" class="Function"
+      >lemma&#8764;&#945;&#955;'</a
+      ><a name="2601"
+      > </a
+      ><a name="2602" href="TermInduction.html#2577" class="Bound"
+      >b#&#411;aM</a
+      ><a name="2607" class="Symbol"
+      >))</a
+      ><a name="2609"
+      > </a
+      ><a name="2610" class="Symbol"
+      >(</a
+      ><a name="2611" href="TermInduction.html#2500" class="Bound"
+      >h&#411;</a
+      ><a name="2613"
+      > </a
+      ><a name="2614" class="Symbol"
+      >(</a
+      ><a name="2615" href="Term.html#6619" class="Function Operator"
+      >&#65288;</a
+      ><a name="2616"
+      > </a
+      ><a name="2617" href="TermInduction.html#2505" class="Bound"
+      >a</a
+      ><a name="2618"
+      > </a
+      ><a name="2619" href="Term.html#6619" class="Function Operator"
+      >&#8729;</a
+      ><a name="2620"
+      > </a
+      ><a name="2621" href="TermInduction.html#2566" class="Bound"
+      >b</a
+      ><a name="2622"
+      > </a
+      ><a name="2623" href="Term.html#6619" class="Function Operator"
+      >&#65289;</a
+      ><a name="2624"
+      > </a
+      ><a name="2625" href="TermInduction.html#2503" class="Bound"
+      >M</a
+      ><a name="2626" class="Symbol"
+      >)</a
+      ><a name="2627"
+      > </a
+      ><a name="2628" href="TermInduction.html#2566" class="Bound"
+      >b</a
+      ><a name="2629"
+      > </a
+      ><a name="2630" href="TermInduction.html#2570" class="Bound"
+      >b&#8713;xs</a
+      ><a name="2634"
+      > </a
+      ><a name="2635" class="Symbol"
+      >(</a
+      ><a name="2636" href="TermInduction.html#2507" class="Bound"
+      >PM</a
+      ><a name="2638"
+      > </a
+      ><a name="2639" href="Data.List.html#1020" class="Function Operator"
+      >[</a
+      ><a name="2640" class="Symbol"
+      >(</a
+      ><a name="2641" href="TermInduction.html#2505" class="Bound"
+      >a</a
+      ><a name="2642"
+      > </a
+      ><a name="2643" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="2644"
+      > </a
+      ><a name="2645" href="TermInduction.html#2566" class="Bound"
+      >b</a
+      ><a name="2646" class="Symbol"
+      >)</a
+      ><a name="2647" href="Data.List.html#1020" class="Function Operator"
+      >]</a
+      ><a name="2648" class="Symbol"
+      >))</a
+      ><a name="2650"
+      >
+</a
+      ><a name="2651" class="Comment"
+      >--</a
+      ><a name="2653"
+      >
+\end{code}
+
+</a
+      ><a name="2666" class="Comment"
+      >%&lt;*alphaPrimInduction&gt;</a
+      ><a name="2688"
+      >
+\begin{code}
+</a
+      ><a name="2702" href="TermInduction.html#2702" class="Function"
+      >Term&#945;PrimInd</a
+      ><a name="2714"
+      > </a
+      ><a name="2715" class="Symbol"
+      >:</a
+      ><a name="2716"
+      >  </a
+      ><a name="2718" class="Symbol"
+      >(</a
+      ><a name="2719" href="TermInduction.html#2719" class="Bound"
+      >P</a
+      ><a name="2720"
+      > </a
+      ><a name="2721" class="Symbol"
+      >:</a
+      ><a name="2722"
+      > </a
+      ><a name="2723" href="Term.html#1000" class="Datatype"
+      >&#923;</a
+      ><a name="2724"
+      > </a
+      ><a name="2725" class="Symbol"
+      >&#8594;</a
+      ><a name="2726"
+      > </a
+      ><a name="2727" class="PrimitiveType"
+      >Set</a
+      ><a name="2730" class="Symbol"
+      >)</a
+      ><a name="2731"
+      > 
+  </a
+      ><a name="2735" class="Symbol"
+      >&#8594;</a
+      ><a name="2736"
+      > </a
+      ><a name="2737" href="Alpha.html#18345" class="Function"
+      >&#945;CompatiblePred</a
+      ><a name="2752"
+      > </a
+      ><a name="2753" href="TermInduction.html#2719" class="Bound"
+      >P</a
+      ><a name="2754"
+      > 
+  </a
+      ><a name="2758" class="Symbol"
+      >&#8594;</a
+      ><a name="2759"
+      > </a
+      ><a name="2760" class="Symbol"
+      >(&#8704;</a
+      ><a name="2762"
+      > </a
+      ><a name="2763" href="TermInduction.html#2763" class="Bound"
+      >a</a
+      ><a name="2764"
+      > </a
+      ><a name="2765" class="Symbol"
+      >&#8594;</a
+      ><a name="2766"
+      > </a
+      ><a name="2767" href="TermInduction.html#2719" class="Bound"
+      >P</a
+      ><a name="2768"
+      > </a
+      ><a name="2769" class="Symbol"
+      >(</a
+      ><a name="2770" href="Term.html#1016" class="InductiveConstructor"
+      >v</a
+      ><a name="2771"
+      > </a
+      ><a name="2772" href="TermInduction.html#2763" class="Bound"
+      >a</a
+      ><a name="2773" class="Symbol"
+      >))</a
+      ><a name="2775"
+      >
+  </a
+      ><a name="2778" class="Symbol"
+      >&#8594;</a
+      ><a name="2779"
+      > </a
+      ><a name="2780" class="Symbol"
+      >(&#8704;</a
+      ><a name="2782"
+      > </a
+      ><a name="2783" href="TermInduction.html#2783" class="Bound"
+      >M</a
+      ><a name="2784"
+      > </a
+      ><a name="2785" href="TermInduction.html#2785" class="Bound"
+      >N</a
+      ><a name="2786"
+      > </a
+      ><a name="2787" class="Symbol"
+      >&#8594;</a
+      ><a name="2788"
+      > </a
+      ><a name="2789" href="TermInduction.html#2719" class="Bound"
+      >P</a
+      ><a name="2790"
+      > </a
+      ><a name="2791" href="TermInduction.html#2783" class="Bound"
+      >M</a
+      ><a name="2792"
+      > </a
+      ><a name="2793" class="Symbol"
+      >&#8594;</a
+      ><a name="2794"
+      > </a
+      ><a name="2795" href="TermInduction.html#2719" class="Bound"
+      >P</a
+      ><a name="2796"
+      > </a
+      ><a name="2797" href="TermInduction.html#2785" class="Bound"
+      >N</a
+      ><a name="2798"
+      > </a
+      ><a name="2799" class="Symbol"
+      >&#8594;</a
+      ><a name="2800"
+      > </a
+      ><a name="2801" href="TermInduction.html#2719" class="Bound"
+      >P</a
+      ><a name="2802"
+      > </a
+      ><a name="2803" class="Symbol"
+      >(</a
+      ><a name="2804" href="TermInduction.html#2783" class="Bound"
+      >M</a
+      ><a name="2805"
+      > </a
+      ><a name="2806" href="Term.html#1035" class="InductiveConstructor Operator"
+      >&#183;</a
+      ><a name="2807"
+      > </a
+      ><a name="2808" href="TermInduction.html#2785" class="Bound"
+      >N</a
+      ><a name="2809" class="Symbol"
+      >))</a
+      ><a name="2811"
+      >
+  </a
+      ><a name="2814" class="Symbol"
+      >&#8594;</a
+      ><a name="2815"
+      > </a
+      ><a name="2816" href="Data.Product.html#805" class="Function"
+      >&#8707;</a
+      ><a name="2817"
+      > </a
+      ><a name="2818" class="Symbol"
+      >(&#955;</a
+      ><a name="2820"
+      > </a
+      ><a name="2821" href="TermInduction.html#2821" class="Bound"
+      >xs</a
+      ><a name="2823"
+      > </a
+      ><a name="2824" class="Symbol"
+      >&#8594;</a
+      ><a name="2825"
+      > </a
+      ><a name="2826" class="Symbol"
+      >(&#8704;</a
+      ><a name="2828"
+      > </a
+      ><a name="2829" href="TermInduction.html#2829" class="Bound"
+      >M</a
+      ><a name="2830"
+      > </a
+      ><a name="2831" href="TermInduction.html#2831" class="Bound"
+      >b</a
+      ><a name="2832"
+      > </a
+      ><a name="2833" class="Symbol"
+      >&#8594;</a
+      ><a name="2834"
+      > </a
+      ><a name="2835" href="TermInduction.html#2831" class="Bound"
+      >b</a
+      ><a name="2836"
+      > </a
+      ><a name="2837" href="Data.List.Any.html#2969" class="Function Operator"
+      >&#8713;'</a
+      ><a name="2839"
+      > </a
+      ><a name="2840" href="TermInduction.html#2821" class="Bound"
+      >xs</a
+      ><a name="2842"
+      > </a
+      ><a name="2843" class="Symbol"
+      >&#8594;</a
+      ><a name="2844"
+      > </a
+      ><a name="2845" href="TermInduction.html#2719" class="Bound"
+      >P</a
+      ><a name="2846"
+      > </a
+      ><a name="2847" href="TermInduction.html#2829" class="Bound"
+      >M</a
+      ><a name="2848"
+      > </a
+      ><a name="2849" class="Symbol"
+      >&#8594;</a
+      ><a name="2850"
+      > </a
+      ><a name="2851" href="TermInduction.html#2719" class="Bound"
+      >P</a
+      ><a name="2852"
+      > </a
+      ><a name="2853" class="Symbol"
+      >(</a
+      ><a name="2854" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="2855"
+      > </a
+      ><a name="2856" href="TermInduction.html#2831" class="Bound"
+      >b</a
+      ><a name="2857"
+      > </a
+      ><a name="2858" href="TermInduction.html#2829" class="Bound"
+      >M</a
+      ><a name="2859" class="Symbol"
+      >)))</a
+      ><a name="2862"
+      >
+  </a
+      ><a name="2865" class="Symbol"
+      >&#8594;</a
+      ><a name="2866"
+      > </a
+      ><a name="2867" class="Symbol"
+      >&#8704;</a
+      ><a name="2868"
+      > </a
+      ><a name="2869" href="TermInduction.html#2869" class="Bound"
+      >M</a
+      ><a name="2870"
+      > </a
+      ><a name="2871" class="Symbol"
+      >&#8594;</a
+      ><a name="2872"
+      > </a
+      ><a name="2873" href="TermInduction.html#2719" class="Bound"
+      >P</a
+      ><a name="2874"
+      > </a
+      ><a name="2875" href="TermInduction.html#2869" class="Bound"
+      >M</a
+      ><a name="2876"
+      >
+\end{code}
+</a
+      ><a name="2888" class="Comment"
+      >%&lt;/alphaPrimInduction&gt;</a
+      ><a name="2910"
+      >
+
+\begin{code}
+</a
+      ><a name="2925" href="TermInduction.html#2702" class="Function"
+      >Term&#945;PrimInd</a
+      ><a name="2937"
+      > </a
+      ><a name="2938" href="TermInduction.html#2938" class="Bound"
+      >P</a
+      ><a name="2939"
+      > </a
+      ><a name="2940" href="TermInduction.html#2940" class="Bound"
+      >&#945;P</a
+      ><a name="2942"
+      > </a
+      ><a name="2943" href="TermInduction.html#2943" class="Bound"
+      >ha</a
+      ><a name="2945"
+      > </a
+      ><a name="2946" href="TermInduction.html#2946" class="Bound"
+      >h&#183;</a
+      ><a name="2948"
+      > </a
+      ><a name="2949" class="Symbol"
+      >(</a
+      ><a name="2950" href="TermInduction.html#2950" class="Bound"
+      >xs</a
+      ><a name="2952"
+      > </a
+      ><a name="2953" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="2954"
+      > </a
+      ><a name="2955" href="TermInduction.html#2955" class="Bound"
+      >h&#411;</a
+      ><a name="2957" class="Symbol"
+      >)</a
+      ><a name="2958"
+      > </a
+      ><a name="2959" class="Symbol"
+      >=</a
+      ><a name="2960"
+      > </a
+      ><a name="2961" href="TermInduction.html#1885" class="Function"
+      >TermIndPerm</a
+      ><a name="2972"
+      > </a
+      ><a name="2973" href="TermInduction.html#2938" class="Bound"
+      >P</a
+      ><a name="2974"
+      > </a
+      ><a name="2975" href="TermInduction.html#2943" class="Bound"
+      >ha</a
+      ><a name="2977"
+      > </a
+      ><a name="2978" href="TermInduction.html#2946" class="Bound"
+      >h&#183;</a
+      ><a name="2980"
+      > </a
+      ><a name="2981" class="Symbol"
+      >(</a
+      ><a name="2982" href="TermInduction.html#2296" class="Function"
+      >lemma&#945;&#411;PrimInd</a
+      ><a name="2996"
+      > </a
+      ><a name="2997" href="TermInduction.html#2938" class="Bound"
+      >P</a
+      ><a name="2998"
+      > </a
+      ><a name="2999" href="TermInduction.html#2940" class="Bound"
+      >&#945;P</a
+      ><a name="3001"
+      > </a
+      ><a name="3002" href="TermInduction.html#2950" class="Bound"
+      >xs</a
+      ><a name="3004"
+      > </a
+      ><a name="3005" href="TermInduction.html#2955" class="Bound"
+      >h&#411;</a
+      ><a name="3007" class="Symbol"
+      >)</a
+      ><a name="3008"
+      >
+\end{code}
+
+</a
+      ><a name="3021" class="Comment"
+      >Prove &#945; Swap Ind with Swap Induction </a
+      ><a name="3058"
+      >
+
+\begin{code}
+</a
+      ><a name="3073" href="TermInduction.html#3073" class="Function"
+      >lemma&#945;&#411;</a
+      ><a name="3080"
+      > </a
+      ><a name="3081" class="Symbol"
+      >:</a
+      ><a name="3082"
+      >  </a
+      ><a name="3084" class="Symbol"
+      >&#8704;</a
+      ><a name="3085"
+      > </a
+      ><a name="3086" href="TermInduction.html#3086" class="Bound"
+      >P</a
+      ><a name="3087"
+      > </a
+      ><a name="3088" class="Symbol"
+      >&#8594;</a
+      ><a name="3089"
+      > </a
+      ><a name="3090" href="Alpha.html#18345" class="Function"
+      >&#945;CompatiblePred</a
+      ><a name="3105"
+      > </a
+      ><a name="3106" href="TermInduction.html#3086" class="Bound"
+      >P</a
+      ><a name="3107"
+      > 
+  </a
+      ><a name="3111" class="Symbol"
+      >&#8594;</a
+      ><a name="3112"
+      >  </a
+      ><a name="3114" class="Symbol"
+      >(</a
+      ><a name="3115" href="TermInduction.html#3115" class="Bound"
+      >xs</a
+      ><a name="3117"
+      > </a
+      ><a name="3118" class="Symbol"
+      >:</a
+      ><a name="3119"
+      > </a
+      ><a name="3120" href="Data.List.html#659" class="Datatype"
+      >List</a
+      ><a name="3124"
+      > </a
+      ><a name="3125" href="Atom.html#340" class="Function"
+      >Atom</a
+      ><a name="3129" class="Symbol"
+      >)</a
+      ><a name="3130"
+      > 
+  </a
+      ><a name="3134" class="Symbol"
+      >&#8594;</a
+      ><a name="3135"
+      >  </a
+      ><a name="3137" class="Symbol"
+      >(&#8704;</a
+      ><a name="3139"
+      > </a
+      ><a name="3140" href="TermInduction.html#3140" class="Bound"
+      >M</a
+      ><a name="3141"
+      > </a
+      ><a name="3142" href="TermInduction.html#3142" class="Bound"
+      >b</a
+      ><a name="3143"
+      > </a
+      ><a name="3144" class="Symbol"
+      >&#8594;</a
+      ><a name="3145"
+      > </a
+      ><a name="3146" href="TermInduction.html#3142" class="Bound"
+      >b</a
+      ><a name="3147"
+      > </a
+      ><a name="3148" href="Data.List.Any.html#2969" class="Function Operator"
+      >&#8713;'</a
+      ><a name="3150"
+      > </a
+      ><a name="3151" href="TermInduction.html#3115" class="Bound"
+      >xs</a
+      ><a name="3153"
+      > </a
+      ><a name="3154" class="Symbol"
+      >&#8594;</a
+      ><a name="3155"
+      > </a
+      ><a name="3156" class="Symbol"
+      >(&#8704;</a
+      ><a name="3158"
+      > </a
+      ><a name="3159" href="TermInduction.html#3159" class="Bound"
+      >&#960;</a
+      ><a name="3160"
+      > </a
+      ><a name="3161" class="Symbol"
+      >&#8594;</a
+      ><a name="3162"
+      >  </a
+      ><a name="3164" href="TermInduction.html#3086" class="Bound"
+      >P</a
+      ><a name="3165"
+      > </a
+      ><a name="3166" class="Symbol"
+      >(</a
+      ><a name="3167" href="TermInduction.html#3159" class="Bound"
+      >&#960;</a
+      ><a name="3168"
+      > </a
+      ><a name="3169" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="3170"
+      > </a
+      ><a name="3171" href="TermInduction.html#3140" class="Bound"
+      >M</a
+      ><a name="3172" class="Symbol"
+      >))</a
+      ><a name="3174"
+      > </a
+      ><a name="3175" class="Symbol"
+      >&#8594;</a
+      ><a name="3176"
+      > </a
+      ><a name="3177" href="TermInduction.html#3086" class="Bound"
+      >P</a
+      ><a name="3178"
+      > </a
+      ><a name="3179" class="Symbol"
+      >(</a
+      ><a name="3180" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="3181"
+      > </a
+      ><a name="3182" href="TermInduction.html#3142" class="Bound"
+      >b</a
+      ><a name="3183"
+      > </a
+      ><a name="3184" href="TermInduction.html#3140" class="Bound"
+      >M</a
+      ><a name="3185" class="Symbol"
+      >))</a
+      ><a name="3187"
+      > 
+  </a
+      ><a name="3191" class="Symbol"
+      >&#8594;</a
+      ><a name="3192"
+      >  </a
+      ><a name="3194" class="Symbol"
+      >(</a
+      ><a name="3195" href="TermInduction.html#3195" class="Bound"
+      >M</a
+      ><a name="3196"
+      > </a
+      ><a name="3197" class="Symbol"
+      >:</a
+      ><a name="3198"
+      > </a
+      ><a name="3199" href="Term.html#1000" class="Datatype"
+      >&#923;</a
+      ><a name="3200" class="Symbol"
+      >)</a
+      ><a name="3201"
+      > </a
+      ><a name="3202" class="Symbol"
+      >(</a
+      ><a name="3203" href="TermInduction.html#3203" class="Bound"
+      >a</a
+      ><a name="3204"
+      > </a
+      ><a name="3205" class="Symbol"
+      >:</a
+      ><a name="3206"
+      > </a
+      ><a name="3207" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="3208" class="Symbol"
+      >)</a
+      ><a name="3209"
+      > 
+  </a
+      ><a name="3213" class="Symbol"
+      >&#8594;</a
+      ><a name="3214"
+      >  </a
+      ><a name="3216" class="Symbol"
+      >(&#8704;</a
+      ><a name="3218"
+      > </a
+      ><a name="3219" href="TermInduction.html#3219" class="Bound"
+      >&#960;</a
+      ><a name="3220"
+      > </a
+      ><a name="3221" class="Symbol"
+      >&#8594;</a
+      ><a name="3222"
+      > </a
+      ><a name="3223" href="TermInduction.html#3086" class="Bound"
+      >P</a
+      ><a name="3224"
+      > </a
+      ><a name="3225" class="Symbol"
+      >(</a
+      ><a name="3226" href="TermInduction.html#3219" class="Bound"
+      >&#960;</a
+      ><a name="3227"
+      > </a
+      ><a name="3228" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="3229"
+      > </a
+      ><a name="3230" href="TermInduction.html#3195" class="Bound"
+      >M</a
+      ><a name="3231" class="Symbol"
+      >))</a
+      ><a name="3233"
+      > 
+  </a
+      ><a name="3237" class="Symbol"
+      >&#8594;</a
+      ><a name="3238"
+      >  </a
+      ><a name="3240" href="TermInduction.html#3086" class="Bound"
+      >P</a
+      ><a name="3241"
+      > </a
+      ><a name="3242" class="Symbol"
+      >(</a
+      ><a name="3243" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="3244"
+      > </a
+      ><a name="3245" href="TermInduction.html#3203" class="Bound"
+      >a</a
+      ><a name="3246"
+      > </a
+      ><a name="3247" href="TermInduction.html#3195" class="Bound"
+      >M</a
+      ><a name="3248" class="Symbol"
+      >)</a
+      ><a name="3249"
+      >
+</a
+      ><a name="3250" href="TermInduction.html#3073" class="Function"
+      >lemma&#945;&#411;</a
+      ><a name="3257"
+      > </a
+      ><a name="3258" href="TermInduction.html#3258" class="Bound"
+      >P</a
+      ><a name="3259"
+      > </a
+      ><a name="3260" href="TermInduction.html#3260" class="Bound"
+      >&#945;P</a
+      ><a name="3262"
+      > </a
+      ><a name="3263" href="TermInduction.html#3263" class="Bound"
+      >xs</a
+      ><a name="3265"
+      > </a
+      ><a name="3266" href="TermInduction.html#3266" class="Bound"
+      >h&#411;</a
+      ><a name="3268"
+      > </a
+      ><a name="3269" href="TermInduction.html#3269" class="Bound"
+      >M</a
+      ><a name="3270"
+      > </a
+      ><a name="3271" href="TermInduction.html#3271" class="Bound"
+      >a</a
+      ><a name="3272"
+      > </a
+      ><a name="3273" href="TermInduction.html#3273" class="Bound"
+      >fM</a
+      ><a name="3275"
+      > </a
+      ><a name="3276" class="Keyword"
+      >with</a
+      ><a name="3280"
+      > </a
+      ><a name="3281" href="Term.html#10942" class="Function"
+      >&#967;</a
+      ><a name="3282"
+      > </a
+      ><a name="3283" href="TermInduction.html#3263" class="Bound"
+      >xs</a
+      ><a name="3285"
+      > </a
+      ><a name="3286" class="Symbol"
+      >(</a
+      ><a name="3287" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="3288"
+      > </a
+      ><a name="3289" href="TermInduction.html#3271" class="Bound"
+      >a</a
+      ><a name="3290"
+      > </a
+      ><a name="3291" href="TermInduction.html#3269" class="Bound"
+      >M</a
+      ><a name="3292" class="Symbol"
+      >)</a
+      ><a name="3293"
+      > </a
+      ><a name="3294" class="Symbol"
+      >|</a
+      ><a name="3295"
+      > </a
+      ><a name="3296" href="Term.html#11053" class="Function"
+      >&#967;&#8713;</a
+      ><a name="3298"
+      > </a
+      ><a name="3299" href="TermInduction.html#3263" class="Bound"
+      >xs</a
+      ><a name="3301"
+      > </a
+      ><a name="3302" class="Symbol"
+      >(</a
+      ><a name="3303" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="3304"
+      > </a
+      ><a name="3305" href="TermInduction.html#3271" class="Bound"
+      >a</a
+      ><a name="3306"
+      > </a
+      ><a name="3307" href="TermInduction.html#3269" class="Bound"
+      >M</a
+      ><a name="3308" class="Symbol"
+      >)</a
+      ><a name="3309"
+      > </a
+      ><a name="3310" class="Symbol"
+      >|</a
+      ><a name="3311"
+      > </a
+      ><a name="3312" href="Term.html#11144" class="Function"
+      >&#967;#</a
+      ><a name="3314"
+      > </a
+      ><a name="3315" href="TermInduction.html#3263" class="Bound"
+      >xs</a
+      ><a name="3317"
+      > </a
+      ><a name="3318" class="Symbol"
+      >(</a
+      ><a name="3319" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="3320"
+      > </a
+      ><a name="3321" href="TermInduction.html#3271" class="Bound"
+      >a</a
+      ><a name="3322"
+      > </a
+      ><a name="3323" href="TermInduction.html#3269" class="Bound"
+      >M</a
+      ><a name="3324" class="Symbol"
+      >)</a
+      ><a name="3325"
+      >
+</a
+      ><a name="3326" class="Symbol"
+      >...</a
+      ><a name="3329"
+      > </a
+      ><a name="3330" class="Symbol"
+      >|</a
+      ><a name="3331"
+      > </a
+      ><a name="3332" href="TermInduction.html#3332" class="Bound"
+      >b</a
+      ><a name="3333"
+      > </a
+      ><a name="3334" class="Symbol"
+      >|</a
+      ><a name="3335"
+      > </a
+      ><a name="3336" href="TermInduction.html#3336" class="Bound"
+      >b&#8713;xs</a
+      ><a name="3340"
+      > </a
+      ><a name="3341" class="Symbol"
+      >|</a
+      ><a name="3342"
+      > </a
+      ><a name="3343" href="TermInduction.html#3343" class="Bound"
+      >b#&#411;aM</a
+      ><a name="3348"
+      > 
+  </a
+      ><a name="3352" class="Symbol"
+      >=</a
+      ><a name="3353"
+      > </a
+      ><a name="3354" href="TermInduction.html#3260" class="Bound"
+      >&#945;P</a
+      ><a name="3356"
+      >  </a
+      ><a name="3358" class="Symbol"
+      >(</a
+      ><a name="3359" href="Alpha.html#2320" class="Function"
+      >&#963;</a
+      ><a name="3360"
+      > </a
+      ><a name="3361" class="Symbol"
+      >(</a
+      ><a name="3362" href="Alpha.html#16868" class="Function"
+      >lemma&#8764;&#945;&#955;'</a
+      ><a name="3371"
+      > </a
+      ><a name="3372" href="TermInduction.html#3343" class="Bound"
+      >b#&#411;aM</a
+      ><a name="3377" class="Symbol"
+      >))</a
+      ><a name="3379"
+      > 
+        </a
+      ><a name="3389" class="Symbol"
+      >(</a
+      ><a name="3390" href="TermInduction.html#3266" class="Bound"
+      >h&#411;</a
+      ><a name="3392"
+      >  </a
+      ><a name="3394" class="Symbol"
+      >(</a
+      ><a name="3395" href="Data.List.html#1020" class="Function Operator"
+      >[</a
+      ><a name="3396" class="Symbol"
+      >(</a
+      ><a name="3397"
+      > </a
+      ><a name="3398" href="TermInduction.html#3271" class="Bound"
+      >a</a
+      ><a name="3399"
+      > </a
+      ><a name="3400" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="3401"
+      > </a
+      ><a name="3402" href="TermInduction.html#3332" class="Bound"
+      >b</a
+      ><a name="3403"
+      > </a
+      ><a name="3404" class="Symbol"
+      >)</a
+      ><a name="3405" href="Data.List.html#1020" class="Function Operator"
+      >]</a
+      ><a name="3406"
+      > </a
+      ><a name="3407" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="3408"
+      > </a
+      ><a name="3409" href="TermInduction.html#3269" class="Bound"
+      >M</a
+      ><a name="3410" class="Symbol"
+      >)</a
+      ><a name="3411"
+      > </a
+      ><a name="3412" href="TermInduction.html#3332" class="Bound"
+      >b</a
+      ><a name="3413"
+      > </a
+      ><a name="3414" href="TermInduction.html#3336" class="Bound"
+      >b&#8713;xs</a
+      ><a name="3418"
+      > 
+             </a
+      ><a name="3433" class="Symbol"
+      >(&#955;</a
+      ><a name="3435"
+      > </a
+      ><a name="3436" href="TermInduction.html#3436" class="Bound"
+      >&#960;</a
+      ><a name="3437"
+      > </a
+      ><a name="3438" class="Symbol"
+      >&#8594;</a
+      ><a name="3439"
+      > </a
+      ><a name="3440" href="Permutation.html#1301" class="Function"
+      >corollaryP&#960;++&#960;&#8242;&#8729;M&#8594;P&#960;&#8729;&#960;&#8242;&#8729;M</a
+      ><a name="3465"
+      > </a
+      ><a name="3466" class="Symbol"
+      >{</a
+      ><a name="3467" href="Data.List.html#1020" class="Function Operator"
+      >[</a
+      ><a name="3468" class="Symbol"
+      >(</a
+      ><a name="3469" href="TermInduction.html#3271" class="Bound"
+      >a</a
+      ><a name="3470"
+      > </a
+      ><a name="3471" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="3472"
+      > </a
+      ><a name="3473" href="TermInduction.html#3332" class="Bound"
+      >b</a
+      ><a name="3474" class="Symbol"
+      >)</a
+      ><a name="3475" href="Data.List.html#1020" class="Function Operator"
+      >]</a
+      ><a name="3476" class="Symbol"
+      >}</a
+      ><a name="3477"
+      > </a
+      ><a name="3478" class="Symbol"
+      >{</a
+      ><a name="3479" href="TermInduction.html#3269" class="Bound"
+      >M</a
+      ><a name="3480" class="Symbol"
+      >}</a
+      ><a name="3481"
+      > </a
+      ><a name="3482" class="Symbol"
+      >{</a
+      ><a name="3483" href="TermInduction.html#3258" class="Bound"
+      >P</a
+      ><a name="3484" class="Symbol"
+      >}</a
+      ><a name="3485"
+      > </a
+      ><a name="3486" href="TermInduction.html#3436" class="Bound"
+      >&#960;</a
+      ><a name="3487"
+      > </a
+      ><a name="3488" class="Symbol"
+      >(</a
+      ><a name="3489" href="TermInduction.html#3273" class="Bound"
+      >fM</a
+      ><a name="3491"
+      > </a
+      ><a name="3492" class="Symbol"
+      >(</a
+      ><a name="3493" href="TermInduction.html#3436" class="Bound"
+      >&#960;</a
+      ><a name="3494"
+      > </a
+      ><a name="3495" href="Data.List.html#1073" class="Function Operator"
+      >++</a
+      ><a name="3497"
+      > </a
+      ><a name="3498" href="Data.List.html#1020" class="Function Operator"
+      >[</a
+      ><a name="3499" class="Symbol"
+      >(</a
+      ><a name="3500"
+      > </a
+      ><a name="3501" href="TermInduction.html#3271" class="Bound"
+      >a</a
+      ><a name="3502"
+      > </a
+      ><a name="3503" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="3504"
+      > </a
+      ><a name="3505" href="TermInduction.html#3332" class="Bound"
+      >b</a
+      ><a name="3506"
+      > </a
+      ><a name="3507" class="Symbol"
+      >)</a
+      ><a name="3508" href="Data.List.html#1020" class="Function Operator"
+      >]</a
+      ><a name="3509" class="Symbol"
+      >))))</a
+      ><a name="3513"
+      > 
+\end{code}
+
+</a
+      ><a name="3527" class="Comment"
+      >%&lt;*alphaIndPermutation&gt;</a
+      ><a name="3550"
+      >
+\begin{code}
+</a
+      ><a name="3564" href="TermInduction.html#3564" class="Function"
+      >Term&#945;IndPerm</a
+      ><a name="3576"
+      > </a
+      ><a name="3577" class="Symbol"
+      >:</a
+      ><a name="3578"
+      > </a
+      ><a name="3579" class="Symbol"
+      >&#8704;</a
+      ><a name="3580"
+      > </a
+      ><a name="3581" href="TermInduction.html#3581" class="Bound"
+      >P</a
+      ><a name="3582"
+      > </a
+      ><a name="3583" class="Symbol"
+      >&#8594;</a
+      ><a name="3584"
+      > </a
+      ><a name="3585" href="Alpha.html#18345" class="Function"
+      >&#945;CompatiblePred</a
+      ><a name="3600"
+      > </a
+      ><a name="3601" href="TermInduction.html#3581" class="Bound"
+      >P</a
+      ><a name="3602"
+      > 
+  </a
+      ><a name="3606" class="Symbol"
+      >&#8594;</a
+      ><a name="3607"
+      > </a
+      ><a name="3608" class="Symbol"
+      >(&#8704;</a
+      ><a name="3610"
+      > </a
+      ><a name="3611" href="TermInduction.html#3611" class="Bound"
+      >a</a
+      ><a name="3612"
+      > </a
+      ><a name="3613" class="Symbol"
+      >&#8594;</a
+      ><a name="3614"
+      > </a
+      ><a name="3615" href="TermInduction.html#3581" class="Bound"
+      >P</a
+      ><a name="3616"
+      > </a
+      ><a name="3617" class="Symbol"
+      >(</a
+      ><a name="3618" href="Term.html#1016" class="InductiveConstructor"
+      >v</a
+      ><a name="3619"
+      > </a
+      ><a name="3620" href="TermInduction.html#3611" class="Bound"
+      >a</a
+      ><a name="3621" class="Symbol"
+      >))</a
+      ><a name="3623"
+      >
+  </a
+      ><a name="3626" class="Symbol"
+      >&#8594;</a
+      ><a name="3627"
+      > </a
+      ><a name="3628" class="Symbol"
+      >(&#8704;</a
+      ><a name="3630"
+      > </a
+      ><a name="3631" href="TermInduction.html#3631" class="Bound"
+      >M</a
+      ><a name="3632"
+      > </a
+      ><a name="3633" href="TermInduction.html#3633" class="Bound"
+      >N</a
+      ><a name="3634"
+      > </a
+      ><a name="3635" class="Symbol"
+      >&#8594;</a
+      ><a name="3636"
+      > </a
+      ><a name="3637" href="TermInduction.html#3581" class="Bound"
+      >P</a
+      ><a name="3638"
+      > </a
+      ><a name="3639" href="TermInduction.html#3631" class="Bound"
+      >M</a
+      ><a name="3640"
+      > </a
+      ><a name="3641" class="Symbol"
+      >&#8594;</a
+      ><a name="3642"
+      > </a
+      ><a name="3643" href="TermInduction.html#3581" class="Bound"
+      >P</a
+      ><a name="3644"
+      > </a
+      ><a name="3645" href="TermInduction.html#3633" class="Bound"
+      >N</a
+      ><a name="3646"
+      > </a
+      ><a name="3647" class="Symbol"
+      >&#8594;</a
+      ><a name="3648"
+      >  </a
+      ><a name="3650" href="TermInduction.html#3581" class="Bound"
+      >P</a
+      ><a name="3651"
+      > </a
+      ><a name="3652" class="Symbol"
+      >(</a
+      ><a name="3653" href="TermInduction.html#3631" class="Bound"
+      >M</a
+      ><a name="3654"
+      > </a
+      ><a name="3655" href="Term.html#1035" class="InductiveConstructor Operator"
+      >&#183;</a
+      ><a name="3656"
+      > </a
+      ><a name="3657" href="TermInduction.html#3633" class="Bound"
+      >N</a
+      ><a name="3658" class="Symbol"
+      >))</a
+      ><a name="3660"
+      >
+  </a
+      ><a name="3663" class="Symbol"
+      >&#8594;</a
+      ><a name="3664"
+      > </a
+      ><a name="3665" href="Data.Product.html#805" class="Function"
+      >&#8707;</a
+      ><a name="3666"
+      > </a
+      ><a name="3667" class="Symbol"
+      >(&#955;</a
+      ><a name="3669"
+      > </a
+      ><a name="3670" href="TermInduction.html#3670" class="Bound"
+      >as</a
+      ><a name="3672"
+      > </a
+      ><a name="3673" class="Symbol"
+      >&#8594;</a
+      ><a name="3674"
+      > </a
+      ><a name="3675" class="Symbol"
+      >(&#8704;</a
+      ><a name="3677"
+      > </a
+      ><a name="3678" href="TermInduction.html#3678" class="Bound"
+      >M</a
+      ><a name="3679"
+      > </a
+      ><a name="3680" href="TermInduction.html#3680" class="Bound"
+      >b</a
+      ><a name="3681"
+      > </a
+      ><a name="3682" class="Symbol"
+      >&#8594;</a
+      ><a name="3683"
+      > </a
+      ><a name="3684" href="TermInduction.html#3680" class="Bound"
+      >b</a
+      ><a name="3685"
+      > </a
+      ><a name="3686" href="Data.List.Any.html#2969" class="Function Operator"
+      >&#8713;'</a
+      ><a name="3688"
+      > </a
+      ><a name="3689" href="TermInduction.html#3670" class="Bound"
+      >as</a
+      ><a name="3691"
+      > </a
+      ><a name="3692" class="Symbol"
+      >&#8594;</a
+      ><a name="3693"
+      > </a
+      ><a name="3694" class="Symbol"
+      >(&#8704;</a
+      ><a name="3696"
+      > </a
+      ><a name="3697" href="TermInduction.html#3697" class="Bound"
+      >&#960;</a
+      ><a name="3698"
+      > </a
+      ><a name="3699" class="Symbol"
+      >&#8594;</a
+      ><a name="3700"
+      >  </a
+      ><a name="3702" href="TermInduction.html#3581" class="Bound"
+      >P</a
+      ><a name="3703"
+      > </a
+      ><a name="3704" class="Symbol"
+      >(</a
+      ><a name="3705" href="TermInduction.html#3697" class="Bound"
+      >&#960;</a
+      ><a name="3706"
+      > </a
+      ><a name="3707" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="3708"
+      > </a
+      ><a name="3709" href="TermInduction.html#3678" class="Bound"
+      >M</a
+      ><a name="3710" class="Symbol"
+      >))</a
+      ><a name="3712"
+      > </a
+      ><a name="3713" class="Symbol"
+      >&#8594;</a
+      ><a name="3714"
+      > </a
+      ><a name="3715" href="TermInduction.html#3581" class="Bound"
+      >P</a
+      ><a name="3716"
+      > </a
+      ><a name="3717" class="Symbol"
+      >(</a
+      ><a name="3718" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="3719"
+      > </a
+      ><a name="3720" href="TermInduction.html#3680" class="Bound"
+      >b</a
+      ><a name="3721"
+      > </a
+      ><a name="3722" href="TermInduction.html#3678" class="Bound"
+      >M</a
+      ><a name="3723" class="Symbol"
+      >)))</a
+      ><a name="3726"
+      >
+  </a
+      ><a name="3729" class="Symbol"
+      >&#8594;</a
+      ><a name="3730"
+      > </a
+      ><a name="3731" class="Symbol"
+      >&#8704;</a
+      ><a name="3732"
+      > </a
+      ><a name="3733" href="TermInduction.html#3733" class="Bound"
+      >M</a
+      ><a name="3734"
+      > </a
+      ><a name="3735" class="Symbol"
+      >&#8594;</a
+      ><a name="3736"
+      > </a
+      ><a name="3737" href="TermInduction.html#3581" class="Bound"
+      >P</a
+      ><a name="3738"
+      > </a
+      ><a name="3739" href="TermInduction.html#3733" class="Bound"
+      >M</a
+      ><a name="3740"
+      >
+\end{code}
+</a
+      ><a name="3752" class="Comment"
+      >%&lt;/alphaIndPermutation&gt;</a
+      ><a name="3775"
+      >
+
+\begin{code}
+</a
+      ><a name="3790" href="TermInduction.html#3564" class="Function"
+      >Term&#945;IndPerm</a
+      ><a name="3802"
+      > </a
+      ><a name="3803" href="TermInduction.html#3803" class="Bound"
+      >P</a
+      ><a name="3804"
+      > </a
+      ><a name="3805" href="TermInduction.html#3805" class="Bound"
+      >&#945;P</a
+      ><a name="3807"
+      > </a
+      ><a name="3808" href="TermInduction.html#3808" class="Bound"
+      >ha</a
+      ><a name="3810"
+      > </a
+      ><a name="3811" href="TermInduction.html#3811" class="Bound"
+      >h&#183;</a
+      ><a name="3813"
+      > </a
+      ><a name="3814" class="Symbol"
+      >(</a
+      ><a name="3815" href="TermInduction.html#3815" class="Bound"
+      >xs</a
+      ><a name="3817"
+      > </a
+      ><a name="3818" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="3819"
+      > </a
+      ><a name="3820" href="TermInduction.html#3820" class="Bound"
+      >h&#411;</a
+      ><a name="3822" class="Symbol"
+      >)</a
+      ><a name="3823"
+      > </a
+      ><a name="3824" class="Symbol"
+      >=</a
+      ><a name="3825"
+      > </a
+      ><a name="3826" href="TermInduction.html#1885" class="Function"
+      >TermIndPerm</a
+      ><a name="3837"
+      > </a
+      ><a name="3838" href="TermInduction.html#3803" class="Bound"
+      >P</a
+      ><a name="3839"
+      > </a
+      ><a name="3840" href="TermInduction.html#3808" class="Bound"
+      >ha</a
+      ><a name="3842"
+      > </a
+      ><a name="3843" href="TermInduction.html#3811" class="Bound"
+      >h&#183;</a
+      ><a name="3845"
+      > </a
+      ><a name="3846" class="Symbol"
+      >(</a
+      ><a name="3847" href="TermInduction.html#3073" class="Function"
+      >lemma&#945;&#411;</a
+      ><a name="3854"
+      > </a
+      ><a name="3855" href="TermInduction.html#3803" class="Bound"
+      >P</a
+      ><a name="3856"
+      > </a
+      ><a name="3857" href="TermInduction.html#3805" class="Bound"
+      >&#945;P</a
+      ><a name="3859"
+      > </a
+      ><a name="3860" href="TermInduction.html#3815" class="Bound"
+      >xs</a
+      ><a name="3862"
+      >  </a
+      ><a name="3864" href="TermInduction.html#3820" class="Bound"
+      >h&#411;</a
+      ><a name="3866" class="Symbol"
+      >)</a
+      ><a name="3867"
+      >
+\end{code}
+
+</a
+      ><a name="3880" class="Comment"
+      >Prove &#945; &#8707; Ind with Swap Induction</a
+      ><a name="3913"
+      >
+
+\begin{code}
+</a
+      ><a name="3928" href="TermInduction.html#3928" class="Function"
+      >TISw2TISwEx</a
+      ><a name="3939"
+      > </a
+      ><a name="3940" class="Symbol"
+      >:</a
+      ><a name="3941"
+      >  </a
+      ><a name="3943" class="Symbol"
+      >&#8704;</a
+      ><a name="3944"
+      > </a
+      ><a name="3945" href="TermInduction.html#3945" class="Bound"
+      >P</a
+      ><a name="3946"
+      > </a
+      ><a name="3947" class="Symbol"
+      >&#8594;</a
+      ><a name="3948"
+      > </a
+      ><a name="3949" href="Alpha.html#18345" class="Function"
+      >&#945;CompatiblePred</a
+      ><a name="3964"
+      > </a
+      ><a name="3965" href="TermInduction.html#3945" class="Bound"
+      >P</a
+      ><a name="3966"
+      > 
+  </a
+      ><a name="3970" class="Symbol"
+      >&#8594;</a
+      ><a name="3971"
+      > </a
+      ><a name="3972" class="Symbol"
+      >(&#8704;</a
+      ><a name="3974"
+      > </a
+      ><a name="3975" href="TermInduction.html#3975" class="Bound"
+      >a</a
+      ><a name="3976"
+      > </a
+      ><a name="3977" class="Symbol"
+      >&#8594;</a
+      ><a name="3978"
+      > </a
+      ><a name="3979" href="TermInduction.html#3945" class="Bound"
+      >P</a
+      ><a name="3980"
+      > </a
+      ><a name="3981" class="Symbol"
+      >(</a
+      ><a name="3982" href="Term.html#1016" class="InductiveConstructor"
+      >v</a
+      ><a name="3983"
+      > </a
+      ><a name="3984" href="TermInduction.html#3975" class="Bound"
+      >a</a
+      ><a name="3985" class="Symbol"
+      >))</a
+      ><a name="3987"
+      >
+  </a
+      ><a name="3990" class="Symbol"
+      >&#8594;</a
+      ><a name="3991"
+      > </a
+      ><a name="3992" class="Symbol"
+      >(&#8704;</a
+      ><a name="3994"
+      > </a
+      ><a name="3995" href="TermInduction.html#3995" class="Bound"
+      >M</a
+      ><a name="3996"
+      > </a
+      ><a name="3997" href="TermInduction.html#3997" class="Bound"
+      >N</a
+      ><a name="3998"
+      > </a
+      ><a name="3999" class="Symbol"
+      >&#8594;</a
+      ><a name="4000"
+      > </a
+      ><a name="4001" href="TermInduction.html#3945" class="Bound"
+      >P</a
+      ><a name="4002"
+      > </a
+      ><a name="4003" href="TermInduction.html#3995" class="Bound"
+      >M</a
+      ><a name="4004"
+      > </a
+      ><a name="4005" class="Symbol"
+      >&#8594;</a
+      ><a name="4006"
+      > </a
+      ><a name="4007" href="TermInduction.html#3945" class="Bound"
+      >P</a
+      ><a name="4008"
+      > </a
+      ><a name="4009" href="TermInduction.html#3997" class="Bound"
+      >N</a
+      ><a name="4010"
+      > </a
+      ><a name="4011" class="Symbol"
+      >&#8594;</a
+      ><a name="4012"
+      >  </a
+      ><a name="4014" href="TermInduction.html#3945" class="Bound"
+      >P</a
+      ><a name="4015"
+      > </a
+      ><a name="4016" class="Symbol"
+      >(</a
+      ><a name="4017" href="TermInduction.html#3995" class="Bound"
+      >M</a
+      ><a name="4018"
+      > </a
+      ><a name="4019" href="Term.html#1035" class="InductiveConstructor Operator"
+      >&#183;</a
+      ><a name="4020"
+      > </a
+      ><a name="4021" href="TermInduction.html#3997" class="Bound"
+      >N</a
+      ><a name="4022" class="Symbol"
+      >))</a
+      ><a name="4024"
+      >
+  </a
+      ><a name="4027" class="Symbol"
+      >&#8594;</a
+      ><a name="4028"
+      > </a
+      ><a name="4029" class="Symbol"
+      >(&#8704;</a
+      ><a name="4031"
+      > </a
+      ><a name="4032" href="TermInduction.html#4032" class="Bound"
+      >M</a
+      ><a name="4033"
+      > </a
+      ><a name="4034" href="TermInduction.html#4034" class="Bound"
+      >a</a
+      ><a name="4035"
+      > </a
+      ><a name="4036" class="Symbol"
+      >&#8594;</a
+      ><a name="4037"
+      > </a
+      ><a name="4038" href="Data.Product.html#805" class="Function"
+      >&#8707;</a
+      ><a name="4039"
+      > </a
+      ><a name="4040" class="Symbol"
+      >(&#955;</a
+      ><a name="4042"
+      > </a
+      ><a name="4043" href="TermInduction.html#4043" class="Bound"
+      >b</a
+      ><a name="4044"
+      > </a
+      ><a name="4045" class="Symbol"
+      >&#8594;</a
+      ><a name="4046"
+      > </a
+      ><a name="4047" href="Data.Product.html#439" class="Record"
+      >&#931;</a
+      ><a name="4048"
+      >  </a
+      ><a name="4050" class="Symbol"
+      >(</a
+      ><a name="4051" href="TermInduction.html#4043" class="Bound"
+      >b</a
+      ><a name="4052"
+      > </a
+      ><a name="4053" href="Term.html#2484" class="Datatype Operator"
+      >#</a
+      ><a name="4054"
+      > </a
+      ><a name="4055" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="4056"
+      > </a
+      ><a name="4057" href="TermInduction.html#4034" class="Bound"
+      >a</a
+      ><a name="4058"
+      > </a
+      ><a name="4059" href="TermInduction.html#4032" class="Bound"
+      >M</a
+      ><a name="4060" class="Symbol"
+      >)</a
+      ><a name="4061"
+      >  </a
+      ><a name="4063" class="Symbol"
+      >(&#955;</a
+      ><a name="4065"
+      > </a
+      ><a name="4066" href="TermInduction.html#4066" class="Bound"
+      >_</a
+      ><a name="4067"
+      > </a
+      ><a name="4068" class="Symbol"
+      >&#8594;</a
+      ><a name="4069"
+      > </a
+      ><a name="4070" href="TermInduction.html#3945" class="Bound"
+      >P</a
+      ><a name="4071"
+      > </a
+      ><a name="4072" class="Symbol"
+      >(</a
+      ><a name="4073" href="Term.html#6619" class="Function Operator"
+      >&#65288;</a
+      ><a name="4074"
+      > </a
+      ><a name="4075" href="TermInduction.html#4034" class="Bound"
+      >a</a
+      ><a name="4076"
+      > </a
+      ><a name="4077" href="Term.html#6619" class="Function Operator"
+      >&#8729;</a
+      ><a name="4078"
+      > </a
+      ><a name="4079" href="TermInduction.html#4043" class="Bound"
+      >b</a
+      ><a name="4080"
+      > </a
+      ><a name="4081" href="Term.html#6619" class="Function Operator"
+      >&#65289;</a
+      ><a name="4082"
+      > </a
+      ><a name="4083" href="TermInduction.html#4032" class="Bound"
+      >M</a
+      ><a name="4084" class="Symbol"
+      >)</a
+      ><a name="4085"
+      > </a
+      ><a name="4086" class="Symbol"
+      >&#8594;</a
+      ><a name="4087"
+      > </a
+      ><a name="4088" href="TermInduction.html#3945" class="Bound"
+      >P</a
+      ><a name="4089"
+      > </a
+      ><a name="4090" class="Symbol"
+      >(</a
+      ><a name="4091" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="4092"
+      > </a
+      ><a name="4093" href="TermInduction.html#4043" class="Bound"
+      >b</a
+      ><a name="4094"
+      >  </a
+      ><a name="4096" class="Symbol"
+      >(</a
+      ><a name="4097" href="Term.html#6619" class="Function Operator"
+      >&#65288;</a
+      ><a name="4098"
+      > </a
+      ><a name="4099" href="TermInduction.html#4034" class="Bound"
+      >a</a
+      ><a name="4100"
+      > </a
+      ><a name="4101" href="Term.html#6619" class="Function Operator"
+      >&#8729;</a
+      ><a name="4102"
+      > </a
+      ><a name="4103" href="TermInduction.html#4043" class="Bound"
+      >b</a
+      ><a name="4104"
+      > </a
+      ><a name="4105" href="Term.html#6619" class="Function Operator"
+      >&#65289;</a
+      ><a name="4106"
+      > </a
+      ><a name="4107" href="TermInduction.html#4032" class="Bound"
+      >M</a
+      ><a name="4108" class="Symbol"
+      >)))))</a
+      ><a name="4113"
+      >
+  </a
+      ><a name="4116" class="Symbol"
+      >&#8594;</a
+      ><a name="4117"
+      > </a
+      ><a name="4118" class="Symbol"
+      >&#8704;</a
+      ><a name="4119"
+      > </a
+      ><a name="4120" href="TermInduction.html#4120" class="Bound"
+      >M</a
+      ><a name="4121"
+      > </a
+      ><a name="4122" class="Symbol"
+      >&#8594;</a
+      ><a name="4123"
+      > </a
+      ><a name="4124" href="TermInduction.html#3945" class="Bound"
+      >P</a
+      ><a name="4125"
+      > </a
+      ><a name="4126" href="TermInduction.html#4120" class="Bound"
+      >M</a
+      ><a name="4127"
+      >
+</a
+      ><a name="4128" href="TermInduction.html#3928" class="Function"
+      >TISw2TISwEx</a
+      ><a name="4139"
+      > </a
+      ><a name="4140" href="TermInduction.html#4140" class="Bound"
+      >P</a
+      ><a name="4141"
+      > </a
+      ><a name="4142" href="TermInduction.html#4142" class="Bound"
+      >&#945;CompP</a
+      ><a name="4148"
+      > </a
+      ><a name="4149" href="TermInduction.html#4149" class="Bound"
+      >hv</a
+      ><a name="4151"
+      > </a
+      ><a name="4152" href="TermInduction.html#4152" class="Bound"
+      >h&#183;</a
+      ><a name="4154"
+      > </a
+      ><a name="4155" href="TermInduction.html#4155" class="Bound"
+      >h&#411;</a
+      ><a name="4157"
+      > 
+  </a
+      ><a name="4161" class="Symbol"
+      >=</a
+      ><a name="4162"
+      > </a
+      ><a name="4163" href="TermInduction.html#3564" class="Function"
+      >Term&#945;IndPerm</a
+      ><a name="4175"
+      > </a
+      ><a name="4176" href="TermInduction.html#4140" class="Bound"
+      >P</a
+      ><a name="4177"
+      > </a
+      ><a name="4178" href="TermInduction.html#4142" class="Bound"
+      >&#945;CompP</a
+      ><a name="4184"
+      > </a
+      ><a name="4185" href="TermInduction.html#4149" class="Bound"
+      >hv</a
+      ><a name="4187"
+      > </a
+      ><a name="4188" href="TermInduction.html#4152" class="Bound"
+      >h&#183;</a
+      ><a name="4190"
+      > </a
+      ><a name="4191" class="Symbol"
+      >(</a
+      ><a name="4192" href="Data.List.html#696" class="InductiveConstructor"
+      >[]</a
+      ><a name="4194"
+      > </a
+      ><a name="4195" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="4196"
+      >  </a
+      ><a name="4198" href="TermInduction.html#4218" class="Function"
+      >lemma&#8707;&#411;</a
+      ><a name="4205" class="Symbol"
+      >)</a
+      ><a name="4206"
+      >
+  </a
+      ><a name="4209" class="Keyword"
+      >where</a
+      ><a name="4214"
+      > 
+  </a
+      ><a name="4218" href="TermInduction.html#4218" class="Function"
+      >lemma&#8707;&#411;</a
+      ><a name="4225"
+      > </a
+      ><a name="4226" class="Symbol"
+      >:</a
+      ><a name="4227"
+      > </a
+      ><a name="4228" class="Symbol"
+      >(</a
+      ><a name="4229" href="TermInduction.html#4229" class="Bound"
+      >M</a
+      ><a name="4230"
+      > </a
+      ><a name="4231" class="Symbol"
+      >:</a
+      ><a name="4232"
+      > </a
+      ><a name="4233" href="Term.html#1000" class="Datatype"
+      >&#923;</a
+      ><a name="4234" class="Symbol"
+      >)</a
+      ><a name="4235"
+      > </a
+      ><a name="4236" class="Symbol"
+      >(</a
+      ><a name="4237" href="TermInduction.html#4237" class="Bound"
+      >b</a
+      ><a name="4238"
+      > </a
+      ><a name="4239" class="Symbol"
+      >:</a
+      ><a name="4240"
+      > </a
+      ><a name="4241" href="Data.Nat.html#663" class="Datatype"
+      >&#8469;</a
+      ><a name="4242" class="Symbol"
+      >)</a
+      ><a name="4243"
+      > </a
+      ><a name="4244" class="Symbol"
+      >&#8594;</a
+      ><a name="4245"
+      > </a
+      ><a name="4246" href="TermInduction.html#4237" class="Bound"
+      >b</a
+      ><a name="4247"
+      > </a
+      ><a name="4248" href="Data.List.Any.html#2969" class="Function Operator"
+      >&#8713;'</a
+      ><a name="4250"
+      > </a
+      ><a name="4251" href="Data.List.html#696" class="InductiveConstructor"
+      >[]</a
+      ><a name="4253"
+      > </a
+      ><a name="4254" class="Symbol"
+      >&#8594;</a
+      ><a name="4255"
+      > </a
+      ><a name="4256" class="Symbol"
+      >(&#8704;</a
+      ><a name="4258"
+      > </a
+      ><a name="4259" href="TermInduction.html#4259" class="Bound"
+      >&#960;</a
+      ><a name="4260"
+      > </a
+      ><a name="4261" class="Symbol"
+      >&#8594;</a
+      ><a name="4262"
+      > </a
+      ><a name="4263" href="TermInduction.html#4140" class="Bound"
+      >P</a
+      ><a name="4264"
+      > </a
+      ><a name="4265" class="Symbol"
+      >(</a
+      ><a name="4266" href="TermInduction.html#4259" class="Bound"
+      >&#960;</a
+      ><a name="4267"
+      > </a
+      ><a name="4268" href="Permutation.html#902" class="Function Operator"
+      >&#8729;</a
+      ><a name="4269"
+      > </a
+      ><a name="4270" href="TermInduction.html#4229" class="Bound"
+      >M</a
+      ><a name="4271" class="Symbol"
+      >))</a
+      ><a name="4273"
+      > </a
+      ><a name="4274" class="Symbol"
+      >&#8594;</a
+      ><a name="4275"
+      > </a
+      ><a name="4276" href="TermInduction.html#4140" class="Bound"
+      >P</a
+      ><a name="4277"
+      > </a
+      ><a name="4278" class="Symbol"
+      >(</a
+      ><a name="4279" href="Term.html#1055" class="InductiveConstructor"
+      >&#411;</a
+      ><a name="4280"
+      > </a
+      ><a name="4281" href="TermInduction.html#4237" class="Bound"
+      >b</a
+      ><a name="4282"
+      > </a
+      ><a name="4283" href="TermInduction.html#4229" class="Bound"
+      >M</a
+      ><a name="4284" class="Symbol"
+      >)</a
+      ><a name="4285"
+      >
+  </a
+      ><a name="4288" href="TermInduction.html#4218" class="Function"
+      >lemma&#8707;&#411;</a
+      ><a name="4295"
+      > </a
+      ><a name="4296" href="TermInduction.html#4296" class="Bound"
+      >M</a
+      ><a name="4297"
+      > </a
+      ><a name="4298" href="TermInduction.html#4298" class="Bound"
+      >b</a
+      ><a name="4299"
+      > </a
+      ><a name="4300" class="Symbol"
+      >_</a
+      ><a name="4301"
+      > </a
+      ><a name="4302" href="TermInduction.html#4302" class="Bound"
+      >&#8704;&#960;,P&#960;M</a
+      ><a name="4308"
+      > </a
+      ><a name="4309" class="Keyword"
+      >with</a
+      ><a name="4313"
+      > </a
+      ><a name="4314" href="TermInduction.html#4155" class="Bound"
+      >h&#411;</a
+      ><a name="4316"
+      > </a
+      ><a name="4317" href="TermInduction.html#4296" class="Bound"
+      >M</a
+      ><a name="4318"
+      > </a
+      ><a name="4319" href="TermInduction.html#4298" class="Bound"
+      >b</a
+      ><a name="4320"
+      > 
+  </a
+      ><a name="4324" class="Symbol"
+      >...</a
+      ><a name="4327"
+      > </a
+      ><a name="4328" class="Symbol"
+      >|</a
+      ><a name="4329"
+      > </a
+      ><a name="4330" href="TermInduction.html#4330" class="Bound"
+      >a</a
+      ><a name="4331"
+      > </a
+      ><a name="4332" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="4333"
+      > </a
+      ><a name="4334" href="TermInduction.html#4334" class="Bound"
+      >a#&#955;bM</a
+      ><a name="4339"
+      > </a
+      ><a name="4340" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="4341"
+      > </a
+      ><a name="4342" href="TermInduction.html#4342" class="Bound"
+      >P&#65288;ba&#65289;M&#8594;P&#411;a&#65288;ba&#65289;M</a
+      ><a name="4357"
+      > </a
+      ><a name="4358" class="Symbol"
+      >=</a
+      ><a name="4359"
+      > </a
+      ><a name="4360" href="TermInduction.html#4142" class="Bound"
+      >&#945;CompP</a
+      ><a name="4366"
+      > </a
+      ><a name="4367" class="Symbol"
+      >(</a
+      ><a name="4368" href="Alpha.html#2320" class="Function"
+      >&#963;</a
+      ><a name="4369"
+      > </a
+      ><a name="4370" class="Symbol"
+      >(</a
+      ><a name="4371" href="Alpha.html#16868" class="Function"
+      >lemma&#8764;&#945;&#955;'</a
+      ><a name="4380"
+      > </a
+      ><a name="4381" href="TermInduction.html#4334" class="Bound"
+      >a#&#955;bM</a
+      ><a name="4386" class="Symbol"
+      >))</a
+      ><a name="4388"
+      > </a
+      ><a name="4389" class="Symbol"
+      >(</a
+      ><a name="4390" href="TermInduction.html#4342" class="Bound"
+      >P&#65288;ba&#65289;M&#8594;P&#411;a&#65288;ba&#65289;M</a
+      ><a name="4405"
+      > </a
+      ><a name="4406" class="Symbol"
+      >(</a
+      ><a name="4407" href="TermInduction.html#4302" class="Bound"
+      >&#8704;&#960;,P&#960;M</a
+      ><a name="4413"
+      > </a
+      ><a name="4414" href="Data.List.html#1020" class="Function Operator"
+      >[</a
+      ><a name="4415" class="Symbol"
+      >(</a
+      ><a name="4416" href="TermInduction.html#4298" class="Bound"
+      >b</a
+      ><a name="4417"
+      > </a
+      ><a name="4418" href="Data.Product.html#509" class="InductiveConstructor Operator"
+      >,</a
+      ><a name="4419"
+      > </a
+      ><a name="4420" href="TermInduction.html#4330" class="Bound"
+      >a</a
+      ><a name="4421" class="Symbol"
+      >)</a
+      ><a name="4422" href="Data.List.html#1020" class="Function Operator"
+      >]</a
+      ><a name="4423" class="Symbol"
+      >))</a
+      ><a name="4425"
+      >  
+\end{code}
+</a
+      ></pre
+    ></body
+  ></html
+>

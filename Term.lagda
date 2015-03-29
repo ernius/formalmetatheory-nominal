@@ -86,13 +86,19 @@ data _∉_ (a : Atom) : Λ → Set where
   ∉v   : {b : Atom}            → b ≢ a          → a ∉ v b 
   ∉·   : {M N  : Λ}            → a ∉ M → a ∉ N  → a ∉ M · N
   ∉ƛ   : {b : Atom}{M    : Λ}  → b ≢ a → a ∉ M  → a ∉ ƛ b M
---
+\end{code}
+
+%<*fresh>
+\begin{code}
 data _#_ (a : Atom) :  Λ → Set where
   #v   : {b : Atom}         → b ≢ a          → a # v b
   #·   : {M N : Λ }         → a # M → a # N  → a # M · N
   #ƛ≡  : {M : Λ}                             → a # ƛ a M
   #ƛ   : {b : Atom}{M : Λ}  → a # M          → a # ƛ b M
---
+\end{code}
+%</fresh>
+
+\begin{code}
 data _*_ : Atom → Λ → Set where
   *v   :  {x : Atom}                           → x * v x
   *·l  :  {x : Atom}{M N : Λ} → x * M          → x * (M · N)
@@ -188,12 +194,21 @@ lemma-free→¬# {x} {ƛ .x M} (*ƛ xfreeM x≢x) #ƛ≡
   = ⊥-elim (x≢x refl)
 lemma-free→¬# {x} {ƛ y M} (*ƛ xfreeM y≢x) (#ƛ x#M)  
   = ⊥-elim ((lemma-free→¬# xfreeM) x#M)
--- Term swap
+
+\end{code}
+
+Term swap
+
+%<*swap>
+\begin{code}
 （_∙_）_ : Atom → Atom → Λ → Λ
 （ a ∙ b ） v c    = v (（ a ∙ b ）ₐ c)
 （ a ∙ b ） M · N  = (（ a ∙ b ） M) ·  (（ a ∙ b ） N)  
 （ a ∙ b ） ƛ c M  = ƛ (（ a ∙ b ）ₐ c) (（ a ∙ b ） M)
---
+\end{code}
+%</swap>
+
+\begin{code} 
 lemma∙cancel∉ : {a b : Atom}{M : Λ} → a ∉ M → b ∉ M → （ a ∙ b ） M ≡ M 
 lemma∙cancel∉ {a} {b} {v c}    (∉v c≢a)      (∉v c≢b)     = cong v (lemma∙ₐc≢a∧c≢b c≢a c≢b)
 lemma∙cancel∉ {a} {b} {M · N}  (∉· a∉M a∉N)  (∉· b∉M b∉N) = cong₂ _·_ (lemma∙cancel∉ a∉M b∉M) (lemma∙cancel∉ a∉N b∉N)

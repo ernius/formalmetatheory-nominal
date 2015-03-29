@@ -14,13 +14,20 @@ Atom = ℕ
 --
 _≟ₐ_ = _≟_
 --
+\end{code}
+
+%<*swap>
+\begin{code}
 （_∙_）ₐ_ : Atom → Atom → Atom → Atom
 （ a ∙ b ）ₐ c  with c ≟ₐ a
 ... | yes  _             = b
 ... | no   _   with c ≟ₐ b
 ...            |  yes _  = a
 ...            |  no  _  = c
---
+\end{code}
+%</swap>
+
+\begin{code}
 lemma∙ₐ :  ∀ a b c →
            (c ≡ a ∧           （ a ∙ b ）ₐ c ≡ b)  ∨ 
            (c ≡ b ∧  c ≢ a ∧  （ a ∙ b ）ₐ c ≡ a)  ∨ 
