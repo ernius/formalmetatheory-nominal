@@ -190,12 +190,12 @@ Prove α Primitive Ind with Swap induction.
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
 \>[2]\AgdaSymbol{→} \<[5]%
-\>[5]\AgdaSymbol{(}\AgdaBound{xs} \AgdaSymbol{:} \AgdaDatatype{List} \AgdaFunction{Atom}\AgdaSymbol{)} \<[22]%
+\>[5]\AgdaSymbol{(}\AgdaBound{vs} \AgdaSymbol{:} \AgdaDatatype{List} \AgdaFunction{Atom}\AgdaSymbol{)} \<[22]%
 \>[22]\<%
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
 \>[2]\AgdaSymbol{→} \<[5]%
-\>[5]\AgdaSymbol{(∀} \AgdaBound{M} \AgdaBound{b} \AgdaSymbol{→} \AgdaBound{b} \AgdaFunction{∉'} \AgdaBound{xs} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{b} \AgdaBound{M}\AgdaSymbol{))} \<[41]%
+\>[5]\AgdaSymbol{(∀} \AgdaBound{M} \AgdaBound{b} \AgdaSymbol{→} \AgdaBound{b} \AgdaFunction{∉'} \AgdaBound{vs} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{b} \AgdaBound{M}\AgdaSymbol{))} \<[41]%
 \>[41]\<%
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
@@ -212,9 +212,9 @@ Prove α Primitive Ind with Swap induction.
 \>[2]\AgdaSymbol{→} \<[5]%
 \>[5]\AgdaBound{P} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)}\<%
 \\
-\>\AgdaFunction{lemmaαƛPrimInd} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{xs} \AgdaBound{hƛ} \AgdaBound{M} \AgdaBound{a} \AgdaBound{PM} \AgdaKeyword{with} \AgdaFunction{χ} \AgdaBound{xs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{|} \AgdaFunction{χ∉} \AgdaBound{xs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{|} \AgdaFunction{χ\#} \AgdaBound{xs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)}\<%
+\>\AgdaFunction{lemmaαƛPrimInd} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{vs} \AgdaBound{hƛ} \AgdaBound{M} \AgdaBound{a} \AgdaBound{PM} \AgdaKeyword{with} \AgdaFunction{χ} \AgdaBound{vs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{|} \AgdaFunction{χ∉} \AgdaBound{vs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{|} \AgdaFunction{χ\#} \AgdaBound{vs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)}\<%
 \\
-\>\AgdaSymbol{...} \AgdaSymbol{|} \AgdaBound{b} \AgdaSymbol{|} \AgdaBound{b∉xs} \AgdaSymbol{|} \AgdaBound{b\#ƛaM} \AgdaSymbol{=} \AgdaBound{αP} \AgdaSymbol{(}\AgdaFunction{σ} \AgdaSymbol{(}\AgdaFunction{lemma∼αλ'} \AgdaBound{b\#ƛaM}\AgdaSymbol{))} \AgdaSymbol{(}\AgdaBound{hƛ} \AgdaSymbol{(}\AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaBound{M}\AgdaSymbol{)} \AgdaBound{b} \AgdaBound{b∉xs} \AgdaSymbol{(}\AgdaBound{PM} \AgdaFunction{[}\AgdaSymbol{(}\AgdaBound{a} \AgdaInductiveConstructor{,} \AgdaBound{b}\AgdaSymbol{)}\AgdaFunction{]}\AgdaSymbol{))}\<%
+\>\AgdaSymbol{...} \AgdaSymbol{|} \AgdaBound{b} \AgdaSymbol{|} \AgdaBound{b∉vs} \AgdaSymbol{|} \AgdaBound{b\#ƛaM} \AgdaSymbol{=} \AgdaBound{αP} \AgdaSymbol{(}\AgdaFunction{σ} \AgdaSymbol{(}\AgdaFunction{lemma∼αλ'} \AgdaBound{b\#ƛaM}\AgdaSymbol{))} \AgdaSymbol{(}\AgdaBound{hƛ} \AgdaSymbol{(}\AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaBound{M}\AgdaSymbol{)} \AgdaBound{b} \AgdaBound{b∉vs} \AgdaSymbol{(}\AgdaBound{PM} \AgdaFunction{[}\AgdaSymbol{(}\AgdaBound{a} \AgdaInductiveConstructor{,} \AgdaBound{b}\AgdaSymbol{)}\AgdaFunction{]}\AgdaSymbol{))}\<%
 \\
 \>\AgdaComment{--}\<%
 \end{code}
@@ -236,7 +236,7 @@ Prove α Primitive Ind with Swap induction.
 \>[2]\AgdaSymbol{→} \AgdaSymbol{(∀} \AgdaBound{M} \AgdaBound{N} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{N} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaBound{M} \AgdaInductiveConstructor{·} \AgdaBound{N}\AgdaSymbol{))}\<%
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
-\>[2]\AgdaSymbol{→} \AgdaFunction{∃} \AgdaSymbol{(λ} \AgdaBound{xs} \AgdaSymbol{→} \AgdaSymbol{(∀} \AgdaBound{M} \AgdaBound{b} \AgdaSymbol{→} \AgdaBound{b} \AgdaFunction{∉'} \AgdaBound{xs} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{b} \AgdaBound{M}\AgdaSymbol{)))}\<%
+\>[2]\AgdaSymbol{→} \AgdaFunction{∃} \AgdaSymbol{(λ} \AgdaBound{vs} \AgdaSymbol{→} \AgdaSymbol{(∀} \AgdaBound{M} \AgdaBound{b} \AgdaSymbol{→} \AgdaBound{b} \AgdaFunction{∉'} \AgdaBound{vs} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{b} \AgdaBound{M}\AgdaSymbol{)))}\<%
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
 \>[2]\AgdaSymbol{→} \AgdaSymbol{∀} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{M}\<%
@@ -244,7 +244,7 @@ Prove α Primitive Ind with Swap induction.
 %</alphaPrimInduction>
 
 \begin{code}%
-\>\AgdaFunction{TermαPrimInd} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{ha} \AgdaBound{h·} \AgdaSymbol{(}\AgdaBound{xs} \AgdaInductiveConstructor{,} \AgdaBound{hƛ}\AgdaSymbol{)} \AgdaSymbol{=} \AgdaFunction{TermIndPerm} \AgdaBound{P} \AgdaBound{ha} \AgdaBound{h·} \AgdaSymbol{(}\AgdaFunction{lemmaαƛPrimInd} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{xs} \AgdaBound{hƛ}\AgdaSymbol{)}\<%
+\>\AgdaFunction{TermαPrimInd} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{ha} \AgdaBound{h·} \AgdaSymbol{(}\AgdaBound{vs} \AgdaInductiveConstructor{,} \AgdaBound{hƛ}\AgdaSymbol{)} \AgdaSymbol{=} \AgdaFunction{TermIndPerm} \AgdaBound{P} \AgdaBound{ha} \AgdaBound{h·} \AgdaSymbol{(}\AgdaFunction{lemmaαƛPrimInd} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{vs} \AgdaBound{hƛ}\AgdaSymbol{)}\<%
 \end{code}
 
 Prove α Swap Ind with Swap Induction 
@@ -256,12 +256,12 @@ Prove α Swap Ind with Swap Induction
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
 \>[2]\AgdaSymbol{→} \<[5]%
-\>[5]\AgdaSymbol{(}\AgdaBound{xs} \AgdaSymbol{:} \AgdaDatatype{List} \AgdaFunction{Atom}\AgdaSymbol{)} \<[22]%
+\>[5]\AgdaSymbol{(}\AgdaBound{vs} \AgdaSymbol{:} \AgdaDatatype{List} \AgdaFunction{Atom}\AgdaSymbol{)} \<[22]%
 \>[22]\<%
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
 \>[2]\AgdaSymbol{→} \<[5]%
-\>[5]\AgdaSymbol{(∀} \AgdaBound{M} \AgdaBound{b} \AgdaSymbol{→} \AgdaBound{b} \AgdaFunction{∉'} \AgdaBound{xs} \AgdaSymbol{→} \AgdaSymbol{(∀} \AgdaBound{π} \AgdaSymbol{→} \<[32]%
+\>[5]\AgdaSymbol{(∀} \AgdaBound{M} \AgdaBound{b} \AgdaSymbol{→} \AgdaBound{b} \AgdaFunction{∉'} \AgdaBound{vs} \AgdaSymbol{→} \AgdaSymbol{(∀} \AgdaBound{π} \AgdaSymbol{→} \<[32]%
 \>[32]\AgdaBound{P} \AgdaSymbol{(}\AgdaBound{π} \AgdaFunction{∙} \AgdaBound{M}\AgdaSymbol{))} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{b} \AgdaBound{M}\AgdaSymbol{))} \<[56]%
 \>[56]\<%
 \\
@@ -279,9 +279,9 @@ Prove α Swap Ind with Swap Induction
 \>[2]\AgdaSymbol{→} \<[5]%
 \>[5]\AgdaBound{P} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)}\<%
 \\
-\>\AgdaFunction{lemmaαƛ} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{xs} \AgdaBound{hƛ} \AgdaBound{M} \AgdaBound{a} \AgdaBound{fM} \AgdaKeyword{with} \AgdaFunction{χ} \AgdaBound{xs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{|} \AgdaFunction{χ∉} \AgdaBound{xs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{|} \AgdaFunction{χ\#} \AgdaBound{xs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)}\<%
+\>\AgdaFunction{lemmaαƛ} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{vs} \AgdaBound{hƛ} \AgdaBound{M} \AgdaBound{a} \AgdaBound{fM} \AgdaKeyword{with} \AgdaFunction{χ} \AgdaBound{vs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{|} \AgdaFunction{χ∉} \AgdaBound{vs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{|} \AgdaFunction{χ\#} \AgdaBound{vs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)}\<%
 \\
-\>\AgdaSymbol{...} \AgdaSymbol{|} \AgdaBound{b} \AgdaSymbol{|} \AgdaBound{b∉xs} \AgdaSymbol{|} \AgdaBound{b\#ƛaM} \<[23]%
+\>\AgdaSymbol{...} \AgdaSymbol{|} \AgdaBound{b} \AgdaSymbol{|} \AgdaBound{b∉vs} \AgdaSymbol{|} \AgdaBound{b\#ƛaM} \<[23]%
 \>[23]\<%
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
@@ -291,14 +291,11 @@ Prove α Swap Ind with Swap Induction
 \\
 \>[2]\AgdaIndent{8}{}\<[8]%
 \>[8]\AgdaSymbol{(}\AgdaBound{hƛ} \<[13]%
-\>[13]\AgdaSymbol{(}\AgdaFunction{[}\AgdaSymbol{(} \AgdaBound{a} \AgdaInductiveConstructor{,} \AgdaBound{b} \AgdaSymbol{)}\AgdaFunction{]} \AgdaFunction{∙} \AgdaBound{M}\AgdaSymbol{)} \AgdaBound{b} \AgdaBound{b∉xs} \<[38]%
+\>[13]\AgdaSymbol{(}\AgdaFunction{[}\AgdaSymbol{(} \AgdaBound{a} \AgdaInductiveConstructor{,} \AgdaBound{b} \AgdaSymbol{)}\AgdaFunction{]} \AgdaFunction{∙} \AgdaBound{M}\AgdaSymbol{)} \AgdaBound{b} \AgdaBound{b∉vs} \<[38]%
 \>[38]\<%
 \\
 \>[8]\AgdaIndent{13}{}\<[13]%
-\>[13]\AgdaSymbol{(λ} \AgdaBound{π} \AgdaSymbol{→} \AgdaFunction{corollaryPπ++π′∙M→Pπ∙π′∙M} \AgdaSymbol{\{}\AgdaFunction{[}\AgdaSymbol{(}\AgdaBound{a} \AgdaInductiveConstructor{,} \AgdaBound{b}\AgdaSymbol{)}\AgdaFunction{]}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{M}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{P}\AgdaSymbol{\}} \AgdaBound{π} \AgdaSymbol{(}\AgdaBound{fM} \AgdaSymbol{(}\AgdaBound{π} \AgdaFunction{++} \AgdaFunction{[}\AgdaSymbol{(} \AgdaBound{a} \AgdaInductiveConstructor{,} \AgdaBound{b} \AgdaSymbol{)}\AgdaFunction{]}\AgdaSymbol{))))} \<[94]%
-\>[94]\<%
-\\
-\>\<%
+\>[13]\AgdaSymbol{(λ} \AgdaBound{π} \AgdaSymbol{→} \AgdaFunction{corollaryPπ++π′∙M→Pπ∙π′∙M} \AgdaSymbol{\{}\AgdaFunction{[}\AgdaSymbol{(}\AgdaBound{a} \AgdaInductiveConstructor{,} \AgdaBound{b}\AgdaSymbol{)}\AgdaFunction{]}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{M}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{P}\AgdaSymbol{\}} \AgdaBound{π} \AgdaSymbol{(}\AgdaBound{fM} \AgdaSymbol{(}\AgdaBound{π} \AgdaFunction{++} \AgdaFunction{[}\AgdaSymbol{(} \AgdaBound{a} \AgdaInductiveConstructor{,} \AgdaBound{b} \AgdaSymbol{)}\AgdaFunction{]}\AgdaSymbol{))))} \<%
 \end{code}
 
 %<*alphaIndPermutation>
@@ -323,7 +320,7 @@ Prove α Swap Ind with Swap Induction
 %</alphaIndPermutation>
 
 \begin{code}%
-\>\AgdaFunction{TermαIndPerm} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{ha} \AgdaBound{h·} \AgdaSymbol{(}\AgdaBound{xs} \AgdaInductiveConstructor{,} \AgdaBound{hƛ}\AgdaSymbol{)} \AgdaSymbol{=} \AgdaFunction{TermIndPerm} \AgdaBound{P} \AgdaBound{ha} \AgdaBound{h·} \AgdaSymbol{(}\AgdaFunction{lemmaαƛ} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{xs} \<[74]%
+\>\AgdaFunction{TermαIndPerm} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{ha} \AgdaBound{h·} \AgdaSymbol{(}\AgdaBound{vs} \AgdaInductiveConstructor{,} \AgdaBound{hƛ}\AgdaSymbol{)} \AgdaSymbol{=} \AgdaFunction{TermIndPerm} \AgdaBound{P} \AgdaBound{ha} \AgdaBound{h·} \AgdaSymbol{(}\AgdaFunction{lemmaαƛ} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{vs} \<[74]%
 \>[74]\AgdaBound{hƛ}\AgdaSymbol{)}\<%
 \end{code}
 
@@ -334,21 +331,21 @@ Prove α ∃ Ind with Swap Induction
 \>[15]\AgdaSymbol{∀} \AgdaBound{P} \AgdaSymbol{→} \AgdaFunction{αCompatiblePred} \AgdaBound{P} \<[39]%
 \>[39]\<%
 \\
-\>[2]\AgdaIndent{6}{}\<[6]%
-\>[6]\AgdaSymbol{→} \AgdaSymbol{(∀} \AgdaBound{a} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaInductiveConstructor{v} \AgdaBound{a}\AgdaSymbol{))}\<%
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{→} \AgdaSymbol{(∀} \AgdaBound{a} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaInductiveConstructor{v} \AgdaBound{a}\AgdaSymbol{))}\<%
 \\
-\>[2]\AgdaIndent{6}{}\<[6]%
-\>[6]\AgdaSymbol{→} \AgdaSymbol{(∀} \AgdaBound{M} \AgdaBound{N} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{N} \AgdaSymbol{→} \<[30]%
-\>[30]\AgdaBound{P} \AgdaSymbol{(}\AgdaBound{M} \AgdaInductiveConstructor{·} \AgdaBound{N}\AgdaSymbol{))}\<%
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{→} \AgdaSymbol{(∀} \AgdaBound{M} \AgdaBound{N} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{N} \AgdaSymbol{→} \<[26]%
+\>[26]\AgdaBound{P} \AgdaSymbol{(}\AgdaBound{M} \AgdaInductiveConstructor{·} \AgdaBound{N}\AgdaSymbol{))}\<%
 \\
-\>[2]\AgdaIndent{6}{}\<[6]%
-\>[6]\AgdaSymbol{→} \AgdaSymbol{(∀} \AgdaBound{M} \AgdaBound{a} \AgdaSymbol{→} \AgdaFunction{∃} \AgdaSymbol{(λ} \AgdaBound{b} \AgdaSymbol{→} \AgdaRecord{Σ} \<[29]%
-\>[29]\AgdaSymbol{(}\AgdaBound{b} \AgdaDatatype{\#} \AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)} \<[42]%
-\>[42]\AgdaSymbol{(λ} \AgdaBound{\_} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{b} \<[75]%
-\>[75]\AgdaSymbol{(}\AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaBound{M}\AgdaSymbol{)))))}\<%
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{→} \AgdaSymbol{(∀} \AgdaBound{M} \AgdaBound{a} \AgdaSymbol{→} \AgdaFunction{∃} \AgdaSymbol{(λ} \AgdaBound{b} \AgdaSymbol{→} \AgdaRecord{Σ} \<[25]%
+\>[25]\AgdaSymbol{(}\AgdaBound{b} \AgdaDatatype{\#} \AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)} \<[38]%
+\>[38]\AgdaSymbol{(λ} \AgdaBound{\_} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{b} \<[71]%
+\>[71]\AgdaSymbol{(}\AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaBound{M}\AgdaSymbol{)))))}\<%
 \\
-\>[2]\AgdaIndent{6}{}\<[6]%
-\>[6]\AgdaSymbol{→} \AgdaSymbol{∀} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{M}\<%
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{→} \AgdaSymbol{∀} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{M}\<%
 \\
 \>\AgdaFunction{TISw2TISwEx} \AgdaBound{P} \AgdaBound{αCompP} \AgdaBound{hv} \AgdaBound{h·} \AgdaBound{hƛ} \<[30]%
 \>[30]\<%

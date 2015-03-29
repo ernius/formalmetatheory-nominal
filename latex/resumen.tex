@@ -29,7 +29,17 @@
 \DeclareUnicodeCharacter{8759}{\ensuremath{\dblcolon}}
 \DeclareUnicodeCharacter{8718}{\ensuremath{\square}}
 
+\title{Principles of Recursion and Induction for Nominal Lambda Calculus.}
+
 \begin{document}
+
+\maketitle
+
+All the code shown is compiled in the last Agda's version 2.4.2.2 and 0.9 standard library, and can be fully accessed at:
+
+\begin{center}
+  \href{https://github.com/ernius/formalmetatheory-nominal}{https://github.com/ernius/formalmetatheory-nominal}
+\end{center}
 
 \section{Infrastructure}
 \label{sec:infra}
@@ -41,9 +51,7 @@
 \label{fig:term}
 \end{figure}
 
-
 \ExecuteMetaData[Term.tex]{fresh} \hspace{5px}
-
 
 \ExecuteMetaData[Atom.tex]{swap} \hspace{5px}
 
@@ -56,7 +64,7 @@
 \AgdaTarget{∼α}
 \ExecuteMetaData[Alpha.tex]{alpha}
 
-\newpage
+
 \section{Induction Principles}
 \label{sec:induction}
 

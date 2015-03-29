@@ -87,13 +87,13 @@ Prove α Primitive Ind with Swap induction.
 
 \begin{code}
 lemmaαƛPrimInd :  (P : Λ → Set) → αCompatiblePred P  
-  →  (xs : List Atom) 
-  →  (∀ M b → b ∉' xs → P M → P (ƛ b M)) 
+  →  (vs : List Atom) 
+  →  (∀ M b → b ∉' vs → P M → P (ƛ b M)) 
   →  (M : Λ) (a : ℕ) 
   →  (∀ π → P ( π ∙ M)) 
   →  P (ƛ a M)
-lemmaαƛPrimInd P αP xs hƛ M a PM with χ xs (ƛ a M) | χ∉ xs (ƛ a M) | χ# xs (ƛ a M)
-... | b | b∉xs | b#ƛaM = αP (σ (lemma∼αλ' b#ƛaM)) (hƛ (（ a ∙ b ） M) b b∉xs (PM [(a , b)]))
+lemmaαƛPrimInd P αP vs hƛ M a PM with χ vs (ƛ a M) | χ∉ vs (ƛ a M) | χ# vs (ƛ a M)
+... | b | b∉vs | b#ƛaM = αP (σ (lemma∼αλ' b#ƛaM)) (hƛ (（ a ∙ b ） M) b b∉vs (PM [(a , b)]))
 --
 \end{code}
 
@@ -103,28 +103,28 @@ TermαPrimInd :  (P : Λ → Set)
   → αCompatiblePred P 
   → (∀ a → P (v a))
   → (∀ M N → P M → P N → P (M · N))
-  → ∃ (λ xs → (∀ M b → b ∉' xs → P M → P (ƛ b M)))
+  → ∃ (λ vs → (∀ M b → b ∉' vs → P M → P (ƛ b M)))
   → ∀ M → P M
 \end{code}
 %</alphaPrimInduction>
 
 \begin{code}
-TermαPrimInd P αP ha h· (xs , hƛ) = TermIndPerm P ha h· (lemmaαƛPrimInd P αP xs hƛ)
+TermαPrimInd P αP ha h· (vs , hƛ) = TermIndPerm P ha h· (lemmaαƛPrimInd P αP vs hƛ)
 \end{code}
 
 Prove α Swap Ind with Swap Induction 
 
 \begin{code}
 lemmaαƛ :  ∀ P → αCompatiblePred P 
-  →  (xs : List Atom) 
-  →  (∀ M b → b ∉' xs → (∀ π →  P (π ∙ M)) → P (ƛ b M)) 
+  →  (vs : List Atom) 
+  →  (∀ M b → b ∉' vs → (∀ π →  P (π ∙ M)) → P (ƛ b M)) 
   →  (M : Λ) (a : ℕ) 
   →  (∀ π → P (π ∙ M)) 
   →  P (ƛ a M)
-lemmaαƛ P αP xs hƛ M a fM with χ xs (ƛ a M) | χ∉ xs (ƛ a M) | χ# xs (ƛ a M)
-... | b | b∉xs | b#ƛaM 
+lemmaαƛ P αP vs hƛ M a fM with χ vs (ƛ a M) | χ∉ vs (ƛ a M) | χ# vs (ƛ a M)
+... | b | b∉vs | b#ƛaM 
   = αP  (σ (lemma∼αλ' b#ƛaM)) 
-        (hƛ  ([( a , b )] ∙ M) b b∉xs 
+        (hƛ  ([( a , b )] ∙ M) b b∉vs 
              (λ π → corollaryPπ++π′∙M→Pπ∙π′∙M {[(a , b)]} {M} {P} π (fM (π ++ [( a , b )])))) 
 \end{code}
 
@@ -139,7 +139,7 @@ TermαIndPerm : ∀ P → αCompatiblePred P
 %</alphaIndPermutation>
 
 \begin{code}
-TermαIndPerm P αP ha h· (xs , hƛ) = TermIndPerm P ha h· (lemmaαƛ P αP xs  hƛ)
+TermαIndPerm P αP ha h· (vs , hƛ) = TermIndPerm P ha h· (lemmaαƛ P αP vs  hƛ)
 \end{code}
 
 Prove α ∃ Ind with Swap Induction
