@@ -98,13 +98,17 @@ data _#_ (a : Atom) :  Λ → Set where
 \end{code}
 %</fresh>
 
+%<*free>
 \begin{code}
 data _*_ : Atom → Λ → Set where
   *v   :  {x : Atom}                           → x * v x
   *·l  :  {x : Atom}{M N : Λ} → x * M          → x * (M · N)
   *·r  :  {x : Atom}{M N : Λ} → x * N          → x * (M · N)
   *ƛ   :  {x y : Atom}{M : Λ} → x * M → y ≢ x  → x * (ƛ y M)
---
+\end{code}
+%</free>
+
+\begin{code}
 lemma#λ : {a b : Atom}{M : Λ} → a ≢ b → a # ƛ b M → a # M
 lemma#λ b≢b #ƛ≡       = ⊥-elim (b≢b refl)
 lemma#λ a≢b (#ƛ a#M)  = a#M
@@ -194,7 +198,6 @@ lemma-free→¬# {x} {ƛ .x M} (*ƛ xfreeM x≢x) #ƛ≡
   = ⊥-elim (x≢x refl)
 lemma-free→¬# {x} {ƛ y M} (*ƛ xfreeM y≢x) (#ƛ x#M)  
   = ⊥-elim ((lemma-free→¬# xfreeM) x#M)
-
 \end{code}
 
 Term swap

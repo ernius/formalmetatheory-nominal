@@ -104,28 +104,25 @@ lemmaSubst2 {N} {P} M x = TermIndPerm (Ps N P x) lemmav lemma· lemmaƛ M
     rewrite  lemmaSubst· x M M' N 
     |        lemmaSubst· x M M' P 
     = ∼α· (PsM N∼αP) (PsM' N∼αP) 
-  postulate
-    lemmaƛ :  (M : Λ) (b : Atom) → (∀ π → Ps N P x (π ∙ M)) → Ps N P x (ƛ b M)
-  -- lemmaƛ = lemmaƛaux 
-  --   where
-  --   lemmaƛaux : (M : Λ) (b : Atom) → (∀ c → Ps N P x (（ b ∙ c ） M)) → Ps N P x (ƛ b M)
-  --   lemmaƛaux M b  f N∼αP  =  begin
-  --                               ƛ b M [ x := N ] 
-  --                             ≈⟨ lemmaSubstƛ x b M N ⟩
-  --                               ƛ c ((（ b ∙ c ） M) [ x := N ])
-  --                             ∼⟨ lemma∼αƛ (f c N∼αP) ⟩
-  --                               ƛ c ((（ b ∙ c ） M) [ x := P ])
-  --                             ≈⟨ cong (λ y → ƛ y ((（ b ∙ y ） M) [ x := P ])) c≡d ⟩
-  --                               ƛ d ((（ b ∙ d ） M) [ x := P ])
-  --                             ≈⟨ sym (lemmaSubstƛ x b M P) ⟩
-  --                               ƛ b M [ x := P ]
-  --                             ∎
-  --     where 
-  --     c = χ (x ∷ fv N) (ƛ b M)
-  --     c#ƛbM = χ# (x ∷ fv N) (ƛ b M)
-  --     d = χ (x ∷ fv P) (ƛ b M)
-  --     c≡d : c ≡ d
-  --     c≡d rewrite lemma∼αfv N∼αP = refl
+  lemmaƛ :  (M : Λ) (b : Atom) → (∀ π → Ps N P x (π ∙ M)) → Ps N P x (ƛ b M)
+  lemmaƛ M b f N∼P 
+    = begin
+        ƛ b M [ x := N ] 
+      ≈⟨ lemmaSubstƛ x b M N ⟩
+        ƛ c ((（ b ∙ c ） M) [ x := N ])
+      ∼⟨ lemma∼αƛ (f [(b , c)] N∼P) ⟩
+        ƛ c ((（ b ∙ c ） M) [ x := P ])
+      ≈⟨ cong (λ y → ƛ y ((（ b ∙ y ） M) [ x := P ])) c≡d ⟩
+        ƛ d ((（ b ∙ d ） M) [ x := P ])
+      ≈⟨ sym (lemmaSubstƛ x b M P) ⟩
+        ƛ b M [ x := P ]
+      ∎
+    where 
+    c = χ (x ∷ fv N) (ƛ b M)
+    c#ƛbM = χ# (x ∷ fv N) (ƛ b M)
+    d = χ (x ∷ fv P) (ƛ b M)
+    c≡d : c ≡ d
+    c≡d rewrite lemma∼αfv N∼P = refl
 \end{code}
 
 %<*lemmaSubst>

@@ -70,6 +70,7 @@ All the code shown is compiled in the last Agda's version 2.4.2.2 and 0.9 standa
 
 Primitive induction over terms presented in figure~\ref{fig:term}:
 
+\AgdaTarget{TermPrimInd}
 \begin{figure}[!ht]
   \ExecuteMetaData[TermInduction.tex]{termPrimInduction} 
   \caption{Primitive Induction}
@@ -133,6 +134,15 @@ We implement the function that returns the free variables of a term.
 \ExecuteMetaData[FreeVariables.tex]{freeVariables} \hspace{5px}
 
 As a direct consequence of strong $\alpha$\ compatibility of the iteration principle we obtain that $\alpha$\ compatible terms have equal free variables. 
+
+The relation \AgdaFunction{\_*\_} holds when a variables ocurrs free in a term.
+
+\AgdaTarget{*}
+\ExecuteMetaData[Term.tex]{free} \hspace{5px}
+
+We can use the last induction principle (fig.~\ref{fig:permAlphaInd}) to prove the following result predicate:
+
+\ExecuteMetaData[FreeVariables.tex]{fvPred} \hspace{5px}
 
 \subsection{Substitution}
 \label{subst}
