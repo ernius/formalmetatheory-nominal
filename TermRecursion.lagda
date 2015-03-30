@@ -192,6 +192,37 @@ lemmaItαStrongCompatible A hv h· xs hƛ = TermIndPerm (strong∼αCompatible (
                        ∎
 \end{code}
 
+Term recursion principle
+
+\begin{code}
+app : {A : Set} → (A → A → Λ → Λ → A) → A × Λ → A × Λ → A × Λ
+app h· (r , M) (r′ , M′) = h· r r′ M M′ , M · M′
+--
+abs : {A : Set} → (Atom → A → Λ → A) → Atom → A × Λ → A × Λ
+abs hƛ a (r , M) = hƛ a r M , ƛ a M
+\end{code}
+
+%<*termRecursion>
+\begin{code}
+ΛRec  : (A : Set)
+      → (Atom → A)
+      → (A → A → Λ → Λ → A)
+      → List Atom × (Atom → A → Λ → A) 
+      → Λ → A
+\end{code}
+%</termRecursion>
+
+\begin{code}
+ΛRec A hv h· (xs , hƛ) M =  proj₁ (ΛIt (A × Λ) < hv , v > (app h·) (xs , (abs hƛ)) M)
+--
+lemmaΛRec∼α→≡ : (A : Set)
+  → (hv : Atom → A)
+  → (h· : A → A → Λ → Λ → A)
+  → (hƛ : List Atom × (Atom → A → Λ → A) )
+  → ∀ M → strong∼αCompatible (ΛRec  A hv h· hƛ) M
+lemmaΛRec∼α→≡ A hv h· (xs , hƛ) M N M∼αN 
+  rewrite lemmaItαStrongCompatible (A × Λ) < hv , v > (app h·) xs (abs hƛ) M N M∼αN = refl
+\end{code}
 
 
 

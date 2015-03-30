@@ -222,12 +222,8 @@ Prove α Primitive Ind with Swap induction.
 %<*alphaPrimInduction>
 \begin{code}%
 \>\AgdaFunction{TermαPrimInd} \AgdaSymbol{:} \<[16]%
-\>[16]\AgdaSymbol{(}\AgdaBound{P} \AgdaSymbol{:} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaPrimitiveType{Set}\AgdaSymbol{)} \<[30]%
-\>[30]\<%
-\\
-\>[0]\AgdaIndent{2}{}\<[2]%
-\>[2]\AgdaSymbol{→} \AgdaFunction{αCompatiblePred} \AgdaBound{P} \<[22]%
-\>[22]\<%
+\>[16]\AgdaSymbol{(}\AgdaBound{P} \AgdaSymbol{:} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaPrimitiveType{Set}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaFunction{αCompatiblePred} \AgdaBound{P} \<[50]%
+\>[50]\<%
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
 \>[2]\AgdaSymbol{→} \AgdaSymbol{(∀} \AgdaBound{a} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaInductiveConstructor{v} \AgdaBound{a}\AgdaSymbol{))}\<%

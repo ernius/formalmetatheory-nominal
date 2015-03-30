@@ -99,8 +99,7 @@ lemmaαƛPrimInd P αP vs hƛ M a PM with χ vs (ƛ a M) | χ∉ vs (ƛ a M) | �
 
 %<*alphaPrimInduction>
 \begin{code}
-TermαPrimInd :  (P : Λ → Set) 
-  → αCompatiblePred P 
+TermαPrimInd :  (P : Λ → Set) → αCompatiblePred P 
   → (∀ a → P (v a))
   → (∀ M N → P M → P N → P (M · N))
   → ∃ (λ vs → (∀ M b → b ∉' vs → P M → P (ƛ b M)))

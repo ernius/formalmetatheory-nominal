@@ -21,6 +21,18 @@
 \usepackage{catchfilebetweentags}
 \usepackage{tipa}
 
+\newcommand{\alp}{\ensuremath{\alpha}}
+\newcommand{\lamb}[2]{\ensuremath{\AgdaInductiveConstructor{ƛ}\, #1\, #2}}
+\newcommand{\inAg}{\ensuremath{\mathbin{\AgdaFunction{∈}}}}
+\newcommand{\neqAg}{\ensuremath{\mathbin{\AgdaInductiveConstructor{≢}}}}
+\newcommand{\ap}[2]{#1 \ensuremath{\mathbin{\AgdaInductiveConstructorFunction{·}} #2}}
+\newcommand{\var}[1]{\ensuremath{\AgdaInductiveConstructorFunction{v}\, #1}}
+\newcommand{\fv}{\ensuremath{{\AgdaFunction{fv}}\,}}
+\newcommand{\perm}{\ensuremath{\mathbin{\AgdaFunction{∙}}}}
+\newcommand{\free}{\ensuremath{\mathbin{\AgdaFunction{*}}}}
+\newcommand{\agdaf}[1]{\ensuremath{\AgdaFunction{#1}\,}}
+\newcommand{\agdaD}[1]{\ensuremath{\AgdaDatatype{#1}\,}}
+
 \DeclareUnicodeCharacter{411}{\textipa{\textcrlambda}}
 \DeclareUnicodeCharacter{65288}{(}
 \DeclareUnicodeCharacter{65289}{)}
@@ -85,30 +97,30 @@ Next, we introduce another induction principle over terms with a stronger induct
 \label{fig:permInd}
 \end{figure}
 
-$\alpha$-compatible predicates:
+\alp-compatible predicates:
 
 \ExecuteMetaData[Alpha.tex]{alphaCompatible} \hspace{5px}
 
-If the predicate is $\alpha$-compatible then we can prove the following induction principle using previous  induction principle. This new principle enables us to choose the variable of the abstraction case different from a finite list of variables, in this way this principle allow us to emulate Barendregt Variable Convention (BVC).
+If the predicate is \alp-compatible then we can prove the following induction principle using previous  induction principle. This new principle enables us to choose the variable of the abstraction case different from a finite list of variables, in this way this principle allow us to emulate Barendregt Variable Convention (BVC).
 
 \ExecuteMetaData[TermInduction.tex]{alphaPrimInduction} \hspace{5px}
 
-Again assuming an $\alpha$-compatible predicate, we can prove the following principle using again the induction principle of figure~\ref{fig:permInd}:
+Again assuming an \alp-compatible predicate, we can prove the following principle using again the induction principle of figure~\ref{fig:permInd}:
 
 \begin{figure}[!ht]
   \ExecuteMetaData[TermInduction.tex]{alphaIndPermutation}
-  \caption{Permutation $\alpha$ Induction}
+  \caption{Permutation \alp Induction}
 \label{fig:permAlphaInd}
 \end{figure}
 
 \section{Iteration and Recursion Principles}
 \label{sec:recursion}
 
-We want to define strong $\alpha$-compatible functions, that is, functions over the $\alpha$-equivalence class of terms. This functions can not depend on the abstraction variables of a term. We can resume this concept in the following definition:
+We want to define strong \alp-compatible functions, that is, functions over the \alp-equivalence class of terms. This functions can not depend on the abstraction variables of a term. We can resume this concept in the following definition:
 
 \ExecuteMetaData[Alpha.tex]{strongAlphaCompatible} \hspace{5px}
 
-We define an iteration principle over raw terms which always produces $\alpha$-compatible functions. This is granted because abstraction variables are given by the induction principle, hidding the specific abstraction variables of the given term, in this way the result of a function defined with this iterator has no way to extract any information from abstracted variables. This principle also allow us to give a list of variables from where the abstractions variables will not to be choosen, this will be usefull to define the no capture substitution operation latter. This iteration principle is derived from the last presented induction principle in figure~\ref{fig:permAlphaInd}. 
+We define an iteration principle over raw terms which always produces \alp-compatible functions. This is granted because abstraction variables are given by the induction principle, hidding the specific abstraction variables of the given term, in this way the result of a function defined with this iterator has no way to extract any information from abstracted variables. This principle also allow us to give a list of variables from where the abstractions variables will not to be choosen, this will be usefull to define the no capture substitution operation latter. This iteration principle is derived from the last presented induction principle in figure~\ref{fig:permAlphaInd}. 
 
 \ExecuteMetaData[TermRecursion.tex]{termIteration} \hspace{5px}
 
@@ -116,10 +128,13 @@ The following result estabish the strong compatibility of previous iteration pri
 
 \begin{figure}[!ht]
   \ExecuteMetaData[TermRecursion.tex]{iterationStrongCompatible}
-  \caption{Strong $\alpha$\ Compatibility of the Iteration Principle}
+  \caption{Strong \alp\ Compatibility of the Iteration Principle}
 \label{fig:strongAlphaComp}
 \end{figure}
 
+From this iteration principle we directly derive the next recursion principle over terms, which also generates strong \alp-compatible functions.
+
+\ExecuteMetaData[TermRecursion.tex]{termRecursion}
 
 \section{Iterator Application}
 \label{sec:itapp}
@@ -131,18 +146,24 @@ Next we show several iteration principle applications.
 
 We implement the function that returns the free variables of a term.
 
+
 \ExecuteMetaData[FreeVariables.tex]{freeVariables} \hspace{5px}
 
-As a direct consequence of strong $\alpha$\ compatibility of the iteration principle we obtain that $\alpha$\ compatible terms have equal free variables. 
+As a direct consequence of strong \alp\ compatibility of the iteration principle we obtain that \alp\ compatible terms have equal free variables. 
 
 The relation \AgdaFunction{\_*\_} holds when a variables ocurrs free in a term.
 
 \AgdaTarget{*}
 \ExecuteMetaData[Term.tex]{free} \hspace{5px}
 
-We can use the last induction principle (fig.~\ref{fig:permAlphaInd}) to prove the following result predicate:
+We can use the last induction principle (fig.~\ref{fig:permAlphaInd}) to prove the following proposition:
 
+\AgdaTarget{Pfv*}
 \ExecuteMetaData[FreeVariables.tex]{fvPred} \hspace{5px}
+
+In the lambda abstraction obligation proof of the induction principle used, we can exclude the variable $a$\ from the abstraction variables we need to prove, simplifying in this way the required proof. We have to prove that $\forall b \neqAg a, a \inAg \fv (\lamb b M) \Rightarrow a \free \lamb b M$, knowing by inductive hypothesis that $\forall \pi , a \inAg \fv (\pi \perm M) \Rightarrow a \free (\pi \perm M)$. So $a \inAg \fv (\lamb b M)$\ and $b \neqAg a$ then we know $a \inAg \fv M$ holds. Now,  instantiting the inductive hypothesis with an empty permtutation and the previous result, we have that $a \free M$,  using again that $b \neqAg a$, we can then conclude the desired result: $a \free \lamb b M$.
+
+This flexibility comes with the extra cost that we need to prove that the predicate $\forall a , \AgdaFunction{Pfv*} a$\ is \alp-compatible, but this proof is direct because \free\ is an \alp-compatible relation and the \fv function is strong \alp-compatible.
 
 \subsection{Substitution}
 \label{subst}
@@ -152,7 +173,7 @@ We implement the no capture substitution operation. We give the substituted vari
 
 \ExecuteMetaData[Substitution.tex]{substitution} \hspace{5px}
 
-Again because of the strong $\alpha$\ compability of the iteration principle we obtain the following result for free:
+Again because of the strong \alp-compability of the iteration principle we obtain the following result for free:
 
 \AgdaTarget{lemmaSubst1}
 \ExecuteMetaData[Substitution.tex]{lemmaSubst1} \hspace{5px}
