@@ -19,7 +19,7 @@ open import Data.List
 open import Data.List.Any as Any hiding (map)
 open import Data.List.Any.Properties
 open import Data.List.Any.Membership
-open Any.Membership-≡ renaming (_∈_ to _∈'_;_∉_ to _∉'_) 
+open Any.Membership-≡
 open import Data.Nat as Nat hiding (_⊔_;_*_)
 open import Data.Nat.Properties
 open DecTotalOrder Nat.decTotalOrder using () renaming (refl to ≤-refl)
@@ -28,7 +28,7 @@ open ≤-Reasoning
 
 infix  9 _·_ 
 infix  5 （_∙_）_ 
-infix  3 _∈_ _∉_ _#_ _*_
+infix  3 _∈ₜ_ _∉ₜ_ _#_ _*_
 \end{code}
 
 %<*term>
@@ -75,17 +75,17 @@ lemma∣va∣ {v a}    |N|≤1    = a , refl
 lemma∣va∣ {M · N}  |MN|≤1   = ⊥-elim (>1→¬≤1 {∣ M ∣ + ∣ N ∣} (lemmam>0∧n>0→m+n>1 {∣ M ∣} {∣ N ∣} (lemma∣M∣>0 {M}) (lemma∣M∣>0  {N})) (≤′⇒≤ |MN|≤1)) 
 lemma∣va∣ {ƛ a M}  |ƛaM|≤1  = ⊥-elim (>1→¬≤1 {1 + ∣ M ∣} (lemmam>0∧n>0→m+n>1 {1} {∣ M ∣} (s≤s z≤n) (lemma∣M∣>0 {M})) (≤′⇒≤ |ƛaM|≤1)) 
 --
-data _∈_ (a : Atom) : Λ → Set where
-  ∈v   : a ∈ v a 
-  ∈·r  : {M N  : Λ}            → a ∈ N  → a ∈ M · N
-  ∈·l  : {M N  : Λ} → a ∈ M    → a ∈ M · N
-  ∈ƛr  : {b : Atom}{M    : Λ}  → a ∈ M  → a ∈ ƛ b M
-  ∈ƛl  : {M    : Λ}            → a ∈ ƛ a M
+data _∈ₜ_ (a : Atom) : Λ → Set where
+  ∈v   : a ∈ₜ v a 
+  ∈·r  : {M N  : Λ}            → a ∈ₜ N  → a ∈ₜ M · N
+  ∈·l  : {M N  : Λ} → a ∈ₜ M    → a ∈ₜ M · N
+  ∈ƛr  : {b : Atom}{M    : Λ}  → a ∈ₜ M  → a ∈ₜ ƛ b M
+  ∈ƛl  : {M    : Λ}            → a ∈ₜ ƛ a M
 --
-data _∉_ (a : Atom) : Λ → Set where
-  ∉v   : {b : Atom}            → b ≢ a          → a ∉ v b 
-  ∉·   : {M N  : Λ}            → a ∉ M → a ∉ N  → a ∉ M · N
-  ∉ƛ   : {b : Atom}{M    : Λ}  → b ≢ a → a ∉ M  → a ∉ ƛ b M
+data _∉ₜ_ (a : Atom) : Λ → Set where
+  ∉v   : {b : Atom}            → b ≢ a          → a ∉ₜ v b 
+  ∉·   : {M N  : Λ}            → a ∉ₜ M → a ∉ₜ N  → a ∉ₜ M · N
+  ∉ƛ   : {b : Atom}{M    : Λ}  → b ≢ a → a ∉ₜ M  → a ∉ₜ ƛ b M
 \end{code}
 
 %<*fresh>
@@ -113,19 +113,19 @@ lemma#λ : {a b : Atom}{M : Λ} → a ≢ b → a # ƛ b M → a # M
 lemma#λ b≢b #ƛ≡       = ⊥-elim (b≢b refl)
 lemma#λ a≢b (#ƛ a#M)  = a#M
 --
-lemma∉→¬∈ : {a : Atom}{M : Λ} → a ∉ M → ¬ (a ∈ M)
+lemma∉→¬∈ : {a : Atom}{M : Λ} → a ∉ₜ M → ¬ (a ∈ₜ M)
 lemma∉→¬∈ (∉v a≢a) ∈v               = ⊥-elim (a≢a refl)
 lemma∉→¬∈ (∉· a∉M a∉N)  (∈·r a∈N)  = ⊥-elim ((lemma∉→¬∈ a∉N) a∈N)
 lemma∉→¬∈ (∉· a∉M a∉N)  (∈·l a∈M)  = ⊥-elim ((lemma∉→¬∈ a∉M) a∈M)
 lemma∉→¬∈ (∉ƛ b≢a a∉M)  (∈ƛr a∈M)  = ⊥-elim ((lemma∉→¬∈ a∉M) a∈M)
 lemma∉→¬∈ (∉ƛ a≢a a∉M)  ∈ƛl        = ⊥-elim (a≢a refl)
 --
-lemma∉→# : {a : Atom}{M : Λ} → a ∉ M → a # M
+lemma∉→# : {a : Atom}{M : Λ} → a ∉ₜ M → a # M
 lemma∉→# (∉v b≢a)       = #v b≢a
 lemma∉→# (∉· a∉M a∉N)  = #· (lemma∉→# a∉M) (lemma∉→# a∉N)
 lemma∉→# (∉ƛ b≢a a∉M)   = #ƛ (lemma∉→# a∉M)
 --
-lemma-free→∈ : {x : Atom}{M : Λ} → x * M → x ∈ M
+lemma-free→∈ : {x : Atom}{M : Λ} → x * M → x ∈ₜ M
 lemma-free→∈ *v            = ∈v
 lemma-free→∈ (*·l x*M)     = ∈·l (lemma-free→∈ x*M)
 lemma-free→∈ (*·r x*M)     = ∈·r (lemma-free→∈ x*M)
@@ -136,7 +136,7 @@ ocurr (v a)    = [ a ]
 ocurr (M · N)  = ocurr M ++ ocurr N
 ocurr (ƛ x M)  = x ∷ ocurr M
 --
-lemmaocurr : {a : Atom}{M : Λ} → a ∉' ocurr M → a ∉ M
+lemmaocurr : {a : Atom}{M : Λ} → a ∉ ocurr M → a ∉ₜ M
 lemmaocurr {a} {v b}    a∉[b]             
   with b ≟ₐ a 
 ... | no b≢a    = ∉v b≢a
@@ -212,7 +212,7 @@ Term swap
 %</swap>
 
 \begin{code} 
-lemma∙cancel∉ : {a b : Atom}{M : Λ} → a ∉ M → b ∉ M → （ a ∙ b ） M ≡ M 
+lemma∙cancel∉ : {a b : Atom}{M : Λ} → a ∉ₜ M → b ∉ₜ M → （ a ∙ b ） M ≡ M 
 lemma∙cancel∉ {a} {b} {v c}    (∉v c≢a)      (∉v c≢b)     = cong v (lemma∙ₐc≢a∧c≢b c≢a c≢b)
 lemma∙cancel∉ {a} {b} {M · N}  (∉· a∉M a∉N)  (∉· b∉M b∉N) = cong₂ _·_ (lemma∙cancel∉ a∉M b∉M) (lemma∙cancel∉ a∉N b∉N)
 lemma∙cancel∉ {a} {b} {ƛ c M}  (∉ƛ c≢a a∉M)  (∉ƛ c≢b b∉M) = cong₂ ƛ (lemma∙ₐc≢a∧c≢b c≢a c≢b) (lemma∙cancel∉ a∉M b∉M)
@@ -255,7 +255,7 @@ lemma∙distributive {a} {b} {c} {d} {ƛ e M}
 -- lemma∙distributive2 :  {a b c d : Atom}{M : Λ} →
 --                        （ a ∙ b ） （ c ∙ d ） M ≡ （ c ∙ d ） （ （ c ∙ d ）ₐ a ∙ （ c ∙ d ）ₐ b ） M
 --
-lemma∙cancel : {a b c : Atom}{M : Λ} → b ∉ M → c ∉ M → （ c ∙ b ） （ a ∙ c ） M ≡ （ a ∙ b ） M 
+lemma∙cancel : {a b c : Atom}{M : Λ} → b ∉ₜ M → c ∉ₜ M → （ c ∙ b ） （ a ∙ c ） M ≡ （ a ∙ b ） M 
 lemma∙cancel {a} {b} {c} {v d}    (∉v d≢b)      (∉v d≢c)       = cong v     (lemma∙ₐcancel d≢b d≢c)
 lemma∙cancel {a} {b} {c} {M · N}  (∉· b∉M b∉N)  (∉· c∉M c∉N)   = cong₂ _·_  (lemma∙cancel b∉M c∉M)   (lemma∙cancel b∉N c∉N)
 lemma∙cancel {a} {b} {c} {ƛ d M}  (∉ƛ d≢b b∉M)  (∉ƛ d≢c c∉M)   = cong₂ ƛ    (lemma∙ₐcancel d≢b d≢c)  (lemma∙cancel b∉M c∉M)
@@ -265,7 +265,7 @@ fv (v a)     = [ a ]
 fv (M · N)   = fv M ++ fv N
 fv (ƛ a M)   = fv M - a
 --
-lemmafvfree→ : (x : Atom)(M : Λ) → x ∈' fv M → x * M
+lemmafvfree→ : (x : Atom)(M : Λ) → x ∈ fv M → x * M
 lemmafvfree→ x (v y)    (here x≡y) with y ≟ x 
 ... | no   y≢x = ⊥-elim (y≢x (sym x≡y)) 
 lemmafvfree→ x (v .x)    (here x≡x) 
@@ -279,7 +279,7 @@ lemmafvfree→ x (ƛ y M)  x∈fvM-y with y ≟ x | lemmafilter→ x (fv M) (λ 
 lemmafvfree→ x (ƛ .x M)  x∈fvM-y 
     | yes refl | () , _  
 -- 
-lemmafvfree← : (x : Atom)(M : Λ) → x * M → x ∈' fv M
+lemmafvfree← : (x : Atom)(M : Λ) → x * M → x ∈ fv M
 lemmafvfree← x (v .x)    *v             
   = here refl
 lemmafvfree← x .(M · N)  (*·l {.x} {M} {N} xfreeM)     
@@ -297,10 +297,10 @@ lemmafvfree← x .(ƛ y M)  (*ƛ {.x} {y} {M} xfreeM y≢x)
 χ : List Atom → Λ → Atom
 χ xs M = χ' (xs ++ fv M) 
 --
-χ'∉ : (xs : List Atom) → χ' xs ∉' xs
+χ'∉ : (xs : List Atom) → χ' xs ∉ xs
 χ'∉ = lemmaχaux∉
 --
-χ∉ : (xs : List Atom)(M : Λ) → χ xs M ∉' xs
+χ∉ : (xs : List Atom)(M : Λ) → χ xs M ∉ xs
 χ∉ xs M = c∉xs++ys→c∉xs  (χ'∉ (xs ++ fv M))
 --
 χ# : (xs : List Atom)(M : Λ) → χ xs M # M

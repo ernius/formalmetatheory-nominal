@@ -20,7 +20,7 @@ open import Data.Sum renaming (_⊎_ to _∨_)
 open import Data.List
 open import Data.List.Any as Any hiding (map)
 open import Data.List.Any.Membership
-open Any.Membership-≡ renaming (_∈_ to _∈'_;_∉_ to _∉'_) 
+open Any.Membership-≡
 open import Data.Product
 open import Relation.Binary.PropositionalEquality as PropEq hiding ([_])
 open import Relation.Nullary
@@ -50,7 +50,7 @@ lemma∼αfv {M} {N} = lemmaItαStrongCompatible (List Atom) [_] _++_ [] (λ v r
 %<*fvPred>
 \begin{code}
 Pfv* : Atom → Λ → Set
-Pfv* a M = a ∈' fv M → a * M
+Pfv* a M = a ∈ fv M → a * M
 \end{code}
 %</fvPred>
 
@@ -70,10 +70,10 @@ lemmafv* {a} {M} = TermαIndPerm (Pfv* a) (αCompatiblePfv* a) lemmav lemma· le
     with c∈xs++ys→c∈xs∨c∈ys {a} {fv M} {fv N} a∈fvM·N 
   ... | inj₁ a∈fvM = *·l (PM a∈fvM)
   ... | inj₂ a∈fvN = *·r (PN a∈fvN)
-  lemmaƛ : Σ (List ℕ) (λ xs → (M : Λ) (b : ℕ) → b ∉' xs → (∀ π → Pfv* a (π ∙ M)) → Pfv* a (ƛ b M))
+  lemmaƛ : Σ (List ℕ) (λ xs → (M : Λ) (b : ℕ) → b ∉ xs → (∀ π → Pfv* a (π ∙ M)) → Pfv* a (ƛ b M))
   lemmaƛ = [ a ] , lemmaƛaux
     where 
-    lemmaƛaux : (M : Λ) (b : ℕ) → b ∉' [ a ] → (∀ π → Pfv* a (π ∙ M)) → Pfv* a (ƛ b M)
+    lemmaƛaux : (M : Λ) (b : ℕ) → b ∉ [ a ] → (∀ π → Pfv* a (π ∙ M)) → Pfv* a (ƛ b M)
     lemmaƛaux M b b∉[a] f a∈fvƛbM 
       rewrite lemmafvƛ b M
       with χ [] (ƛ b M) | lemmafilter→ a (fv (（ b ∙ χ [] (ƛ b M) ） M)) (λ y → not (⌊ χ [] (ƛ b M) ≟ₐ y ⌋)) a∈fvƛbM  | χ# [] (ƛ b M)

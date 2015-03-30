@@ -37,7 +37,7 @@ lemma#Equiv {a} {ƛ b M}   π (#ƛ a#M)
   rewrite lemmaπƛ {b} {M} {π} 
   = #ƛ (lemma#Equiv π a#M)
 --
-lemma∉swap : {a b c : Atom}{M : Λ} → a ∉ M → （ b ∙ c ）ₐ a ∉ （ b ∙ c ） M 
+lemma∉swap : {a b c : Atom}{M : Λ} → a ∉ₜ M → （ b ∙ c ）ₐ a ∉ₜ （ b ∙ c ） M 
 lemma∉swap {a} {b} {c}   {M} a∉M with b ≟ₐ c 
 lemma∉swap {a} {b} {.b}  {M} a∉M
   | yes refl rewrite lemma（aa）M≡M {b} {M} | lemma（aa）b≡b {b} {a} 

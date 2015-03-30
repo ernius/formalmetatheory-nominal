@@ -17,7 +17,7 @@ open import Data.Product
 open import Data.List
 open import Data.List.Any as Any hiding (map)
 open import Data.List.Any.Membership
-open Any.Membership-≡ renaming (_∈_ to _∈'_;_∉_ to _∉'_) 
+open Any.Membership-≡
 open import Relation.Binary.PropositionalEquality hiding ([_])
 
 \end{code}
@@ -88,7 +88,7 @@ Prove α Primitive Ind with Swap induction.
 \begin{code}
 lemmaαƛPrimInd :  (P : Λ → Set) → αCompatiblePred P  
   →  (vs : List Atom) 
-  →  (∀ M b → b ∉' vs → P M → P (ƛ b M)) 
+  →  (∀ M b → b ∉ vs → P M → P (ƛ b M)) 
   →  (M : Λ) (a : ℕ) 
   →  (∀ π → P ( π ∙ M)) 
   →  P (ƛ a M)
@@ -102,7 +102,7 @@ lemmaαƛPrimInd P αP vs hƛ M a PM with χ vs (ƛ a M) | χ∉ vs (ƛ a M) | �
 TermαPrimInd :  (P : Λ → Set) → αCompatiblePred P 
   → (∀ a → P (v a))
   → (∀ M N → P M → P N → P (M · N))
-  → ∃ (λ vs → (∀ M b → b ∉' vs → P M → P (ƛ b M)))
+  → ∃ (λ vs → (∀ M b → b ∉ vs → P M → P (ƛ b M)))
   → ∀ M → P M
 \end{code}
 %</alphaPrimInduction>
@@ -116,7 +116,7 @@ Prove α Swap Ind with Swap Induction
 \begin{code}
 lemmaαƛ :  ∀ P → αCompatiblePred P 
   →  (vs : List Atom) 
-  →  (∀ M b → b ∉' vs → (∀ π →  P (π ∙ M)) → P (ƛ b M)) 
+  →  (∀ M b → b ∉ vs → (∀ π →  P (π ∙ M)) → P (ƛ b M)) 
   →  (M : Λ) (a : ℕ) 
   →  (∀ π → P (π ∙ M)) 
   →  P (ƛ a M)
@@ -132,7 +132,7 @@ lemmaαƛ P αP vs hƛ M a fM with χ vs (ƛ a M) | χ∉ vs (ƛ a M) | χ# vs (
 TermαIndPerm : ∀ P → αCompatiblePred P 
   → (∀ a → P (v a))
   → (∀ M N → P M → P N →  P (M · N))
-  → ∃ (λ as → (∀ M b → b ∉' as → (∀ π →  P (π ∙ M)) → P (ƛ b M)))
+  → ∃ (λ as → (∀ M b → b ∉ as → (∀ π →  P (π ∙ M)) → P (ƛ b M)))
   → ∀ M → P M
 \end{code}
 %</alphaIndPermutation>
@@ -152,7 +152,7 @@ TISw2TISwEx :  ∀ P → αCompatiblePred P
 TISw2TISwEx P αCompP hv h· hƛ 
   = TermαIndPerm P αCompP hv h· ([] ,  lemma∃ƛ)
   where 
-  lemma∃ƛ : (M : Λ) (b : ℕ) → b ∉' [] → (∀ π → P (π ∙ M)) → P (ƛ b M)
+  lemma∃ƛ : (M : Λ) (b : ℕ) → b ∉ [] → (∀ π → P (π ∙ M)) → P (ƛ b M)
   lemma∃ƛ M b _ ∀π,PπM with hƛ M b 
   ... | a , a#λbM , P（ba）M→Pƛa（ba）M = αCompP (σ (lemma∼αλ' a#λbM)) (P（ba）M→Pƛa（ba）M (∀π,PπM [(b , a)]))  
 \end{code}

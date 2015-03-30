@@ -19,7 +19,7 @@ open import Data.List
 open import Data.List.Any as Any hiding (map)
 open import Data.List.Any.Properties
 open import Data.List.Any.Membership
-open Any.Membership-≡ renaming (_∈_ to _∈'_;_∉_ to _∉'_) 
+open Any.Membership-≡ 
 open import Relation.Binary.PropositionalEquality as PropEq hiding ([_])
 
 infix 3 _∼α_ _≈α_
@@ -33,7 +33,7 @@ data _∼α_ : Λ → Λ → Set where
   ∼α·  : {M M' N N' : Λ} → M ∼α M' → N ∼α N'  
        → M · N ∼α M' · N'
   ∼αƛ  : {M N : Λ}{a b : Atom}(xs : List Atom) 
-       → ((c : Atom) → c ∉' xs → （ a ∙ c ） M ∼α （ b ∙ c ） N)
+       → ((c : Atom) → c ∉ xs → （ a ∙ c ） M ∼α （ b ∙ c ） N)
        → ƛ a M ∼α ƛ b N
 \end{code}
 %</alpha>
@@ -50,7 +50,7 @@ lemma∼αEquiv .{ƛ a M}  .{ƛ b N}    π (∼αƛ {M} {N} {a} {b} xs p)
   = ∼αƛ  {π ∙ M} {π ∙ N} {π ∙ₐ a} {π ∙ₐ b} (xs ++ atoms π)
         (λ c c∉xs++π → lemma-aux c π c∉xs++π) 
   where 
-  lemma-aux :  (c : Atom)(π : Π) → c ∉' xs ++ atoms π → 
+  lemma-aux :  (c : Atom)(π : Π) → c ∉ xs ++ atoms π → 
                （ π ∙ₐ a ∙ c ） (π ∙ M) ∼α （ π ∙ₐ b ∙ c ） (π ∙ N)
   lemma-aux c π c∉xs++π 
     rewrite 
@@ -148,7 +148,7 @@ lemma∙cancel∼α {a} {b} {c} {ƛ .b M} b#λdM   (#ƛ c#M)  | no a≢b | no a�
   rewrite lemma∙ₐ（ab）b≡a {a} {b} | lemma∙ₐc≢a∧c≢b (sym≢ a≢b) b≢c | lemma∙ₐ（ab）b≡a {c} {b}
   = ∼αƛ (a ∷ b ∷ c ∷ ocurr M) (λ  e e∉abc∷ocurrM → lemma（ce）（cb）（ac）M∼α（ae）（ab）M e e∉abc∷ocurrM)
   where 
-  lemma（ce）（cb）（ac）M∼α（ae）（ab）M : (e : Atom) → e ∉' a ∷ b ∷ c ∷ ocurr M → （ c ∙ e ） （ c ∙ b ） （ a ∙ c ） M ∼α （ a ∙ e ） （ a ∙ b ） M
+  lemma（ce）（cb）（ac）M∼α（ae）（ab）M : (e : Atom) → e ∉ a ∷ b ∷ c ∷ ocurr M → （ c ∙ e ） （ c ∙ b ） （ a ∙ c ） M ∼α （ a ∙ e ） （ a ∙ b ） M
   lemma（ce）（cb）（ac）M∼α（ae）（ab）M  e e∉abc∷ocurrM
     = begin
          （ c ∙ e ） （ c ∙ b ） （ a ∙ c ） M
@@ -175,7 +175,7 @@ lemma∙cancel∼α {a} {b} {c} {ƛ .c M} (#ƛ b#M) c#λcM  | no a≢b | no a≢
   | yes refl rewrite lemma∙ₐ（ab）b≡a {a} {c} | lemma∙ₐc≢a∧c≢b a≢c a≢b | lemma∙ₐc≢a∧c≢b (sym≢ a≢c) (sym≢ b≢c)
   = ∼αƛ (a ∷ b ∷ c ∷ ocurr M) (λ e e∉abc∷ocurrM → lemma（ae）（cb）（ac）M∼α（ce）（ab）M e e∉abc∷ocurrM)
   where 
-  lemma（ae）（cb）（ac）M∼α（ce）（ab）M : (e : Atom) → e ∉' a ∷ b ∷ c ∷ ocurr M → （ a ∙ e ） （ c ∙ b ） （ a ∙ c ） M ∼α （ c ∙ e ） （ a ∙ b ） M
+  lemma（ae）（cb）（ac）M∼α（ce）（ab）M : (e : Atom) → e ∉ a ∷ b ∷ c ∷ ocurr M → （ a ∙ e ） （ c ∙ b ） （ a ∙ c ） M ∼α （ c ∙ e ） （ a ∙ b ） M
   lemma（ae）（cb）（ac）M∼α（ce）（ab）M e e∉abc∷ocurrM
     =  begin
          （ a ∙ e ） （ c ∙ b ） （ a ∙ c ） M 
@@ -239,7 +239,7 @@ lemma∙cancel∼α'' : {a b c : Atom}{M : Λ} → b # ƛ a M → c # ƛ a M →
 lemma∙cancel∼α'' {a} {b} {.a} {M} b#ƛaM #ƛ≡ rewrite lemma（aa）M≡M {a} {M} = ρ
 lemma∙cancel∼α'' b#ƛaM (#ƛ c#M) = lemma∙cancel∼α' b#ƛaM c#M
 --
-lemma∙ : {a b c : Atom}{M : Λ} → b # ƛ a M → c ∉ M → （ c ∙ b ） （ a ∙ c ） M ∼α （ a ∙ b ） M  
+lemma∙ : {a b c : Atom}{M : Λ} → b # ƛ a M → c ∉ₜ M → （ c ∙ b ） （ a ∙ c ） M ∼α （ a ∙ b ） M  
 lemma∙ {a} {b} {c} {M}       b#ƛaM     c∉M           
   = lemma∙cancel∼α' {a} {b} {c} {M} b#ƛaM (lemma∉→# c∉M)           
 --
@@ -262,7 +262,7 @@ lemma∼α* {a} {ƛ b M} {ƛ c N} (∼αƛ xs f) (*ƛ a*M b≢a)
 lemma∼α* {a} {ƛ b M} {ƛ c N} (∼αƛ xs f) (*ƛ a*M b≢a) 
   | d | d∉xs | d∉abcxsN | inj₂ (inj₁ (a≡c , d*N))  = ⊥-elim ((¬d*N) d*N)
   where
-  d∉N : d ∉ N
+  d∉N : d ∉ₜ N
   d∉N = lemmaocurr (c∉xs++ys→c∉ys {d} {xs} {ocurr N} (c∉xs++ys→c∉ys {d} {a ∷ b ∷ c ∷ []} {xs ++ ocurr N}  d∉abcxsN))
   ¬d*N : ¬ (d * N)
   ¬d*N d*N = (lemma∉→¬∈ d∉N) (lemma-free→∈ d*N)
@@ -301,7 +301,7 @@ data _≈α_ : Λ → Λ → Set where
 --
 lemma∼α∃#→∀ : {a b c : Atom}{M N : Λ} → 
          c # ƛ a M → c # ƛ b N → （ a ∙ c ） M ∼α  （ b ∙ c ） N → 
-         ∃ (λ xs → ((d : Atom) →  d ∉' xs → （ a ∙ d ） M ∼α  （ b ∙ d ） N))
+         ∃ (λ xs → ((d : Atom) →  d ∉ xs → （ a ∙ d ） M ∼α  （ b ∙ d ） N))
 lemma∼α∃#→∀ {a} {b} {c} {M} {N} c#ƛaM c#ƛbN （ac）M∼α（bc）N 
   = ocurr M ++ ocurr N ,
     (λ  d d∉ocurrM++ocurrN → 
@@ -317,7 +317,7 @@ lemma∼α∃#→∀ {a} {b} {c} {M} {N} c#ƛaM c#ƛbN （ac）M∼α（bc）N
                                             ∎ ))
 --
 lemma∼α∀→∃# : {a b : Atom}{M N : Λ}{xs : List Atom} → 
-         ((c : Atom) →  c ∉' xs → （ a ∙ c ） M ∼α  （ b ∙ c ） N) →
+         ((c : Atom) →  c ∉ xs → （ a ∙ c ） M ∼α  （ b ∙ c ） N) →
          ∃ (λ c → c # ƛ a M ∧ c # ƛ b N ∧ （ a ∙ c ） M ∼α （ b ∙ c ） N)
 lemma∼α∀→∃# {a} {b} {M} {N} {xs} f 
   with χ' (xs ++ ocurr (ƛ a M) ++ ocurr (ƛ b N))  | χ'∉ (xs ++ ocurr (ƛ a M) ++ ocurr (ƛ b N))

@@ -19,9 +19,6 @@ open import Data.Nat.Properties
 open import Data.Empty
 open import Data.Sum renaming (_⊎_ to _∨_)
 open import Data.List
-open import Data.List.Any as Any hiding (map)
-open import Data.List.Any.Membership
-open Any.Membership-≡ renaming (_∈_ to _∈'_;_∉_ to _∉'_) 
 open import Data.Product
 open import Relation.Binary.PropositionalEquality as PropEq hiding ([_])
 open import Relation.Nullary
