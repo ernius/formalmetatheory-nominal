@@ -69,7 +69,7 @@ lemmaSubst1 : {M N : Λ}(P : Λ)(a : Atom)
 %</lemmaSubst1>
 
 \begin{code}
-lemmaSubst1 {M} {N} P a = lemmaItαStrongCompatible Λ (hvar a P) _·_  (a ∷ fv P) ƛ M N 
+lemmaSubst1 {M} {N} P a = lemmaΛItStrongαCompatible Λ (hvar a P) _·_  (a ∷ fv P) ƛ M N 
 \end{code}
 
 

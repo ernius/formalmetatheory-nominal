@@ -101,10 +101,10 @@ data _#_ (a : Atom) :  Λ → Set where
 %<*free>
 \begin{code}
 data _*_ : Atom → Λ → Set where
-  *v   :  {x : Atom}                           → x * v x
-  *·l  :  {x : Atom}{M N : Λ} → x * M          → x * (M · N)
-  *·r  :  {x : Atom}{M N : Λ} → x * N          → x * (M · N)
-  *ƛ   :  {x y : Atom}{M : Λ} → x * M → y ≢ x  → x * (ƛ y M)
+  *v   :  {x : Atom}                            → x * v x
+  *·l  :  {x : Atom}{M N : Λ}  → x * M          → x * (M · N)
+  *·r  :  {x : Atom}{M N : Λ}  → x * N          → x * (M · N)
+  *ƛ   :  {x y : Atom}{M : Λ}  → x * M → y ≢ x  → x * (ƛ y M)
 \end{code}
 %</free>
 

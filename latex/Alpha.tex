@@ -1303,7 +1303,7 @@ Alpha Compatibility
 
 %<*alphaCompatible>
 \begin{code}%
-\>\AgdaFunction{αCompatiblePred} \AgdaSymbol{:} \AgdaSymbol{(}\AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaPrimitiveType{Set}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaPrimitiveType{Set}\<%
+\>\AgdaFunction{αCompatiblePred} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{l} \AgdaSymbol{:} \AgdaPostulate{Level}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaPrimitiveType{Set} \AgdaBound{l}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaPrimitiveType{Set} \AgdaBound{l}\<%
 \\
 \>\AgdaFunction{αCompatiblePred} \AgdaBound{P} \AgdaSymbol{=} \AgdaSymbol{\{}\AgdaBound{M} \AgdaBound{N} \AgdaSymbol{:} \AgdaDatatype{Λ}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaBound{M} \AgdaDatatype{∼α} \AgdaBound{N} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{P} \AgdaBound{N}\<%
 \end{code}
@@ -1313,10 +1313,11 @@ Strong Compatibility
 
 %<*strongAlphaCompatible>
 \begin{code}%
-\>\AgdaFunction{strong∼αCompatible} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{A} \AgdaSymbol{:} \AgdaPrimitiveType{Set}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaBound{A}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaPrimitiveType{Set}\<%
+\>\AgdaFunction{strong∼αCompatible} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{l} \AgdaSymbol{:} \AgdaPostulate{Level}\AgdaSymbol{\}\{}\AgdaBound{A} \AgdaSymbol{:} \AgdaPrimitiveType{Set} \AgdaBound{l}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaBound{A}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaPrimitiveType{Set} \AgdaBound{l}\<%
 \\
 \>\AgdaFunction{strong∼αCompatible} \AgdaBound{f} \AgdaBound{M} \AgdaSymbol{=} \AgdaSymbol{∀} \AgdaBound{N} \AgdaSymbol{→} \AgdaBound{M} \AgdaDatatype{∼α} \AgdaBound{N} \AgdaSymbol{→} \AgdaBound{f} \AgdaBound{M} \AgdaDatatype{≡} \AgdaBound{f} \AgdaBound{N}\<%
 \end{code}
 %</strongAlphaCompatible>
+
 
 

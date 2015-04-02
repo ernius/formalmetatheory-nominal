@@ -9,6 +9,8 @@
 \\
 %
 \\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Level}\<%
+\\
 \>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Relation.Nullary}\<%
 \\
 \>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Relation.Binary}\<%
@@ -100,7 +102,7 @@
 \\
 \>\AgdaComment{--}\<%
 \\
-\>\AgdaFunction{corollaryPπ++π′∙M→Pπ∙π′∙M} \AgdaSymbol{:} \AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{π} \AgdaBound{M}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{\{}\AgdaBound{P} \AgdaSymbol{:} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaPrimitiveType{Set}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{∀} \AgdaBound{π′} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{((}\AgdaBound{π′} \AgdaFunction{++} \AgdaBound{π}\AgdaSymbol{)} \AgdaFunction{∙} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaBound{π′} \AgdaFunction{∙} \AgdaBound{π} \AgdaFunction{∙} \AgdaBound{M}\AgdaSymbol{)}\<%
+\>\AgdaFunction{corollaryPπ++π′∙M→Pπ∙π′∙M} \AgdaSymbol{:} \AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{π} \AgdaBound{M}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{\{}\AgdaBound{l} \AgdaSymbol{:} \AgdaPostulate{Level}\AgdaSymbol{\}\{}\AgdaBound{P} \AgdaSymbol{:} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaPrimitiveType{Set} \AgdaBound{l}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{∀} \AgdaBound{π′} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{((}\AgdaBound{π′} \AgdaFunction{++} \AgdaBound{π}\AgdaSymbol{)} \AgdaFunction{∙} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaBound{π′} \AgdaFunction{∙} \AgdaBound{π} \AgdaFunction{∙} \AgdaBound{M}\AgdaSymbol{)}\<%
 \\
 \>\AgdaFunction{corollaryPπ++π′∙M→Pπ∙π′∙M} \AgdaSymbol{\{}\AgdaBound{π}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{M}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{P}\AgdaSymbol{\}} \AgdaBound{π′} \AgdaBound{Pπ′++πM} \<[49]%
 \>[49]\<%

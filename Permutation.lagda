@@ -4,6 +4,7 @@ module Permutation where
 open import Atom
 open import Term
 
+open import Level
 open import Relation.Nullary
 open import Relation.Binary
 open import Data.Empty
@@ -55,7 +56,7 @@ lemmaπ∙π′∙M≡π++π′∙M : {π π′ : Π}{M : Λ} → π ∙ π′ �
 lemmaπ∙π′∙M≡π++π′∙M {[]}           {π′} {M} = refl
 lemmaπ∙π′∙M≡π++π′∙M {(a , b) ∷ π}  {π′} {M} = cong (（_∙_）_ a b) (lemmaπ∙π′∙M≡π++π′∙M {π})
 --
-corollaryPπ++π′∙M→Pπ∙π′∙M : ∀ {π M} → {P : Λ → Set} → ∀ π′ → P ((π′ ++ π) ∙ M) → P (π′ ∙ π ∙ M)
+corollaryPπ++π′∙M→Pπ∙π′∙M : ∀ {π M} → {l : Level}{P : Λ → Set l} → ∀ π′ → P ((π′ ++ π) ∙ M) → P (π′ ∙ π ∙ M)
 corollaryPπ++π′∙M→Pπ∙π′∙M {π} {M} {P} π′ Pπ′++πM 
   rewrite lemmaπ∙π′∙M≡π++π′∙M {π′} {π} {M} = Pπ′++πM 
 --

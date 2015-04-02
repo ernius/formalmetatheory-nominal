@@ -395,7 +395,7 @@ Alpha Compatibility
 
 %<*alphaCompatible>
 \begin{code}
-αCompatiblePred : (Λ → Set) → Set
+αCompatiblePred : {l : Level} → (Λ → Set l) → Set l
 αCompatiblePred P = {M N : Λ} → M ∼α N → P M → P N
 \end{code}
 %</alphaCompatible>
@@ -404,9 +404,10 @@ Strong Compatibility
 
 %<*strongAlphaCompatible>
 \begin{code}
-strong∼αCompatible : {A : Set} → (Λ → A) → Λ → Set
+strong∼αCompatible : {l : Level}{A : Set l} → (Λ → A) → Λ → Set l
 strong∼αCompatible f M = ∀ N → M ∼α N → f M ≡ f N
 \end{code}
 %</strongAlphaCompatible>
+
 
 

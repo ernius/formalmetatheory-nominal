@@ -10,6 +10,7 @@ open import ListProperties
 open import TermInduction
 open import Permutation
 
+open import Level
 open import Data.Nat
 open import Data.Nat.Properties
 open import Function
@@ -27,7 +28,7 @@ Hago ahora el principio de Iteracion con el principio de induccion de swap hecho
 
 %<*termIteration>
 \begin{code}
-ΛIt  : (A : Set)
+ΛIt  : {l : Level}(A : Set l)
  → (Atom → A)
  → (A → A → A)
  → List Atom × (Atom → A → A) 
@@ -42,36 +43,36 @@ Hago ahora el principio de Iteracion con el principio de induccion de swap hecho
 \end{code}
 
 \begin{code}
-P : (A : Set) → (Atom → A) → (A → A → A) → List Atom → (Atom → A → A) → Λ → Set
+P : {l : Level}(A : Set l) → (Atom → A) → (A → A → A) → List Atom → (Atom → A → A) → Λ → Set l
 P A hv h· vs hƛ M =
     ∀ π → 
-    (TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {λ _ → A} hv)
+    (TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {P = λ _ → A} hv)
       (lemma·IndSw (λ _ _ → h·))
-      (lemmaƛIndSw {λ _ → A}
+      (lemmaƛIndSw {P = λ _ → A}
         (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → hƛ b (f []))))
       M π)
     ≡
-    (TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {λ _ → A} hv)
+    (TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {P = λ _ → A} hv)
       (lemma·IndSw (λ _ _ → h·))
-      (lemmaƛIndSw {λ _ → A}
+      (lemmaƛIndSw {P = λ _ → A}
         (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → hƛ b (f []))))
       (π ∙ M) [])
 --
-aux : (A : Set)
+aux : {l : Level}(A : Set l)
   → (hv : Atom → A)
   → (h· : A → A → A)
   → (vs : List Atom)
   → (hƛ : Atom → A → A)
   → ∀ M π →
-    (TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {λ _ → A} hv)
+    (TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {P = λ _ → A} hv)
       (lemma·IndSw (λ _ _ → h·))
-      (lemmaƛIndSw {λ _ → A}
+      (lemmaƛIndSw {P = λ _ → A}
         (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → proj₂ (vs , hƛ) b (f []))))
       M
       (π ++ [])) ≡
-    (TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {λ _ → A} hv)
+    (TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {P = λ _ → A} hv)
       (lemma·IndSw (λ _ _ → h·))
-      (lemmaƛIndSw {λ _ → A}
+      (lemmaƛIndSw {P = λ _ → A}
         (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → proj₂ (vs , hƛ) b (f []))))
       (π ∙ M)
       [])
@@ -86,37 +87,37 @@ aux A hv h· vs hƛ M π rewrite lemmaxs++[]≡xs π
             → P A hv h· vs hƛ (ƛ b M)
   lemmaƛ M a PMπ π rewrite lemmaπƛ {a} {M} {π} 
     = cong₂ hƛ refl (begin≡
-                      TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {λ _ → A} hv)
+                      TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {P = λ _ → A} hv)
                         (lemma·IndSw (λ _ _ → h·))
-                        (lemmaƛIndSw {λ _ → A}
+                        (lemmaƛIndSw {P = λ _ → A}
                         (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → hƛ b (f []))))
                         M ((π ∙ₐ a ,  χ vs (ƛ (π ∙ₐ a) (π ∙ M))) ∷ π)
                     ≡⟨ PMπ [] ((π ∙ₐ a ,  χ vs (ƛ (π ∙ₐ a) (π ∙ M))) ∷ π)  ⟩
-                      TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {λ _ → A} hv)
+                      TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {P = λ _ → A} hv)
                         (lemma·IndSw (λ _ _ → h·))
-                        (lemmaƛIndSw {λ _ → A}
+                        (lemmaƛIndSw {P = λ _ → A}
                         (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → hƛ b (f []))))
                         (((π ∙ₐ a ,  χ vs (ƛ (π ∙ₐ a) (π ∙ M))) ∷ π) ∙ M) []
-                    ≡⟨  cong  (λ p → TermPrimInd  (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {λ _ → A} hv)
+                    ≡⟨  cong  (λ p → TermPrimInd  (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {P = λ _ → A} hv)
                                                    (lemma·IndSw (λ _ _ → h·))
-                                                   (lemmaƛIndSw {λ _ → A}
+                                                   (lemmaƛIndSw {P = λ _ → A}
                                                    (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → hƛ b (f []))))
                                                    p [])
                                (sym (lemmaπ∙π′∙M≡π++π′∙M {[ π ∙ₐ a , χ vs (ƛ (π ∙ₐ a) (π ∙ M))]} {π} {M})) ⟩
-                      TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {λ _ → A} hv)
+                      TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {P = λ _ → A} hv)
                         (lemma·IndSw (λ _ _ → h·))
-                        (lemmaƛIndSw {λ _ → A}
+                        (lemmaƛIndSw {P = λ _ → A}
                         (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → hƛ b (f []))))
                         ([(π ∙ₐ a ,  χ vs (ƛ (π ∙ₐ a) (π ∙ M)))] ∙ π ∙ M) []
                     ≡⟨ sym (PMπ π [(π ∙ₐ a ,  χ vs (ƛ (π ∙ₐ a) (π ∙ M)))])  ⟩
-                      TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {λ _ → A} hv)
+                      TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {P = λ _ → A} hv)
                         (lemma·IndSw (λ _ _ → h·))
-                        (lemmaƛIndSw {λ _ → A}
+                        (lemmaƛIndSw {P = λ _ → A}
                         (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → hƛ b (f []))))
                         (π ∙ M) [(π ∙ₐ a ,  χ vs (ƛ (π ∙ₐ a) (π ∙ M)))]
                    □)
 --
-ΛItƛ  : (A : Set)
+ΛItƛ  : {l : Level}(A : Set l)
   → (hv : Atom → A)
   → (h· : A → A → A)
   → (vs : List Atom)
@@ -131,7 +132,7 @@ aux A hv h· vs hƛ M π rewrite lemmaxs++[]≡xs π
 
 %<*iterationStrongCompatible>
 \begin{code}
-lemmaItαStrongCompatible : (A : Set)
+lemmaΛItStrongαCompatible : {l : Level}(A : Set l)
   → (hv : Atom → A)
   → (h· : A → A → A)
   → (vs : List Atom)
@@ -141,7 +142,7 @@ lemmaItαStrongCompatible : (A : Set)
 %</iterationStrongCompatible>
 
 \begin{code}
-lemmaItαStrongCompatible A hv h· xs hƛ 
+lemmaΛItStrongαCompatible A hv h· xs hƛ 
   = TermIndPerm (strong∼αCompatible (ΛIt A hv h· (xs , hƛ))) lemmav lemma· lemmaƛ  
   where
   lemmav :  (a : ℕ) → strong∼αCompatible (ΛIt A hv h· (xs , hƛ)) (v a)
@@ -187,16 +188,16 @@ lemmaItαStrongCompatible A hv h· xs hƛ
 Term recursion principle
 
 \begin{code}
-app : {A : Set} → (A → A → Λ → Λ → A) → A × Λ → A × Λ → A × Λ
+app : {l : Level}{A : Set l} → (A → A → Λ → Λ → A) → A × Λ → A × Λ → A × Λ
 app h· (r , M) (r′ , M′) = h· r r′ M M′ , M · M′
 --
-abs : {A : Set} → (Atom → A → Λ → A) → Atom → A × Λ → A × Λ
+abs : {l : Level}{A : Set l} → (Atom → A → Λ → A) → Atom → A × Λ → A × Λ
 abs hƛ a (r , M) = hƛ a r M , ƛ a M
 \end{code}
 
 %<*termRecursion>
 \begin{code}
-ΛRec  : (A : Set)
+ΛRec  : {l : Level}(A : Set l)
       → (Atom → A)
       → (A → A → Λ → Λ → A)
       → List Atom × (Atom → A → Λ → A) 
@@ -206,14 +207,14 @@ abs hƛ a (r , M) = hƛ a r M , ƛ a M
 
 \begin{code}
 ΛRec A hv h· (xs , hƛ) M = proj₁ (ΛIt (A × Λ) < hv , v > (app h·) (xs , (abs hƛ)) M)
---
-lemmaΛRec∼α→≡ : (A : Set)
+--αStrongCompatible
+lemmaΛRecStrongαCompatible : {l : Level}(A : Set l)
   → (hv : Atom → A)
   → (h· : A → A → Λ → Λ → A)
   → (hƛ : List Atom × (Atom → A → Λ → A) )
   → ∀ M → strong∼αCompatible (ΛRec  A hv h· hƛ) M
-lemmaΛRec∼α→≡ A hv h· (xs , hƛ) M N M∼αN 
-  rewrite lemmaItαStrongCompatible (A × Λ) < hv , v > (app h·) xs (abs hƛ) M N M∼αN = refl
+lemmaΛRecStrongαCompatible A hv h· (xs , hƛ) M N M∼αN 
+  rewrite lemmaΛItStrongαCompatible (A × Λ) < hv , v > (app h·) xs (abs hƛ) M N M∼αN = refl
 \end{code}
 
 

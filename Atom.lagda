@@ -28,6 +28,9 @@ _≟ₐ_ = _≟_
 %</swap>
 
 \begin{code}
+sym≢ : {a b : Atom} → a ≢ b → b ≢ a
+sym≢ a≢b b≡a = ⊥-elim (a≢b (sym b≡a))
+--
 lemma∙ₐ :  ∀ a b c →
            (c ≡ a ∧           （ a ∙ b ）ₐ c ≡ b)  ∨ 
            (c ≡ b ∧  c ≢ a ∧  （ a ∙ b ）ₐ c ≡ a)  ∨ 
@@ -55,6 +58,12 @@ lemma∙ₐc≢a∧c≢b {a} {b} {c}   c≢a c≢b with （ a ∙ b ）ₐ c | l
 lemma∙ₐc≢a∧c≢b {a} {b} {.a}  c≢a c≢b | .b | inj₁ (refl , refl)              = ⊥-elim (c≢a refl) 
 lemma∙ₐc≢a∧c≢b {a} {b} {.b}  c≢a c≢b | .a | inj₂ (inj₁ (refl  , _ , refl))  = ⊥-elim (c≢b refl) 
 lemma∙ₐc≢a∧c≢b {a} {b} {c}   c≢a c≢b | .c | inj₂ (inj₂ (_     , _ , refl))  = refl
+--
+lemma∙ₐa≢b∧a≢c∧a≢d→a≢（bc）d :  ∀ {a b c d} → a ≢ b → a ≢ c → a ≢ d → a ≢ （ b ∙ c ）ₐ d
+lemma∙ₐa≢b∧a≢c∧a≢d→a≢（bc）d {a} {b} {c} {d} a≢b a≢c a≢d with （ b ∙ c ）ₐ d | lemma∙ₐ b c d
+lemma∙ₐa≢b∧a≢c∧a≢d→a≢（bc）d {a} {b} {c} .{b} a≢b a≢c a≢d | .c | inj₁ (refl , refl)              = a≢c
+lemma∙ₐa≢b∧a≢c∧a≢d→a≢（bc）d {a} {b} {c} .{c} a≢b a≢c a≢d | .b | inj₂ (inj₁ (refl  , _ , refl))  = a≢b
+lemma∙ₐa≢b∧a≢c∧a≢d→a≢（bc）d {a} {b} {c} {d} a≢b a≢c a≢d  | .d | inj₂ (inj₂ (_     , _ , refl))  = a≢d
 --
 lemma（aa）b≡b : ∀ {a} {b} → （ a ∙ a ）ₐ b ≡ b
 lemma（aa）b≡b {a}   {b} with （ a ∙ a ）ₐ b | lemma∙ₐ a a b
@@ -94,9 +103,6 @@ lemma∙ₐ（ab）a≡b {a} {b} = lemma∙ₐc≡a a b a refl
 --
 lemma∙ₐ（ab）b≡a : ∀ {a} {b} → （ a ∙ b ）ₐ b ≡ a
 lemma∙ₐ（ab）b≡a {a} {b} = lemma∙ₐc≡b a b b refl
---
-sym≢ : {a b : Atom} → a ≢ b → b ≢ a
-sym≢ a≢b b≡a = ⊥-elim (a≢b (sym b≡a))
 --
 lemma∙ₐdistributive : ∀ a b c d e →
   （ a ∙ b ）ₐ （ c ∙ d ）ₐ e ≡ （ （ a ∙ b ）ₐ c ∙ （ a ∙ b ）ₐ d ）ₐ （ a ∙ b ）ₐ e

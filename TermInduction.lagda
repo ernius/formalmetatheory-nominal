@@ -26,7 +26,7 @@ Primitive induction over raw terms:
 
 %<*termPrimInduction>
 \begin{code}
-TermPrimInd : (P : Λ → Set) 
+TermPrimInd : {l : Level}(P : Λ → Set l) 
   → (∀ a → P (v a))
   → (∀ M N → P M → P N → P (M · N))
   → (∀ M b → P M → P (ƛ b M))
@@ -44,10 +44,10 @@ TermPrimInd P ha h· hƛ (ƛ a M)
 \end{code}
 
 \begin{code}
-lemmavIndSw : {P : Λ → Set} → (∀ a → P (v a)) → ∀ a π → P (π ∙ v a)
+lemmavIndSw : {l : Level}{P : Λ → Set l} → (∀ a → P (v a)) → ∀ a π → P (π ∙ v a)
 lemmavIndSw hv a π rewrite lemmaπv {a} {π} = hv ( π ∙ₐ a)
 --
-lemma·IndSw : {P : Λ → Set} 
+lemma·IndSw : {l : Level}{P : Λ → Set l} 
   → (∀ M N → P M → P N →  P (M · N))
   → (M N : Λ)
   →  ((π : Π) → P (π ∙ M))
@@ -56,20 +56,20 @@ lemma·IndSw : {P : Λ → Set}
 lemma·IndSw h· M N fM fN π rewrite lemmaπ· {M} {N} {π} 
   = h· (π ∙ M) (π ∙ N) (fM π) (fN π)
 --
-lemmaƛIndSw :  {P : Λ → Set}
+lemmaƛIndSw :  {l : Level}{P : Λ → Set l}
   → (∀ M b → (∀ π → P (π ∙ M)) → P (ƛ b M))  
   → (M : Λ) (a : ℕ) 
   → ((π : List (Atom × Atom)) → P (π ∙ M)) 
   → (π : List (Atom × Atom)) → P (π ∙ ƛ a M)
-lemmaƛIndSw {P} hƛ M a fM π rewrite lemmaπƛ {a} {M} {π} 
-  = hƛ (π ∙ M) (π ∙ₐ a) (λ π′ → corollaryPπ++π′∙M→Pπ∙π′∙M {π} {M} {P} π′ (fM (π′ ++ π)))
+lemmaƛIndSw {P = P} hƛ M a fM π rewrite lemmaπƛ {a} {M} {π} 
+  = hƛ (π ∙ M) (π ∙ₐ a) (λ π′ → corollaryPπ++π′∙M→Pπ∙π′∙M {π} {M} {P = P} π′ (fM (π′ ++ π)))
 \end{code}
 
 Permutation induction principle proved using previous primitive recursion principle.
 
 %<*termIndPermutation>
 \begin{code}
-TermIndPerm : (P : Λ → Set) 
+TermIndPerm : {l : Level}(P : Λ → Set l) 
   → (∀ a → P (v a))
   → (∀ M N → P M → P N →  P (M · N))
   → (∀ M b → (∀ π → P (π ∙ M)) → P (ƛ b M))
@@ -80,13 +80,13 @@ TermIndPerm : (P : Λ → Set)
 \begin{code} 
 TermIndPerm P hv h· hƛ M 
  = TermPrimInd  (λ M → ∀ π → (P (π ∙ M))) 
-                (lemmavIndSw {P} hv) (lemma·IndSw h·) (lemmaƛIndSw {P} hƛ) M []
+                (lemmavIndSw {P = P} hv) (lemma·IndSw h·) (lemmaƛIndSw {P = P} hƛ) M []
 \end{code}
 
 Prove α Primitive Ind with Swap induction.
 
 \begin{code}
-lemmaαƛPrimInd :  (P : Λ → Set) → αCompatiblePred P  
+lemmaαƛPrimInd :  {l : Level}(P : Λ → Set l) → αCompatiblePred P  
   →  (vs : List Atom) 
   →  (∀ M b → b ∉ vs → P M → P (ƛ b M)) 
   →  (M : Λ) (a : ℕ) 
@@ -99,7 +99,7 @@ lemmaαƛPrimInd P αP vs hƛ M a PM with χ vs (ƛ a M) | χ∉ vs (ƛ a M) | �
 
 %<*alphaPrimInduction>
 \begin{code}
-TermαPrimInd :  (P : Λ → Set) → αCompatiblePred P 
+TermαPrimInd :  {l : Level}(P : Λ → Set l) → αCompatiblePred P 
   → (∀ a → P (v a))
   → (∀ M N → P M → P N → P (M · N))
   → ∃ (λ vs → (∀ M b → b ∉ vs → P M → P (ƛ b M)))
@@ -114,7 +114,7 @@ TermαPrimInd P αP ha h· (vs , hƛ) = TermIndPerm P ha h· (lemmaαƛPrimInd P
 Prove α Swap Ind with Swap Induction 
 
 \begin{code}
-lemmaαƛ :  ∀ P → αCompatiblePred P 
+lemmaαƛ :  {l : Level}(P : Λ → Set l) → αCompatiblePred P 
   →  (vs : List Atom) 
   →  (∀ M b → b ∉ vs → (∀ π →  P (π ∙ M)) → P (ƛ b M)) 
   →  (M : Λ) (a : ℕ) 
@@ -124,12 +124,12 @@ lemmaαƛ P αP vs hƛ M a fM with χ vs (ƛ a M) | χ∉ vs (ƛ a M) | χ# vs (
 ... | b | b∉vs | b#ƛaM 
   = αP  (σ (lemma∼αλ' b#ƛaM)) 
         (hƛ  ([( a , b )] ∙ M) b b∉vs 
-             (λ π → corollaryPπ++π′∙M→Pπ∙π′∙M {[(a , b)]} {M} {P} π (fM (π ++ [( a , b )])))) 
+             (λ π → corollaryPπ++π′∙M→Pπ∙π′∙M {[(a , b)]} {M} {P = P} π (fM (π ++ [( a , b )])))) 
 \end{code}
 
 %<*alphaIndPermutation>
 \begin{code}
-TermαIndPerm : ∀ P → αCompatiblePred P 
+TermαIndPerm : {l : Level}(P : Λ → Set l) → αCompatiblePred P 
   → (∀ a → P (v a))
   → (∀ M N → P M → P N →  P (M · N))
   → ∃ (λ as → (∀ M b → b ∉ as → (∀ π →  P (π ∙ M)) → P (ƛ b M)))
@@ -143,8 +143,9 @@ TermαIndPerm P αP ha h· (vs , hƛ) = TermIndPerm P ha h· (lemmaαƛ P αP vs
 
 Prove α ∃ Ind with Swap Induction
 
+
 \begin{code}
-TISw2TISwEx :  ∀ P → αCompatiblePred P 
+TISw2TISwEx : {l : Level}(P : Λ → Set l) → αCompatiblePred P 
   → (∀ a → P (v a))
   → (∀ M N → P M → P N →  P (M · N))
   → (∀ M a → ∃ (λ b → Σ  (b # ƛ a M)  (λ _ → P (（ a ∙ b ） M) → P (ƛ b  (（ a ∙ b ） M)))))
