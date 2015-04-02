@@ -25,7 +25,7 @@ FreeVariables : FreeVariables.lagda
 	$(AGDA) $(AGDALIBRARYFLAGS) Substitution.lagda
 
 html : Substitution.lagda
-	$(AGDA) $(AGDAHTMLFLAGS) $(AGDALIBRARYFLAGS) Substitution.lagda
+	$(AGDA) $(AGDAHTMLFLAGS) $(AGDALIBRARYFLAGS) Substitution.lagda; cp -rf html/ ../gh-pages/formalmetatheory-nominal/html/
 
 clean :
 	rm *.agdai
