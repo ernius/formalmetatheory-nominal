@@ -48,29 +48,36 @@ lemma∼αfv {M} {N} = lemmaΛItStrongαCompatible (List Atom) [_] _++_ [] (λ v
 
 Define free predicate using term iterator
 
+\begin{code}
+infix 8 _free_
+\end{code}
+
+%<*free>
+\begin{code}
+_free_ : Atom → Λ → Set
+(_free_) a = ΛIt Set (λ b → a ≡ b) _∨_ ([ a ] , const id) 
+\end{code}
+%</free>
 
 \begin{code}
-free : Atom → Λ → Set
-free a = ΛIt Set (λ b → a ≡ b) _∨_ ([ a ] , const id) 
---
-freeλ : ∀ a b M → free a (ƛ b M) ≡ free a (（ b ∙ χ [ a ] (ƛ b M) ） M)
+freeλ : ∀ a b M → a free (ƛ b M) ≡ a free  (（ b ∙ χ [ a ] (ƛ b M) ） M)
 freeλ a b M = ΛItƛ Set (λ b → a ≡ b) _∨_ [ a ] (const id) b M 
 --
-freeStrongCompatible : ∀ a M → strong∼αCompatible (free a) M
+freeStrongCompatible : ∀ a M → strong∼αCompatible (_free_ a) M
 freeStrongCompatible a M N M∼N 
   = lemmaΛItStrongαCompatible Set (λ b → a ≡ b) _∨_ [ a ]  (const id) M N M∼N
 --
-lemmavfree : ∀ {a b} → a ≡ b → free a (v b)
+lemmavfree : ∀ {a b} → a ≡ b → a free (v b)
 lemmavfree {a} .{a} refl  = refl
 --
-lemma·rfree : ∀ {a M} N → free a M → free a (M · N)
+lemma·rfree : ∀ {a M} N → a free M →  a free (M · N)
 lemma·rfree {a} {M} N afreeM = inj₁ afreeM
 --
-lemma·lfree : ∀ {a} M {N} → free a N → free a (M · N)
+lemma·lfree : ∀ {a} M {N} → a free N → a free (M · N)
 lemma·lfree {a} M {N} afreeN = inj₂ afreeN
 --
 Pfs : Atom → Λ → Set
-Pfs a M = ∀ b c → a ≢ b → a ≢ c → free a M → free a (（ b ∙ c ） M)
+Pfs a M = ∀ b c → a ≢ b → a ≢ c → a free M → a free (（ b ∙ c ） M)
 --
 lemmaFreeSwap : ∀ M a → Pfs a M
 lemmaFreeSwap M a
@@ -102,33 +109,33 @@ lemmaFreeSwap M a
     a≢d = λ a≡d → d∉[a] (here (sym a≡d))
     a≢e : a ≢ e
     a≢e = λ a≡e → (e∉[a] (here (sym a≡e)))
-    afreeM :  free a M
+    afreeM :  a free M
     afreeM  with （ d ∙ e ） (（ d ∙ e ） M) | Hi [( d , e)] d e a≢d a≢e afree（de）M | lemma（ab）（ab）M≡M {d} {e} {M}
     ... | .M | afreeM | refl = afreeM
-    afree（bc）M : free a (（ b ∙ c ） M)
+    afree（bc）M : a free (（ b ∙ c ） M)
     afree（bc）M = Hi [] b c a≢b a≢c afreeM
     a≢（bc）d : a ≢ （ b ∙ c ）ₐ d
     a≢（bc）d = lemma∙ₐa≢b∧a≢c∧a≢d→a≢（bc）d a≢b a≢c a≢d
     a≢f : a ≢ f
     a≢f = λ a≡f → (f∉[a] (here (sym a≡f)))
-    afree（（bc）df）（bc）M : free a (（ （ b ∙ c ）ₐ d ∙ f ） （ b ∙ c ） M)
+    afree（（bc）df）（bc）M : a free (（ （ b ∙ c ）ₐ d ∙ f ） （ b ∙ c ） M)
     afree（（bc）df）（bc）M = Hi [(b , c)] (（ b ∙ c ）ₐ d) f a≢（bc）d a≢f afree（bc）M
 --
-lemmaƛfree : ∀ {b a M} → free a M → a ≢ b → free a (ƛ b M)
+lemmaƛfree : ∀ {b a M} → a free M → a ≢ b → a free (ƛ b M)
 lemmaƛfree {b} {a} {M} freeaM a≢b rewrite freeλ a b M = lemmaFreeSwap M a b c a≢b a≢c freeaM
   where
   c = χ [ a ] (ƛ b M)
   c∉[a] = χ∉ [ a ] (ƛ b M)
   a≢c = λ a≡c → c∉[a] (here (sym a≡c))
 --
-lemma*→free : ∀ {a M} → a * M → free a M
+lemma*→free : ∀ {a M} → a * M →  a free M
 lemma*→free *v                        = lemmavfree refl
 lemma*→free {a} {M · N} (*·l a*M)     = lemma·rfree {a} {M} N (lemma*→free a*M)
 lemma*→free {a} {M · N} (*·r a*N)     = lemma·lfree {a} M {N} (lemma*→free a*N)
 lemma*→free {a} {ƛ b M} (*ƛ a*M a≢b)  = lemmaƛfree {b} {a} {M} (lemma*→free a*M) (sym≢ a≢b)
 --
 Pfs2 : Atom → Λ → Set
-Pfs2 a M = ∀ b c → a ≢ b → a ≢ c → free a (（ b ∙ c ） M) → free a M
+Pfs2 a M = ∀ b c → a ≢ b → a ≢ c → a free (（ b ∙ c ） M) → a free M
 --
 lemmaFreeSwap2 : ∀ M a → Pfs2 a M
 lemmaFreeSwap2 M a b c a≢b a≢c afree（bc）M 
@@ -136,7 +143,7 @@ lemmaFreeSwap2 M a b c a≢b a≢c afree（bc）M
 ... | p rewrite lemma（ab）（ab）M≡M {b} {c} {M}  = p
 --
 Pf* : Atom → Λ → Set
-Pf* a M = free a M → a * M
+Pf* a M = a free M → a * M
 --
 lemmafree→* : ∀ {a M} → Pf* a M
 lemmafree→* {a} {M} 
@@ -159,7 +166,7 @@ lemmafree→* {a} {M}
     a≢c = λ a≡c → c∉[a] (here (sym a≡c))
 --
 Pfvf : Atom → Λ → Set
-Pfvf a M = a ∈ fv M → free a M
+Pfvf a M = a ∈ fv M → a free M
 --
 αCompatiblePfvfa : ∀ a → αCompatiblePred (Pfvf a)
 αCompatiblePfvfa a {M} {N} M∼N PfvfM a∈fvN 
