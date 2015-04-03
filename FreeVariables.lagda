@@ -159,7 +159,7 @@ lemmafree→* {a} {M}
     a≢c = λ a≡c → c∉[a] (here (sym a≡c))
 --
 Pfvf : Atom → Λ → Set
-Pfvf a M = a ∈ fv M → free a  M
+Pfvf a M = a ∈ fv M → free a M
 --
 αCompatiblePfvfa : ∀ a → αCompatiblePred (Pfvf a)
 αCompatiblePfvfa a {M} {N} M∼N PfvfM a∈fvN 

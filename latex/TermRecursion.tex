@@ -79,6 +79,23 @@ Hago ahora el principio de Iteracion con el principio de induccion de swap hecho
 \>[18]\AgdaBound{hv} \AgdaSymbol{(λ} \AgdaBound{\_} \AgdaBound{\_} \AgdaSymbol{→} \AgdaBound{h·}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaBound{vs} \AgdaInductiveConstructor{,} \AgdaSymbol{(λ} \AgdaBound{\_} \AgdaBound{b} \AgdaBound{\_} \AgdaBound{f} \AgdaSymbol{→} \AgdaBound{hƛ} \AgdaBound{b} \AgdaSymbol{(}\AgdaBound{f} \AgdaInductiveConstructor{[]}\AgdaSymbol{)))}\<%
 \end{code}
 
+It is possible to define induction with this iterator predicate ?
+
+\begin{code}%
+\>\AgdaComment{-- TermαIndPerm' : (P : Λ → Set) → αCompatiblePred P }\<%
+\\
+\>\AgdaComment{--   → (∀ a → P (v a))}\<%
+\\
+\>\AgdaComment{--   → (∀ M N → P M → P N →  P (M · N))}\<%
+\\
+\>\AgdaComment{--   → ∃ (λ as → (∀ M b → b ∉ as → (∀ π →  P (π ∙ M)) → P (ƛ b M)))}\<%
+\\
+\>\AgdaComment{--   → ∀ M → P M}\<%
+\\
+\>\AgdaComment{-- TermαIndPerm' P αP hv h· (vs , hƛ) M = ΛIt P \{! hv!\} \{!!\} (\{!!\} , \{!!\}) M}\<%
+\end{code}
+
+
 \begin{code}%
 \>\AgdaFunction{P} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{l} \AgdaSymbol{:} \AgdaPostulate{Level}\AgdaSymbol{\}(}\AgdaBound{A} \AgdaSymbol{:} \AgdaPrimitiveType{Set} \AgdaBound{l}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaFunction{Atom} \AgdaSymbol{→} \AgdaBound{A}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{A} \AgdaSymbol{→} \AgdaBound{A} \AgdaSymbol{→} \AgdaBound{A}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaDatatype{List} \AgdaFunction{Atom} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaFunction{Atom} \AgdaSymbol{→} \AgdaBound{A} \AgdaSymbol{→} \AgdaBound{A}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaPrimitiveType{Set} \AgdaBound{l}\<%
 \\

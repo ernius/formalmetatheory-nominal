@@ -42,6 +42,18 @@ Hago ahora el principio de Iteracion con el principio de induccion de swap hecho
                   hv (λ _ _ → h·) (vs , (λ _ b _ f → hƛ b (f [])))
 \end{code}
 
+It is possible to define induction with this iterator predicate ?
+
+\begin{code}
+-- TermαIndPerm' : (P : Λ → Set) → αCompatiblePred P 
+--   → (∀ a → P (v a))
+--   → (∀ M N → P M → P N →  P (M · N))
+--   → ∃ (λ as → (∀ M b → b ∉ as → (∀ π →  P (π ∙ M)) → P (ƛ b M)))
+--   → ∀ M → P M
+-- TermαIndPerm' P αP hv h· (vs , hƛ) M = ΛIt P {! hv!} {!!} ({!!} , {!!}) M
+\end{code}
+
+
 \begin{code}
 P : {l : Level}(A : Set l) → (Atom → A) → (A → A → A) → List Atom → (Atom → A → A) → Λ → Set l
 P A hv h· vs hƛ M =

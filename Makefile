@@ -15,7 +15,7 @@ AGDALATEXFLAGS = --latex
 latex/%.tex : %.lagda
 	$(AGDA) $(AGDALATEXFLAGS) $(AGDALIBRARYFLAGS) $<
 
-resumen : latex/resumen.tex latex/Substitution.tex latex/FreeVariables.tex latex/Atom.tex latex/Alpha.tex latex/Chi.tex latex/Equivariant.tex latex/ListProperties.tex latex/NaturalProperties.tex latex/Permutation.tex latex/TermAcc.tex latex/Term.tex latex/TermInduction.tex latex/TermRecursion.tex
+resumen : latex/resumen.tex latex/Substitution.tex latex/FreeVariables.tex latex/Atom.tex latex/Alpha.tex latex/Chi.tex latex/Equivariant.tex latex/ListProperties.tex latex/NaturalProperties.tex latex/Permutation.tex latex/TermAcc.tex latex/Term.tex latex/TermInduction.tex latex/TermRecursion.tex latex/Norrish.tex
 	cd latex; $(LATEX) resumen.tex; cd ..;	
 
 Substitution : Substitution.lagda
