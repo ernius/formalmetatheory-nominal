@@ -60,4 +60,12 @@ lemmafilter→ x (.x ∷ xs) p (here refl)
      | true | [ px≡true ]ᵢ = px≡true , here refl
 lemmafilter→ x (y ∷ xs) p (there x∈filterpxs)  
      | true | [ py≡true ]ᵢ = mapₓ id there (lemmafilter→ x xs p x∈filterpxs)
+--
+lemmafilter← : (x : ℕ)(xs : List ℕ)(p : ℕ → Bool) → p x ≡ true →  x ∈' xs → x ∈' filter p xs
+lemmafilter← x (.x ∷ xs)  p px≡true (here refl) with p x
+lemmafilter← x (.x ∷ xs)  p px≡true (here refl) | true = here refl
+lemmafilter← x (.x ∷ xs)  p ()      (here refl) | false 
+lemmafilter← x (y ∷ xs)   p px≡true (there x∈xs) with p y
+... | false = lemmafilter← x xs p px≡true x∈xs
+... | true  = there (lemmafilter← x xs p px≡true x∈xs)
 \end{code}

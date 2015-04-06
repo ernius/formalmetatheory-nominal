@@ -24,7 +24,7 @@ open import Data.List.Any as Any hiding (map)
 open import Data.List.Any.Membership
 open Any.Membership-≡
 open import Data.Product
-open import Relation.Binary.PropositionalEquality as PropEq hiding ([_])
+open import Relation.Binary.PropositionalEquality as PropEq renaming ([_] to [_]ᵢ)
 open import Relation.Nullary
 open import Relation.Nullary.Decidable
 
@@ -202,6 +202,64 @@ lemmafvf {a} {M}
     a≢b : a ≢ b
     a≢b = λ a≡b → (⊥-elim (b∉[a] (here (sym a≡b))))
 \end{code}
+
+
+\begin{code}
+Pffv : Atom → Λ → Set
+Pffv a M = a free M → a ∈ fv M
+--
+αCompatiblePffva : ∀ a → αCompatiblePred (Pffv a)
+αCompatiblePffva a {M} {N} M∼N PffvM afreeM
+  rewrite 
+    lemma∼αfv M∼N 
+  | freeStrongCompatible a N M (σ M∼N) = PffvM afreeM
+--
+lemmaffv : ∀ {a} {M} → Pffv a M
+lemmaffv {a} {M} 
+  = TermαIndPerm  (Pffv a) (αCompatiblePffva a) 
+                  (λ { b b≡a → here b≡a }) 
+                  lemma· 
+                  ([ a ] , lemmaƛ) 
+                  M
+  where
+  lemma· : (M N : Λ) → Pffv a M → Pffv a N → Pffv a (M · N)
+  lemma· M N PffvaM PffvaN (inj₁ afreeM) = c∈xs∨c∈ys→c∈xs++ys (inj₁ (PffvaM afreeM)) 
+  lemma· M N PffvaM PffvaN (inj₂ afreeN) = c∈xs∨c∈ys→c∈xs++ys {xs = fv M} (inj₂ (PffvaN afreeN)) 
+  lemmaƛ : (M : Λ) (b : ℕ) → b ∉ [ a ] 
+         → ((π : List (Atom × Atom)) → Pffv a (π ∙ M)) 
+         → Pffv a (ƛ b M)
+  lemmaƛ M b b∉[a] PffvaπM afree（bc）M rewrite freeλ a b M | lemmafvƛ b M
+    = lemmafilter← a (fv (（ b ∙ d ） M)) (λ y → not (⌊ d ≟ₐ y ⌋)) prf≡ a∈fv（bd）M 
+    where
+    c = χ [ a ] (ƛ b M)
+    d = χ [] (ƛ b M)
+    d#ƛbM = χ# [] (ƛ b M)
+    a≢b : a ≢ b
+    a≢b = λ a≡b → (⊥-elim (b∉[a] (here (sym a≡b))))
+    a≢c : a ≢ c
+    a≢c = λ a≡c → ⊥-elim ((χ∉ [ a ] (ƛ b M)) (here (sym a≡c)))
+    afreeM : a free  M
+    afreeM = lemmaFreeSwap2 M a b c a≢b a≢c afree（bc）M
+    auxa≢d : ∀ a b d → a ≢ b → a free M → d # ƛ b M → a ≢ d
+    auxa≢d a .a .a a≢a afreeM #ƛ≡ refl     = ⊥-elim (a≢a refl)
+    auxa≢d a b .a a≢b afreeM (#ƛ a#M) refl = ⊥-elim ((lemma-free→¬# (lemmafree→* {a} {M} afreeM)) a#M)
+    a≢d : a ≢ d 
+    a≢d = auxa≢d a b d a≢b afreeM d#ƛbM 
+    a∈fv（bd）M : a ∈ fv (（ b ∙ d ） M)
+    a∈fv（bd）M = PffvaπM [(b , d)] (lemmaFreeSwap M a b d a≢b a≢d afreeM)
+    prf≡ : (λ y → not (⌊ d ≟ₐ y ⌋)) a ≡ true
+    prf≡ with d ≟ₐ a
+    ... | yes d≡a = ⊥-elim (a≢d (sym d≡a))
+    ... | no  d≢a = refl
+\end{code}
+
+\begin{code}
+lemma∉fv→# : ∀ {a M} → a ∉ fv M → a # M
+lemma∉fv→# {a} {M} a∉fvM with a #? M
+... | yes a#M  = a#M
+... | no ¬a#M  = ⊥-elim (a∉fvM (lemmaffv {a} {M} (lemma*→free (lemma¬#→free ¬a#M))))
+\end{code}
+
 
 Other way using free data relation *.
 
