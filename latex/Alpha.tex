@@ -796,6 +796,19 @@
 \\
 \>\AgdaComment{--}\<%
 \\
+\>\AgdaFunction{lemma∙cancel∼α‴} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{a} \AgdaBound{b} \AgdaBound{c} \AgdaSymbol{:} \AgdaFunction{Atom}\AgdaSymbol{\}\{}\AgdaBound{M} \AgdaSymbol{:} \AgdaDatatype{Λ}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaBound{b} \AgdaDatatype{\#} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{c} \AgdaDatatype{\#} \AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M} \AgdaSymbol{→} \AgdaFunction{（} \AgdaBound{c} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{c} \AgdaFunction{）} \AgdaBound{M} \AgdaDatatype{∼α} \AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaBound{M} \<[100]%
+\>[100]\<%
+\\
+\>\AgdaFunction{lemma∙cancel∼α‴} \AgdaSymbol{\{}\AgdaBound{a}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{b}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaSymbol{.}\AgdaBound{a}\AgdaSymbol{\}} \<[30]%
+\>[30]\AgdaSymbol{\{}\AgdaBound{M}\AgdaSymbol{\}} \AgdaBound{b\#M} \AgdaInductiveConstructor{\#ƛ≡} \AgdaKeyword{rewrite} \AgdaFunction{lemma（aa）M≡M} \AgdaSymbol{\{}\AgdaBound{a}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{M}\AgdaSymbol{\}} \AgdaSymbol{=} \AgdaFunction{ρ}\<%
+\\
+\>\AgdaFunction{lemma∙cancel∼α‴} \AgdaSymbol{\{}\AgdaBound{a}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{b}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{c}\AgdaSymbol{\}} \<[30]%
+\>[30]\AgdaSymbol{\{}\AgdaBound{M}\AgdaSymbol{\}} \<[35]%
+\>[35]\AgdaBound{b\#M} \AgdaSymbol{(}\AgdaInductiveConstructor{\#ƛ} \AgdaBound{c\#N}\AgdaSymbol{)} \<[49]%
+\>[49]\AgdaSymbol{=} \AgdaFunction{lemma∙cancel∼α} \AgdaBound{b\#M} \AgdaBound{c\#N}\<%
+\\
+\>\AgdaComment{--}\<%
+\\
 \>\AgdaFunction{lemma∙} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{a} \AgdaBound{b} \AgdaBound{c} \AgdaSymbol{:} \AgdaFunction{Atom}\AgdaSymbol{\}\{}\AgdaBound{M} \AgdaSymbol{:} \AgdaDatatype{Λ}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaBound{b} \AgdaDatatype{\#} \AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{c} \AgdaDatatype{∉ₜ} \AgdaBound{M} \AgdaSymbol{→} \AgdaFunction{（} \AgdaBound{c} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{c} \AgdaFunction{）} \AgdaBound{M} \AgdaDatatype{∼α} \AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaBound{M} \<[92]%
 \>[92]\<%
 \\

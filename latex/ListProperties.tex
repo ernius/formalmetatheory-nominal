@@ -142,4 +142,28 @@
 \\
 \>[0]\AgdaIndent{5}{}\<[5]%
 \>[5]\AgdaSymbol{|} \AgdaInductiveConstructor{true} \AgdaSymbol{|} \AgdaInductiveConstructor{[} \AgdaBound{py≡true} \AgdaInductiveConstructor{]ᵢ} \AgdaSymbol{=} \AgdaFunction{mapₓ} \AgdaFunction{id} \AgdaInductiveConstructor{there} \AgdaSymbol{(}\AgdaFunction{lemmafilter→} \AgdaBound{x} \AgdaBound{xs} \AgdaBound{p} \AgdaBound{x∈filterpxs}\AgdaSymbol{)}\<%
+\\
+\>\AgdaComment{--}\<%
+\\
+\>\AgdaFunction{lemmafilter←} \AgdaSymbol{:} \AgdaSymbol{(}\AgdaBound{x} \AgdaSymbol{:} \AgdaDatatype{ℕ}\AgdaSymbol{)(}\AgdaBound{xs} \AgdaSymbol{:} \AgdaDatatype{List} \AgdaDatatype{ℕ}\AgdaSymbol{)(}\AgdaBound{p} \AgdaSymbol{:} \AgdaDatatype{ℕ} \AgdaSymbol{→} \AgdaDatatype{Bool}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{p} \AgdaBound{x} \AgdaDatatype{≡} \AgdaInductiveConstructor{true} \AgdaSymbol{→} \<[66]%
+\>[66]\AgdaBound{x} \AgdaFunction{∈'} \AgdaBound{xs} \AgdaSymbol{→} \AgdaBound{x} \AgdaFunction{∈'} \AgdaFunction{filter} \AgdaBound{p} \AgdaBound{xs}\<%
+\\
+\>\AgdaFunction{lemmafilter←} \AgdaBound{x} \AgdaSymbol{(}\AgdaSymbol{.}\AgdaBound{x} \AgdaInductiveConstructor{∷} \AgdaBound{xs}\AgdaSymbol{)} \<[26]%
+\>[26]\AgdaBound{p} \AgdaBound{px≡true} \AgdaSymbol{(}\AgdaInductiveConstructor{here} \AgdaInductiveConstructor{refl}\AgdaSymbol{)} \AgdaKeyword{with} \AgdaBound{p} \AgdaBound{x}\<%
+\\
+\>\AgdaFunction{lemmafilter←} \AgdaBound{x} \AgdaSymbol{(}\AgdaSymbol{.}\AgdaBound{x} \AgdaInductiveConstructor{∷} \AgdaBound{xs}\AgdaSymbol{)} \<[26]%
+\>[26]\AgdaBound{p} \AgdaBound{px≡true} \AgdaSymbol{(}\AgdaInductiveConstructor{here} \AgdaInductiveConstructor{refl}\AgdaSymbol{)} \AgdaSymbol{|} \AgdaInductiveConstructor{true} \AgdaSymbol{=} \AgdaInductiveConstructor{here} \AgdaInductiveConstructor{refl}\<%
+\\
+\>\AgdaFunction{lemmafilter←} \AgdaBound{x} \AgdaSymbol{(}\AgdaSymbol{.}\AgdaBound{x} \AgdaInductiveConstructor{∷} \AgdaBound{xs}\AgdaSymbol{)} \<[26]%
+\>[26]\AgdaBound{p} \AgdaSymbol{()} \<[36]%
+\>[36]\AgdaSymbol{(}\AgdaInductiveConstructor{here} \AgdaInductiveConstructor{refl}\AgdaSymbol{)} \AgdaSymbol{|} \AgdaInductiveConstructor{false} \<[56]%
+\>[56]\<%
+\\
+\>\AgdaFunction{lemmafilter←} \AgdaBound{x} \AgdaSymbol{(}\AgdaBound{y} \AgdaInductiveConstructor{∷} \AgdaBound{xs}\AgdaSymbol{)} \<[26]%
+\>[26]\AgdaBound{p} \AgdaBound{px≡true} \AgdaSymbol{(}\AgdaInductiveConstructor{there} \AgdaBound{x∈xs}\AgdaSymbol{)} \AgdaKeyword{with} \AgdaBound{p} \AgdaBound{y}\<%
+\\
+\>\AgdaSymbol{...} \AgdaSymbol{|} \AgdaInductiveConstructor{false} \AgdaSymbol{=} \AgdaFunction{lemmafilter←} \AgdaBound{x} \AgdaBound{xs} \AgdaBound{p} \AgdaBound{px≡true} \AgdaBound{x∈xs}\<%
+\\
+\>\AgdaSymbol{...} \AgdaSymbol{|} \AgdaInductiveConstructor{true} \<[12]%
+\>[12]\AgdaSymbol{=} \AgdaInductiveConstructor{there} \AgdaSymbol{(}\AgdaFunction{lemmafilter←} \AgdaBound{x} \AgdaBound{xs} \AgdaBound{p} \AgdaBound{px≡true} \AgdaBound{x∈xs}\AgdaSymbol{)}\<%
 \end{code}

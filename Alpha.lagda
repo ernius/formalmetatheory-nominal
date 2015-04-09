@@ -239,8 +239,9 @@ lemma∙cancel∼α'' : {a b c : Atom}{M : Λ} → b # ƛ a M → c # ƛ a M →
 lemma∙cancel∼α'' {a} {b} {.a} {M} b#ƛaM #ƛ≡ rewrite lemma（aa）M≡M {a} {M} = ρ
 lemma∙cancel∼α'' b#ƛaM (#ƛ c#M) = lemma∙cancel∼α' b#ƛaM c#M
 --
-postulate
-  lemma∙cancel∼α‴ : {a b c : Atom}{M : Λ} → b # M → c # ƛ a M → （ c ∙ b ） （ a ∙ c ） M ∼α （ a ∙ b ） M  
+lemma∙cancel∼α‴ : {a b c : Atom}{M : Λ} → b # M → c # ƛ a M → （ c ∙ b ） （ a ∙ c ） M ∼α （ a ∙ b ） M  
+lemma∙cancel∼α‴ {a} {b} {.a}  {M} b#M #ƛ≡ rewrite lemma（aa）M≡M {a} {M} = ρ
+lemma∙cancel∼α‴ {a} {b} {c}   {M}  b#M (#ƛ c#N)  = lemma∙cancel∼α b#M c#N
 --
 lemma∙ : {a b c : Atom}{M : Λ} → b # ƛ a M → c ∉ₜ M → （ c ∙ b ） （ a ∙ c ） M ∼α （ a ∙ b ） M  
 lemma∙ {a} {b} {c} {M}       b#ƛaM     c∉M           

@@ -260,6 +260,20 @@ lemma∉fv→# {a} {M} a∉fvM with a #? M
 ... | no ¬a#M  = ⊥-elim (a∉fvM (lemmaffv {a} {M} (lemma*→free (lemma¬#→free ¬a#M))))
 \end{code}
 
+\begin{code}
+lemma∈fvM→a∈fvƛbM : ∀ {a b M} → a ≢ b → a ∈ fv M →  a ∈ fv (ƛ b M) 
+lemma∈fvM→a∈fvƛbM {a} {b} {M} a≢b a∈fvM = lemmaffv {a} {ƛ b M} (lemmaƛfree {b} {a} {M} (lemmafvf {a} {M} a∈fvM) a≢b)
+--
+lemma∈fvƛbM→a∈fvM : ∀ {a b M} → a ≢ b → a ∈ fv (ƛ b M) → a ∈ fv M
+lemma∈fvƛbM→a∈fvM {a} {b} {M} a≢b a∈fvƛbM rewrite lemmafvƛ b M
+  with χ [] (ƛ b M) | lemmafilter→ a (fv (（ b ∙ χ [] (ƛ b M) ） M)) (λ y → not (⌊ χ [] (ƛ b M) ≟ₐ y ⌋)) a∈fvƛbM  
+... | c | ¬a≟c=true , a∈fv（bc）M with a ≟ₐ c
+lemma∈fvƛbM→a∈fvM {a} {b} {M} a≢b a∈fvƛbM | .a | ¬a≟a=true , a∈fv（ba）M  | yes refl with a ≟ₐ a
+lemma∈fvƛbM→a∈fvM {a} {b} {M} a≢b a∈fvƛbM | .a | () , a∈fv（ba）M  | yes refl | yes _
+lemma∈fvƛbM→a∈fvM {a} {b} {M} a≢b a∈fvƛbM | .a | _ , a∈fv（ba）M  | yes refl | no a≢a = ⊥-elim (a≢a refl)
+lemma∈fvƛbM→a∈fvM {a} {b} {M} a≢b a∈fvƛbM | c  | _ , a∈fv（bc）M  | no a≢c 
+    =  lemmaffv {a} {M} (lemmaFreeSwap2 M a b c a≢b a≢c (lemmafvf {a} {（ b ∙ c ） M} a∈fv（bc）M) ) 
+\end{code}
 
 Other way using free data relation *.
 

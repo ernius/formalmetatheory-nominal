@@ -48,7 +48,8 @@ M [ a := N ] = ΛIt Λ (hvar a N) _·_ (a ∷ fv N , ƛ) M
 lemmaSubstƛ : ∀ a b M P → (ƛ b M) [ a := P ] ≡ ƛ (χ (a ∷ fv P) (ƛ b M)) ( ( （ b ∙ (χ (a ∷ fv P) (ƛ b M)) ） M) [ a := P ] )
 lemmaSubstƛ a b M P = ΛItƛ Λ (hvar a P) _·_ (a ∷ fv P)  ƛ b M
 --
-lemmahvar : {a b : Atom}{M : Λ} → a ≡ b × hvar a M b ≡ M ∨ a ≢ b × hvar a M b ≡ v b
+
+lemmahvar : {a b : Atom}{M : Λ} → a ≡ b × (v b) [ a := M ] ≡ M ∨ a ≢ b × (v b) [ a := M ] ≡ v b
 lemmahvar {a} {b} {M} with a ≟ₐ b
 lemmahvar {a} {.a}  {M}  | yes  refl  = inj₁ (refl , refl)
 lemmahvar {a} {b}   {M}  | no   a≢b   = inj₂ (a≢b , refl)
@@ -58,6 +59,7 @@ lemmahvar≡ {a} {M} with lemmahvar {a} {a} {M}
 ... | inj₁ (_    , hvaraMa≡a)  = hvaraMa≡a
 ... | inj₂ (a≢a  , _      )    = ⊥-elim (a≢a refl)
 --
+  
 lemmahvar≢ : {a b : Atom}{M : Λ} → a ≢ b → hvar a M b ≡ v b
 lemmahvar≢ {a} {b} {M} a≢b with lemmahvar {a} {b} {M}
 ... | inj₁ (a≡b    , _)       = ⊥-elim (a≢b a≡b)
@@ -239,7 +241,7 @@ lemmaSw[]
         → （ （ a ∙ b ）ₐ e ∙ g ） （ （ a ∙ b ）ₐ d ∙ （ a ∙ b ）ₐ e ） （ a ∙ b ） M ∼α （ （ a ∙ b ）ₐ d ∙ g ） （ a ∙ b ） M
     ∼α1 {g} {e} g∉ e# = lemma∙cancel∼α1 {a} {b} {c} {d} {（ a ∙ b ）ₐ e} {g} {N} {M} g∉ (lemma#Equiv [(a , b)] e#)
     ∼α2 : ∀ {g f} → g ∉ (（ a ∙ b ）ₐ c ∷ fv (（ a ∙ b ） N) ++ fv (（ a ∙ b ） M)) → f # ƛ (（ a ∙ b ）ₐ d) (（ a ∙ b ） M)
-        → （ （ a ∙ b ）ₐ d ∙ g ） （ a ∙ b ） M ∼α （ f ∙ g ） （ （ a ∙ b ）ₐ d ∙ f ） （ a ∙ b ） M
+        → （ （ a ∙ b ）ₐ d ∙ g ） （ a ∙ b ） M ∼α （ f ∙ g ） （ （ a ∙ b ）ₐ d ∙ f ） （ a ∙ b ） M
     ∼α2 {g} {f} g∉ f# = σ (lemma∙cancel∼α1 {a} {b} {c} {d} {f} {g} {N} {M} g∉ f#)
 \end{code}
 
@@ -292,6 +294,133 @@ lemmaƛ∼[] {a} {b} {P} M b∉a∷fvP
   a≢c = sym≢ (b∉a∷xs→b≢a c∉a∷fvP)
 \end{code}
 
+
+\begin{code}
+Pfv[] : Atom → Λ → Λ → Set
+Pfv[] x N M = x ∉ fv M → M ∼α M [ x := N ]
+--
+αCompatiblePfv[] : ∀ x N → αCompatiblePred (Pfv[] x N)
+αCompatiblePfv[] x N {M} {P} M∼P Pfv[]M x∉fvP rewrite lemma∼αfv (σ M∼P)
+  =  begin
+       P
+     ∼⟨ σ (M∼P) ⟩
+       M
+     ∼⟨ Pfv[]M x∉fvP ⟩
+       M [ x := N ]     
+     ≈⟨ lemmaSubst1 N x M∼P  ⟩
+       P [ x := N ]
+     ∎
+--
+lemmafv[] : ∀ {x N M} → Pfv[] x N M
+lemmafv[] {x} {N} {M} 
+  = TermαPrimInd  (Pfv[] x N) (αCompatiblePfv[] x N) 
+                  lemmav 
+                  lemma· 
+                  (x ∷ fv N , lemmaƛ) 
+                  M
+  where
+  lemmav : (a : ℕ) → Pfv[] x N (v a)
+  lemmav a x∉fva with (v a) [ x := N ] | lemmahvar {x} {a} {N}
+  ... | .N | inj₁ (x≡a , refl)    = ⊥-elim (x∉fva (here x≡a))
+  ... | .(v a) | inj₂ (_ , refl)  = ∼αv
+  lemma· : (M P : Λ) → Pfv[] x N M → Pfv[] x N P → Pfv[] x N (M · P)
+  lemma· M P Pfv[]M Pfv[]N x∉fvM++fvN 
+    = ∼α· (Pfv[]M (c∉xs++ys→c∉xs x∉fvM++fvN)) (Pfv[]N (c∉xs++ys→c∉ys {xs = fv M} x∉fvM++fvN)) 
+  lemmaƛ : (M : Λ) (b : ℕ) → b ∉ x ∷ fv N → Pfv[] x N M → Pfv[] x N (ƛ b M)
+  lemmaƛ M b b∉ Pfv[]M x∉ƛbM 
+    =  begin
+         ƛ b M 
+       ∼⟨ lemma∼αƛ (Pfv[]M x∉fvM) ⟩
+         ƛ b (M [ x := N ])
+       ∼⟨ σ (lemmaƛ∼[] M b∉) ⟩  
+         ƛ b M [ x := N ]
+       ∎
+    where
+    x≢b : x ≢ b
+    x≢b = λ x≡b → b∉ (here (sym x≡b))
+    x∉fvM : x ∉ fv M
+    x∉fvM x∈fvM = x∉ƛbM (lemma∈fvM→a∈fvƛbM {b = b} {M} x≢b x∈fvM)
+\end{code}
+
+\begin{code}
+PSC : ∀ {x y L} N → Λ → Set
+PSC {x} {y} {L} N M = x ≢ y → x ∉ fv L 
+  → (M [ x := N ]) [ y := L ] ∼α (M [ y := L ])[ x := N [ y := L ] ]
+
+αCompatiblePSC : ∀ {x y L} N → αCompatiblePred (PSC {x} {y} {L} N)
+αCompatiblePSC {x} {y} {L} N {M} {P} M∼P PM x≢y x∉fvL 
+  =  begin
+       (P [ x := N ]) [ y := L ] 
+     ≈⟨ cong (λ z → z [ y := L ]) (lemmaSubst1 N x (σ M∼P)) ⟩
+       (M [ x := N ]) [ y := L ] 
+     ∼⟨ PM x≢y x∉fvL ⟩
+       (M [ y := L ]) [ x := N [ y := L ] ] 
+     ≈⟨ cong (λ z → z [ x := N [ y := L ] ]) (lemmaSubst1 L y (M∼P))  ⟩
+       (P [ y := L ]) [ x := N [ y := L ] ] 
+     ∎
+
+
+lemmav[] : ∀ a x y N L → x ≢ y → x ∉ fv L 
+  → ((v a) [ x := N ]) [ y := L ] ∼α ((v a) [ y := L ]) [ x := (N [ y := L ]) ]
+lemmav[] a x y N L  x≢y x∉fvL with (v a) [ x := N ] | lemmahvar {x} {a} {N}
+lemmav[] a x y N L x≢y x∉fvL | .N      | inj₁ (x≡a , refl) 
+  with (v a) [ y := L ] | lemmahvar {y} {a} {L}
+... | .L      | inj₁ (y≡a , refl) = ⊥-elim (x≢y (trans x≡a (sym y≡a)))
+... | .(v a)  | inj₂ (y≢a , refl) 
+  with (v a) [ x := (N [ y := L ]) ] | lemmahvar {x} {a} {N [ y := L ]}
+... | .(N [ y := L ])  | inj₁ (_    , refl) = ρ
+... | .(v a)           | inj₂ (x≢a  , refl) = ⊥-elim (x≢a x≡a)
+lemmav[] a x y N L x≢y x∉fvL | .(v a)  | inj₂ (x≢a , refl) 
+  with (v a) [ y := L ] | lemmahvar {y} {a} {L}
+... | .L      | inj₁ (y≡a , refl) = lemmafv[] x∉fvL 
+... | .(v a)  | inj₂ (y≢a , refl) 
+  with (v a) [ x := N [ y := L ] ] | lemmahvar {x} {a} {N [ y := L ]}  
+... | .(N [ y := L ])  | inj₁ (x≡a    , refl)  = ⊥-elim (x≢a x≡a)
+... | .(v a)           | inj₂ (_  , refl)      = ∼αv
+--
+lemmaSubstComposition : ∀ {x y L} N M → PSC {x} {y} {L} N M
+lemmaSubstComposition {x} {y} {L} N M 
+  = TermαPrimInd  (PSC {x} {y} {L} N)
+                  (αCompatiblePSC {x} {y} {L} N) 
+                  lemmav
+                  lemma·
+                  (y ∷ fv L ++ x ∷ fv N ++ fv (N [ y := L ]) , lemmaƛ) 
+                  M 
+  where
+  lemmav : (a : ℕ) → PSC {x} {y} {L} N (v a)
+  lemmav a x≢y x∉fvL = lemmav[] a x y N L x≢y x∉fvL
+  lemma· : (M P : Λ) → PSC {x} {y} {L} N M → PSC {x} {y} {L} N P → PSC {x} {y} {L} N (M · P)
+  lemma· M P PscNM PscNP x≢y x∉fvL 
+    = ∼α· (PscNM x≢y x∉fvL) (PscNP x≢y x∉fvL)
+  lemmaƛ : (M : Λ) (b : ℕ) → b ∉ y ∷ fv L ++ x ∷ fv N ++ fv (N [ y := L ])
+         → PSC N M → PSC N (ƛ b M)
+  lemmaƛ M b b∉ PM x≢y x∉fvL 
+    =  begin
+         (ƛ b M [ x := N ])   [ y := L ]
+       ≈⟨ lemmaSubst1 L y (lemmaƛ∼[] M b∉x∷fvN)  ⟩
+         (ƛ b (M [ x := N ])) [ y := L ]
+       ∼⟨ lemmaƛ∼[] (M [ x := N ]) b∉y∷fvL ⟩
+         ƛ b ((M [ x := N ])  [ y := L ])
+       ∼⟨ lemma∼αƛ (PM x≢y x∉fvL) ⟩ 
+         ƛ b ((M [ y := L ])  [ x := N [ y := L ] ])
+       ∼⟨ σ (lemmaƛ∼[] (M [ y := L ]) b∉x∷fvN[y:=L]) ⟩ 
+         (ƛ b (M [ y := L ])) [ x := N [ y := L ] ]
+       ≈⟨ sym (lemmaSubst1 (N [ y := L ])  x (lemmaƛ∼[] M b∉y∷fvL))  ⟩
+         (ƛ b M [ y := L ])   [ x := N [ y := L ] ]
+       ∎
+    where
+      b∉x∷fvN : b ∉ x ∷ fv N
+      b∉x∷fvN = c∉xs++ys→c∉xs (c∉xs++ys→c∉ys {xs = y ∷ fv L} b∉)
+      b≢x : b ≢ x
+      b≢x = λ b≡x → b∉x∷fvN (here b≡x)
+      b∉y∷fvL : b ∉ y ∷ fv L
+      b∉y∷fvL = c∉xs++ys→c∉xs b∉
+      b∉fvN[y:=L] : b ∉ fv (N [ y := L ])
+      b∉fvN[y:=L] = c∉xs++ys→c∉ys {xs = x ∷ fv N} (c∉xs++ys→c∉ys {xs = y ∷ fv L} b∉)
+      b∉x∷fvN[y:=L] : b ∉ x ∷ fv (N [ y := L ])
+      b∉x∷fvN[y:=L] (here b≡x) = ⊥-elim (b≢x b≡x)
+      b∉x∷fvN[y:=L] (there b∈) = ⊥-elim (b∉fvN[y:=L] b∈)
+\end{code}
 
     
 
