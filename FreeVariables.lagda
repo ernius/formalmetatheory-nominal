@@ -147,7 +147,7 @@ Pf* a M = a free M → a * M
 --
 lemmafree→* : ∀ {a M} → Pf* a M
 lemmafree→* {a} {M} 
-  = TermαIndPerm (Pf* a) αCompatiblePf*a (λ {.a refl → *v}) lemma· ([ a ] , lemmaƛ) M
+  = TermαPrimInd (Pf* a) αCompatiblePf*a (λ {.a refl → *v}) lemma· ([ a ] , lemmaƛ) M
   where
   αCompatiblePf*a :  αCompatiblePred (Pf* a)
   αCompatiblePf*a {M} {N} M∼N Pf*aM afreeN 
@@ -157,12 +157,12 @@ lemmafree→* {a} {M}
   lemma· M N Pf*aM Pf*aN (inj₁ a*M) = *·l (Pf*aM a*M)
   lemma· M N Pf*aM Pf*aN (inj₂ a*N) = *·r (Pf*aN a*N)
   lemmaƛ : (M : Λ) (b : ℕ) → b ∉ [ a ] 
-         → ((π : List (Atom × Atom)) → Pf* a (π ∙ M)) 
+         → (Pf* a M) 
          → Pf* a (ƛ b M)
   lemmaƛ M b b∉[a] Hi afree（bc）M rewrite freeλ a b M with χ [ a ] (ƛ b M) | χ∉ [ a ] (ƛ b M) 
-  ... | c | c∉[a] = *ƛ (lemma*swap←≢ (sym≢ b≢a) a≢c (Hi [( b , c)] afree（bc）M)) b≢a
+  ... | c | c∉[a] = *ƛ (Hi (lemmaFreeSwap2 M a b c a≢b a≢c afree（bc）M)) (sym≢ a≢b)
     where 
-    b≢a = λ b≡a → b∉[a] (here b≡a)
+    a≢b = λ a≡b → b∉[a] (here (sym a≡b))
     a≢c = λ a≡c → c∉[a] (here (sym a≡c))
 --
 Pfvf : Atom → Λ → Set
@@ -275,7 +275,17 @@ lemma∈fvƛbM→a∈fvM {a} {b} {M} a≢b a∈fvƛbM | c  | _ , a∈fv（bc）M
     =  lemmaffv {a} {M} (lemmaFreeSwap2 M a b c a≢b a≢c (lemmafvf {a} {（ b ∙ c ） M} a∈fv（bc）M) ) 
 \end{code}
 
-Other way using free data relation *.
+\begin{code}
+lemmafvswap→ : ∀ {a b c M} → a ≢ b → a ≢ c → a ∈ fv M → a ∈ fv (（ b ∙ c ） M)
+lemmafvswap→ {a} {b} {c} {M} a≢b a≢c a∈fvM =  lemmaffv {a} {（ b ∙ c ） M} (lemmaFreeSwap M a b c a≢b a≢c (lemmafvf {a} {M} a∈fvM))
+\end{code}
+
+\begin{code}
+lemmafvswap← : ∀ {a b c M} → a ≢ b → a ≢ c → a ∈ fv (（ b ∙ c ） M) → a ∈ fv M 
+lemmafvswap← {a} {b} {c} {M} a≢b a≢c a∈fv（bc）M = lemmaffv {a} {M} (lemmaFreeSwap2 M a b c a≢b a≢c (lemmafvf {a} {（ b ∙ c ） M} a∈fv（bc）M))
+\end{code}
+
+Other way to prove correction using free data relation * (not free function).
 
 %<*fvPred>
 \begin{code}

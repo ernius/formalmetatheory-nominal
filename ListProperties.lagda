@@ -52,6 +52,11 @@ lemmaxs++[]≡xs (x ∷ xs)  =  cong (_∷_ x) (lemmaxs++[]≡xs xs)
 _-_ : List ℕ → ℕ → List ℕ
 xs - x = filter (λ y → not (⌊ x ≟ y ⌋)) xs
 --
+-prop : ∀ {a b} → b ≢ a → not ⌊ b ≟ a ⌋ ≡ true
+-prop {a} {b} b≢a with b ≟ a 
+... | yes b≡a  = ⊥-elim (b≢a b≡a)
+... | no _     = refl
+--
 lemmafilter→ : (x : ℕ)(xs : List ℕ)(p : ℕ → Bool) → x ∈' filter p xs → (p x ≡ true × x ∈' xs)
 lemmafilter→ x []        p ()
 lemmafilter→ x (y ∷ xs)  p x∈filterpy∷xs with p y | inspect p y

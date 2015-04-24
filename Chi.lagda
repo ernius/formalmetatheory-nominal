@@ -44,8 +44,15 @@ f<s x xs x∈xs f< y  _ | ≤′-step sucy<'sucx = f< y (≤′⇒≤ sucy<'sucx
 --
 y<0⇒y∈xs : (xs : List V)(y : V) → y < 0 → y ∈[] xs
 y<0⇒y∈xs xs y () 
---
+\end{code}
+
+%<*chiaux>
+\begin{code}
 χ' : List V → V
+\end{code}
+%</chiaux>
+
+\begin{code}
 χ' xs = proj₁ (χaux 0 (length' xs) (length' xs) refl xs (y<0⇒y∈xs xs))
 --
 sucn≡sucm→n≡m : {n m : ℕ} → suc n ≡ suc m → n ≡ m

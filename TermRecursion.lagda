@@ -128,7 +128,10 @@ aux A hv h· vs hƛ M π rewrite lemmaxs++[]≡xs π
                         (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → hƛ b (f []))))
                         (π ∙ M) [(π ∙ₐ a ,  χ vs (ƛ (π ∙ₐ a) (π ∙ M)))]
                    □)
---
+\end{code}
+
+%<*itlambda>
+\begin{code}
 ΛItƛ  : {l : Level}(A : Set l)
   → (hv : Atom → A)
   → (h· : A → A → A)
@@ -138,8 +141,12 @@ aux A hv h· vs hƛ M π rewrite lemmaxs++[]≡xs π
   → ΛIt A hv h· (vs , hƛ) (ƛ a M) ≡ 
     hƛ  (χ vs (ƛ a M)) 
         (ΛIt A hv h· (vs , hƛ) ([ a , (χ vs (ƛ a M))] ∙ M))
+\end{code}
+%</itlambda>
+
+\begin{code}
 ΛItƛ A hv h· vs hƛ a M 
- = cong₂ hƛ refl (aux A hv h· vs hƛ M [ a , χ vs (ƛ a M)])  
+  = cong₂ hƛ refl (aux A hv h· vs hƛ M [ a , χ vs (ƛ a M)])  
 \end{code}
 
 %<*iterationStrongCompatible>
@@ -195,6 +202,21 @@ lemmaΛItStrongαCompatible A hv h· xs hƛ
                        ∼⟨ lemma∙ c#λbN d∉N ⟩
                          （ b ∙ c ） N
                        ∎
+\end{code}
+
+
+
+\begin{code}
+lemmaΛItEquiv# : {l : Level}(A : Set l)
+  → (hv : Atom → A)
+  → (h· : A → A → A)
+  → (vs : List Atom)
+  → (hƛ : Atom → A → A )
+  → (M : Λ)(a b : Atom) 
+  → a # M → b # M 
+  → ΛIt A hv h· (vs , hƛ) M ≡ ΛIt A hv h· (vs , hƛ) (（ a ∙ b ） M)
+lemmaΛItEquiv# A hv h· vs hƛ M a b a#M b#M 
+  = lemmaΛItStrongαCompatible A hv h· vs hƛ M (（ a ∙ b ） M) (lemma#∼α a#M b#M)
 \end{code}
 
 Term recursion principle

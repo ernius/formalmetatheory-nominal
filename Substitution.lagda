@@ -48,7 +48,6 @@ M [ a ≔ N ] = ΛIt Λ (hvar a N) _·_ (a ∷ fv N , ƛ) M
 lemmaSubstƛ : ∀ a b M P → (ƛ b M) [ a ≔ P ] ≡ ƛ (χ (a ∷ fv P) (ƛ b M)) ( ( （ b ∙ (χ (a ∷ fv P) (ƛ b M)) ） M) [ a ≔ P ] )
 lemmaSubstƛ a b M P = ΛItƛ Λ (hvar a P) _·_ (a ∷ fv P)  ƛ b M
 --
-
 lemmahvar : {a b : Atom}{M : Λ} → a ≡ b × (v b) [ a ≔ M ] ≡ M ∨ a ≢ b × (v b) [ a ≔ M ] ≡ v b
 lemmahvar {a} {b} {M} with a ≟ₐ b
 lemmahvar {a} {.a}  {M}  | yes  refl  = inj₁ (refl , refl)
@@ -456,8 +455,3 @@ lemmaSubstComposition {x} {y} {L} N M
       b∉x∷fvN[y≔L] (here b≡x) = ⊥-elim (b≢x b≡x)
       b∉x∷fvN[y≔L] (there b∈) = ⊥-elim (b∉fvN[y≔L] b∈)
 \end{code}
-
-    
-
-
-

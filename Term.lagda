@@ -293,8 +293,17 @@ lemmafvfree← x .(ƛ y M)  (*ƛ {.x} {y} {M} xfreeM y≢x)
   px≡true with y ≟ x
   ... | yes y≡x = ⊥-elim (y≢x y≡x)
   ... | no  _   = refl
--- Chi encapsulation
+\end{code}
+
+Chi encapsulation
+
+%<*chi>
+\begin{code}
 χ : List Atom → Λ → Atom
+\end{code}
+%</chi>
+
+\begin{code}
 χ xs M = χ' (xs ++ fv M) 
 --
 χ'∉ : (xs : List Atom) → χ' xs ∉ xs
