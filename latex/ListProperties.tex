@@ -119,6 +119,19 @@
 \\
 \>\AgdaComment{--}\<%
 \\
+\>\AgdaFunction{-prop} \AgdaSymbol{:} \AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{a} \AgdaBound{b}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaBound{b} \AgdaFunction{≢} \AgdaBound{a} \AgdaSymbol{→} \AgdaFunction{not} \AgdaFunction{⌊} \AgdaBound{b} \AgdaFunction{≟} \AgdaBound{a} \AgdaFunction{⌋} \AgdaDatatype{≡} \AgdaInductiveConstructor{true}\<%
+\\
+\>\AgdaFunction{-prop} \AgdaSymbol{\{}\AgdaBound{a}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{b}\AgdaSymbol{\}} \AgdaBound{b≢a} \AgdaKeyword{with} \AgdaBound{b} \AgdaFunction{≟} \AgdaBound{a} \<[29]%
+\>[29]\<%
+\\
+\>\AgdaSymbol{...} \AgdaSymbol{|} \AgdaInductiveConstructor{yes} \AgdaBound{b≡a} \<[15]%
+\>[15]\AgdaSymbol{=} \AgdaFunction{⊥-elim} \AgdaSymbol{(}\AgdaBound{b≢a} \AgdaBound{b≡a}\AgdaSymbol{)}\<%
+\\
+\>\AgdaSymbol{...} \AgdaSymbol{|} \AgdaInductiveConstructor{no} \AgdaSymbol{\_} \<[15]%
+\>[15]\AgdaSymbol{=} \AgdaInductiveConstructor{refl}\<%
+\\
+\>\AgdaComment{--}\<%
+\\
 \>\AgdaFunction{lemmafilter→} \AgdaSymbol{:} \AgdaSymbol{(}\AgdaBound{x} \AgdaSymbol{:} \AgdaDatatype{ℕ}\AgdaSymbol{)(}\AgdaBound{xs} \AgdaSymbol{:} \AgdaDatatype{List} \AgdaDatatype{ℕ}\AgdaSymbol{)(}\AgdaBound{p} \AgdaSymbol{:} \AgdaDatatype{ℕ} \AgdaSymbol{→} \AgdaDatatype{Bool}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{x} \AgdaFunction{∈'} \AgdaFunction{filter} \AgdaBound{p} \AgdaBound{xs} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{p} \AgdaBound{x} \AgdaDatatype{≡} \AgdaInductiveConstructor{true} \AgdaFunction{×} \AgdaBound{x} \AgdaFunction{∈'} \AgdaBound{xs}\AgdaSymbol{)}\<%
 \\
 \>\AgdaFunction{lemmafilter→} \AgdaBound{x} \AgdaInductiveConstructor{[]} \<[25]%

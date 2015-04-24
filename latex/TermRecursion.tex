@@ -336,9 +336,10 @@ It is possible to define induction with this iterator predicate ?
 \\
 \>[0]\AgdaIndent{19}{}\<[19]%
 \>[19]\AgdaFunction{□}\AgdaSymbol{)}\<%
-\\
-\>\AgdaComment{--}\<%
-\\
+\end{code}
+
+%<*itlambda>
+\begin{code}%
 \>\AgdaFunction{ΛItƛ} \<[6]%
 \>[6]\AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{l} \AgdaSymbol{:} \AgdaPostulate{Level}\AgdaSymbol{\}(}\AgdaBound{A} \AgdaSymbol{:} \AgdaPrimitiveType{Set} \AgdaBound{l}\AgdaSymbol{)}\<%
 \\
@@ -369,12 +370,16 @@ It is possible to define induction with this iterator predicate ?
 \\
 \>[4]\AgdaIndent{8}{}\<[8]%
 \>[8]\AgdaSymbol{(}\AgdaFunction{ΛIt} \AgdaBound{A} \AgdaBound{hv} \AgdaBound{h·} \AgdaSymbol{(}\AgdaBound{vs} \AgdaInductiveConstructor{,} \AgdaBound{hƛ}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaFunction{[} \AgdaBound{a} \AgdaInductiveConstructor{,} \AgdaSymbol{(}\AgdaFunction{χ} \AgdaBound{vs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{))}\AgdaFunction{]} \AgdaFunction{∙} \AgdaBound{M}\AgdaSymbol{))}\<%
-\\
+\end{code}
+%</itlambda>
+
+\begin{code}%
 \>\AgdaFunction{ΛItƛ} \AgdaBound{A} \AgdaBound{hv} \AgdaBound{h·} \AgdaBound{vs} \AgdaBound{hƛ} \AgdaBound{a} \AgdaBound{M} \<[23]%
 \>[23]\<%
 \\
-\> \AgdaSymbol{=} \AgdaFunction{cong₂} \AgdaBound{hƛ} \AgdaInductiveConstructor{refl} \AgdaSymbol{(}\AgdaFunction{aux} \AgdaBound{A} \AgdaBound{hv} \AgdaBound{h·} \AgdaBound{vs} \AgdaBound{hƛ} \AgdaBound{M} \AgdaFunction{[} \AgdaBound{a} \AgdaInductiveConstructor{,} \AgdaFunction{χ} \AgdaBound{vs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)}\AgdaFunction{]}\AgdaSymbol{)} \<[60]%
-\>[60]\<%
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{=} \AgdaFunction{cong₂} \AgdaBound{hƛ} \AgdaInductiveConstructor{refl} \AgdaSymbol{(}\AgdaFunction{aux} \AgdaBound{A} \AgdaBound{hv} \AgdaBound{h·} \AgdaBound{vs} \AgdaBound{hƛ} \AgdaBound{M} \AgdaFunction{[} \AgdaBound{a} \AgdaInductiveConstructor{,} \AgdaFunction{χ} \AgdaBound{vs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)}\AgdaFunction{]}\AgdaSymbol{)} \<[61]%
+\>[61]\<%
 \end{code}
 
 %<*iterationStrongCompatible>
@@ -550,6 +555,41 @@ It is possible to define induction with this iterator predicate ?
 \>[23]\AgdaFunction{∎}\<%
 \end{code}
 
+
+
+\begin{code}%
+\>\AgdaFunction{lemmaΛItEquiv\#} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{l} \AgdaSymbol{:} \AgdaPostulate{Level}\AgdaSymbol{\}(}\AgdaBound{A} \AgdaSymbol{:} \AgdaPrimitiveType{Set} \AgdaBound{l}\AgdaSymbol{)}\<%
+\\
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{hv} \AgdaSymbol{:} \AgdaFunction{Atom} \AgdaSymbol{→} \AgdaBound{A}\AgdaSymbol{)}\<%
+\\
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{h·} \AgdaSymbol{:} \AgdaBound{A} \AgdaSymbol{→} \AgdaBound{A} \AgdaSymbol{→} \AgdaBound{A}\AgdaSymbol{)}\<%
+\\
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{vs} \AgdaSymbol{:} \AgdaDatatype{List} \AgdaFunction{Atom}\AgdaSymbol{)}\<%
+\\
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{hƛ} \AgdaSymbol{:} \AgdaFunction{Atom} \AgdaSymbol{→} \AgdaBound{A} \AgdaSymbol{→} \AgdaBound{A} \AgdaSymbol{)}\<%
+\\
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{M} \AgdaSymbol{:} \AgdaDatatype{Λ}\AgdaSymbol{)(}\AgdaBound{a} \AgdaBound{b} \AgdaSymbol{:} \AgdaFunction{Atom}\AgdaSymbol{)} \<[24]%
+\>[24]\<%
+\\
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{→} \AgdaBound{a} \AgdaDatatype{\#} \AgdaBound{M} \AgdaSymbol{→} \AgdaBound{b} \AgdaDatatype{\#} \AgdaBound{M} \<[18]%
+\>[18]\<%
+\\
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{→} \AgdaFunction{ΛIt} \AgdaBound{A} \AgdaBound{hv} \AgdaBound{h·} \AgdaSymbol{(}\AgdaBound{vs} \AgdaInductiveConstructor{,} \AgdaBound{hƛ}\AgdaSymbol{)} \AgdaBound{M} \AgdaDatatype{≡} \AgdaFunction{ΛIt} \AgdaBound{A} \AgdaBound{hv} \AgdaBound{h·} \AgdaSymbol{(}\AgdaBound{vs} \AgdaInductiveConstructor{,} \AgdaBound{hƛ}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaBound{M}\AgdaSymbol{)}\<%
+\\
+\>\AgdaFunction{lemmaΛItEquiv\#} \AgdaBound{A} \AgdaBound{hv} \AgdaBound{h·} \AgdaBound{vs} \AgdaBound{hƛ} \AgdaBound{M} \AgdaBound{a} \AgdaBound{b} \AgdaBound{a\#M} \AgdaBound{b\#M} \<[43]%
+\>[43]\<%
+\\
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaSymbol{=} \AgdaFunction{lemmaΛItStrongαCompatible} \AgdaBound{A} \AgdaBound{hv} \AgdaBound{h·} \AgdaBound{vs} \AgdaBound{hƛ} \AgdaBound{M} \AgdaSymbol{(}\AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaFunction{lemma\#∼α} \AgdaBound{a\#M} \AgdaBound{b\#M}\AgdaSymbol{)}\<%
+\end{code}
+
 Term recursion principle
 
 \begin{code}%
@@ -569,17 +609,17 @@ Term recursion principle
 \>\AgdaFunction{ΛRec} \<[6]%
 \>[6]\AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{l} \AgdaSymbol{:} \AgdaPostulate{Level}\AgdaSymbol{\}(}\AgdaBound{A} \AgdaSymbol{:} \AgdaPrimitiveType{Set} \AgdaBound{l}\AgdaSymbol{)}\<%
 \\
-\>[0]\AgdaIndent{6}{}\<[6]%
+\>[2]\AgdaIndent{6}{}\<[6]%
 \>[6]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaFunction{Atom} \AgdaSymbol{→} \AgdaBound{A}\AgdaSymbol{)}\<%
 \\
-\>[0]\AgdaIndent{6}{}\<[6]%
+\>[2]\AgdaIndent{6}{}\<[6]%
 \>[6]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{A} \AgdaSymbol{→} \AgdaBound{A} \AgdaSymbol{→} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaBound{A}\AgdaSymbol{)}\<%
 \\
-\>[0]\AgdaIndent{6}{}\<[6]%
+\>[2]\AgdaIndent{6}{}\<[6]%
 \>[6]\AgdaSymbol{→} \AgdaDatatype{List} \AgdaFunction{Atom} \AgdaFunction{×} \AgdaSymbol{(}\AgdaFunction{Atom} \AgdaSymbol{→} \AgdaBound{A} \AgdaSymbol{→} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaBound{A}\AgdaSymbol{)} \<[39]%
 \>[39]\<%
 \\
-\>[0]\AgdaIndent{6}{}\<[6]%
+\>[2]\AgdaIndent{6}{}\<[6]%
 \>[6]\AgdaSymbol{→} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaBound{A}\<%
 \end{code}
 %</termRecursion>

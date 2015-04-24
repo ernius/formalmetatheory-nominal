@@ -889,11 +889,17 @@ Term swap
 \>[2]\AgdaSymbol{...} \AgdaSymbol{|} \AgdaInductiveConstructor{no} \<[12]%
 \>[12]\AgdaSymbol{\_} \<[16]%
 \>[16]\AgdaSymbol{=} \AgdaInductiveConstructor{refl}\<%
-\\
-\>\AgdaComment{-- Chi encapsulation}\<%
-\\
+\end{code}
+
+Chi encapsulation
+
+%<*chi>
+\begin{code}%
 \>\AgdaFunction{χ} \AgdaSymbol{:} \AgdaDatatype{List} \AgdaFunction{Atom} \AgdaSymbol{→} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaFunction{Atom}\<%
-\\
+\end{code}
+%</chi>
+
+\begin{code}%
 \>\AgdaFunction{χ} \AgdaBound{xs} \AgdaBound{M} \AgdaSymbol{=} \AgdaFunction{χ'} \AgdaSymbol{(}\AgdaBound{xs} \AgdaFunction{++} \AgdaFunction{fv} \AgdaBound{M}\AgdaSymbol{)} \<[25]%
 \>[25]\<%
 \\

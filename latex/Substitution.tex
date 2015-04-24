@@ -87,8 +87,6 @@
 \\
 \>\AgdaComment{--}\<%
 \\
-%
-\\
 \>\AgdaFunction{lemmahvar} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{a} \AgdaBound{b} \AgdaSymbol{:} \AgdaFunction{Atom}\AgdaSymbol{\}\{}\AgdaBound{M} \AgdaSymbol{:} \AgdaDatatype{Λ}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaBound{a} \AgdaDatatype{≡} \AgdaBound{b} \AgdaFunction{×} \AgdaSymbol{(}\AgdaInductiveConstructor{v} \AgdaBound{b}\AgdaSymbol{)} \AgdaFunction{[} \AgdaBound{a} \AgdaFunction{≔} \AgdaBound{M} \AgdaFunction{]} \AgdaDatatype{≡} \AgdaBound{M} \AgdaDatatype{∨} \AgdaBound{a} \AgdaFunction{≢} \AgdaBound{b} \AgdaFunction{×} \AgdaSymbol{(}\AgdaInductiveConstructor{v} \AgdaBound{b}\AgdaSymbol{)} \AgdaFunction{[} \AgdaBound{a} \AgdaFunction{≔} \AgdaBound{M} \AgdaFunction{]} \AgdaDatatype{≡} \AgdaInductiveConstructor{v} \AgdaBound{b}\<%
 \\
 \>\AgdaFunction{lemmahvar} \AgdaSymbol{\{}\AgdaBound{a}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{b}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{M}\AgdaSymbol{\}} \AgdaKeyword{with} \AgdaBound{a} \AgdaFunction{≟ₐ} \AgdaBound{b}\<%
@@ -1255,8 +1253,3 @@ The result of substitution is alpha-equivalent to a naive substitution when ther
 \>[0]\AgdaIndent{6}{}\<[6]%
 \>[6]\AgdaFunction{b∉x∷fvN[y≔L]} \AgdaSymbol{(}\AgdaInductiveConstructor{there} \AgdaBound{b∈}\AgdaSymbol{)} \AgdaSymbol{=} \AgdaFunction{⊥-elim} \AgdaSymbol{(}\AgdaFunction{b∉fvN[y≔L]} \AgdaBound{b∈}\AgdaSymbol{)}\<%
 \end{code}
-
-    
-
-
-

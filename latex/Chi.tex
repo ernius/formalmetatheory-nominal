@@ -115,13 +115,16 @@
 \\
 \>\AgdaFunction{y<0⇒y∈xs} \AgdaSymbol{:} \AgdaSymbol{(}\AgdaBound{xs} \AgdaSymbol{:} \AgdaDatatype{List} \AgdaFunction{V}\AgdaSymbol{)(}\AgdaBound{y} \AgdaSymbol{:} \AgdaFunction{V}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{y} \AgdaFunction{<} \AgdaNumber{0} \AgdaSymbol{→} \AgdaBound{y} \AgdaFunction{∈[]} \AgdaBound{xs}\<%
 \\
-\>\AgdaFunction{y<0⇒y∈xs} \AgdaBound{xs} \AgdaBound{y} \AgdaSymbol{()} \<[17]%
-\>[17]\<%
-\\
-\>\AgdaComment{--}\<%
-\\
+\>\AgdaFunction{y<0⇒y∈xs} \AgdaBound{xs} \AgdaBound{y} \AgdaSymbol{()} \<%
+\end{code}
+
+%<*chiaux>
+\begin{code}%
 \>\AgdaFunction{χ'} \AgdaSymbol{:} \AgdaDatatype{List} \AgdaFunction{V} \AgdaSymbol{→} \AgdaFunction{V}\<%
-\\
+\end{code}
+%</chiaux>
+
+\begin{code}%
 \>\AgdaFunction{χ'} \AgdaBound{xs} \AgdaSymbol{=} \AgdaField{proj₁} \AgdaSymbol{(}\AgdaFunction{χaux} \AgdaNumber{0} \AgdaSymbol{(}\AgdaFunction{length'} \AgdaBound{xs}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaFunction{length'} \AgdaBound{xs}\AgdaSymbol{)} \AgdaInductiveConstructor{refl} \AgdaBound{xs} \AgdaSymbol{(}\AgdaFunction{y<0⇒y∈xs} \AgdaBound{xs}\AgdaSymbol{))}\<%
 \\
 \>\AgdaComment{--}\<%
