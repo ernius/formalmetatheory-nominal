@@ -38,20 +38,26 @@ Hago ahora el principio de Iteracion con el principio de induccion de swap hecho
 
 \begin{code}
 ΛIt A hv h· (vs , hƛ) 
-  = TermαIndPerm  (λ _ → A) (λ _ → id) 
-                  hv (λ _ _ → h·) (vs , (λ _ b _ f → hƛ b (f [])))
+  = TermαPrimInd (const A) (const id) 
+                 hv (λ _ _ → h·) (vs , (λ _ b _ r → hƛ b r))
 \end{code}
 
-It is possible to define induction with this iterator predicate ?
+-- \begin{code}
+-- ΛIt A hv h· (vs , hƛ) 
+--   = TermαIndPerm  (λ _ → A) (λ _ → id) 
+--                   hv (λ _ _ → h·) (vs , (λ _ b _ f → hƛ b (f [])))
+-- \end{code}
 
-\begin{code}
--- TermαIndPerm' : (P : Λ → Set) → αCompatiblePred P 
---   → (∀ a → P (v a))
---   → (∀ M N → P M → P N →  P (M · N))
---   → ∃ (λ as → (∀ M b → b ∉ as → (∀ π →  P (π ∙ M)) → P (ƛ b M)))
---   → ∀ M → P M
--- TermαIndPerm' P αP hv h· (vs , hƛ) M = ΛIt P {! hv!} {!!} ({!!} , {!!}) M
-\end{code}
+-- It is possible to define induction with this iterator predicate ?
+
+-- \begin{code}
+-- -- TermαIndPerm' : (P : Λ → Set) → αCompatiblePred P 
+-- --   → (∀ a → P (v a))
+-- --   → (∀ M N → P M → P N →  P (M · N))
+-- --   → ∃ (λ as → (∀ M b → b ∉ as → (∀ π →  P (π ∙ M)) → P (ƛ b M)))
+-- --   → ∀ M → P M
+-- -- TermαIndPerm' P αP hv h· (vs , hƛ) M = ΛIt P {! hv!} {!!} ({!!} , {!!}) M
+-- \end{code}
 
 
 \begin{code}
@@ -69,25 +75,13 @@ P A hv h· vs hƛ M =
       (lemmaƛIndSw {P = λ _ → A}
         (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → hƛ b (f []))))
       (π ∙ M) [])
---
+-- --
 aux : {l : Level}(A : Set l)
   → (hv : Atom → A)
   → (h· : A → A → A)
   → (vs : List Atom)
   → (hƛ : Atom → A → A)
-  → ∀ M π →
-    (TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {P = λ _ → A} hv)
-      (lemma·IndSw (λ _ _ → h·))
-      (lemmaƛIndSw {P = λ _ → A}
-        (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → proj₂ (vs , hƛ) b (f []))))
-      M
-      (π ++ [])) ≡
-    (TermPrimInd (λ M₁ → (π : List (Atom × Atom)) → A) (lemmavIndSw {P = λ _ → A} hv)
-      (lemma·IndSw (λ _ _ → h·))
-      (lemmaƛIndSw {P = λ _ → A}
-        (lemmaαƛ (λ _ → A) (λ  _ → id) vs (λ _ b _ f → proj₂ (vs , hƛ) b (f []))))
-      (π ∙ M)
-      [])
+  → ∀ M → P A hv h· vs hƛ M
 aux A hv h· vs hƛ M π rewrite lemmaxs++[]≡xs π 
   = TermIndPerm (P A hv h· vs hƛ) lemmav lemma· lemmaƛ M π
   where
@@ -146,7 +140,7 @@ aux A hv h· vs hƛ M π rewrite lemmaxs++[]≡xs π
 
 \begin{code}
 ΛItƛ A hv h· vs hƛ a M 
-  = cong₂ hƛ refl (aux A hv h· vs hƛ M [ a , χ vs (ƛ a M)])  
+  = cong₂ hƛ refl (aux A hv h· vs hƛ M [ a , χ vs (ƛ a M)])
 \end{code}
 
 %<*iterationStrongCompatible>

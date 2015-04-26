@@ -11,6 +11,7 @@ open import NaturalProperties
 open import Permutation
 
 open import Level
+open import Function
 open import Data.Nat
 open import Data.Nat.Properties
 open import Data.Product
@@ -50,9 +51,9 @@ lemmavIndSw hv a π rewrite lemmaπv {a} {π} = hv ( π ∙ₐ a)
 lemma·IndSw : {l : Level}{P : Λ → Set l} 
   → (∀ M N → P M → P N →  P (M · N))
   → (M N : Λ)
-  →  ((π : Π) → P (π ∙ M))
-  →  ((π : Π) → P (π ∙ N)) 
-  →  (π : Π) → P (π ∙ M · N)
+  → ((π : Π) → P (π ∙ M))
+  → ((π : Π) → P (π ∙ N)) 
+  → (π : Π) → P (π ∙ M · N)
 lemma·IndSw h· M N fM fN π rewrite lemmaπ· {M} {N} {π} 
   = h· (π ∙ M) (π ∙ N) (fM π) (fN π)
 --
@@ -78,8 +79,14 @@ TermIndPerm : {l : Level}(P : Λ → Set l)
 %</termIndPermutation>
 
 \begin{code} 
+Pπ : {l : Level} → (Λ → Set l) → Λ → Set l
+Pπ P M = ∀ π → P (π ∙ M)
+--
+-- lemmaPπ : {l : Level}(A : Set)(M : Λ)(π : Π) → (a : Pπ (const A) M)(b : (const A) (π ∙ M)) → a π ≡ b 
+-- lemmaPπ P M π a b = {! refl!}
+--
 TermIndPerm P hv h· hƛ M 
- = TermPrimInd  (λ M → ∀ π → (P (π ∙ M))) 
+ = TermPrimInd  (Pπ P) 
                 (lemmavIndSw {P = P} hv) (lemma·IndSw h·) (lemmaƛIndSw {P = P} hƛ) M []
 \end{code}
 
@@ -94,7 +101,6 @@ lemmaαƛPrimInd :  {l : Level}(P : Λ → Set l) → αCompatiblePred P
   →  P (ƛ a M)
 lemmaαƛPrimInd P αP vs hƛ M a PM with χ vs (ƛ a M) | χ∉ vs (ƛ a M) | χ# vs (ƛ a M)
 ... | b | b∉vs | b#ƛaM = αP (σ (lemma∼αλ' b#ƛaM)) (hƛ (（ a ∙ b ） M) b b∉vs (PM [(a , b)]))
---
 \end{code}
 
 %<*alphaPrimInduction>
