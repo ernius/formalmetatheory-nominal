@@ -31,11 +31,25 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a id="lambda-calculus-formalisation" class="anchor" href="#lambda-calculus-formalisation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lambda Calculus Formalisation</h3>
+        <h3> <a id="lambda-calculus-formalisation" class="anchor" href="#lambda-calculus-formalisation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha-Structural Induction and Recursion for the Lambda Calculus in Constructive Type Theory</h3>
 
-<p>We present both a alpha-structural recursion and induction principles over lambda calculus terms. These principles deals with the issues of bound names and alpha equivalence classes in the formalisation of the meta-theory of lambda calculus. Our recursion principle grants that the function's result does not depend on which lambda term of an alpha equivalence class is the function applied to. We present an induction principle that allows us to choose bound variables in the style of Barendregt's variable convention~\cite{bar84:lambda}, and has strong enough inductive hypothesis case to prove without any disruption properties of functions defined with the given recursive principle. This principles simplifies reasoning considerably, enabling our formalisation to mimic pen-and-paper informal proofs. We prove two classic results of lambda calculus meta-theory giving some basic proof sketch mechanism over this principles that verifies our affirmations. We have also verified all the exposed results in the Agda proof assistant, the code is browsable <a href="http://ernius.github.io/formalmetatheory-nominal/html/index.html">here (the main result file is Substitution.html)</a>.
+
+
+<p>
+We formulate principles of induction and recursion for a variant of lambda calculus with bound names where alpha-conversion is based upon name swapping as in nominal abstract syntax. The principles allow to work modulo alpha-conversion and implement the Barendregt variable convention. We derive them all from the simple structural induction principle on concrete terms and work out applications to some fundamental meta-theoretical results, such as the substitution lemma for alpha-conversion and the lemma on substitution composition. The whole work is implemented in Agda and the code is browsable <a href="http://ernius.github.io/formalmetatheory-nominal/html/index.html">here</a>, the main result file is Substitution.html.
 </p>
+
+	<h4>Authors:</h4>
+	  <ul>
+	    <li>Ana Bove (Chalmers University of Technology)
+	    <li>Ernesto Copello (Universidad ORT Uruguay)
+	    <li>Maribel Fernandez (King's College London)
+	    <li>Nora Szasz (Universidad ORT Uruguay)
+	    <li>&Aacute;lvaro Tasistro (Universidad ORT Uruguay)
+	  </ul>
+
+
+
       </section>
     </div>
 
