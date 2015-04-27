@@ -23,6 +23,8 @@
 \\
 \>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Level}\<%
 \\
+\>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Function}\<%
+\\
 \>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Data.Nat}\<%
 \\
 \>\AgdaKeyword{open} \AgdaKeyword{import} \AgdaModule{Data.Nat.Properties}\<%
@@ -101,17 +103,14 @@ Primitive induction over raw terms:
 \>[2]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{M} \AgdaBound{N} \AgdaSymbol{:} \AgdaDatatype{Λ}\AgdaSymbol{)}\<%
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
-\>[2]\AgdaSymbol{→} \<[5]%
-\>[5]\AgdaSymbol{((}\AgdaBound{π} \AgdaSymbol{:} \AgdaFunction{Π}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaBound{π} \AgdaFunction{∙} \AgdaBound{M}\AgdaSymbol{))}\<%
+\>[2]\AgdaSymbol{→} \AgdaSymbol{((}\AgdaBound{π} \AgdaSymbol{:} \AgdaFunction{Π}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaBound{π} \AgdaFunction{∙} \AgdaBound{M}\AgdaSymbol{))}\<%
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
-\>[2]\AgdaSymbol{→} \<[5]%
-\>[5]\AgdaSymbol{((}\AgdaBound{π} \AgdaSymbol{:} \AgdaFunction{Π}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaBound{π} \AgdaFunction{∙} \AgdaBound{N}\AgdaSymbol{))} \<[27]%
-\>[27]\<%
+\>[2]\AgdaSymbol{→} \AgdaSymbol{((}\AgdaBound{π} \AgdaSymbol{:} \AgdaFunction{Π}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaBound{π} \AgdaFunction{∙} \AgdaBound{N}\AgdaSymbol{))} \<[26]%
+\>[26]\<%
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
-\>[2]\AgdaSymbol{→} \<[5]%
-\>[5]\AgdaSymbol{(}\AgdaBound{π} \AgdaSymbol{:} \AgdaFunction{Π}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaBound{π} \AgdaFunction{∙} \AgdaBound{M} \AgdaInductiveConstructor{·} \AgdaBound{N}\AgdaSymbol{)}\<%
+\>[2]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{π} \AgdaSymbol{:} \AgdaFunction{Π}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaBound{π} \AgdaFunction{∙} \AgdaBound{M} \AgdaInductiveConstructor{·} \AgdaBound{N}\AgdaSymbol{)}\<%
 \\
 \>\AgdaFunction{lemma·IndSw} \AgdaBound{h·} \AgdaBound{M} \AgdaBound{N} \AgdaBound{fM} \AgdaBound{fN} \AgdaBound{π} \AgdaKeyword{rewrite} \AgdaFunction{lemmaπ·} \AgdaSymbol{\{}\AgdaBound{M}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{N}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{π}\AgdaSymbol{\}} \<[55]%
 \>[55]\<%
@@ -169,12 +168,24 @@ Permutation induction principle proved using previous primitive recursion princi
 %</termIndPermutation>
 
 \begin{code}%
+\>\AgdaFunction{Pπ} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{l} \AgdaSymbol{:} \AgdaPostulate{Level}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaPrimitiveType{Set} \AgdaBound{l}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaPrimitiveType{Set} \AgdaBound{l}\<%
+\\
+\>\AgdaFunction{Pπ} \AgdaBound{P} \AgdaBound{M} \AgdaSymbol{=} \AgdaSymbol{∀} \AgdaBound{π} \AgdaSymbol{→} \AgdaBound{P} \AgdaSymbol{(}\AgdaBound{π} \AgdaFunction{∙} \AgdaBound{M}\AgdaSymbol{)}\<%
+\\
+\>\AgdaComment{--}\<%
+\\
+\>\AgdaComment{-- lemmaPπ : \{l : Level\}(A : Set)(M : Λ)(π : Π) → (a : Pπ (const A) M)(b : (const A) (π ∙ M)) → a π ≡ b }\<%
+\\
+\>\AgdaComment{-- lemmaPπ P M π a b = \{! refl!\}}\<%
+\\
+\>\AgdaComment{--}\<%
+\\
 \>\AgdaFunction{TermIndPerm} \AgdaBound{P} \AgdaBound{hv} \AgdaBound{h·} \AgdaBound{hƛ} \AgdaBound{M} \<[25]%
 \>[25]\<%
 \\
 \> \AgdaSymbol{=} \AgdaFunction{TermPrimInd} \<[16]%
-\>[16]\AgdaSymbol{(λ} \AgdaBound{M} \AgdaSymbol{→} \AgdaSymbol{∀} \AgdaBound{π} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{P} \AgdaSymbol{(}\AgdaBound{π} \AgdaFunction{∙} \AgdaBound{M}\AgdaSymbol{)))} \<[42]%
-\>[42]\<%
+\>[16]\AgdaSymbol{(}\AgdaFunction{Pπ} \AgdaBound{P}\AgdaSymbol{)} \<[23]%
+\>[23]\<%
 \\
 \>[2]\AgdaIndent{16}{}\<[16]%
 \>[16]\AgdaSymbol{(}\AgdaFunction{lemmavIndSw} \AgdaSymbol{\{}\AgdaArgument{P} \AgdaSymbol{=} \AgdaBound{P}\AgdaSymbol{\}} \AgdaBound{hv}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaFunction{lemma·IndSw} \AgdaBound{h·}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaFunction{lemmaƛIndSw} \AgdaSymbol{\{}\AgdaArgument{P} \AgdaSymbol{=} \AgdaBound{P}\AgdaSymbol{\}} \AgdaBound{hƛ}\AgdaSymbol{)} \AgdaBound{M} \AgdaInductiveConstructor{[]}\<%
@@ -214,8 +225,6 @@ Prove α Primitive Ind with Swap induction.
 \>\AgdaFunction{lemmaαƛPrimInd} \AgdaBound{P} \AgdaBound{αP} \AgdaBound{vs} \AgdaBound{hƛ} \AgdaBound{M} \AgdaBound{a} \AgdaBound{PM} \AgdaKeyword{with} \AgdaFunction{χ} \AgdaBound{vs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{|} \AgdaFunction{χ∉} \AgdaBound{vs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)} \AgdaSymbol{|} \AgdaFunction{χ\#} \AgdaBound{vs} \AgdaSymbol{(}\AgdaInductiveConstructor{ƛ} \AgdaBound{a} \AgdaBound{M}\AgdaSymbol{)}\<%
 \\
 \>\AgdaSymbol{...} \AgdaSymbol{|} \AgdaBound{b} \AgdaSymbol{|} \AgdaBound{b∉vs} \AgdaSymbol{|} \AgdaBound{b\#ƛaM} \AgdaSymbol{=} \AgdaBound{αP} \AgdaSymbol{(}\AgdaFunction{σ} \AgdaSymbol{(}\AgdaFunction{lemma∼αλ'} \AgdaBound{b\#ƛaM}\AgdaSymbol{))} \AgdaSymbol{(}\AgdaBound{hƛ} \AgdaSymbol{(}\AgdaFunction{（} \AgdaBound{a} \AgdaFunction{∙} \AgdaBound{b} \AgdaFunction{）} \AgdaBound{M}\AgdaSymbol{)} \AgdaBound{b} \AgdaBound{b∉vs} \AgdaSymbol{(}\AgdaBound{PM} \AgdaFunction{[}\AgdaSymbol{(}\AgdaBound{a} \AgdaInductiveConstructor{,} \AgdaBound{b}\AgdaSymbol{)}\AgdaFunction{]}\AgdaSymbol{))}\<%
-\\
-\>\AgdaComment{--}\<%
 \end{code}
 
 %<*alphaPrimInduction>

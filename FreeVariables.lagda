@@ -55,7 +55,7 @@ infix 8 _free_
 %<*free>
 \begin{code}
 _free_ : Atom → Λ → Set
-(_free_) a = ΛIt Set (λ b → a ≡ b) _∨_ ([ a ] , const id) 
+(_free_) a = ΛIt Set (λ b → a ≡ b) _∨_ ([ a ] , λ _ → id) 
 \end{code}
 %</free>
 

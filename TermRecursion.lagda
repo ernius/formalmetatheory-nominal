@@ -33,14 +33,14 @@ Hago ahora el principio de Iteracion con el principio de induccion de swap hecho
  → (A → A → A)
  → List Atom × (Atom → A → A) 
  → Λ → A
+ΛIt A hv h· (vs , hƛ) 
+  = TermαPrimInd  (λ _ → A) 
+                  (λ _ → id) 
+                  hv 
+                  (λ _ _ → h·) 
+                  (vs , (λ _ b _ r → hƛ b r))
 \end{code}
 %</termIteration>
-
-\begin{code}
-ΛIt A hv h· (vs , hƛ) 
-  = TermαPrimInd (const A) (const id) 
-                 hv (λ _ _ → h·) (vs , (λ _ b _ r → hƛ b r))
-\end{code}
 
 -- \begin{code}
 -- ΛIt A hv h· (vs , hƛ) 

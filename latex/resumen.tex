@@ -58,6 +58,7 @@
 \newcommand{\var}[1]{\ensuremath{\AgdaInductiveConstructorFunction{v}\, #1}}
 \newcommand{\fv}{\ensuremath{{\AgdaFunction{fv}}\,}}
 \newcommand{\perm}{\ensuremath{\mathbin{\AgdaFunction{∙}}}}
+\newcommand{\perma}{\ensuremath{\mathbin{\AgdaFunction{∙}_a}}}
 \newcommand{\free}{\ensuremath{\mathbin{\AgdaFunction{*}}}}
 \newcommand{\choiceAg}{\ensuremath{\AgdaFunction{χ}\,}}
 \newcommand{\choiceAgaux}{\ensuremath{\AgdaFunction{χ'}\,}}
@@ -181,7 +182,7 @@ Primitive induction over \AgdaDatatype{Λ} terms.
 \label{fig:primInd}
 \end{figure}
 
-Next term induction principle provides a strong inductive hypothesis for the lambda abstraction case, which gives the property for all permutation of names of the body of the abstraction. This induction principle is proved using the previous introduced principle.
+The next induction principle provides a strong hypothesis for the lambda abstraction case: it namely allows to assume the property for all renamings (given by finite permutations of names) of the body of the abstraction:
 
 \begin{figure}[!ht]
   \AgdaTarget{TermIndPerm}
@@ -189,6 +190,9 @@ Next term induction principle provides a strong inductive hypothesis for the lam
   \caption{Permutation Induction Principle}
 \label{fig:permInd}
 \end{figure}
+
+\noindent Notice that the hypothesis provided for the case of abstractions is akin to the corresponding one of the principle of strong or complete induction on the size of terms, only that expressed in terms of name permutations. This principle can be derived from the former, i.e. from simple structural induction, in very much the same way as complete induction on natural numbers is derived from ordinary mathematical induction, i.e. by using primitive induction to prove that $\forall \pi , P (\pi \perm M)$\ given also the hypothesis of this new introduced principle. For the interesting abstraction case of the primitive induction proof, we have to prove $\forall \pi, P (\pi \perm \lambAg{a}{M})$, which is equal to $\forall \pi, P (\lambAg{(\pi \perma a)}{(\pi \perm M)})$. The abstraction hypothesis of the new principle give us that $∀ M', b , (∀ \pi' → P (\pi' \perm M')) → P (\lambAg{b}{M'})$, instantiating $M'$\ as $\pi \perm M$\ and $b$\ as $\pi \perma a$\ in previous hypothesis, we obtain the desired result if we know that $∀ \pi' , P (\pi' \perm \pi \perm M)$. Which holds using the primitive inductive hypothesis $\forall \pi'', P (\pi'' \perm M)$\ with $\pi'' = \pi' \perm \pi$.
+
 
 A predicate is \alp-compatible if it holds for a given term it also holds for all \alp-equivalent terms.
 
@@ -255,7 +259,7 @@ We want to define strong \alp-compatible functions, that is, functions over the 
 \AgdaTarget{strong∼αCompatible}
 \ExecuteMetaData[Alpha.tex]{strongAlphaCompatible} \hspace{5px}
 
-We define an iteration principle over raw terms which always produces \alp-compatible functions. This is granted because abstraction variables are given by the induction principle, hidding the specific abstraction variables of the inspected term. In this way the result of a function defined with this iterator has no way to extract any information from abstracted variables. This principle also allow us to give a list of variables from where the abstractions variables will not to be choosen, this will be usefull to define the no capture substitution operation latter. This iteration principle is derived from the last presented induction principle in figure~\ref{fig:permAlphaInd}. 
+We define an iteration principle over raw terms which always produces \alp-compatible functions. For the abstraction case, this principle also allow us to give a list of variables from where the abstractions variables will not to be choosen, this will be usefull to define the no capture substitution operation latter. This iteration principle is derived from the BVC induction principle (\AgdaFunction{TermαPrimInd}) in a direct manner, where the predicate is a constant function in $\AgdaDatatype{Set}$ which always returns the type $A$, that is, a trivial constant predicate equivalent to $A \neq \emptyset$, so the proof of \alp-compatiblilty of this also trivial. Note the application and abstraction cases drop the recursive sub-terms, so we could have defined a recursion principle if we have used this terms, but this will give us a not strong compatible recursion principle. This iteration implementation only uses the recursive calls, and in the abstraction case, the new abstraction variable chossen fresh from the given list of variables and the inspected term.
 
 \AgdaTarget{ΛIt}
 \ExecuteMetaData[TermRecursion.tex]{termIteration} \hspace{5px}

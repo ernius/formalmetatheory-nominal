@@ -92,7 +92,7 @@ Define free predicate using term iterator
 \begin{code}%
 \>\AgdaFunction{\_free\_} \AgdaSymbol{:} \AgdaFunction{Atom} \AgdaSymbol{→} \AgdaDatatype{Λ} \AgdaSymbol{→} \AgdaPrimitiveType{Set}\<%
 \\
-\>\AgdaSymbol{(}\AgdaFunction{\_free\_}\AgdaSymbol{)} \AgdaBound{a} \AgdaSymbol{=} \AgdaFunction{ΛIt} \AgdaPrimitiveType{Set} \AgdaSymbol{(λ} \AgdaBound{b} \AgdaSymbol{→} \AgdaBound{a} \AgdaDatatype{≡} \AgdaBound{b}\AgdaSymbol{)} \AgdaDatatype{\_∨\_} \AgdaSymbol{(}\AgdaFunction{[} \AgdaBound{a} \AgdaFunction{]} \AgdaInductiveConstructor{,} \AgdaFunction{const} \AgdaFunction{id}\AgdaSymbol{)} \<%
+\>\AgdaSymbol{(}\AgdaFunction{\_free\_}\AgdaSymbol{)} \AgdaBound{a} \AgdaSymbol{=} \AgdaFunction{ΛIt} \AgdaPrimitiveType{Set} \AgdaSymbol{(λ} \AgdaBound{b} \AgdaSymbol{→} \AgdaBound{a} \AgdaDatatype{≡} \AgdaBound{b}\AgdaSymbol{)} \AgdaDatatype{\_∨\_} \AgdaSymbol{(}\AgdaFunction{[} \AgdaBound{a} \AgdaFunction{]} \AgdaInductiveConstructor{,} \AgdaSymbol{λ} \AgdaBound{\_} \AgdaSymbol{→} \AgdaFunction{id}\AgdaSymbol{)} \<%
 \end{code}
 %</free>
 

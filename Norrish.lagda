@@ -11,17 +11,19 @@ open import Data.Bool
 open import Data.List
 open import Data.List.Any as Any hiding (map)
 open import Data.List.Any.Membership
-open Any.Membership-≡
-open import Data.Maybe hiding (map)
+open import Data.Maybe
 open import Data.Product hiding (map)
 open import Function
 open import Relation.Nullary
 open import Relation.Nullary.Decidable hiding (map)
+open import Relation.Binary.PropositionalEquality as PropEq  hiding ([_]) 
+\end{code}
 
--- Norrish functions
+Norrish functions.
+
+\begin{code}
 idΛ : Λ → Λ
 idΛ = ΛIt Λ v _·_ ([] , ƛ)
---
 \end{code}
 
 %<*constructors>
@@ -53,9 +55,13 @@ size = ΛIt ℕ (const 1) (λ n m → suc n + m) ( [] , λ _ n → suc n)
 %</size>
 
 Size tests:
- size (ƛ 1 ((v 1) · (v 2)))
- size (v 1)
-
+\begin{code}
+size1 : size (ƛ 1 ((v 1) · (v 2))) ≡ 4
+size1 = refl
+--
+size2 : size (v 1) ≡ 1
+size2 = refl
+\end{code}
 
 Alpha equality decidibility
 
@@ -80,6 +86,45 @@ equal = ΛIt (Λ → Bool) vareq appeq ([] , abseq)
 %</alphaEqual>
 
 Observe that $\AgdaFunction{isAbs}$\ function also normalises $\AgdaBound{N}$, so it is correct in the last line to ask if the two variable binders are equal.
+
+Some tests:
+
+\begin{code}
+equal1 : equal ((ƛ 1 (v 1)) · (v 1)) ((ƛ 2 (v 2)) · (v 1)) ≡ true
+equal1 = refl
+--
+equal2 : equal ((ƛ 1 (v 1)) · (v 2)) ((ƛ 2 (v 2)) · (v 1)) ≡ false
+equal2 = refl
+\end{code}
+
+Another way to do decide alfa equality, is decide syntatical equality over terms, then using idTerm we can normalise the parameters, and then check for syntactical equality between normalised terms.
+
+\begin{code}
+synEqual : Λ → Λ → Bool
+synEqual (v a)    (v b) = ⌊ a ≟ₐ b ⌋
+synEqual (v a)    (_ · _)  = false
+synEqual (v a)    (ƛ _ _)  = false
+synEqual (M · N)  (v _)    = false
+synEqual (M · N)  (P · Q)  = synEqual M P ∧ synEqual N Q
+synEqual (M · N)  (ƛ x P)  = false
+synEqual (ƛ a M)  (v _)    = false
+synEqual (ƛ a M)  (_ · _)  = false
+synEqual (ƛ a M)  (ƛ b N)  = ⌊ a ≟ₐ b ⌋ ∧ synEqual M N
+--
+equal' : Λ → Λ → Bool
+equal' M N = synEqual (idΛ M) (idΛ N)
+\end{code}
+
+Some tests:
+
+\begin{code}
+equal'1 : equal' ((ƛ 1 (v 1)) · (v 1)) ((ƛ 2 (v 2)) · (v 1)) ≡ true
+equal'1 = refl
+--
+equal'2 : equal' ((ƛ 1 (v 1)) · (v 2)) ((ƛ 2 (v 2)) · (v 1)) ≡ false
+equal'2 = refl
+\end{code}
+
 
 \begin{code}
 fv : Λ → List Atom
