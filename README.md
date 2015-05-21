@@ -10,9 +10,9 @@ We formulate principles of induction and recursion for a variant of lambda calcu
 * Nora Szasz (Universidad ORT Uruguay)
 * Álvaro Tasistro (Universidad ORT Uruguay)
 
-# Build Status [![Build Status](https://travis-ci.org/ernius/formalmetatheory-nominal.svg?branch=master)](https://travis-ci.org/ernius/formalmetatheory-nominal)
+# Build Status in Travis CI : [![Build Status](https://travis-ci.org/ernius/formalmetatheory-nominal.svg?branch=master)](https://travis-ci.org/ernius/formalmetatheory-nominal)
 
-Agda compiler version 2.4.2.2 and standar library version 0.9 
+Agda compiler version 2.4.2.2 and standard library version 0.9 
 
 
 
