@@ -13,6 +13,7 @@ script:
   - cd agda
   - agda -i . -i /tmp/agda-stdlib-0.9/src/ Everything.agda
 
+
 notifications:
   email: false
 
