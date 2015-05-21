@@ -1,0 +1,18 @@
+language: haskell
+
+before_install:
+  - cabal install Agda-2.4.2.2
+  - agda --version
+  - wget https://github.com/agda/agda-stdlib/archive/v0.9.tar.gz -O /tmp/v0.9.tar.gz
+  - tar -xzvf /tmp/v0.9.tar.gz -C /tmp/
+
+install:
+  - /bin/true
+
+script:
+  - cd agda
+  - agda -i . -i /tmp/agda-stdlib-0.9/src/ Everything.agda
+
+notifications:
+  email: false
+
