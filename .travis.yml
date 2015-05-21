@@ -17,6 +17,7 @@ install:
 
   # New new Alex for us
   - cabal install alex
+  - cabal install cpphs-1.18.9
 
   - cabal install Agda-2.4.2.2
   - wget https://github.com/agda/agda-stdlib/archive/v0.9.tar.gz -O /tmp/v0.9.tar.gz
