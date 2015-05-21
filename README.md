@@ -12,7 +12,8 @@ We formulate principles of induction and recursion for a variant of lambda calcu
 
 # Build Status
 
-Agda compiler version 2.4.2.2 and standar library version 0.9 ![](https://travis-ci.org/ernius/formalmetatheory-nominal.svg?branch=master)
+Agda compiler version 2.4.2.2 and standar library version 0.9 [![Build Status](https://travis-ci.org/ernius/formalmetatheory-nominal.svg?branch=master)](https://travis-ci.org/ernius/formalmetatheory-nominal)
+
 
 
 
