@@ -1,13 +1,26 @@
 language: haskell
 
+ghc:
+  - 7.8.4
+
 before_install:
-  - cabal install Agda-2.4.2.2
-  - agda --version
-  - wget https://github.com/agda/agda-stdlib/archive/v0.9.tar.gz -O /tmp/v0.9.tar.gz
-  - tar -xzvf /tmp/v0.9.tar.gz -C /tmp/
 
 install:
-  - /bin/true
+  - cabal install cabal-install
+  - export PATH=$HOME/.cabal/bin:$PATH
+
+  # Showing Cabal configuration
+  - cat $HOME/.cabal/config
+
+  # New Happy needed for haskell-src-exts
+  - cabal install happy
+
+  # New new Alex for us
+  - cabal install alex
+
+  - cabal install Agda-2.4.2.2
+  - wget https://github.com/agda/agda-stdlib/archive/v0.9.tar.gz -O /tmp/v0.9.tar.gz
+  - tar -xzvf /tmp/v0.9.tar.gz -C /tmp/
 
 script:
   - cd agda
