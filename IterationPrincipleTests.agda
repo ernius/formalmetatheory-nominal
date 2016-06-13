@@ -4,9 +4,13 @@ open import Atom
 open import Alpha
 open import FreeVariables
 open import Substitution
+open import Term hiding (fv)
+open import TermRecursion
 
 open import Data.Nat
 open import Data.List
+open import Data.Product
+open import Relation.Binary.PropositionalEquality as PropEq hiding ([_])
 
 --
 -- Test free variables function
@@ -28,20 +32,17 @@ fv_t5 = refl
 --
 -- Test substitution operation
 -- 
-subst_t1 : (v 1) [ 1 := v 2 ] ≡ v 2
+subst_t1 : (v 1) [ 1 ≔ v 2 ] ≡ v 2
 subst_t1 = refl
 --
-subst_t2 : (ƛ 1 (v 1)) [ 1 := v 2 ] ≡ (ƛ 0 (v 0))
+subst_t2 : (ƛ 1 (v 1)) [ 1 ≔ v 2 ] ≡ (ƛ 0 (v 0))
 subst_t2 = refl
 --
-subst_t3 : ((ƛ 1 (v 1)) · (v 1)) [ 1 := v 2 ] ≡ ((ƛ 0 (v 0)) · (v 2))
+subst_t3 : ((ƛ 1 (v 1)) · (v 1)) [ 1 ≔ v 2 ] ≡ ((ƛ 0 (v 0)) · (v 2))
 subst_t3 = refl
 --
-subst_t4 : ((ƛ 0 (v 0)) · (v 1)) [ 1 := v 2 ] ≡ ((ƛ 0 (v 0)) · (v 2))
+subst_t4 : ((ƛ 0 (v 0)) · (v 1)) [ 1 ≔ v 2 ] ≡ ((ƛ 0 (v 0)) · (v 2))
 subst_t4 = refl
 --
 idTerm : Λ → Λ
-idTerm = ΛItInd' Λ v _·_ ([] , ƛ) 
-
-
-
+idTerm = ΛIt Λ v _·_ ([] , ƛ)

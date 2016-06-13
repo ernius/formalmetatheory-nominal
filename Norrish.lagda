@@ -11,7 +11,7 @@ open import Data.Bool
 open import Data.List
 open import Data.List.Any as Any hiding (map)
 open import Data.List.Any.Membership
-open import Data.Maybe
+open import Data.Maybe hiding (map)
 open import Data.Product hiding (map)
 open import Function
 open import Relation.Nullary
