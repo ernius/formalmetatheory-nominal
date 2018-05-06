@@ -1,9 +1,25 @@
-language: haskell
+# Use new container infrastructure to enable caching
+sudo: false
 
-ghc:
-  - 7.10.3
+# Do not choose a language; we provide our own build tools.
+language: generic
+
+# Caching so the next build will be fast too.
+cache:
+  directories:
+  - $HOME/.stack
+
+# Ensure necessary system libraries are present
+addons:
+  apt:
+    packages:
+      - libgmp-dev
 
 before_install:
+# Download and unpack the stack executable
+- mkdir -p ~/.local/bin
+- export PATH=$HOME/.local/bin:$PATH
+- travis_retry curl -L https://get.haskellstack.org/stable/linux-x86_64.tar.gz | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
 
 install:
   - stack install --no-terminal --install-ghc --resolver lts-6.2 Agda
