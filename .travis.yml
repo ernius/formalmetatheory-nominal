@@ -41,6 +41,7 @@ install:
   - tar -xzf /tmp/v0.9.tar.gz -C /tmp/
 
 script:
+  - agda --version
   - agda -i . -i /tmp/agda-stdlib-0.9/src/ Substitution.lagda
 
 
