@@ -22,7 +22,7 @@ before_install:
 - travis_retry curl -L https://get.haskellstack.org/stable/linux-x86_64.tar.gz | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
 
 install:
-  - stack install --no-terminal --install-ghc --resolver lts-6.2 Agda
+  - stack install --no-terminal --install-ghc --resolver lts-5.18 Agda
   #- cabal install cabal-install
   #- export PATH=$HOME/.cabal/bin:$PATH
 
