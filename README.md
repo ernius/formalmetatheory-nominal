@@ -4,7 +4,6 @@ We formulate principles of induction and recursion for a variant of lambda calcu
 
 # Documentation
 
-* Machine-checked proof  of the Church-Rosser theorem for Lambda-Calculus using the Barendregt Variable Convention in Constructive Type Theory, Electronic Notes in Theoretical Computer Science,2018 in press.
 
 * [Alpha-Structural Induction and Recursion for the Lambda Calculus in Constructive Type Theory.](https://www.sciencedirect.com/science/article/pii/S1571066116300354?via%3Dihub) Electr. Notes Theor. Comput. Sci. 323: 109-124 (2016)
 
@@ -20,6 +19,11 @@ We formulate principles of induction and recursion for a variant of lambda calcu
 
 Agda compiler version 2.5.1 and standard library version 0.12 
 
+# Updated version of this work:
+
+Machine-checked proof  of the Church-Rosser theorem for Lambda-Calculus using the Barendregt Variable Convention in Constructive Type Theory, Electronic Notes in Theoretical Computer Science,2018 in press.
+
+[Project](https://github.com/ernius/formalmetatheory-nominal-Church-Rosser)
 
 
 
