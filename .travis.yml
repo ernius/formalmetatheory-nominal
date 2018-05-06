@@ -38,10 +38,10 @@ install:
 
   #- cabal install Agda-2.4.2.2
   - wget https://github.com/agda/agda-stdlib/archive/v0.9.tar.gz -O /tmp/v0.9.tar.gz
-  - tar -xzvf /tmp/v0.9.tar.gz -C /tmp/
+  - tar -xzf /tmp/v0.9.tar.gz -C /tmp/
 
 script:
-  - agda --no-libraries -i . -i /tmp/agda-stdlib-0.9/src/ Substitution.lagda
+  - agda -i . -i /tmp/agda-stdlib-0.9/src/ Substitution.lagda
 
 
 notifications:
