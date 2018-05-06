@@ -22,7 +22,7 @@ before_install:
 - travis_retry curl -L https://get.haskellstack.org/stable/linux-x86_64.tar.gz | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
 
 install:
-  - stack install --no-terminal --install-ghc --resolver lts-5.18 Agda
+  - stack install --no-terminal --install-ghc --resolver lts-3.0 Agda
   #- cabal install cabal-install
   #- export PATH=$HOME/.cabal/bin:$PATH
 
@@ -37,12 +37,15 @@ install:
   #- cabal install cpphs-1.18.9
 
   #- cabal install Agda-2.4.2.2
-  - wget https://github.com/agda/agda-stdlib/archive/v0.9.tar.gz -O /tmp/v0.9.tar.gz
-  - tar -xzf /tmp/v0.9.tar.gz -C /tmp/
-
+  # - wget https://github.com/agda/agda-stdlib/archive/v0.9.tar.gz -O /tmp/v0.9.tar.gz
+  #- tar -xzf /tmp/v0.9.tar.gz -C /tmp/
+  # Agda 2.4.2.5
+  - wget https://github.com/agda/agda-stdlib/archive/v0.11.tar.gz -O /tmp/v0.11.tar.gz
+  - tar -xzf /tmp/v0.11.tar.gz -C /tmp/
+  
 script:
   - agda --version
-  - agda -i . -i /tmp/agda-stdlib-0.9/src/ Substitution.lagda
+  - agda -i . -i /tmp/agda-stdlib-0.11/src/ Substitution.lagda
 
 
 notifications:
