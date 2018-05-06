@@ -6,20 +6,21 @@ ghc:
 before_install:
 
 install:
-  - cabal install cabal-install
-  - export PATH=$HOME/.cabal/bin:$PATH
+  - stack install --no-terminal --install-ghc --resolver lts-6.2 Agda
+  #- cabal install cabal-install
+  #- export PATH=$HOME/.cabal/bin:$PATH
 
   # Showing Cabal configuration
-  - cat $HOME/.cabal/config
+  #- cat $HOME/.cabal/config
 
   # New Happy needed for haskell-src-exts
-  - cabal install happy
+  #- cabal install happy
 
   # New new Alex for us
-  - cabal install alex
-  - cabal install cpphs-1.18.9
+  #- cabal install alex
+  #- cabal install cpphs-1.18.9
 
-  - cabal install Agda-2.4.2.2
+  #- cabal install Agda-2.4.2.2
   - wget https://github.com/agda/agda-stdlib/archive/v0.9.tar.gz -O /tmp/v0.9.tar.gz
   - tar -xzvf /tmp/v0.9.tar.gz -C /tmp/
 
